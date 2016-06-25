@@ -42,3 +42,7 @@ if [ $(which vcprompt 2> /dev/null) ]; then
 fi
 PS1="${PS1}\n\$ "
 export PS1
+
+function google() { 
+    open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1"; 
+}
