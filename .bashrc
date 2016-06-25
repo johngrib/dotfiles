@@ -35,7 +35,8 @@ COLOR_END='\[\033[0m\]'
 
 # PROMPT ----------------------------------------------------------------------
 # PS1="\h:\W \u\$ "  # default promopt
-PS1="${GREEN}\u ${B_MAGENTA}\h ${YELLOW}\w ${COLOR_END} "
+TIMESTAMP='\D{%F %a %T}'
+PS1="${YELLOW}${TIMESTAMP} ${GREEN}\u ${B_MAGENTA}\h ${YELLOW}\w ${COLOR_END} "
 if [ $(which vcprompt 2> /dev/null) ]; then
   PS1="${PS1}\$(vcprompt -f '[%b %r]')"
 fi
