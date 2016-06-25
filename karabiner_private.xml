@@ -76,16 +76,6 @@
       <appendix>Seil 을 사용해서 다음과 같이 매핑한 다음 설정하도록 한다. </appendix>
       <appendix>CAPSLOCK => F19, Alt => F16, Super => F17, ContextMenu => F18, Ctrl => F19</appendix>
     </item>
-    <item>
-      <name>VI, IntelliJ IDEA 에서는 command_l 키를 control_l 키로 한다.</name>
-      <appendix>단, command + tab 은 작동하게 한다.</appendix>
-      <identifier>johngrib.command_l_to_control_l_only_intellij_idea</identifier>
-      <block>
-        <only>IntelliJ,VI,VIMR</only>
-        <autogen> __KeyToKey__ KeyCode::COMMAND_L, KeyCode::CONTROL_L, </autogen>
-        <autogen> __KeyToKey__ KeyCode::TAB, {{CTRL}}, KeyCode::TAB, {{CMD}}, </autogen>
-      </block>
-    </item>
     <!-- F19 VI 섹션 -->
     <item>
       <identifier>johngrib.f19_vi_keymap</identifier>
