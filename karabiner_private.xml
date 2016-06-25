@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<root>
+
+  <!-- input source -->
+  <vkchangeinputsourcedef>
+    <name>KeyCode::VK_CHANGE_INPUTSOURCE_TO_ENGLISH</name>
+    <inputsourceid_equal>com.apple.keylayout.ABC</inputsourceid_equal>
+  </vkchangeinputsourcedef>
+  
+  <!-- APP def -->
+  <appdef>
+    <appname>VIMR</appname>
+    <equal>com.qvacua.VimR</equal>
+  </appdef>
+
+  <!-- replacement defs -->
+  <replacementdef>
+    <replacementname>MOD_EXT</replacementname>
+    <replacementvalue> <![CDATA[ Option::KEYTOKEY_INCREASE_MODIFIER_FLAGS, ModifierFlag::EXTRA1, ]]> </replacementvalue>
+  </replacementdef>
+  <replacementdef>
+    <replacementname>MOD</replacementname>
+    <replacementvalue> <![CDATA[ ModifierFlag ]]> </replacementvalue>
+  </replacementdef>
+  <replacementdef>
+    <replacementname>CTRL</replacementname>
+    <replacementvalue> <![CDATA[ ModifierFlag::CONTROL_L ]]> </replacementvalue>
+  </replacementdef>
+  <replacementdef>
+    <replacementname>CMD</replacementname>
+    <replacementvalue> <![CDATA[ ModifierFlag::COMMAND_L ]]> </replacementvalue>
+  </replacementdef>
+  <replacementdef>
+    <replacementname>ALT</replacementname>
+    <replacementvalue> <![CDATA[ ModifierFlag::OPTION_L ]]> </replacementvalue>
+  </replacementdef>
+  <replacementdef>
+    <replacementname>SHIFT</replacementname>
+    <replacementvalue> <![CDATA[ ModifierFlag::SHIFT_L ]]> </replacementvalue>
+  </replacementdef>
+  <replacementdef>
+    <replacementname>FN</replacementname>
+    <replacementvalue> <![CDATA[ ModifierFlag::FN ]]> </replacementvalue>
+  </replacementdef>
+  
+  <!-- vk open url def -->
+  <vkopenurldef>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_1_center</name>
+    <url type="shell">
+      <![CDATA[
+        /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position screen 0 middle 0 center 0
+      ]]>
+    </url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_2_center</name>
+    <url type="shell">
+      <![CDATA[
+        /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position screen 0 top -650 left -350
+      ]]>
+    </url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_3_center</name>
+    <url type="shell">
+      <![CDATA[
+        /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position screen 0 top -550 left +1600
+      ]]>
+    </url>
+  </vkopenurldef>
+
+  <!-- items -->
+  <item>
+    <name>John Grib customized (이종립 개인 설정)</name>
+    <item>
+      <appendix>Seil 을 사용해서 다음과 같이 매핑한 다음 설정하도록 한다. </appendix>
+      <appendix>CAPSLOCK => F19, Alt => F16, Super => F17, ContextMenu => F18, Ctrl => F19</appendix>
+    </item>
+    <item>
+      <name>VI, IntelliJ IDEA 에서는 command_l 키를 control_l 키로 한다.</name>
+      <appendix>단, command + tab 은 작동하게 한다.</appendix>
+      <identifier>johngrib.command_l_to_control_l_only_intellij_idea</identifier>
+      <block>
+        <only>IntelliJ,VI,VIMR</only>
+        <autogen> __KeyToKey__ KeyCode::COMMAND_L, KeyCode::CONTROL_L, </autogen>
+        <autogen> __KeyToKey__ KeyCode::TAB, {{CTRL}}, KeyCode::TAB, {{CMD}}, </autogen>
+      </block>
+    </item>
+    <!-- F19 VI 섹션 -->
+    <item>
+      <identifier>johngrib.f19_vi_keymap</identifier>
+      <name>F19 키 확장</name>
+      <!-- F19 키만 누르면 영문전환 + ESC 로 작동하도록 한다. -->
+      <autogen>
+        __KeyOverlaidModifier__
+        KeyCode::F19,
+        KeyCode::VK_MODIFIER_EXTRA1,
+        KeyCode::VK_CHANGE_INPUTSOURCE_TO_ENGLISH,
+        KeyCode::ESCAPE,
+      </autogen>
+      <!-- F17 키를 command 로 사용한다. -->
+      <autogen>
+        __KeyToKey__
+        KeyCode::F17,
+        KeyCode::COMMAND_L,
+      </autogen>
+      <!-- COMMAND_R 을 F19 로 사용한다. -->
+      <appendix>F19 + hjkl</appendix>
+      <appendix>F19 + b, 0, 4($), 6(^)</appendix>
+      <appendix>F19 + g, G</appendix>
+      <appendix>F19 + x, X</appendix>
+      <appendix>F19 + command + f</appendix>
+      <appendix>F19 + command + b</appendix>
+      <appendix>F19 + ' (dock open/close)</appendix>
+      <block>
+        <modifier_only>ModifierFlag::EXTRA1</modifier_only>
+        <!-- dock 호출 -->
+        <autogen> __KeyToKey__ KeyCode::QUOTE, KeyCode::F3, {{CTRL}}, {{MOD_EXT}} </autogen>
+        <!-- cmd + f : pgdn / cmd + b : pgup -->
+        <autogen> __KeyToKey__ KeyCode::F, {{CMD}}, KeyCode::PAGEDOWN, {{ALT}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::B, {{CMD}}, KeyCode::PAGEUP, {{ALT}}, {{MOD_EXT}} </autogen>
+        <!-- hjkl -->
+        <autogen> __KeyToKey__ KeyCode::H, KeyCode::CURSOR_LEFT, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::J, KeyCode::CURSOR_DOWN, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::K, KeyCode::CURSOR_UP,   {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::L, KeyCode::CURSOR_RIGHT,{{MOD_EXT}} </autogen>
+        <!-- G, g -->
+        <autogen> __KeyToKey__ KeyCode::G, {{SHIFT}}, KeyCode::CURSOR_DOWN, {{CMD}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::G, KeyCode::CURSOR_UP, {{CMD}}, {{MOD_EXT}} </autogen>
+        <!-- mouse control -->
+        <autogen> __KeyToKey__ KeyCode::W, KeyCode::VK_MOUSEKEY_UP, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::A, KeyCode::VK_MOUSEKEY_LEFT, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::S, KeyCode::VK_MOUSEKEY_DOWN, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::D, KeyCode::VK_MOUSEKEY_RIGHT, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::Q, PointingButton::LEFT, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::E, PointingButton::RIGHT, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::R, KeyCode::VK_MOUSEKEY_SCROLL_DOWN, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::F, KeyCode::VK_MOUSEKEY_SCROLL_UP, {{MOD_EXT}} </autogen>
+        <!-- B b 0 4($) 6(^)-->
+        <autogen> __KeyToKey__ KeyCode::B, {{SHIFT}}, KeyCode::CURSOR_RIGHT, {{ALT}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::B, KeyCode::CURSOR_LEFT, {{ALT}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::0, KeyCode::CURSOR_LEFT, {{CMD}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::4, KeyCode::CURSOR_RIGHT, {{CMD}}, {{MOD_EXT}} </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::6,
+          @begin
+            KeyCode::CURSOR_LEFT, {{CMD}},
+            KeyCode::CURSOR_RIGHT,{{ALT}},
+            KeyCode::CURSOR_LEFT, {{ALT}},
+          @end
+          {{MOD_EXT}}
+        </autogen>
+        <!-- 마우스 포인터를 1,2 번 모니터로 -->
+        <autogen>
+          __KeyToKey__
+          KeyCode::1,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_1_center,
+            PointingButton::LEFT
+          @end
+          {{MOD_EXT}}
+        </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::2,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_2_center,
+            PointingButton::LEFT
+          @end
+          {{MOD_EXT}}
+        </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::3,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_3_center,
+            PointingButton::LEFT
+          @end
+          {{MOD_EXT}}
+        </autogen>
+        <!-- CMD 호환 -->
+        <!-- CMD + Z,X,C,V -->
+        <autogen> __KeyToKey__ KeyCode::Z, KeyCode::Z, {{CMD}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::X, KeyCode::X, {{CMD}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::C, KeyCode::C, {{CMD}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::V, KeyCode::V, {{CMD}}, {{MOD_EXT}} </autogen>
+        <!-- CAPSLOCK -->
+        <autogen> __KeyToKey__ KeyCode::U, KeyCode::CAPSLOCK, {{MOD_EXT}} </autogen>
+      </block>
+    </item>
+    <!-- Hyper Key 섹션 -->
+    <item>
+      <identifier>johngrib.fxx_to_hyper</identifier>
+      <appendix>F18 키를 Hyper 로 설정한다.</appendix>
+      <autogen>
+          --KeyOverlaidModifier--
+          KeyCode::F18,
+          KeyCode::COMMAND_L, {{ALT}} | {{SHIFT}} | {{CTRL}},
+          KeyCode::F18
+      </autogen>
+    </item>
+    <item>
+      <appendix>VI 보조 설정</appendix>
+      <item>
+        <appendix>ESC 키를 누를때마다 영문 입력 모드로 전환하기(for VI)</appendix>
+        <identifier>johngrib.esc_to_abc_esc</identifier>
+        <autogen>
+          __KeyToKey__
+          KeyCode::ESCAPE,
+          KeyCode::VK_CHANGE_INPUTSOURCE_TO_ENGLISH,
+          KeyCode::ESCAPE,
+        </autogen>
+      </item>
+      <item>
+        <identifier>johngrib.f19_to_abc_esc</identifier>
+        <appendix>F19 키를 ESC, 영문 입력 모드로 설정한다.</appendix>
+        <autogen>
+          __KeyToKey__
+          KeyCode::F19,
+          KeyCode::VK_CHANGE_INPUTSOURCE_TO_ENGLISH,
+          KeyCode::ESCAPE,
+        </autogen>
+      </item>
+    </item>
+
+    <!-- 한영/한자 관련 설정 -->
+    <item>
+      <appendix>한영전환/한자 관련 설정 (F16 이 한영 전환으로 설정되어 있어야 한다) </appendix>
+      <!-- Shift + Space 를 한영 전환으로 설정한다. -->
+      <item>
+        <identifier>johngrib.shift_space_to_haneng</identifier>
+        <appendix>Shift + Space 를 한영 전환으로 설정한다.</appendix>
+        <not>VIRTUALMACHINE, REMOTEDESKTOPCONNECTION</not>
+        <autogen>
+          __KeyToKey__
+          KeyCode::SPACE, {{SHIFT}},
+          KeyCode::F16,
+        </autogen>
+      </item>
+      <!-- Command_R 을 한자 키로 설정한다. -->
+      <item>
+        <name>F15 를 한자 키로 설정한다.</name>
+        <device_not>
+          DeviceVendor::APPLE_COMPUTER, DeviceProduct::ANY,
+          DeviceVendor::Apple_Bluetooth, DeviceProduct::ANY,
+        </device_not>
+        <identifier>johngrib.command_r_to_hanja </identifier>
+        <block>
+          <not>VIRTUALMACHINE, REMOTEDESKTOPCONNECTION</not>
+          <autogen> __KeyToKey__ KeyCode::F15, {{ HANJA_AT_MAC }} </autogen>
+        </block>
+        <block>
+          <only>VIRTUALMACHINE, REMOTEDESKTOPCONNECTION</only>
+          <autogen>__KeyToKey__ KeyCode::F15, {{ HANJA_AT_WIN }} </autogen>
+        </block>
+      </item>
+    </item>
+  </item>
+
+</root>
