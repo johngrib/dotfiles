@@ -1,0 +1,89 @@
+"외부 경로를 지정할 때는 다음과 같이 한다.
+"source /Users/johngrib/git/myconfig/vim/.ideavimrc
+
+" 참고 link ---------------------------------------------------------------------
+
+  "http://ideavim.sourceforge.net/vim/
+  "https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
+  "https://gist.github.com/zchee/9c78f91cc5ad771c1f5d " action list
+
+  nnoremap <F10>r :source ~/.ideavimrc<CR>
+
+" set commands -----------------------------------------------------------------
+
+  set vimpath=~/Applications/MacVim/mvim
+  set nu
+  set hi=1000 "history=1000
+  set hls     "hlsearch
+  set ic      "ignorecase
+  set is      "incsearch
+  set scs     "smartcase
+  set mps     "matchpairs
+  set ul=2000 "undolevels
+  set surround
+
+" copy , paste , select 기능 보완 ------------------------------------------------
+  nnoremap Y y$
+  nnoremap <SPACE>y "+y
+  vnoremap <SPACE>y "+y
+  nnoremap <SPACE>p "+p
+  nnoremap <SPACE>a ggVG
+  vnoremap <SPACE>a ggVG
+
+" 키 navigation 기능 보완 ---------------------------------------------------------
+  nnoremap gr gT
+  nnoremap gl 1gtgT
+  nnoremap gf 1gt
+
+" IntelliJ action 명령 테스트 ----------------------------------------------------
+
+  "ideavim 에서는 :command 명령을 사용할 수 없다...
+
+  "라인 스플릿. :action 을 부르는 방식의 성능이 나쁘고, number operation 반복이 안 됨. 그냥 i<CR> 이 낫다.
+  "nnoremap <c-j> :action EditorSplitLine<CR>
+  nnoremap <c-j> i<CR><ESC>
+
+  "다음 기능들은 검색 창이 열린 다음에 포커스가 곧바로 에디터로 이동하므로 불편하고 쓸모가 없음.
+  "실행한 다음 포커스가 남아 있기만 해도 굉장히 쓸만할 것 같은데 아쉽다.
+  nnoremap <SPACE>o :action GotoFile<ENTER>  
+  nnoremap <SPACE>r :action RecentChangedFiles<CR>
+
+" IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
+
+  "ideavim 에서는 insert mode <C-P>, <C-N> 이 작동하지 않는다. 대신 IntelliJ 의 keymap 중
+  "  Main Menu > Code > Code > Completion > Cyclic Expand Word 가 비슷한 기능을 한다.
+  "  Cyclic Expand Word 에 ^p, Cyclic Expand Word (Backward) 에 ^n 을 지정해주면 된다.
+
+" IntelliJ 에서의 mark 사용 -------------------------------------------------------
+
+  " m[a-zA-Z] 로 사용 가능하며, m[0-9] 는 작동하지 않는다.
+  " 범위는 파일이므로 mark 로 파일을 넘나들 수는 없다.
+  " 단, :marks 로 확인은 가능하다.
+  " IntelliJ 의 내부 기능인 GotoBookmark[0-9] 를 사용하면 괜찮을 것 같아서 테스트를 해 봤지만, 잘 통하지 않는다.
+  " m0, '0 은 잘 되지만, 0 외의 숫자는 m 과 함께 작동하지 않는다.
+  " 따라서 m[0-9] 방식은 사용할 수가 없다.
+  " 궁여지책으로 IntelliJ 내부 키맵으로 <M-M>[0-9] 로 등록하여 사용하고 있다.
+  "nnoremap '0 :action GotoBookmark0 <CR>
+  "nnoremap m0 :action ToggleBookmark0 <CR>
+
+" custom command 가 불가능하니 F10 키에 이것저것 붙여보자.
+nnoremap m<A-0> :action ToggleBookmark0<CR>
+nnoremap m<A-1> :action ToggleBookmark1<CR>
+nnoremap m<A-2> :action ToggleBookmark2<CR>
+nnoremap m<A-3> :action ToggleBookmark3<CR>
+nnoremap m<A-4> :action ToggleBookmark4<CR>
+nnoremap m<A-5> :action ToggleBookmark5<CR>
+nnoremap m<A-6> :action ToggleBookmark6<CR>
+nnoremap m<A-7> :action ToggleBookmark7<CR>
+nnoremap m<A-8> :action ToggleBookmark8<CR>
+nnoremap m<A-9> :action ToggleBookmark9<CR>
+nnoremap '<A-0> :action GotoBookmark0<CR>
+nnoremap '<A-1> :action GotoBookmark1<CR>
+nnoremap '<A-2> :action GotoBookmark2<CR>
+nnoremap '<A-3> :action GotoBookmark3<CR>
+nnoremap '<A-4> :action GotoBookmark4<CR>
+nnoremap '<A-5> :action GotoBookmark5<CR>
+nnoremap '<A-6> :action GotoBookmark6<CR>
+nnoremap '<A-7> :action GotoBookmark7<CR>
+nnoremap '<A-8> :action GotoBookmark8<CR>
+nnoremap '<A-9> :action GotoBookmark9<CR>

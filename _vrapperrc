@@ -1,0 +1,104 @@
+"외부 경로 지정
+"source /Users/johngrib/git/dotfiles/_vrapperrc
+"source C:\Users\Administrator.leejr-PC\git\myconfig\_vrapperrc
+
+" gvim 실행 파일 경로.
+" 라인 오른쪽에 주석을 달아주면 주석도 옵션으로 평가하므로 주의. 
+"set gvimpath=/usr/local/opt/macvim/bin/mvim
+"set gvimpath=E:\Program Files (x86)\Vim\vim74\gvim.exe
+"set gvimpath=D:\vim73\gvim.exe
+
+set smartcase	" 대문자가 검색어 문자열에 포함될 때에는 noignorecase
+set ignorecase
+set hlsearch
+set incsearch
+set shiftwidth=2
+set expandtab
+set tabstop=4
+
+set autochdir
+set contentassistmode
+
+" ESC 대용
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap ㅓㅏ <Esc>
+inoremap ㅏㅓ <Esc>
+
+" ctrl-j 로 라인을 분리.
+nnoremap <c-j> i<ENTER><ESC>
+
+" typing assist ------------------------------------------------
+inoremap ,/ /* */<ESC>2F*a<SPACE>
+inoremap <c-9> ()<LEFT>
+
+" copy , paste , select 기능 보완 -------------------------------
+nnoremap Y y$
+noremap <Space>y	"+y
+nnoremap <Space>p	"+p
+nnoremap <Space>a	gg<S-v>G
+
+" navigation 기능 보완 ---------------------------------
+nnoremap <Space>h ^
+nnoremap <Space>l $
+noremap <Space>j 8j
+noremap <Space>k 8k
+nnoremap gr gT
+nnoremap gl :tablast<Enter>
+nnoremap gf :tabrewind<Enter>
+
+" vrapper 에서 지원하지 않는 [[, ]] 기능을 구현한다.
+"https://github.com/vrapper/vrapper/issues/352
+eclipseaction eclipsenextmember org.eclipse.jdt.ui.edit.text.java.goto.next.member
+nnoremap ]] :eclipsenextmember<cr>
+eclipseaction eclipseprevmember org.eclipse.jdt.ui.edit.text.java.goto.previous.member
+nnoremap [[ :eclipseprevmember<cr>
+
+" vrapper eclipseactions --------------------------------
+" http://help.eclipse.org/help33/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ui/texteditor/IWorkbenchActionDefinitionIds.html
+" http://help.eclipse.org/help33/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ui/texteditor/ITextEditorActionDefinitionIds.html
+" http://help.eclipse.org/ganymede/topic/org.eclipse.jdt.doc.isv/reference/api/org/eclipse/jdt/ui/actions/IJavaEditorActionDefinitionIds.html
+
+"편집중인 파일이 위치하는 곳을 운영체제 기본 파일 네비게이터에서 열어준다.
+eclipseaction	opendir	org.eclipse.ui.ide.showInSystemExplorer
+
+" search reference 를 수행한다.
+eclipseaction	ref		org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace
+
+" class, method doc 주석을 보여준다
+eclipseuiaction doc org.eclipse.ui.edit.text.showInformation
+
+" java class 상단 import 중 사용하지 않는 클래스를 정리해 준다.
+eclipseaction   organizeimports	org.eclipse.jdt.ui.edit.text.java.organize.imports
+
+" 마지막 편집했던 곳으로 이동한다
+"eclipseaction 	lastedit	org.eclipse.ui.edit.text.gotoLastEditPosition
+"nnoremap <m-q> :lastedited<ENTER>
+
+" 편의 기능들 *(주석 달기 귀찮다)
+autocmd "Java Editor"           eclipseaction	rename			org.eclipse.jdt.ui.edit.text.java.rename.element
+autocmd "JavaScript Editor"     eclipseaction   rename          org.eclipse.wst.jsdt.ui.edit.text.java.rename.element
+
+eclipseuiaction	fix				org.eclipse.jdt.ui.edit.text.java.correction.assist.proposals
+eclipseaction	resource		org.eclipse.ui.navigate.openResource
+eclipseaction	getset			org.eclipse.jdt.ui.edit.text.java.create.getter.setter
+eclipseaction	tostring		org.eclipse.jdt.ui.edit.text.java.generate.tostring
+eclipseaction	overridemethods	org.eclipse.jdt.ui.edit.text.java.override.methods
+eclipseaction	breadcrumb 		org.eclipse.jdt.ui.edit.text.java.gotoBreadcrumb
+eclipseaction	tbreadcrumb 	org.eclipse.jdt.ui.edit.text.java.toggleBreadcrumb
+eclipseaction	outline			org.eclipse.jdt.ui.edit.text.java.show.outline
+eclipseaction	revertline		org.eclipse.ui.editors.quickdiff.revertLine
+nnoremap U :revertline<ENTER>
+"eclipseaction	revertselection	org.eclipse.ui.editors.quickdiff.revert
+eclipseaction	information		org.eclipse.ui.edit.text.showInformation
+"eclipseaction	properties		org.eclipse.ui.file.properties
+eclipseaction	trycatch		org.eclipse.jdt.ui.edit.text.java.surround.with.try.catch
+eclipseaction	rulermenu		org.eclipse.ui.edit.text.showRulerContextMenu
+eclipseaction	perspective		org.eclipse.ui.window.nextPerspective
+eclipseaction	view			org.eclipse.ui.window.previousView
+eclipseaction   search          org.eclipse.search.ui.openFileSearchPage
+
+autocmd "JavaScript Editor" eclipseaction   indent   org.eclipse.wst.jsdt.ui.edit.text.java.indent
+autocmd "Java Editor"       eclipseaction   indent   org.eclipse.jdt.ui.edit.text.java.indent
+nnoremap == :indent<Enter>
+vnoremap == :indent<Enter>
