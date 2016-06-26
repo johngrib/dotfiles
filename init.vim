@@ -1,6 +1,11 @@
 " init.vim : .nvimrc
 " location of init.vim : ~/.config/nvim/
 
+" for deoplete plugin
+  function! DoRemote(arg)
+    UpdateRemotePlugins
+  endfunction
+
 " Vim-Plug 설정 ------------------------------------------------------------------
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
 call plug#begin('~/.vim/plugged')
@@ -27,6 +32,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'junegunn/vim-peekaboo'
+  Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 call plug#end()
 filetype plugin indent on " Put your non-Plugin stuff after this line
 
@@ -185,6 +191,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   let g:peekaboo_window = 'vertical botright 30new'
   let g:peekaboo_delay = 0
   let g:peekaboo_compact = 0
+
+  " Use deoplete.
+  let g:deoplete#enable_at_startup = 1
 
 " functions -------------------------------------------------------------------
 
