@@ -16,14 +16,14 @@ fi
 
 alias l.='ls -d .* --color=auto'
 alias ll='ls -al'
-#alias vi=vim
-alias vim=mvim
+alias vi=nvim
+alias vim=nvim
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias cd..='cd ..';
 
-alias vimr='open -a VimR.app "$@"'
+#alias vimr='open -a VimR.app "$@"'
 
 set -o vi
 
