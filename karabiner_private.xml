@@ -170,11 +170,13 @@
           {{MOD_EXT}}
         </autogen>
         <!-- CMD 호환 -->
-        <!-- CMD + Z,X,C,V -->
+        <!-- CMD + Z,X,C,V 그리고 Y, P -->
         <autogen> __KeyToKey__ KeyCode::Z, KeyCode::Z, {{CMD}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::X, KeyCode::X, {{CMD}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::C, KeyCode::C, {{CMD}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::V, KeyCode::V, {{CMD}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::Y, KeyCode::C, {{CMD}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::P, KeyCode::V, {{CMD}}, {{MOD_EXT}} </autogen>
         <!-- CAPSLOCK -->
         <autogen> __KeyToKey__ KeyCode::U, KeyCode::CAPSLOCK, {{MOD_EXT}} </autogen>
       </block>
