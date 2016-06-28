@@ -19,6 +19,10 @@
     <replacementvalue> <![CDATA[ Option::KEYTOKEY_INCREASE_MODIFIER_FLAGS, ModifierFlag::EXTRA1, ]]> </replacementvalue>
   </replacementdef>
   <replacementdef>
+    <replacementname>MOD_EXT2</replacementname>
+    <replacementvalue> <![CDATA[ Option::KEYTOKEY_INCREASE_MODIFIER_FLAGS, ModifierFlag::EXTRA2, ]]> </replacementvalue>
+  </replacementdef>
+  <replacementdef>
     <replacementname>MOD</replacementname>
     <replacementvalue> <![CDATA[ ModifierFlag ]]> </replacementvalue>
   </replacementdef>
@@ -117,15 +121,6 @@
         <!-- G, g -->
         <autogen> __KeyToKey__ KeyCode::G, {{SHIFT}}, KeyCode::CURSOR_DOWN, {{CMD}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::G, KeyCode::CURSOR_UP, {{CMD}}, {{MOD_EXT}} </autogen>
-        <!-- mouse control -->
-        <autogen> __KeyToKey__ KeyCode::W, KeyCode::VK_MOUSEKEY_UP, {{MOD_EXT}} </autogen>
-        <autogen> __KeyToKey__ KeyCode::A, KeyCode::VK_MOUSEKEY_LEFT, {{MOD_EXT}} </autogen>
-        <autogen> __KeyToKey__ KeyCode::S, KeyCode::VK_MOUSEKEY_DOWN, {{MOD_EXT}} </autogen>
-        <autogen> __KeyToKey__ KeyCode::D, KeyCode::VK_MOUSEKEY_RIGHT, {{MOD_EXT}} </autogen>
-        <autogen> __KeyToKey__ KeyCode::Q, PointingButton::LEFT, {{MOD_EXT}} </autogen>
-        <autogen> __KeyToKey__ KeyCode::E, PointingButton::RIGHT, {{MOD_EXT}} </autogen>
-        <autogen> __KeyToKey__ KeyCode::R, KeyCode::VK_MOUSEKEY_SCROLL_DOWN, {{MOD_EXT}} </autogen>
-        <autogen> __KeyToKey__ KeyCode::F, KeyCode::VK_MOUSEKEY_SCROLL_UP, {{MOD_EXT}} </autogen>
         <!-- B b 0 4($) 6(^)-->
         <autogen> __KeyToKey__ KeyCode::B, {{SHIFT}}, KeyCode::CURSOR_RIGHT, {{ALT}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::B, KeyCode::CURSOR_LEFT, {{ALT}}, {{MOD_EXT}} </autogen>
@@ -141,34 +136,6 @@
           @end
           {{MOD_EXT}}
         </autogen>
-        <!-- 마우스 포인터를 1,2 번 모니터로 -->
-        <autogen>
-          __KeyToKey__
-          KeyCode::1,
-          @begin
-            KeyCode::VK_OPEN_URL_SHELL_move_mouse_1_center,
-            PointingButton::LEFT
-          @end
-          {{MOD_EXT}}
-        </autogen>
-        <autogen>
-          __KeyToKey__
-          KeyCode::2,
-          @begin
-            KeyCode::VK_OPEN_URL_SHELL_move_mouse_2_center,
-            PointingButton::LEFT
-          @end
-          {{MOD_EXT}}
-        </autogen>
-        <autogen>
-          __KeyToKey__
-          KeyCode::3,
-          @begin
-            KeyCode::VK_OPEN_URL_SHELL_move_mouse_3_center,
-            PointingButton::LEFT
-          @end
-          {{MOD_EXT}}
-        </autogen>
         <!-- CMD 호환 -->
         <!-- CMD + Z,X,C,V 그리고 Y, P -->
         <autogen> __KeyToKey__ KeyCode::Z, KeyCode::Z, {{CMD}}, {{MOD_EXT}} </autogen>
@@ -179,6 +146,59 @@
         <autogen> __KeyToKey__ KeyCode::P, KeyCode::V, {{CMD}}, {{MOD_EXT}} </autogen>
         <!-- CAPSLOCK -->
         <autogen> __KeyToKey__ KeyCode::U, KeyCode::CAPSLOCK, {{MOD_EXT}} </autogen>
+      </block>
+    </item>
+    <item>
+      <identifier>johngrib.f16_ext</identifier>
+      <name>F16 키 확장</name>
+      <autogen>
+        __KeyOverlaidModifier__
+        KeyCode::F16,
+        KeyCode::VK_MODIFIER_EXTRA2,
+        KeyCode::F16,
+      </autogen>
+      <appendix>F16 + WASD 로 마우스 조작</appendix>
+      <appendix>F16 + Q, E 로 마우스 좌클릭, 우클릭</appendix>
+      <appendix>F16 + R, F 로 마우스 휠 조작</appendix>
+      <block>
+        <modifier_only>ModifierFlag::EXTRA2</modifier_only>
+        <!-- mouse control -->
+        <autogen> __KeyToKey__ KeyCode::W, KeyCode::VK_MOUSEKEY_UP, {{MOD_EXT2}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::A, KeyCode::VK_MOUSEKEY_LEFT, {{MOD_EXT2}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::S, KeyCode::VK_MOUSEKEY_DOWN, {{MOD_EXT2}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::D, KeyCode::VK_MOUSEKEY_RIGHT, {{MOD_EXT2}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::Q, PointingButton::LEFT, {{MOD_EXT2}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::E, PointingButton::RIGHT, {{MOD_EXT2}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::R, KeyCode::VK_MOUSEKEY_SCROLL_DOWN, {{MOD_EXT2}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::F, KeyCode::VK_MOUSEKEY_SCROLL_UP, {{MOD_EXT2}} </autogen>
+        <!-- 마우스 포인터를 1,2 번 모니터로 -->
+        <autogen>
+          __KeyToKey__
+          KeyCode::1,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_1_center,
+            PointingButton::LEFT
+          @end
+          {{MOD_EXT2}}
+        </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::2,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_2_center,
+            PointingButton::LEFT
+          @end
+          {{MOD_EXT2}}
+        </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::3,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_3_center,
+            PointingButton::LEFT
+          @end
+          {{MOD_EXT2}}
+        </autogen>
       </block>
     </item>
     <!-- Hyper Key 섹션 -->
