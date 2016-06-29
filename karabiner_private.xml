@@ -110,9 +110,9 @@
         <modifier_only>ModifierFlag::EXTRA1</modifier_only>
         <!-- dock 호출 -->
         <autogen> __KeyToKey__ KeyCode::QUOTE, KeyCode::F3, {{CTRL}}, {{MOD_EXT}} </autogen>
-        <!-- cmd + f : pgdn / cmd + b : pgup -->
-        <autogen> __KeyToKey__ KeyCode::F, {{CMD}}, KeyCode::PAGEDOWN, {{ALT}}, {{MOD_EXT}} </autogen>
-        <autogen> __KeyToKey__ KeyCode::B, {{CMD}}, KeyCode::PAGEUP, {{ALT}}, {{MOD_EXT}} </autogen>
+        <!-- ^f : pgdn / ^b : pgup -->
+        <autogen> __KeyToKey__ KeyCode::F, {{CTRL}}, KeyCode::PAGEDOWN, {{ALT}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::B, {{CTRL}}, KeyCode::PAGEUP, {{ALT}}, {{MOD_EXT}} </autogen>
         <!-- hjkl -->
         <autogen> __KeyToKey__ KeyCode::H, KeyCode::CURSOR_LEFT, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::J, KeyCode::CURSOR_DOWN, {{MOD_EXT}} </autogen>
@@ -121,11 +121,13 @@
         <!-- G, g -->
         <autogen> __KeyToKey__ KeyCode::G, {{SHIFT}}, KeyCode::CURSOR_DOWN, {{CMD}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::G, KeyCode::CURSOR_UP, {{CMD}}, {{MOD_EXT}} </autogen>
-        <!-- B b 0 4($) 6(^)-->
+        <!-- B b 0 4($) 6(^) w e-->
         <autogen> __KeyToKey__ KeyCode::B, {{SHIFT}}, KeyCode::CURSOR_RIGHT, {{ALT}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::B, KeyCode::CURSOR_LEFT, {{ALT}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::0, KeyCode::CURSOR_LEFT, {{CMD}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::4, KeyCode::CURSOR_RIGHT, {{CMD}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::W, KeyCode::CURSOR_RIGHT, {{ALT}}, KeyCode::CURSOR_RIGHT, {{ALT}}, KeyCode::CURSOR_LEFT, {{ALT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::E, KeyCode::CURSOR_RIGHT, {{ALT}}</autogen>
         <autogen>
           __KeyToKey__
           KeyCode::6,
