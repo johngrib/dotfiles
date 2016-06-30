@@ -99,13 +99,16 @@
         KeyCode::COMMAND_L,
       </autogen>
       <!-- COMMAND_R 을 F19 로 사용한다. -->
+      <appendix>**Navigation**</appendix>
       <appendix>F19 + hjkl</appendix>
-      <appendix>F19 + b, 0, 4($), 6(^)</appendix>
-      <appendix>F19 + g, G</appendix>
+      <appendix>F19 + b, w, e, 0, 4($), 6(^), g, G</appendix>
+      <appendix>F19 + ^f, ^b</appendix>
+      <appendix>**Text Editing**</appendix>
+      <!--<appendix>F19 + y, p, d, x, u, ^r</appendix>-->
       <appendix>F19 + x, X</appendix>
-      <appendix>F19 + command + f</appendix>
-      <appendix>F19 + command + b</appendix>
       <appendix>F19 + ' (dock open/close)</appendix>
+      <!--<appendix>**CapsLock**</appendix>-->
+      <!--<appendix>F19 + F16</appendix>-->
       <block>
         <modifier_only>ModifierFlag::EXTRA1</modifier_only>
         <!-- dock 호출 -->
