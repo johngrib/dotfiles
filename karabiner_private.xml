@@ -106,8 +106,8 @@
       <appendix>**Text Editing**</appendix>
       <appendix>F19 + y, p, d, x, u, ^r</appendix>
       <appendix>F19 + ' (dock open/close)</appendix>
-      <!--<appendix>**CapsLock**</appendix>-->
-      <!--<appendix>F19 + F16</appendix>-->
+      <appendix>**CapsLock**</appendix>
+      <appendix>F19 + F16</appendix>
       <block>
         <modifier_only>ModifierFlag::EXTRA1</modifier_only>
         <!-- dock 호출 -->
@@ -150,7 +150,7 @@
         <autogen> __KeyToKey__ KeyCode::U, KeyCode::Z, {{CMD}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::R, {{CTRL}}, KeyCode::Z, {{SHIFT}}, {{CMD}}, {{MOD_EXT}} </autogen>
         <!-- CAPSLOCK -->
-        <autogen> __KeyToKey__ KeyCode::U, KeyCode::CAPSLOCK, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::F16, KeyCode::CAPSLOCK, {{MOD_EXT}} </autogen>
       </block>
     </item>
     <item>
