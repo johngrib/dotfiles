@@ -103,6 +103,7 @@
       <appendix>F19 + hjkl</appendix>
       <appendix>F19 + b, w, e, 0, 4($), 6(^), g, G</appendix>
       <appendix>F19 + ^f, ^b</appendix>
+      <appendix>F19 + &lt;, &gt; (^PAGEUP, ^PAGEDOWN to move tab)</appendix>
       <appendix>**Text Editing**</appendix>
       <appendix>F19 + y, p, d, x, u, ^r</appendix>
       <appendix>F19 + ' (dock open/close)</appendix>
@@ -140,7 +141,9 @@
           @end
           {{MOD_EXT}}
         </autogen>
-        <!-- CMD 호환 -->
+        <!-- 탭 이동 <, > -->
+        <autogen> __KeyToKey__ KeyCode::COMMA, KeyCode::PAGEUP, {{CTRL}}, {{MOD_EXT}} </autogen>
+        <autogen> __KeyToKey__ KeyCode::DOT, KeyCode::PAGEDOWN, {{CTRL}}, {{MOD_EXT}} </autogen>
         <!-- y p d X x u ^r -->
         <autogen> __KeyToKey__ KeyCode::Y, KeyCode::C, {{CMD}}, {{MOD_EXT}} </autogen>
         <autogen> __KeyToKey__ KeyCode::P, KeyCode::V, {{CMD}}, {{MOD_EXT}} </autogen>
