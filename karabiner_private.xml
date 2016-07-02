@@ -82,9 +82,8 @@
     </item>
     <!-- F19 VI 섹션 -->
     <item>
-      <identifier>johngrib.f19_vi_keymap</identifier>
-      <name>F19 키 확장</name>
-      <!-- F19 키만 누르면 영문전환 + ESC 로 작동하도록 한다. -->
+      <identifier>johngrib.f19_abc_escape</identifier>
+      <name>F19 : abc 로 inputsource 전환 후, ESC 입력</name>
       <autogen>
         __KeyOverlaidModifier__
         KeyCode::F19,
@@ -92,6 +91,20 @@
         KeyCode::VK_CHANGE_INPUTSOURCE_TO_ENGLISH,
         KeyCode::ESCAPE,
       </autogen>
+    </item>
+    <item>
+      <identifier>johngrib.f19_escape</identifier>
+      <name>F19 : ESC 입력</name>
+      <autogen>
+        __KeyOverlaidModifier__
+        KeyCode::F19,
+        KeyCode::VK_MODIFIER_EXTRA1,
+        KeyCode::ESCAPE,
+      </autogen>
+    </item>
+    <item>
+      <identifier>johngrib.f19_vi_keymap</identifier>
+      <name>F19 키 확장</name>
       <!-- F17 키를 command 로 사용한다. -->
       <autogen>
         __KeyToKey__
