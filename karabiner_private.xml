@@ -103,14 +103,17 @@
       </autogen>
     </item>
     <item>
-      <identifier>johngrib.f19_vi_keymap</identifier>
-      <name>F19 키 확장</name>
-      <!-- F17 키를 command 로 사용한다. -->
+      <identifier>johngrib.f17_command</identifier>
+      <name>F17 키를 command 로 사용한다</name>
       <autogen>
         __KeyToKey__
         KeyCode::F17,
         KeyCode::COMMAND_L,
       </autogen>
+    </item>
+    <item>
+      <identifier>johngrib.f18_vi_keymap</identifier>
+      <name>F19 키 확장</name>
       <!-- COMMAND_R 을 F19 로 사용한다. -->
       <appendix>**Navigation**</appendix>
       <appendix>F19 + hjkl</appendix>
