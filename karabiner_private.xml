@@ -46,6 +46,10 @@
     <replacementname>FN</replacementname>
     <replacementvalue> <![CDATA[ ModifierFlag::FN ]]> </replacementvalue>
   </replacementdef>
+  <replacementdef>
+    <replacementname>MODAL</replacementname>
+    <replacementvalue>F15</replacementvalue>
+  </replacementdef>
   
   <!-- vk open url def -->
   <vkopenurldef>
@@ -78,26 +82,26 @@
     <name>John Grib customized (이종립 개인 설정)</name>
     <item>
       <appendix>Seil 을 사용해서 다음과 같이 매핑한 다음 설정하도록 한다. </appendix>
-      <appendix>CAPSLOCK => F19, Alt => F16, Super => F17, ContextMenu => F18, Ctrl => F19</appendix>
+      <appendix>CAPSLOCK => {{MODAL}}, Alt => F16, Super => F17, ContextMenu => F18, Ctrl => F19</appendix>
     </item>
-    <!-- F19 VI 섹션 -->
+    <!-- {{MODAL}} VI 섹션 -->
     <item>
-      <identifier>johngrib.f19_abc_escape</identifier>
-      <name>F19 : abc 로 inputsource 전환 후, ESC 입력</name>
+      <identifier>johngrib.{{MODAL}}_abc_escape</identifier>
+      <name>{{MODAL}} : abc 로 inputsource 전환 후, ESC 입력</name>
       <autogen>
         __KeyOverlaidModifier__
-        KeyCode::F19,
+        KeyCode::{{MODAL}},
         KeyCode::VK_MODIFIER_EXTRA1,
         KeyCode::VK_CHANGE_INPUTSOURCE_TO_ENGLISH,
         KeyCode::ESCAPE,
       </autogen>
     </item>
     <item>
-      <identifier>johngrib.f19_escape</identifier>
-      <name>F19 : ESC 입력</name>
+      <identifier>johngrib.{{MODAL}}_escape</identifier>
+      <name>{{MODAL}} : ESC 입력</name>
       <autogen>
         __KeyOverlaidModifier__
-        KeyCode::F19,
+        KeyCode::{{MODAL}},
         KeyCode::VK_MODIFIER_EXTRA1,
         KeyCode::ESCAPE,
       </autogen>
@@ -112,19 +116,19 @@
       </autogen>
     </item>
     <item>
-      <identifier>johngrib.f18_vi_keymap</identifier>
-      <name>F19 키 확장</name>
-      <!-- COMMAND_R 을 F19 로 사용한다. -->
+      <identifier>johngrib.{{MODAL}}_vi_keymap</identifier>
+      <name>{{MODAL}} 키 확장</name>
+      <!-- COMMAND_R 을 {{MODAL}} 로 사용한다. -->
       <appendix>**Navigation**</appendix>
-      <appendix>F19 + hjkl</appendix>
-      <appendix>F19 + b, w, e, 0, 4($), 6(^), g, G</appendix>
-      <appendix>F19 + ^f, ^b</appendix>
-      <appendix>F19 + &lt;, &gt; (^PAGEUP, ^PAGEDOWN to move tab)</appendix>
+      <appendix>{{MODAL}} + hjkl</appendix>
+      <appendix>{{MODAL}} + b, w, e, 0, 4($), 6(^), g, G</appendix>
+      <appendix>{{MODAL}} + ^f, ^b</appendix>
+      <appendix>{{MODAL}} + &lt;, &gt; (^PAGEUP, ^PAGEDOWN to move tab)</appendix>
       <appendix>**Text Editing**</appendix>
-      <appendix>F19 + y, p, d, x, u, ^r</appendix>
-      <appendix>F19 + ' (dock open/close)</appendix>
+      <appendix>{{MODAL}} + y, p, d, x, u, ^r</appendix>
+      <appendix>{{MODAL}} + ' (dock open/close)</appendix>
       <appendix>**CapsLock**</appendix>
-      <appendix>F19 + F16</appendix>
+      <appendix>{{MODAL}} + F16</appendix>
       <block>
         <modifier_only>ModifierFlag::EXTRA1</modifier_only>
         <!-- dock 호출 -->
@@ -250,10 +254,10 @@
       </item>
       <item>
         <identifier>johngrib.f19_to_abc_esc</identifier>
-        <appendix>F19 키를 ESC, 영문 입력 모드로 설정한다.</appendix>
+        <appendix>{{MODAL}} 키를 ESC, 영문 입력 모드로 설정한다.</appendix>
         <autogen>
           __KeyToKey__
-          KeyCode::F19,
+          KeyCode::{{MODAL}},
           KeyCode::VK_CHANGE_INPUTSOURCE_TO_ENGLISH,
           KeyCode::ESCAPE,
         </autogen>
