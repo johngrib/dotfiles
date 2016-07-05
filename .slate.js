@@ -49,6 +49,7 @@ var events = {};
 events[`f:${HYPER}`] = S.operation('hint', { characters : 'ASDFHJKLQWER'});
 events[`n:${HYPER}`] = S.operation('throw', { 'screen': 'next' });
 events[`b:${HYPER}`] = S.operation('throw', { 'screen': 'previous' });
+events[`g:${HYPER}`] = S.operation('grid');
 events[`tab:alt`] = S.operation('switch');
 
 KEY_CFG.forEach(function(cfg){
