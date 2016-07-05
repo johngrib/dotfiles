@@ -4,7 +4,10 @@ S.configAll({
     defaultToCurrentScreen:true,
     nudgePercentOf:'screenSize',
     resizePercentOf:'screenSize',
-    secondsBetweenRepeat:0
+    secondsBetweenRepeat:0,
+    switchIconSize : 50,
+    switchShowTitles: true,
+    switchOnlyFocusMainWindow: false,
 });
 
 const OPT = {
