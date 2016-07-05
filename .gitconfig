@@ -1,0 +1,17 @@
+[user]
+	name = John Grib
+	email = johngrib@woowahan.com
+[alias]
+	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+	excludesfile = /Users/johngrib/.gitignore_global
+	editor = /usr/local/bin/nvim
+[diff]
+    tool = vimdiff
+[difftool "vimdiff"]
+    path = /usr/local/bin/nvim
+[merge]
+    tool = vimdiff
+[mergetool "vimdiff"]
+    path = /usr/local/bin/nvim
+	trustExitCode = true
