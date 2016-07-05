@@ -52,6 +52,12 @@ events[`b:${HYPER}`] = S.operation('throw', { 'screen': 'previous' });
 events[`g:${HYPER}`] = S.operation('grid');
 events[`tab:alt`] = S.operation('switch');
 
+events[`h:${HYPER}`] = S.operation('focus', { direction: 'left'});
+events[`j:${HYPER}`] = S.operation('focus', { direction: 'down'});
+events[`k:${HYPER}`] = S.operation('focus', { direction: 'up'});
+events[`l:${HYPER}`] = S.operation('focus', { direction: 'right'});
+events[`p:${HYPER}`] = S.operation('focus', { direction: 'behind'});
+
 KEY_CFG.forEach(function(cfg){
     events[cfg.key] = function(win){
         const mode = OPT.mode;
