@@ -10,10 +10,6 @@ S.configAll({
     switchOnlyFocusMainWindow: false,
 });
 
-const OPT = {
-    mode : 'move',
-};
-
 const HYPER = 'ctrl,shift,alt,cmd';
 
 const $ = {
@@ -27,24 +23,6 @@ const $ = {
     y_half : 'screenSizeY/2',
 };
 
-const MOVE = (function set_move_keys() {
-    return {
-        1: { x: $.x_left, y: $.y_cent, width: $.x_half, height: $.y_half},
-        2: { x: $.x_left, y: $.y_cent, width: $.x_full, height: $.y_half},
-        3: { x: $.x_cent, y: $.y_cent, width: $.x_half, height: $.y_half},
-        4: { x: $.x_left, y: $.y_top, width: $.x_half, height: $.y_full},
-        5: { x: $.x_left, y: $.y_top, width: $.x_full, height: $.y_full},
-        6: { x: $.x_cent, y: $.y_top, width: $.x_half, height: $.y_full},
-        7: { x: $.x_left, y: $.y_top, width: $.x_half, height: $.y_half},
-        8: { x: $.x_left, y: $.y_top, width: $.x_full, height: $.y_half},
-        9: { x: $.x_cent, y: $.y_top, width: $.x_half, height: $.y_half},
-    };
-})();
-
-const KEY_CFG = _.range(1,10).map(function(num){
-    return { key  : `${num}:${HYPER}`, move : MOVE[num] };
-});
-
 var events = {};
 events[`f:${HYPER}`] = S.operation('hint', { characters : 'ASDFHJKLQWER'});
 events[`n:${HYPER}`] = S.operation('throw', { 'screen': 'next' });
@@ -52,19 +30,22 @@ events[`b:${HYPER}`] = S.operation('throw', { 'screen': 'previous' });
 events[`g:${HYPER}`] = S.operation('grid');
 events[`tab:alt`] = S.operation('switch');
 
+events[`1:${HYPER}`] = S.operation('corner', { direction: 'bottom-left',  width: $.x_half, height: $.y_half });
+events[`3:${HYPER}`] = S.operation('corner', { direction: 'bottom-right', width: $.x_half, height: $.y_half });
+events[`7:${HYPER}`] = S.operation('corner', { direction: 'top-left',     width: $.x_half, height: $.y_half });
+events[`9:${HYPER}`] = S.operation('corner', { direction: 'top-right',    width: $.x_half, height: $.y_half });
+
+events[`2:${HYPER}`] = S.operation('push', { direction: 'bottom', style: `bar-resize:${$.y_half}`});
+events[`4:${HYPER}`] = S.operation('push', { direction: 'left',   style: `bar-resize:${$.x_half}`});
+events[`5:${HYPER}`] = S.operation('push', { direction: 'left',   style: `bar-resize:${$.x_full}`});
+events[`6:${HYPER}`] = S.operation('push', { direction: 'right',  style: `bar-resize:${$.x_half}`});
+events[`8:${HYPER}`] = S.operation('push', { direction: 'top',    style: `bar-resize:${$.y_half}`});
+
 events[`h:${HYPER}`] = S.operation('focus', { direction: 'left'});
 events[`j:${HYPER}`] = S.operation('focus', { direction: 'down'});
 events[`k:${HYPER}`] = S.operation('focus', { direction: 'up'});
 events[`l:${HYPER}`] = S.operation('focus', { direction: 'right'});
 events[`p:${HYPER}`] = S.operation('focus', { direction: 'behind'});
-
-KEY_CFG.forEach(function(cfg){
-    events[cfg.key] = function(win){
-        const mode = OPT.mode;
-        const func = S.operation(mode, cfg[mode]);
-        win.doOperation(func);
-    };
-});
 
 S.bindAll(events);
 
