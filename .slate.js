@@ -23,29 +23,38 @@ const $ = {
     y_half : 'screenSizeY/2',
 };
 
-var events = {};
-events[`f:${HYPER}`] = S.operation('hint', { characters : 'ASDFHJKLQWER'});
-events[`n:${HYPER}`] = S.operation('throw', { 'screen': 'next' });
-events[`b:${HYPER}`] = S.operation('throw', { 'screen': 'previous' });
-events[`g:${HYPER}`] = S.operation('grid');
-events[`tab:alt`] = S.operation('switch');
+var events = (function(){
 
-events[`1:${HYPER}`] = S.operation('corner', { direction: 'bottom-left',  width: $.x_half, height: $.y_half });
-events[`3:${HYPER}`] = S.operation('corner', { direction: 'bottom-right', width: $.x_half, height: $.y_half });
-events[`7:${HYPER}`] = S.operation('corner', { direction: 'top-left',     width: $.x_half, height: $.y_half });
-events[`9:${HYPER}`] = S.operation('corner', { direction: 'top-right',    width: $.x_half, height: $.y_half });
+    var e = {};
 
-events[`2:${HYPER}`] = S.operation('push', { direction: 'bottom', style: `bar-resize:${$.y_half}`});
-events[`4:${HYPER}`] = S.operation('push', { direction: 'left',   style: `bar-resize:${$.x_half}`});
-events[`5:${HYPER}`] = S.operation('push', { direction: 'left',   style: `bar-resize:${$.x_full}`});
-events[`6:${HYPER}`] = S.operation('push', { direction: 'right',  style: `bar-resize:${$.x_half}`});
-events[`8:${HYPER}`] = S.operation('push', { direction: 'top',    style: `bar-resize:${$.y_half}`});
+    e[`f:${HYPER}`] = S.operation('hint', { characters : 'ASDFHJKLQWER'});
+    e[`n:${HYPER}`] = S.operation('throw', { 'screen': 'next' });
+    e[`b:${HYPER}`] = S.operation('throw', { 'screen': 'previous' });
+    e[`g:${HYPER}`] = S.operation('grid');
+    e[`tab:alt`] = S.operation('switch');
 
-events[`h:${HYPER}`] = S.operation('focus', { direction: 'left'});
-events[`j:${HYPER}`] = S.operation('focus', { direction: 'down'});
-events[`k:${HYPER}`] = S.operation('focus', { direction: 'up'});
-events[`l:${HYPER}`] = S.operation('focus', { direction: 'right'});
-events[`p:${HYPER}`] = S.operation('focus', { direction: 'behind'});
+    const corner = S.operation('corner', { direction: 'top-left',  width: $.x_half, height: $.y_half });
+    const focus  = S.operation('focus',  { direction: 'left'});
+
+    e[`1:${HYPER}`] = corner.dup({direction: 'bottom-left'});
+    e[`3:${HYPER}`] = corner.dup({direction: 'bottom-right'});
+    e[`7:${HYPER}`] = corner.dup({direction: 'top-left'});
+    e[`9:${HYPER}`] = corner.dup({direction: 'top-right'});
+
+    e[`2:${HYPER}`] = S.operation('push', { direction: 'bottom', style: `bar-resize:${$.y_half}`});
+    e[`4:${HYPER}`] = S.operation('push', { direction: 'left',   style: `bar-resize:${$.x_half}`});
+    e[`5:${HYPER}`] = S.operation('push', { direction: 'left',   style: `bar-resize:${$.x_full}`});
+    e[`6:${HYPER}`] = S.operation('push', { direction: 'right',  style: `bar-resize:${$.x_half}`});
+    e[`8:${HYPER}`] = S.operation('push', { direction: 'top',    style: `bar-resize:${$.y_half}`});
+
+    e[`h:${HYPER}`] = focus.dup({direction: 'left'});
+    e[`j:${HYPER}`] = focus.dup({direction: 'down'});
+    e[`k:${HYPER}`] = focus.dup({direction: 'up'});
+    e[`l:${HYPER}`] = focus.dup({direction: 'right'});
+    e[`p:${HYPER}`] = focus.dup({direction: 'behind'});
+
+    return e;
+})();
 
 S.bindAll(events);
 
