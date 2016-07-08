@@ -28,8 +28,8 @@ var events = (function(){
     var e = {};
 
     e[`f:${HYPER}`] = S.operation('hint', { characters : 'ASDFHJKLQWER'});
-    e[`n:${HYPER}`] = S.operation('throw', { 'screen': 'next' });
-    e[`b:${HYPER}`] = S.operation('throw', { 'screen': 'previous' });
+    e[`n:${HYPER}`] = S.operation('throw', { 'screen': 'previous' });
+    e[`b:${HYPER}`] = S.operation('throw', { 'screen': 'next' });
     e[`g:${HYPER}`] = S.operation('grid');
     e[`tab:alt`] = S.operation('switch');
 
