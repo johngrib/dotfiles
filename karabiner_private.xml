@@ -53,27 +53,51 @@
   
   <!-- vk open url def -->
   <vkopenurldef>
-    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_1_center</name>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_bottom_left</name>
     <url type="shell">
-      <![CDATA[
-        /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position screen 0 middle 0 center 0
-      ]]>
+      <![CDATA[ /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position front_window bottom +0 left +0 ]]>
     </url>
   </vkopenurldef>
   <vkopenurldef>
-    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_2_center</name>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_bottom_center</name>
     <url type="shell">
-      <![CDATA[
-        /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position screen 0 top -650 left -350
-      ]]>
+      <![CDATA[ /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position front_window bottom +0 center +0 ]]>
     </url>
   </vkopenurldef>
   <vkopenurldef>
-    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_3_center</name>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_bottom_right</name>
     <url type="shell">
-      <![CDATA[
-        /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position screen 0 top -550 left +1600
-      ]]>
+      <![CDATA[ /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position front_window bottom +0 right +0 ]]>
+    </url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_middle_left</name>
+    <url type="shell">
+      <![CDATA[ /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position front_window middle +0 left +0 ]]>
+    </url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_middle_right</name>
+    <url type="shell">
+      <![CDATA[ /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position front_window middle +0 right +0 ]]>
+    </url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_top_left</name>
+    <url type="shell">
+      <![CDATA[ /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position front_window top +0 left +0 ]]>
+    </url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_top_center</name>
+    <url type="shell">
+      <![CDATA[ /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position front_window top +0 center +0 ]]>
+    </url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name> KeyCode::VK_OPEN_URL_SHELL_move_mouse_top_right</name>
+    <url type="shell">
+      <![CDATA[ /Applications/Karabiner.app/Contents/Library/utilities/bin/warp-mouse-cursor-position front_window top +0 right +0 ]]>
     </url>
   </vkopenurldef>
 
@@ -205,8 +229,7 @@
           __KeyToKey__
           KeyCode::1,
           @begin
-            KeyCode::VK_OPEN_URL_SHELL_move_mouse_1_center,
-            PointingButton::LEFT
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_bottom_left,
           @end
           {{MOD_EXT2}}
         </autogen>
@@ -214,7 +237,7 @@
           __KeyToKey__
           KeyCode::2,
           @begin
-            KeyCode::VK_OPEN_URL_SHELL_move_mouse_2_center,
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_bottom_center,
             PointingButton::LEFT
           @end
           {{MOD_EXT2}}
@@ -223,16 +246,55 @@
           __KeyToKey__
           KeyCode::3,
           @begin
-            KeyCode::VK_OPEN_URL_SHELL_move_mouse_3_center,
-            PointingButton::LEFT
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_bottom_right,
           @end
           {{MOD_EXT2}}
         </autogen>
         <autogen>
           __KeyToKey__
-          KeyCode::Z,
+          KeyCode::4,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_middle_left,
+          @end
+          {{MOD_EXT2}}
+        </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::5,
           @begin
             KeyCode::VK_OPEN_URL_SHELL_warp_mouse_cursor_position_front_window_center,
+          @end
+          {{MOD_EXT2}}
+        </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::6,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_middle_right,
+          @end
+          {{MOD_EXT2}}
+        </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::7,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_top_left,
+          @end
+          {{MOD_EXT2}}
+        </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::8,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_top_center,
+          @end
+          {{MOD_EXT2}}
+        </autogen>
+        <autogen>
+          __KeyToKey__
+          KeyCode::9,
+          @begin
+            KeyCode::VK_OPEN_URL_SHELL_move_mouse_top_right,
           @end
           {{MOD_EXT2}}
         </autogen>
