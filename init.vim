@@ -33,6 +33,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'junegunn/vim-peekaboo'
   Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 call plug#end()
 filetype plugin indent on " Put your non-Plugin stuff after this line
 
