@@ -198,6 +198,8 @@
         <autogen> __KeyToKey__ KeyCode::R, {{CTRL}}, KeyCode::Z, {{SHIFT}}, {{CMD}}, {{MOD_EXT}} </autogen>
         <!-- CAPSLOCK -->
         <autogen> __KeyToKey__ KeyCode::F16, KeyCode::CAPSLOCK, {{MOD_EXT}} </autogen>
+        <!-- ENTER -->
+        <autogen> __KeyToKey__ KeyCode::SPACE, KeyCode::RETURN, {{MOD_EXT}} </autogen>
       </block>
     </item>
     <item>
