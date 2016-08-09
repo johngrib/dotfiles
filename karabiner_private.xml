@@ -305,12 +305,12 @@
     <!-- Hyper Key 섹션 -->
     <item>
       <identifier>johngrib.fxx_to_hyper</identifier>
-      <appendix>F18 키를 Hyper 로 설정한다.</appendix>
+      <appendix>F19 키를 Hyper 로 설정한다.</appendix>
       <autogen>
           --KeyOverlaidModifier--
-          KeyCode::F18,
+          KeyCode::F19,
           KeyCode::COMMAND_L, {{ALT}} | {{SHIFT}} | {{CTRL}},
-          KeyCode::F18
+          KeyCode::F19
       </autogen>
     </item>
     <item>
