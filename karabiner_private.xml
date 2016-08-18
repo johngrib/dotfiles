@@ -313,6 +313,16 @@
           KeyCode::F19
       </autogen>
     </item>
+    <!-- Hyper Key 섹션 -->
+    <item>
+      <identifier>johngrib.fxx_to_shift</identifier>
+      <appendix>F18 키를 shift 로 설정한다.</appendix>
+      <autogen>
+          __KeyToKey__
+          KeyCode::F18,
+          KeyCode::SHIFT_L
+      </autogen>
+    </item>
     <item>
       <appendix>VI 보조 설정</appendix>
       <item>
