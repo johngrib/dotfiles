@@ -3,6 +3,9 @@
 	email = johngrib@woowahan.com
 [alias]
 	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+    assume   = update-index --assume-unchanged
+    unassume = update-index --no-assume-unchanged
+    assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
 [core]
 	excludesfile = /Users/johngrib/.gitignore_global
 	editor = /usr/local/bin/nvim
