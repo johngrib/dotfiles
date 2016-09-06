@@ -25,8 +25,6 @@ alias cd..='cd ..';
 
 #alias vimr='open -a VimR.app "$@"'
 
-set -o vi
-
 # colors ----------------------------------------------------------------------
 GREEN='\e[0;32m\]'
 B_MAGENTA='\e[1;35m\]'
@@ -47,6 +45,6 @@ PS1="${YELLOW}${TIMESTAMP} ${GREEN}\u ${B_MAGENTA}\h ${YELLOW}\w ${COLOR_END} ${
 #PS1="${PS1}\n\$ "
 export PS1
 
-function google() { 
-    open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1"; 
+function google() {
+    open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1";
 }
