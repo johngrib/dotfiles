@@ -142,14 +142,12 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   nnoremap <F12>r :RainbowToggle<CR>
 
   " Easy motion
-  let g:EasyMotion_do_mapping  = 0 " Disable default mappings
+  "let g:EasyMotion_do_mapping  = 0 " Disable default mappings
   let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-  " map <Space> <Plug>(easymotion-prefix)
+  let g:EasyMotion_smartcase = 1
+  map  <Space>  <Plug>(easymotion-prefix)
+  vmap s        <Plug>(easymotion-bd-f)
   nmap s        <Plug>(easymotion-overwin-f2)
-  nmap <Space>f <Plug>(easymotion-f)
-  nmap <Space>F <Plug>(easymotion-F)
-  nmap <Space>t <Plug>(easymotion-t)
-  nmap <Space>T <Plug>(easymotion-T)
   nmap <Space>l <Plug>(easymotion-lineforward)
   nmap <Space>j <Plug>(easymotion-j)
   nmap <Space>k <Plug>(easymotion-k)
