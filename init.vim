@@ -182,6 +182,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   " @link http://bakyeono.net/post/2015-08-13-vim-tab-madness-translate.html
   let g:airline#extensions#tabline#enabled = 1     " vim-airline 버퍼 목록 켜기
   let g:airline#extensions#tabline#fnamemod = ':t' " vim-airline 버퍼 목록 파일명만 출력
+  let g:airline_left_sep = ''
+  let g:airline_right_sep = ''
+
   nnoremap <C-T> :enew<CR>       " 새로운 버퍼를 연다
   nnoremap gt :bnext!<CR>        " 다음 버퍼로 이동
   nnoremap gr :bprevious!<CR>    " 이전 버퍼로 이동
