@@ -40,6 +40,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   "set noimd  " normal 모드에서 한국어 입력시에도 영문으로 입력한 것처럼 동작 -> 제대로 작동하지 않는다.
   if has("nvim")
     set termguicolors
+    set clipboard+=unnamedplus
   endif
 
   set nocompatible " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
