@@ -55,6 +55,15 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set guifont=Meslo\ LG\ M\ DZ:h11
   endif
 
+  "Bubble single lines (kicks butt) http://vimcasts.org/episodes/bubbling-text/
+  if has('mac')
+    nnoremap ˚ ddkP
+    nnoremap ∆ ddp
+  else
+    nnoremap <A-k> ddkP
+    nnoremap <A-j> ddp
+  endif
+
   " 검색
   set smartcase   " 대문자가 검색어 문자열에 포함될 때에는 noignorecase
   set ignorecase  " 검색시 대소문자 무시
