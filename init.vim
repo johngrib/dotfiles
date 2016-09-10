@@ -64,6 +64,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <A-j> ddp
   endif
 
+  filetype plugin on
+  set omnifunc=syntaxcomplete#Complete
+
   " 검색
   set smartcase   " 대문자가 검색어 문자열에 포함될 때에는 noignorecase
   set ignorecase  " 검색시 대소문자 무시
@@ -84,7 +87,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   set cursorline       " highlight current line
   set lazyredraw       " redraw only when we need to.
   "set showcmd         " airline 플러그인과 충돌하기 때문에 주석처리
-  nnoremap gv `[v`]    " highlight last inserted text
+  "nnoremap gv `[v`]    " highlight last inserted text
 
   " 사운드 벨, 비주얼 벨 비활성화
   set noerrorbells visualbell t_vb=
@@ -121,7 +124,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   nnoremap <F10>r :source ~/.config/nvim/init.vim<CR>
 
   " ctrl-j 로 라인을 분리. " http://goo.gl/qxOlY
-  nnoremap <NL> i<CR><ESC> 
+  nnoremap <NL> i<CR><ESC>
 
   " copy , paste , select 기능 보완
   nnoremap Y y$
