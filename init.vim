@@ -129,17 +129,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   " copy , paste , select 기능 보완
   nnoremap Y y$
   nnoremap <Space>y "+y
+  nnoremap <Space>Y "+yg_
   nnoremap <Space>p "+p
+  nnoremap <Space>P "+P
   nnoremap <Space>a gg<S-v>G
 
   nnoremap gn       :call ToggleNumber()<cr>
   nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
-  nnoremap <Space>o :CtrlP<CR>
-
-  "Bubble single lines (kicks butt)
-  "http://vimcasts.org/episodes/bubbling-text/
-  nnoremap <A-k> ddkP
-  nnoremap <A-j> ddp
 
 " Plugin 설정 -------------------------------------------------------------------
 
