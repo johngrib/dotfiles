@@ -10,13 +10,10 @@
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'          " git wrapper
-  Plug 'kien/ctrlp.vim'              " 파일 검색 opener
-  Plug 'shougo/vimproc.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'jistr/vim-nerdtree-tabs'
   Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사
   Plug 'tpope/vim-surround'
-  Plug 'rking/ag.vim'
   Plug 'yggdroot/indentline'         " 인덴트 라인을 보여준다. 속도 저하 문제가 있다. 적당히 토글해서 쓰자.
   Plug 'bling/vim-airline'           " TAB navigator, status line 을 제공한다.
   Plug 'luochen1990/rainbow'         " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
@@ -28,12 +25,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'           " #rrggbb 형식의 문자열에 색깔을 입혀준다.
   Plug 'tomtom/tcomment_vim'         " comment 플러그인. 비주얼 모드에서 gc, gc{motion} gcc 등으로 사용 가능하다.
   Plug 'raimondi/delimitmate'        " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
-  Plug 'valloric/youcompleteme'
+  "Plug 'valloric/youcompleteme'
   Plug 'morhetz/gruvbox'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'junegunn/vim-peekaboo'
   Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 filetype plugin indent on " Put your non-Plugin stuff after this line
 
