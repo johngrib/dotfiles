@@ -44,6 +44,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   endif
 
   set nocompatible " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
+
+  "http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+  set list listchars=tab:»·,trail:·
+
   if has('mac')
     "set macmeta " osx 에서 Meta 키 조합을 사용할 수 있게 한다.
     "set guifont=Ubuntu\ Mono:h13
@@ -87,7 +91,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   set cursorline       " highlight current line
   set lazyredraw       " redraw only when we need to.
   "set showcmd         " airline 플러그인과 충돌하기 때문에 주석처리
-  "nnoremap gv `[v`]    " highlight last inserted text
+  nnoremap gv `[v`]    " highlight last inserted text
 
   " 사운드 벨, 비주얼 벨 비활성화
   set noerrorbells visualbell t_vb=
@@ -215,4 +219,14 @@ function! ToggleNumber()
     endif
 endfunc
 
+command! ToHtml :so $VIMRUNTIME/syntax/2html.vim
+
+" http://vim.wikia.com/wiki/Copy_filename_to_clipboard
+if has('win32')
+  command! GetFileName :let @*=substitute(expand("%"), "/", "\\", "g")
+  command! GetFileAddress :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+else
+  command! GetFileName :let @*=expand('%')
+  command! GetFileAddress :let @*=expand('%:p')
+endif
 
