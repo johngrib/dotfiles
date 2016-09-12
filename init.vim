@@ -44,6 +44,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   endif
 
   set nocompatible " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
+  set linebreak    " break at word boundary
+  set showbreak=+++\  "+++ as the first set of chars at the beginning of wrapped line
 
   "http://vim.wikia.com/wiki/Highlight_unwanted_spaces
   set list listchars=tab:»·,trail:·
@@ -68,7 +70,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <A-j> ddp
   endif
 
-  filetype plugin on
+
   set omnifunc=syntaxcomplete#Complete
 
   " 검색
@@ -230,3 +232,4 @@ else
   command! GetFileAddress :let @*=expand('%:p')
 endif
 
+let g:EclimCompletionMethod = 'omnifunc'
