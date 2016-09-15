@@ -93,7 +93,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   set cursorline       " highlight current line
   set lazyredraw       " redraw only when we need to.
   "set showcmd         " airline 플러그인과 충돌하기 때문에 주석처리
-  nnoremap gv `[v`]    " highlight last inserted text
+  "nnoremap gv `[v`]    " highlight last inserted text
 
   " 사운드 벨, 비주얼 벨 비활성화
   set noerrorbells visualbell t_vb=
@@ -103,7 +103,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   set bs=indent,eol,start  " backspace 키 사용 가능
   set shiftwidth=4         " shift를 4칸으로 ( >, >>, <, << )
   set tabstop=4            " tab을 4칸으로
-  set expandtab 
+  set expandtab
   "set noimd               " no imdisable 한글 입력기 관련.. 인데 osx 에서는 안 통하는듯
   set cindent              " C언어 자동 들여쓰기
   set autoindent           " 자동 들여쓰기
@@ -134,10 +134,11 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
   " copy , paste , select 기능 보완
   nnoremap Y y$
-  nnoremap <Space>y "+y
-  nnoremap <Space>Y "+yg_
-  nnoremap <Space>p "+p
-  nnoremap <Space>P "+P
+  nnoremap <Space>y "*y
+  nnoremap <Space>Y "*yg_
+  vnoremap <Space>y "*y
+  nnoremap <Space>p "*p
+  nnoremap <Space>P "*P
   nnoremap <Space>a gg<S-v>G
 
   nnoremap gn       :call ToggleNumber()<cr>
