@@ -26,12 +26,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tcomment_vim'         " comment 플러그인. 비주얼 모드에서 gc, gc{motion} gcc 등으로 사용 가능하다.
   Plug 'raimondi/delimitmate'        " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
   "Plug 'valloric/youcompleteme'
-  Plug 'morhetz/gruvbox'
+  "Plug 'morhetz/gruvbox'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'junegunn/vim-peekaboo'
   Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'matchit.zip'
 call plug#end()
 filetype plugin indent on " Put your non-Plugin stuff after this line
 
