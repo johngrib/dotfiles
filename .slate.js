@@ -57,6 +57,7 @@ var events = (function(){
     e['e:f17'] = S.operation('focus', {app: 'Eclipse'});
     e['i:f17'] = S.operation('focus', {app: 'IntelliJ IDEA'});
     e['s:f17'] = S.operation('focus', {app: 'Slack'});
+    e['v:f17'] = S.operation('focus', {app: 'MacVim'});
 
     return e;
 })();
