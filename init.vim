@@ -25,8 +25,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'           " #rrggbb 형식의 문자열에 색깔을 입혀준다.
   Plug 'tomtom/tcomment_vim'         " comment 플러그인. 비주얼 모드에서 gc, gc{motion} gcc 등으로 사용 가능하다.
   Plug 'raimondi/delimitmate'        " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
-  "Plug 'valloric/youcompleteme'
-  "Plug 'morhetz/gruvbox'
+  Plug 'valloric/youcompleteme'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'junegunn/vim-peekaboo'
   Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
@@ -42,6 +41,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   if has("nvim")
     set termguicolors
     set clipboard+=unnamedplus
+    "let g:deoplete#enable_at_startup = 1 " Use deoplete.
   endif
 
   set nocompatible " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
@@ -60,17 +60,18 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     "set guifont=Fira\ Mono:h13
     "set guifont=Meslo\ LG\ L\ DZ:h11
     set guifont=Meslo\ LG\ M\ DZ:h11
-  endif
-
-  "Bubble single lines (kicks butt) http://vimcasts.org/episodes/bubbling-text/
-  if has('mac')
     nnoremap ˚ ddkP
     nnoremap ∆ ddp
   else
-    nnoremap <A-k> ddkP
-    nnoremap <A-j> ddp
+    "Bubble single lines (kicks butt) http://vimcasts.org/episodes/bubbling-text/
+    nnoremap <M-k> ddkP
+    nnoremap <M-j> ddp
   endif
 
+  let g:fzf_launcher = "In_a_new_term_function %s"
+  if has("gui_macvim")
+    set macmeta
+  endif
 
   set omnifunc=syntaxcomplete#Complete
 
@@ -209,8 +210,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
   let g:peekaboo_delay = 0
   let g:peekaboo_compact = 0
 
-  " Use deoplete.
-  let g:deoplete#enable_at_startup = 1
+  "ycm
+  let g:ycm_server_python_interpreter = '/usr/bin/python'
 
 " functions -------------------------------------------------------------------
 
