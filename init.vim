@@ -14,7 +14,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사
     Plug 'tpope/vim-surround'
-    Plug 'yggdroot/indentline'         " 인덴트 라인을 보여준다. 속도 저하 문제가 있다. 적당히 토글해서 쓰자.
+    "Plug 'yggdroot/indentline'        " 문자열 ** 을 hidden 상태로 바꾼다. 몹시 짜증남. 다시는 설치하지 말 것.
     Plug 'bling/vim-airline'           " TAB navigator, status line 을 제공한다.
     Plug 'luochen1990/rainbow'         " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
     Plug 'kshenoy/vim-signature'       " m mark 위치를 표시해준다.
