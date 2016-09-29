@@ -44,12 +44,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
         set clipboard+=unnamedplus
     endif
 
-    if has('mac')
-        set guifont=Meslo\ LG\ M\ DZ:h11
-    endif
-
     if has("gui_macvim")
         set macmeta
+        set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
     endif
 
     "set noimd  " normal 모드에서 한국어 입력시에도 영문으로 입력한 것처럼 동작 -> 제대로 작동하지 않는다.
@@ -190,8 +187,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " @link http://bakyeono.net/post/2015-08-13-vim-tab-madness-translate.html
     let g:airline#extensions#tabline#enabled = 1     " vim-airline 버퍼 목록 켜기
     let g:airline#extensions#tabline#fnamemod = ':t' " vim-airline 버퍼 목록 파일명만 출력
-    let g:airline_left_sep = ''
-    let g:airline_right_sep = ''
+
+    " air-line
+     let g:airline_powerline_fonts = 1
 
     " rainbow
     let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
