@@ -33,6 +33,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'matchit.zip'
     Plug 'bufexplorer.zip'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'taglist.vim'
+    Plug 'othree/eregex.vim'
 call plug#end()
 
 filetype plugin indent on " Put your non-Plugin stuff after this line
@@ -52,9 +55,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     "set noimd  " normal 모드에서 한국어 입력시에도 영문으로 입력한 것처럼 동작 -> 제대로 작동하지 않는다.
     set nocompatible                  " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
     set linebreak                     " break at word boundary
-    set showbreak=+++\                " +++ as the first set of chars at the beginning of wrapped line
-    set list listchars=tab:»·,trail:· " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+    set showbreak=+++\ 
+    set list listchars=tab:»-,trail:·,extends:>,precedes:<
     set omnifunc=syntaxcomplete#Complete
+    set mouse=a
 
     " 검색
     set smartcase   " 대문자가 검색어 문자열에 포함될 때에는 noignorecase
@@ -75,6 +79,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set cursorline       " highlight current line
     set lazyredraw       " redraw only when we need to.
     "set showcmd         " airline 플러그인과 충돌하기 때문에 주석처리
+    set nowrap
+    set sidescroll=2
+    set sidescrolloff=10
+    set smarttab
+    set undolevels=2000
+    set wildignorecase
+    set wildmenu
 
     set noerrorbells visualbell t_vb= " 사운드 벨, 비주얼 벨 비활성화
     autocmd GUIEnter * set visualbell t_vb=
@@ -89,6 +100,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set autoindent           " 자동 들여쓰기
     set smartindent
     set history=2000         " vi 편집기록 history .viminfo에 기록
+    set cursorcolumn
+    set langmap=ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz
 
     colorscheme flatcolor-johngrib
 
@@ -187,6 +200,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " @link http://bakyeono.net/post/2015-08-13-vim-tab-madness-translate.html
     let g:airline#extensions#tabline#enabled = 1     " vim-airline 버퍼 목록 켜기
     let g:airline#extensions#tabline#fnamemod = ':t' " vim-airline 버퍼 목록 파일명만 출력
+    let g:airline#extensions#tabline#buffer_nr_show = 1 " buffer number 를 보여준다
+    let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
 
     " air-line
      let g:airline_powerline_fonts = 1
@@ -217,6 +232,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " fzf
     let g:fzf_launcher = "In_a_new_term_function %s"
 
+    " eregex
+    nnoremap <leader>/ :call eregex#toggle()<CR>
+    let g:eregex_default_enable = 0
+    let g:eregex_forward_delim = '/'
+    let g:eregex_backward_delim = '?'
+    let g:eregex_force_case = 0
+
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
     if(&relativenumber == 1)
@@ -238,4 +260,6 @@ else
     command! GetFileAddress :let @*=expand('%:p')
 endif
 
+" 현재 편집중인 파일 경로로 pwd 를 변경한다
+command! Ncd :cd %:p:h
 
