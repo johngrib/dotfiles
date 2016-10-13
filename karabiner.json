@@ -1,0 +1,15 @@
+{
+    "profiles": [
+        {
+            "name": "Default profile",
+            "selected": true,
+            "simple_modifications": {
+                "caps_lock": "escape",
+                "right_alt": "f16",
+                "right_command": "f17",
+                "right_control": "f19",
+                "application": "right_shift"
+            }
+        }
+    ]
+}
