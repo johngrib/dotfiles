@@ -25,6 +25,7 @@ alias cp='cp -i'
 alias cd..='cd ..'
 alias eclimd='~/Applications/Eclipse_neon.app/Contents/Eclipse/eclimd'
 #alias vimr='open -a VimR.app "$@"'
+alias ctags='`brew --prefix`/bin/ctags'
 
 # colors ----------------------------------------------------------------------
 GREEN='\e[0;32m\]'
