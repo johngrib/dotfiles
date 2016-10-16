@@ -10,7 +10,8 @@ S.configAll({
     switchOnlyFocusMainWindow: false,
 });
 
-const HYPER = 'ctrl,shift,alt,cmd';
+//const HYPER = 'ctrl,shift,alt,cmd';
+const HYPER = 'f19';
 
 const $ = {
     x_left : 'screenOriginX',
