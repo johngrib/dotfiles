@@ -7,8 +7,8 @@
                 "caps_lock": "escape",
                 "right_alt": "f16",
                 "right_command": "f17",
-                "right_control": "f19",
-                "application": "right_shift"
+                "application": "f18",
+                "right_control": "f19"
             }
         }
     ]
