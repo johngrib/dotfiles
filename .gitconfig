@@ -12,9 +12,10 @@
 [diff]
     tool = vimdiff
 [difftool "vimdiff"]
-    path = /usr/local/bin/nvim
+    path = /usr/local/bin/vim
 [merge]
     tool = vimdiff
 [mergetool "vimdiff"]
-    path = /usr/local/bin/nvim
+    path = /usr/local/bin/vim
 	trustExitCode = true
+
