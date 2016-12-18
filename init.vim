@@ -14,7 +14,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사
     Plug 'tpope/vim-surround'
-    "Plug 'yggdroot/indentline'        " 문자열 ** 을 hidden 상태로 바꾼다. 몹시 짜증남. 다시는 설치하지 말 것.
     Plug 'bling/vim-airline'           " TAB navigator, status line 을 제공한다.
     Plug 'luochen1990/rainbow'         " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
     Plug 'kshenoy/vim-signature'       " m mark 위치를 표시해준다.
@@ -23,24 +22,35 @@ call plug#begin('~/.vim/plugged')
     Plug 'johngrib/FlatColor-johngrib' " color theme
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
     Plug 'ap/vim-css-color'           " #rrggbb 형식의 문자열에 색깔을 입혀준다.
-    Plug 'tomtom/tcomment_vim'         " comment 플러그인. 비주얼 모드에서 gc, gc{motion} gcc 등으로 사용 가능하다.
-    Plug 'raimondi/delimitmate'        " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
-    Plug 'valloric/youcompleteme'
+    Plug 'tpope/vim-commentary'
     Plug 'junegunn/vim-xmark', { 'do': 'make' }
-    Plug 'junegunn/vim-peekaboo'
     Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
+        Plug 'junegunn/fzf.vim'
     Plug 'matchit.zip'
-    Plug 'bufexplorer.zip'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'taglist.vim'
     Plug 'othree/eregex.vim'
+    " Plug 'sirver/ultisnips'
+        " Plug 'honza/vim-snippets'
+    "Plug 'yggdroot/indentline'        " 문자열 ** 을 hidden 상태로 바꾼다. 몹시 짜증남. 다시는 설치하지 말 것.
+    "Plug 'raimondi/delimitmate'        " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
+    Plug 'valloric/youcompleteme', { 'do': './install.py --all'}
+    "Plug 'junegunn/vim-peekaboo'
 call plug#end()
 
+
+syntax on
 filetype plugin indent on " Put your non-Plugin stuff after this line
 
 " set ----------------------------------------------------------------------
+    if executable('ag')
+        set grepprg=ag\ --nogroup\ --nocolor\ --column
+        set grepformat=%f:%l:%c%m
+    elseif executable('ack')
+        set grepprg=ack\ --nogroup\ --column\ $*
+        set grepformat=%f:%l:%c:%m
+    endif
 
     if has("nvim")
         set termguicolors
@@ -54,19 +64,16 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     "set noimd  " normal 모드에서 한국어 입력시에도 영문으로 입력한 것처럼 동작 -> 제대로 작동하지 않는다.
     set nocompatible                  " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
-    set linebreak                     " break at word boundary
+    " set linebreak                     " break at word boundary
     set showbreak=+++\ 
-    set list listchars=tab:»-,trail:·,extends:>,precedes:<
+    set list listchars=tab:»·,trail:·,extends:>,precedes:<
     set omnifunc=syntaxcomplete#Complete
     set mouse=a
 
-    " 검색
-    set smartcase   " 대문자가 검색어 문자열에 포함될 때에는 noignorecase
-    set ignorecase  " 검색시 대소문자 무시
-    set hlsearch    " 검색시 하이라이트(색상 강조)
-    set incsearch   " 검색 키워드 입력시 한 글자 입력할 때마다 점진 검색
+    set hidden
+
+    set smartcase ignorecase hlsearch incsearch
     "set tildeop    "~ 를 다른 오퍼레이터와 함께 사용한다.
-    set wildmenu    " command line 에서 tab 으로 자동완성이 가능. :e 로 파일 이름을 찾을 때 편함.
     set wmnu        " tab 자동완성시 가능한 목록을 보여줌
 
     " 화면 표시
@@ -79,33 +86,25 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set cursorline       " highlight current line
     set lazyredraw       " redraw only when we need to.
     "set showcmd         " airline 플러그인과 충돌하기 때문에 주석처리
-    set nowrap
-    set sidescroll=2
-    set sidescrolloff=10
-    set smarttab
-    set undolevels=2000
-    set wildignorecase
-    set wildmenu
+    "set nowrap
+    " set sidescroll=2 sidescrolloff=10
+    set wildmenu wildignorecase
+    set wildmode=full
 
     set noerrorbells visualbell t_vb= " 사운드 벨, 비주얼 벨 비활성화
     autocmd GUIEnter * set visualbell t_vb=
 
     "사용
     set bs=indent,eol,start  " backspace 키 사용 가능
-    set shiftwidth=4         " shift를 4칸으로 ( >, >>, <, << )
-    set tabstop=4            " tab을 4칸으로
-    set expandtab
+    set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab
     "set noimd               " no imdisable 한글 입력기 관련인데 mac 에서는 안 통하는듯
-    set cindent              " C언어 스타일 자동 들여쓰기
-    set autoindent           " 자동 들여쓰기
-    set smartindent
-    set history=2000         " vi 편집기록 history .viminfo에 기록
+    set cindent autoindent smartindent
+    set history=200 undolevels=2000
     set cursorcolumn
     set langmap=ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz
 
     colorscheme flatcolor-johngrib
 
-    syntax on
     "if has("syntax")
     "syntax on
     "endif
@@ -119,6 +118,15 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     \ endif
 
 " map ----------------------------------------------------------------------
+    nnoremap <f5> :!ctags -R<CR>
+
+    nnoremap k gk
+    nnoremap gk k
+    nnoremap j gj
+    nnoremap gj j
+
+    nnoremap & :&&<CR>
+    xnoremap & :&&<CR>
 
     "nnoremap <F10>r :source ~/.vimrc<CR>
     nnoremap <F10>r :source ~/.config/nvim/init.vim<CR>
@@ -148,13 +156,19 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <M-,> :bprevious!<CR>    " 이전 버퍼로 이동
     nnoremap <M-q> :bp <BAR> bd #<CR> " 현재 버퍼를 닫고 이전 버퍼로 이동
 
-    "Bubble single lines (kicks butt) http://vimcasts.org/episodes/bubbling-text/
+    "Bubble lines
     if has('mac')
         nnoremap ˚ ddkP
         nnoremap ∆ ddp
+        vnoremap ˚ xkP`[V`]
+        vnoremap ∆ xp`[V`]
     endif
     nnoremap <M-k> ddkP
     nnoremap <M-j> ddp
+    vnoremap <M-k> xkP`[V`]
+    vnoremap <M-j> xp`[V`]
+
+    " nnoremap gV `[v`]
 
 " Plugin 설정 -------------------------------------------------------------------
 
@@ -210,14 +224,16 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
     " tabular
-    vnoremap <TAB> :Tabularize /
+    vnoremap <C-t> :Tabularize /
 
     " peekaboo 관련
-    let g:peekaboo_window = 'vertical botright 30new'
-    let g:peekaboo_delay = 0
-    let g:peekaboo_compact = 0
+    " let g:peekaboo_window = 'vertical botright 30new'
+    " let g:peekaboo_delay = 0
+    " let g:peekaboo_compact = 0
 
     "ycm
+    let g:ycm_key_list_select_completion = ['<C-n>']    " 본래 <Tab> 이지만 ultisnip 과 충돌을 막기 위해 변경
+    let g:ycm_key_list_previous_completion=['<C-p>']
     let g:ycm_server_python_interpreter = '/usr/bin/python'
     let g:ycm_complete_in_comments = 1
 
@@ -238,6 +254,12 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:eregex_forward_delim = '/'
     let g:eregex_backward_delim = '?'
     let g:eregex_force_case = 0
+
+    " Trigger configuration. <Tab> 을 쓴다면 ycm 과 키가 중복되어 제대로 기능하지 않을 수 있다. 둘 중 하나의 설정을 바꿔준다.
+    let g:UltiSnipsExpandTrigger="<Tab>"
+    let g:UltiSnipsJumpForwardTrigger="<Tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+    let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split your window.
 
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
