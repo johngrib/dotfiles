@@ -87,3 +87,8 @@ nnoremap '<A-6> :action GotoBookmark6<CR>
 nnoremap '<A-7> :action GotoBookmark7<CR>
 nnoremap '<A-8> :action GotoBookmark8<CR>
 nnoremap '<A-9> :action GotoBookmark9<CR>
+nnoremap '. :action JumpToLastChange<CR>0
+nnoremap `. :action JumpToLastChange<CR>0
+
+set gvimpath=/usr/local/opt/macvim/bin/mvim
+
