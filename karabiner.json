@@ -4,11 +4,14 @@
             "name": "Default profile",
             "selected": true,
             "simple_modifications": {
-                "caps_lock": "escape",
-                "right_alt": "f16",
-                "right_command": "f17",
+                "right_control": "f19",
                 "application": "f18",
-                "right_control": "f19"
+                "right_command": "f17",
+                "right_alt": "f16",
+                "caps_lock": "f15",
+                "left_alt": "left_command",
+                "left_command": "left_alt",
+                "end": "end"
             }
         }
     ]
