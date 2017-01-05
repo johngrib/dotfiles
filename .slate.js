@@ -54,11 +54,11 @@ var events = (function(){
     e[`l:${HYPER}`] = focus.dup({direction: 'right'});
     e[`p:${HYPER}`] = focus.dup({direction: 'behind'});
 
-    e['c:f17'] = S.operation('focus', {app: 'Chrome'});
-    e['e:f17'] = S.operation('focus', {app: 'Eclipse'});
-    e['i:f17'] = S.operation('focus', {app: 'IntelliJ IDEA'});
-    e['s:f17'] = S.operation('focus', {app: 'Slack'});
-    e['v:f17'] = S.operation('focus', {app: 'MacVim'});
+    // e['c:f17'] = S.operation('focus', {app: 'Chrome'});
+    // e['e:f17'] = S.operation('focus', {app: 'Eclipse'});
+    // e['i:f17'] = S.operation('focus', {app: 'IntelliJ IDEA'});
+    // e['s:f17'] = S.operation('focus', {app: 'Slack'});
+    // e['v:f17'] = S.operation('focus', {app: 'MacVim'});
 
     return e;
 })();
