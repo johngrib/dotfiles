@@ -118,6 +118,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     \ endif
 
 " map ----------------------------------------------------------------------
+    nnoremap <Space>e :browse oldfiles<CR>
     nnoremap <f5> :!ctags -R<CR>
 
     nnoremap k gk
@@ -232,10 +233,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " let g:peekaboo_compact = 0
 
     "ycm
-    let g:ycm_key_list_select_completion = ['<C-n>']    " 본래 <Tab> 이지만 ultisnip 과 충돌을 막기 위해 변경
-    let g:ycm_key_list_previous_completion=['<C-p>']
+    "let g:ycm_key_list_select_completion = ['<C-n>']    " 본래 <Tab> 이지만 ultisnip 과 충돌을 막기 위해 변경
+    "let g:ycm_key_list_previous_completion=['<C-p>']
     let g:ycm_server_python_interpreter = '/usr/bin/python'
-    let g:ycm_complete_in_comments = 1
+    "let g:ycm_complete_in_comments = 1
 
     "deoplete
     if has("nvim")
