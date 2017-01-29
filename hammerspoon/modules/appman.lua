@@ -16,6 +16,7 @@ function obj:init(key)
     app_mode:bind({}, 'i', function() hs.application.launchOrFocus('IntelliJ IDEA') end)
     app_mode:bind({}, 's', function() hs.application.launchOrFocus('Slack') end)
     app_mode:bind({}, 'l', function() hs.application.launchOrFocus('Line') end)
+    app_mode:bind({}, 'q', function() hs.application.launchOrFocus('Sequel Pro') end)
 
     local move_win = function(xx, yy, ww, hh)
         local win = hs.window.focusedWindow()

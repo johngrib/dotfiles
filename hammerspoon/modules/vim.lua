@@ -3,108 +3,86 @@ local obj = {}
 local vim_icon = hs.menubar.new()
 local caps_mode = hs.hotkey.modal.new()
 
+local cfg = {
+    key_interval = 100,
+    icon = { vim = "𝑽", novim = "" }
+}
+
 local boxes = {}
-local triggered = false
-local on_mode = false
+local mode = {
+    on        = false,
+    triggered = false,
+    window    = false
+}
 
 function obj:init(key1, key2)
 
-    print('vim module loaded')
-
-    function setVimDisplay(state)
-        if state then
-            vim_icon:setTitle("𝑽")
-        else
-            vim_icon:setTitle("")
-        end
-    end
-
-    function vimClicked()
-        setVimDisplay()
-    end
-
-    vim_icon:setClickCallback(vimClicked)
-
-    -- vim mode
-    on_mode = false
-
-    local vim = function(func)
-        return function()
-            func()
-            triggered = true
-        end
-    end
-
-    local function keyCode(modifiers, key)
-        modifiers = modifiers or {}
-        return function()
-            hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
-            hs.timer.usleep(100)
-            hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
-        end
-    end
-
-    local vim_end = function() triggered = true end
+    vim_icon:setClickCallback(setVimDisplay)
 
     caps_mode:bind({}, 'F10', function() hs.reload() end, vim_end)
 
     hs.fnutils.each({
-        { key='h', mod={}, func=keyCode({}, 'left') },
-        { key='j', mod={}, func=keyCode({}, 'down') },
-        { key='k', mod={}, func=keyCode({}, 'up') },
-        { key='l', mod={}, func=keyCode({}, 'right') },
+        { mod={} , key='h' , func=rapidKey({} , 'left')  , repetition=true } ,
+        { mod={} , key='j' , func=rapidKey({} , 'down')  , repetition=true } ,
+        { mod={} , key='k' , func=rapidKey({} , 'up')    , repetition=true } ,
+        { mod={} , key='l' , func=rapidKey({} , 'right') , repetition=true } ,
 
-        { key='h', mod={'shift'}, func=keyCode({'shift'}, 'left') },
-        { key='j', mod={'shift'}, func=keyCode({'shift'}, 'down') },
-        { key='k', mod={'shift'}, func=keyCode({'shift'}, 'up') },
-        { key='l', mod={'shift'}, func=keyCode({'shift'}, 'right') },
+        { mod={'shift'} , key='h' , func=rapidKey({'shift'} , 'left')  , repetition=true } ,
+        { mod={'shift'} , key='j' , func=rapidKey({'shift'} , 'down')  , repetition=true } ,
+        { mod={'shift'} , key='k' , func=rapidKey({'shift'} , 'up')    , repetition=true } ,
+        { mod={'shift'} , key='l' , func=rapidKey({'shift'} , 'right') , repetition=true } ,
 
-        { key='h', mod={'ctrl'}, func=keyCode({'ctrl'}, 'left') },
-        { key='j', mod={'ctrl'}, func=keyCode({'ctrl'}, 'down') },
-        { key='k', mod={'ctrl'}, func=keyCode({'ctrl'}, 'up') },
-        { key='l', mod={'ctrl'}, func=keyCode({'ctrl'}, 'right') },
+        { mod={'ctrl'} , key='h' , func=rapidKey({'ctrl'} , 'left')  , repetition=true } ,
+        { mod={'ctrl'} , key='j' , func=rapidKey({'ctrl'} , 'down')  , repetition=true } ,
+        { mod={'ctrl'} , key='k' , func=rapidKey({'ctrl'} , 'up')    , repetition=true } ,
+        { mod={'ctrl'} , key='l' , func=rapidKey({'ctrl'} , 'right') , repetition=true } ,
+        { mod={'cmd'} , key='h' , func=rapidKey({'ctrl'} , 'left')  , repetition=true } ,
+        { mod={'cmd'} , key='j' , func=rapidKey({'ctrl'} , 'down')  , repetition=true } ,
+        { mod={'cmd'} , key='k' , func=rapidKey({'ctrl'} , 'up')    , repetition=true } ,
+        { mod={'cmd'} , key='l' , func=rapidKey({'ctrl'} , 'right') , repetition=true } ,
 
-        { key='w', mod={}, func=keyCode({'alt'}, 'right') },
-        { key='b', mod={}, func=keyCode({'alt'}, 'left') },
+        { mod={} , key='w' , func=rapidKey({'alt'} , 'right') , repetition=true } ,
+        { mod={} , key='b' , func=rapidKey({'alt'} , 'left')  , repetition=true } ,
 
-        { key='w', mod={'shift'}, func=keyCode({'shift', 'alt'}, 'right') },
-        { key='b', mod={'shift'}, func=keyCode({'shift', 'alt'}, 'left') },
+        { mod={'shift'} , key='w' , func=rapidKey({'shift' , 'alt'} , 'right') , repetition=true } ,
+        { mod={'shift'} , key='b' , func=rapidKey({'shift' , 'alt'} , 'left')  , repetition=true } ,
+
+        { mod={} , key='0' , func=inputKey({'cmd'} , 'left') }  ,
+        { mod={} , key='4' , func=inputKey({'cmd'} , 'right') } ,
+
+        { mod={'shift'} , key='0' , func=inputKey({'cmd', 'shift'} , 'left') }  ,
+        { mod={'shift'} , key='4' , func=inputKey({'cmd', 'shift'} , 'right') } ,
+
+        { mod={} , key='i' , func=off_caps_mode }        ,
+        { mod={} , key='f' , func=hs.hints.windowHints } ,
+
+        { mod={} , key='p' , func=inputKey({'cmd'} , 'v')   , repetition=true } ,
+        { mod={} , key='y' , func=inputKey({'cmd'} , 'c') } ,
+        { mod={} , key='d' , func=inputKey({'cmd'} , 'x') } ,
+
+        { mod={}, key='x', func=rapidKey({}, 'forwarddelete'), repetition=true },
+
+        { mod={'shift'}, key='x', func=rapidKey({}, 'DELETE'), repetition=true },
+
+        { mod={}, key=',', func=inputKey({'ctrl'}, 'pageup'), repetition=true },
+        { mod={}, key='.', func=inputKey({'ctrl'}, 'pagedown'), repetition=true },
+
+        { mod={}, key='space', func=inputKey({}, 'return'), repetition=true },
+
     }, function(v)
-        caps_mode:bind(v.mod, v.key, v.func, vim_end, v.func)
+        if v.repetition then
+            caps_mode:bind(v.mod, v.key, v.func, vim_end, v.func)
+        else
+            caps_mode:bind(v.mod, v.key, v.func, vim_end)
+        end
     end
     )
-
-    local vim_0 = vim(function() hs.eventtap.keyStroke({'cmd'}, 'LEFT') end)
-    local vim_4 = vim(function() hs.eventtap.keyStroke({'cmd'}, 'RIGHT') end)
-    local vim_p = vim(function() hs.eventtap.keyStroke({'cmd'}, 'V') end)
-    local vim_y = vim(function() hs.eventtap.keyStroke({'cmd'}, 'C') end)
-    local vim_d = vim(function() hs.eventtap.keyStroke({'cmd'}, 'X') end)
-
-    caps_mode:bind({}, '0', vim_0, nil, vim_0)
-    caps_mode:bind({}, '4', vim_4, nil, vim_4)
-    caps_mode:bind({}, 'p', vim_p, nil, vim_p)
-    caps_mode:bind({}, 'y', vim_y, nil, vim_y)
-    caps_mode:bind({}, 'd', vim_d, nil, vim_d)
-
-    local vim_x = vim(function() hs.eventtap.keyStroke({}, 'forwarddelete') end)
-    local vim_s_x = vim(function() hs.eventtap.keyStroke({}, 'DELETE') end)
-    caps_mode:bind({}, 'x', vim_x)
-    caps_mode:bind({'shift'}, 'x', vim_s_x)
-
-    local vim_tab_left = vim(function() hs.eventtap.keyStroke({'ctrl'}, 'PAGEUP') end)
-    local vim_tab_right = vim(function() hs.eventtap.keyStroke({'ctrl'}, 'PAGEDOWN') end)
-
-    caps_mode:bind({}, ',', vim_tab_left, nil, vim_tab_left)
-    caps_mode:bind({}, '.', vim_tab_right, nil, vim_tab_right)
-
-    local vim_enter = vim(function() hs.eventtap.keyStroke({}, 'RETURN') end)
-    caps_mode:bind({}, 'SPACE', vim_enter, nil, vim_enter)
 
     local on_caps_mode = function()
         caps_mode:enter()
         setVimDisplay(true)
-        triggered = false
-        on_mode = true
+        mode.triggered = false
+        mode.on = true
         show_status_bar(true)
     end
 
@@ -112,26 +90,27 @@ function obj:init(key1, key2)
         setVimDisplay()
         caps_mode:exit()
 
-        if not triggered then
+        if not mode.triggered then
             hs.eventtap.keyStroke({}, 'ESCAPE')
         end
 
-        triggered = true
-        on_mode = false
+        mode.triggered = true
+        mode.on = false
         show_status_bar(false)
     end
 
+    caps_mode:bind({}, 'i', off_caps_mode)
 
     hs.hotkey.bind({}, key1, on_caps_mode, off_caps_mode)
-    hs.hotkey.bind({}, key2,
-    function()
-        if not on_mode then
-            on_caps_mode()
-        else
-            off_caps_mode()
-        end
-    end
-    )
+    hs.hotkey.bind({'cmd'}, key1, on_caps_mode, off_caps_mode)
+    hs.hotkey.bind({'shift'}, key1, on_caps_mode, off_caps_mode)
+    hs.hotkey.bind({}, key2, function()
+            if not mode.on then
+                on_caps_mode()
+            else
+                off_caps_mode()
+            end
+        end)
 
     return self
 end
@@ -171,6 +150,41 @@ function draw_rectangle(target_draw, screen, offset, width, fill_color)
   target_draw:setStroke(false)
   target_draw:setBehavior(hs.drawing.windowBehaviors.canJoinAllSpaces)
   target_draw:show()
+end
+
+function setVimDisplay(state)
+    if state then
+        vim_icon:setTitle(cfg.icon.vim)
+    else
+        vim_icon:setTitle(cfg.icon.novim)
+    end
+end
+
+function vim(func)
+    return function()
+        func()
+        mode.triggered = true
+    end
+end
+
+function rapidKey(modifiers, key)
+    modifiers = modifiers or {}
+    return function()
+        hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
+        hs.timer.usleep(100)
+        hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+    end
+end
+
+function inputKey(modifiers, key)
+    modifiers = modifiers or {}
+    return function()
+        hs.eventtap.keyStroke(modifiers, key)
+    end
+end
+
+function vim_end()
+    mode.triggered = true
 end
 
 return obj
