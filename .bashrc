@@ -2,6 +2,7 @@
 #    . ~/.bash_etc
 #fi
 
+export JAVA_HOME=$(/usr/libexec/java_home)
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 export TERM=xterm-256color
