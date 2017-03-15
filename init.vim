@@ -27,16 +27,17 @@ call plug#begin('~/.vim/plugged')
     Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
-    Plug 'matchit.zip'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'taglist.vim'
     Plug 'othree/eregex.vim'
+    Plug 'matchit.zip'
     " Plug 'sirver/ultisnips'
         " Plug 'honza/vim-snippets'
     "Plug 'yggdroot/indentline'        " 문자열 ** 을 hidden 상태로 바꾼다. 몹시 짜증남. 다시는 설치하지 말 것.
     "Plug 'raimondi/delimitmate'        " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
-    Plug 'valloric/youcompleteme', { 'do': './install.py --all'}
+    " Plug 'valloric/youcompleteme', { 'do': './install.py --all'}
     "Plug 'junegunn/vim-peekaboo'
+    Plug 'pangloss/vim-javascript'
 call plug#end()
 
 
@@ -66,7 +67,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set nocompatible                  " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
     " set linebreak                     " break at word boundary
     set showbreak=+++\ 
-    set list listchars=tab:»·,trail:·,extends:>,precedes:<
+    set list listchars=tab:»\ ,trail:·,extends:>,precedes:<
     set omnifunc=syntaxcomplete#Complete
     set mouse=a
 
