@@ -90,5 +90,12 @@ nnoremap '<A-9> :action GotoBookmark9<CR>
 nnoremap '. :action JumpToLastChange<CR>0
 nnoremap `. :action JumpToLastChange<CR>0
 
+nnoremap [m :action MethodUp<CR>
+nnoremap ]m :action MethodDown<CR>
+onoremap [m :action MethodUp<CR>
+onoremap ]m :action MethodDown<CR>
+
+nnoremap <C-S-5> :action EditorMatchBrace<CR>
+
 set gvimpath=/usr/local/opt/macvim/bin/mvim
 
