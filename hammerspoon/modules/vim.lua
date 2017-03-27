@@ -92,6 +92,8 @@ function obj:init(key1, key2)
 
         if not mode.triggered then
             hs.eventtap.keyStroke({}, 'ESCAPE')
+            hs.eventtap.keyStroke({'control'}, '[')
+            -- hs.timer.usleep(100)
         end
 
         mode.triggered = true
