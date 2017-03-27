@@ -2,6 +2,7 @@
 #    . ~/.bash_etc
 #fi
 
+PATH="/usr/local/bin:$PATH"
 export JAVA_HOME=$(/usr/libexec/java_home)
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
@@ -18,8 +19,8 @@ fi
 
 alias l.='ls -d .* --color=auto'
 alias ll='ls -al'
-#alias vi=nvim
-alias vim='mvim -v'
+alias vi=nvim
+# alias vim='mvim -v'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
@@ -27,6 +28,11 @@ alias cd..='cd ..'
 alias eclimd='~/Applications/Eclipse_neon.app/Contents/Eclipse/eclimd'
 #alias vimr='open -a VimR.app "$@"'
 alias ctags='`brew --prefix`/bin/ctags'
+
+alias tmux="TERM=screen-256color tmux"
+alias tm="tmux attach || tmux new"
+
+alias composer='/usr/bin/php target/composer'
 
 # colors ----------------------------------------------------------------------
 GREEN='\e[0;32m\]'
