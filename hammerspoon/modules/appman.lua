@@ -17,6 +17,8 @@ function obj:init(key)
     app_mode:bind({}, 's', function() hs.application.launchOrFocus('Slack') end)
     app_mode:bind({}, 'l', function() hs.application.launchOrFocus('Line') end)
     app_mode:bind({}, 'q', function() hs.application.launchOrFocus('Sequel Pro') end)
+    app_mode:bind({}, 'v', function() hs.application.launchOrFocus('MacVim') end)
+    app_mode:bind({}, 'm', function() hs.application.launchOrFocus('Notes') end)
 
     local move_win = function(xx, yy, ww, hh)
         local win = hs.window.focusedWindow()
@@ -51,8 +53,8 @@ function obj:init(key)
         win:moveToScreen(nextScreen)
     end
 
-    app_mode:bind({}, 'b', send_window_prev_monitor)
-    app_mode:bind({}, 'n', send_window_next_monitor)
+    app_mode:bind({}, 'n', send_window_prev_monitor)
+    app_mode:bind({}, 'b', send_window_next_monitor)
 
     local on_app_mode = function() app_mode:enter() end
     local off_app_mode = function() app_mode:exit() end
