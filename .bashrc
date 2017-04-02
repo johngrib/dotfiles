@@ -19,8 +19,7 @@ fi
 
 alias l.='ls -d .* --color=auto'
 alias ll='ls -al'
-alias vi=nvim
-# alias vim='mvim -v'
+alias vi='mvim -v'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
@@ -33,6 +32,7 @@ alias tmux="TERM=screen-256color tmux"
 alias tm="tmux attach || tmux new"
 
 alias composer='/usr/bin/php target/composer'
+alias ag='ag --path-to-ignore ~/.agignore'
 
 # colors ----------------------------------------------------------------------
 GREEN='\e[0;32m\]'
