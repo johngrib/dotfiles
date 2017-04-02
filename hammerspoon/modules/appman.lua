@@ -20,6 +20,7 @@ function obj:init(key)
     app_mode:bind({}, 'v', function() hs.application.launchOrFocus('MacVim') end)
     app_mode:bind({}, 'm', function() hs.application.launchOrFocus('Notes') end)
     app_mode:bind({}, 'r', function() hs.application.launchOrFocus('Reminders') end)
+    app_mode:bind({}, 'e', function() hs.application.launchOrFocus('Emacs') end)
 
     local move_win = function(xx, yy, ww, hh)
         local win = hs.window.focusedWindow()
