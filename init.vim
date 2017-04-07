@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 
     " VIM POWER
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+    Plug '907th/vim-auto-save'
 
     " tags
     Plug 'taglist.vim'
@@ -60,8 +61,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
 
     " language support
-    " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
-    Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
+    Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
+    " Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
     Plug 'pangloss/vim-javascript'
     Plug 'junegunn/vim-xmark', { 'do': 'make' }
     Plug 'valloric/youcompleteme', { 'do': './install.py --all'}
@@ -74,9 +75,10 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'SirVer/ultisnips'
         Plug 'honza/vim-snippets'
+    " Plug 'tpope/vim-liquid'
+    " Plug 'tpope/vim-speeddating'
 
 call plug#end()
-
 
 " For Neovim 0.1.3 and 0.1.4
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -94,6 +96,10 @@ syntax enable
 filetype plugin indent on " Put your non-Plugin stuff after this line
 
 " set ----------------------------------------------------------------------
+
+    set path+=**
+    set nofixeol
+
     if executable('ag')
         set grepprg=ag\ --nogroup\ --nocolor\ --column
         set grepformat=%f:%l:%c%m
@@ -104,7 +110,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     if has("nvim")
         set termguicolors
-        set clipboard+=unnamedplus
+        set clipboard^=unnamedplus
     endif
 
     if has("gui_macvim")
@@ -115,7 +121,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     "set noimd  " normal 모드에서 한국어 입력시에도 영문으로 입력한 것처럼 동작 -> 제대로 작동하지 않는다.
     set nocompatible                  " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
     " set linebreak                     " break at word boundary
-    set showbreak=+++\ 
+    " set showbreak=++
     set list listchars=tab:»\ ,trail:·,extends:>,precedes:<
     set omnifunc=syntaxcomplete#Complete
     set mouse=a
@@ -202,7 +208,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
     " 버퍼 관리
-    nnoremap <M-t> :enew<CR>          " 새로운 버퍼를 연다
+    nnoremap <M-t> :enew<CR>       " 새로운 버퍼를 연다
+    nnoremap gt :bnext!<CR>        " 다음 버퍼로 이동
+    nnoremap gr :bprevious!<CR>    " 이전 버퍼로 이동
     nnoremap <M-n> :bnext!<CR>        " 다음 버퍼로 이동
     nnoremap <M-p> :bprevious!<CR>    " 이전 버퍼로 이동
     nnoremap <M-q> :bp <BAR> bd #<CR> " 현재 버퍼를 닫고 이전 버퍼로 이동
@@ -224,6 +232,20 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " link: http://tilvim.com/2013/04/24/reindenting.html
     vnoremap < <gv
     vnoremap > >gv
+
+    " completion
+    " <c-x><c-l>  whole lines :h i^x^l
+    " <c-x><c-l>  keywords from current file  :h i^x^n
+    " <c-x><c-k>  keywords from 'dictionary' option   :h i^x^k
+    " <c-x><c-t>  keywords from 'thesaurus' option    :h i^x^t
+    " <c-x><c-i>  keywords from current and included files    :h i^x^i
+    " <c-x><c-]>  tags    :h i^x^]
+    " <c-x><c-f>  file names  :h i^x^f
+    " <c-x><c-d>  definitions or macros   :h i^x^d
+    " <c-x><c-v>  Vim commands    :h i^x^v
+    " <c-x><c-u>  user defined (as specified in 'completefunc')   :h i^x^u
+    " <c-x><c-o>  omni completion (as specified in 'omnifunc')    :h i^x^o
+    " <c-x>s  spelling suggestions
 
 " Plugin 설정 -------------------------------------------------------------------
 
@@ -309,17 +331,20 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " Syntastic 설정
     "   : ale 때문에 사용하지 않는 상태
     " https://thechefprogrammer.blogspot.kr/2014/05/syntax-check-for-php-and-javascript.html
-    " set statusline+=%#warningmsg#
-    " set statusline+=%{SyntasticStatuslineFlag()}
-    " set statusline+=%*
-    " let g:syntastic_always_populate_loc_list = 1
-    " let g:syntastic_auto_loc_list = 1
-    " let g:syntastic_check_on_open = 1
-    " let g:syntastic_check_on_wq = 0
-    " let g:syntastic_php_checkers = ['php']
-    "let g:syntastic_check_on_wq = 0
-    "let g:syntastic_mode_map = { 'mode': 'passive' }
-    "nnoremap <silent> <F6> :SyntasticCheck<CR>
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_php_checkers = ['php']
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_mode_map = { 'mode': 'passive' }
+    let g:syntastic_auto_loc_list = 0
+    nnoremap <silent> <F6> :SyntasticCheck<CR>
+
+    " au CursorHold,InsertLeave * nested call AutoSave()
 
     " vim-airline 설정
     " @link http://bakyeono.net/post/2015-08-13-vim-tab-madness-translate.html
@@ -359,7 +384,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     endif
 
     "eclim
-    let g:EclimCompletionMethod = 'omnifunc'
+    " let g:EclimCompletionMethod = 'omnifunc'
 
     " fzf
     let g:fzf_launcher = "In_a_new_term_function %s"
@@ -395,6 +420,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " tagbar
     nnoremap <LocalLeader>t :TagbarToggle<CR>
+
+    " vim-auto-save
+    let g:auto_save = 1  " enable AutoSave on Vim startup
+    let g:auto_save_silent = 1  " do not display the auto-save notification
+    let g:auto_save_events = ["InsertLeave", "TextChanged"]
+    let g:auto_save_postsave_hook = 'SyntasticCheck'
+
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
     if(&relativenumber == 1)
@@ -418,4 +450,18 @@ endif
 
 " 현재 편집중인 파일 경로로 pwd 를 변경한다
 command! Ncd :cd %:p:h
+
+" tmux에서 배경색이 이상하게 나오는 문제를 해결한다.
+" link : http://stackoverflow.com/a/15095377
+set t_ut=
+
+" Change cursor shape between insert and normal mode in iTerm2.app + tmux + vim
+" https://gist.github.com/andyfowler/1195581
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
