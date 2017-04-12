@@ -2,6 +2,12 @@
 
 local obj = {}
 
+local flag = {
+    move = false,
+    x = 0,
+    y = 0
+}
+
 function obj:init(key)
 
     local mouse_mode = hs.hotkey.modal.new()
@@ -15,31 +21,39 @@ function obj:init(key)
 
     local mouse_move = function(dir, dist)
         return function()
-            point = hs.mouse.getRelativePosition()
-            point[dir] = point[dir] + dist
-            hs.mouse.setRelativePosition(point)
+            flag[dir] = dist
         end
     end
 
-    local mouse_w = mm(mouse_move('y', -10))
-    local mouse_a = mm(mouse_move('x', -10))
-    local mouse_s = mm(mouse_move('y', 10))
-    local mouse_d = mm(mouse_move('x', 10))
+    local mouse_off = function(dir, dist)
+        return function()
+            flag[dir] = 0
+        end
+    end
 
-    mouse_mode:bind({}, 'W', mouse_w, nil, mouse_w)
-    mouse_mode:bind({}, 'A', mouse_a, nil, mouse_a)
-    mouse_mode:bind({}, 'S', mouse_s, nil, mouse_s)
-    mouse_mode:bind({}, 'D', mouse_d, nil, mouse_d)
+    local mouse_w = mm(mouse_move('y', -1))
+    local mouse_a = mm(mouse_move('x', -1))
+    local mouse_s = mm(mouse_move('y', 1))
+    local mouse_d = mm(mouse_move('x', 1))
+    local mouse_w_off = mm(mouse_move('y', 0))
+    local mouse_a_off = mm(mouse_move('x', 0))
+    local mouse_s_off = mm(mouse_move('y', 0))
+    local mouse_d_off = mm(mouse_move('x', 0))
 
-    local mouse_cmd_w = mm(mouse_move('y', -90))
-    local mouse_cmd_a = mm(mouse_move('x', -90))
-    local mouse_cmd_s = mm(mouse_move('y', 90))
-    local mouse_cmd_d = mm(mouse_move('x', 90))
+    mouse_mode:bind({}, 'W', mouse_w, mouse_w_off, nil)
+    mouse_mode:bind({}, 'A', mouse_a, mouse_a_off, nil)
+    mouse_mode:bind({}, 'S', mouse_s, mouse_s_off, nil)
+    mouse_mode:bind({}, 'D', mouse_d, mouse_d_off, nil)
 
-    mouse_mode:bind({'cmd'}, 'W', mouse_cmd_w, nil, mouse_cmd_w)
-    mouse_mode:bind({'cmd'}, 'A', mouse_cmd_a, nil, mouse_cmd_a)
-    mouse_mode:bind({'cmd'}, 'S', mouse_cmd_s, nil, mouse_cmd_s)
-    mouse_mode:bind({'cmd'}, 'D', mouse_cmd_d, nil, mouse_cmd_d)
+    local mouse_cmd_w = mm(mouse_move('y', -9))
+    local mouse_cmd_a = mm(mouse_move('x', -9))
+    local mouse_cmd_s = mm(mouse_move('y', 9))
+    local mouse_cmd_d = mm(mouse_move('x', 9))
+
+    mouse_mode:bind({'cmd'}, 'W', mouse_cmd_w, mouse_w_off, mouse_cmd_w)
+    mouse_mode:bind({'cmd'}, 'A', mouse_cmd_a, mouse_a_off, mouse_cmd_a)
+    mouse_mode:bind({'cmd'}, 'S', mouse_cmd_s, mouse_s_off, mouse_cmd_s)
+    mouse_mode:bind({'cmd'}, 'D', mouse_cmd_d, mouse_d_off, mouse_cmd_d)
 
     local mouse_q = mm(function() hs.eventtap.leftClick(hs.mouse.getAbsolutePosition()) end)
     local mouse_e = mm(function() hs.eventtap.rightClick(hs.mouse.getAbsolutePosition()) end)
@@ -74,9 +88,25 @@ function obj:init(key)
     local on_mouse_mode = function()
         mouse_mode.triggered = false
         mouse_mode:enter()
+
+        flag.move = true
+
+        hs.timer.doWhile(
+            function() return flag.move end,
+            function()
+                point = hs.mouse.getRelativePosition()
+                point.x = point.x + flag.x
+                point.y = point.y + flag.y
+                hs.mouse.setRelativePosition(point)
+            end,
+            0.005
+        )
     end
 
     local off_mouse_mode = function()
+        flag['x'] = 0
+        flag['y'] = 0
+        flag.move = false
         mouse_mode:exit()
         if not mouse_mode.triggered then
             hs.eventtap.keyStroke({'shift'}, 'F16')
