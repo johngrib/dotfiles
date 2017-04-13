@@ -37,7 +37,7 @@
             "simple_modifications": {
                 "application": "right_shift",
                 "caps_lock": "f16",
-                "left_command": "left_alt",
+                "left_command": "left_option",
                 "left_option": "left_command",
                 "right_alt": "f17",
                 "right_command": "f18",
@@ -67,9 +67,11 @@
             "name": "built-in-keyboard",
             "selected": false,
             "simple_modifications": {
-                "application": "f19",
                 "caps_lock": "f16",
-                "right_command": "f18"
+                "left_command": "left_command",
+                "left_option": "left_option",
+                "right_command": "f18",
+                "right_option": "f17"
             },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
