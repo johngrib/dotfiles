@@ -59,6 +59,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
     Plug 'itchyny/vim-cursorword'       " 커서가 위치한 word 아래에 underline 을 그어준다.
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
+    Plug 'xolox/vim-misc'
+        Plug 'xolox/vim-session'
 
     " language support
     Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
