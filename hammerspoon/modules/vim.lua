@@ -91,8 +91,10 @@ function obj:init(key1, key2)
         caps_mode:exit()
 
         if not mode.triggered then
-            hs.eventtap.keyStroke({}, 'ESCAPE')
-            hs.eventtap.keyStroke({'control'}, '[')
+            -- hs.eventtap.keyStroke({}, 'ESCAPE')
+            -- hs.eventtap.keyStroke({'control'}, '[')
+            hs.eventtap.keyStroke({'control'}, 'c')
+            hs.eventtap.keyStroke({'control'}, 'c')
             -- hs.timer.usleep(100)
         end
 
@@ -106,13 +108,16 @@ function obj:init(key1, key2)
     hs.hotkey.bind({}, key1, on_caps_mode, off_caps_mode)
     hs.hotkey.bind({'cmd'}, key1, on_caps_mode, off_caps_mode)
     hs.hotkey.bind({'shift'}, key1, on_caps_mode, off_caps_mode)
-    hs.hotkey.bind({}, key2, function()
+
+    if not key2 == nil then
+        hs.hotkey.bind({}, key2, function()
             if not mode.on then
                 on_caps_mode()
             else
                 off_caps_mode()
             end
         end)
+    end
 
     return self
 end

@@ -3,7 +3,7 @@
 require('modules.caffein')
 require('modules.mouse')
 local caffein = require('modules.caffein'):init({'shift'}, 'f15')
-local vim_mode = require('modules.vim'):init('f16', 'f20')
+local vim_mode = require('modules.vim'):init('f16', nil)
 local app_manager = require('modules.appman'):init('f18')
 local mouse = require('modules.mouse'):init('f17')
 
