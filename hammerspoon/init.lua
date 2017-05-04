@@ -9,5 +9,5 @@ local mouse = require('modules.mouse'):init('f17')
 
 hs.alert.show('loaded')
 hs.hotkey.bind({'cmd'}, 'F17', hs.hints.windowHints)
+hs.hotkey.bind({'shift'}, 'space', function() hs.eventtap.keyStroke({'shift'}, 'F17') end)
 hs.hints.hintChars = {'F', 'U', 'I', 'O', 'P', 'H', 'J', 'K', 'L', 'B', 'N', 'M', 'Q', 'W', 'E', 'R', 'Z', 'X', 'C', 'V' }
-

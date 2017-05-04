@@ -140,7 +140,7 @@ function obj:init(key)
         flag.move = false
         mouse_mode:exit()
         if not mouse_mode.triggered then
-            -- hs.eventtap.keyStroke({'shift'}, 'F16')
+            hs.eventtap.keyStroke({'shift'}, 'F17')
         end
     end
 

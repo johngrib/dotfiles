@@ -2,6 +2,7 @@ local obj = {}
 
 local vim_icon = hs.menubar.new()
 local caps_mode = hs.hotkey.modal.new()
+local inputEnglish = "com.apple.keylayout.ABC"
 
 local cfg = {
     key_interval = 100,
@@ -88,14 +89,19 @@ function obj:init(key1, key2)
 
     local off_caps_mode = function()
         setVimDisplay()
+
         caps_mode:exit()
 
-        if not mode.triggered then
-            -- hs.eventtap.keyStroke({}, 'ESCAPE')
-            -- hs.eventtap.keyStroke({'control'}, '[')
+        local input_source = hs.keycodes.currentSourceID()
+
+        if
+            not mode.triggered
+        then
+            if not (input_source == inputEnglish) then
+                hs.eventtap.keyStroke({}, 'right')
+                hs.keycodes.currentSourceID(inputEnglish)
+            end
             hs.eventtap.keyStroke({'control'}, 'c')
-            hs.eventtap.keyStroke({'control'}, 'c')
-            -- hs.timer.usleep(100)
         end
 
         mode.triggered = true
