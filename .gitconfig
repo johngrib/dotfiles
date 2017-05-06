@@ -3,7 +3,7 @@
 	email = johngrib@woowahan.com
 [alias]
 	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-    lh = "!git l | head"
+    lh = "!git l | head -n 25"
     s = status -s
     assume   = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
