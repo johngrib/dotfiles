@@ -7,10 +7,10 @@ function obj:init(key)
     app_mode:bind({}, 'tab', function () focusScreen(hs.window.focusedWindow():screen():previous()) end)
     app_mode:bind({'shift'}, 'tab', function () focusScreen(hs.window.focusedWindow():screen():next()) end)
 
-    -- app_mode:bind({}, 'h', function() hs.window.focusedWindow():focusWindowWest() end)
-    -- app_mode:bind({}, 'j', function() hs.window.focusedWindow():focusWindowSouth() end)
-    -- app_mode:bind({}, 'k', function() hs.window.focusedWindow():focusWindowNorth() end)
-    -- app_mode:bind({}, 'l', function() hs.window.focusedWindow():focusWindowEast() end)
+    app_mode:bind({}, ';', function() hs.window.focusedWindow():focusWindowWest() end)
+    app_mode:bind({}, '/', function() hs.window.focusedWindow():focusWindowSouth() end)
+    app_mode:bind({}, '[', function() hs.window.focusedWindow():focusWindowNorth() end)
+    app_mode:bind({}, '\'', function() hs.window.focusedWindow():focusWindowEast() end)
 
     function app_focus(name)
         return function()
@@ -22,6 +22,7 @@ function obj:init(key)
     end
 
     app_mode:bind({}, 'c', app_focus('Google Chrome'))
+    app_mode:bind({}, 'f', app_focus('Safari'))
     app_mode:bind({}, 'i', app_focus('IntelliJ IDEA'))
     app_mode:bind({}, 'l', app_focus('Line'))
     app_mode:bind({}, 'q', app_focus('Sequel Pro'))

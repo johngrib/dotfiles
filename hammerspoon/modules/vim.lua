@@ -65,9 +65,6 @@ function obj:init(key1, key2)
 
         { mod={'shift'}, key='x', func=rapidKey({}, 'DELETE'), repetition=true },
 
-        { mod={}, key=',', func=inputKey({'ctrl'}, 'pageup'), repetition=true },
-        { mod={}, key='.', func=inputKey({'ctrl'}, 'pagedown'), repetition=true },
-
         { mod={}, key='space', func=inputKey({}, 'return'), repetition=true },
 
     }, function(v)
@@ -126,6 +123,14 @@ function obj:init(key1, key2)
     end
 
     return self
+end
+
+function obj:addKey(v)
+    if v.repetition then
+        caps_mode:bind(v.mod, v.key, v.func, vim_end, v.func)
+    else
+        caps_mode:bind(v.mod, v.key, v.func, vim_end)
+    end
 end
 
 function show_status_bar(stat)
