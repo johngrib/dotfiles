@@ -32,16 +32,16 @@
                 "f8": "play_or_pause",
                 "f9": "fastforward"
             },
-            "name": "Default profile",
-            "selected": true,
+            "name": "realforce87u",
+            "selected": false,
             "simple_modifications": {
                 "application": "right_shift",
-                "caps_lock": "f16",
+                "caps_lock": "f13",
                 "left_command": "left_option",
                 "left_option": "left_command",
-                "right_alt": "f17",
-                "right_command": "f18",
-                "right_control": "f20"
+                "right_alt": "f14",
+                "right_command": "f15",
+                "right_control": "f13"
             },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
@@ -67,11 +67,39 @@
             "name": "built-in-keyboard",
             "selected": false,
             "simple_modifications": {
-                "caps_lock": "f16",
+                "caps_lock": "left_control",
                 "left_command": "left_command",
+                "left_control": "f16",
                 "left_option": "left_option",
                 "right_command": "f18",
                 "right_option": "f17"
+            },
+            "virtual_hid_keyboard": {
+                "caps_lock_delay_milliseconds": 0,
+                "keyboard_type": "ansi"
+            }
+        },
+        {
+            "devices": [],
+            "fn_function_keys": {
+                "f1": "display_brightness_decrement",
+                "f10": "mute",
+                "f11": "volume_decrement",
+                "f12": "volume_increment",
+                "f2": "display_brightness_increment",
+                "f3": "mission_control",
+                "f4": "launchpad",
+                "f5": "illumination_decrement",
+                "f6": "illumination_increment",
+                "f7": "rewind",
+                "f8": "play_or_pause",
+                "f9": "fastforward"
+            },
+            "name": "HHKB jp kmt",
+            "selected": true,
+            "simple_modifications": {
+                "right_command": "f14",
+                "right_option": "f15"
             },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
