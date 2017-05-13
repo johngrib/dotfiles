@@ -12,7 +12,8 @@ call plug#begin('~/.vim/plugged')
 
     " VIM POWER
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-    Plug '907th/vim-auto-save'
+    " Plug '907th/vim-auto-save'
+    Plug 'junegunn/vader.vim'
 
     " tags
     Plug 'taglist.vim'
@@ -30,7 +31,6 @@ call plug#begin('~/.vim/plugged')
         " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
-    Plug 'mru.vim'
 
     " editing
     Plug 'tpope/vim-surround'
@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
     Plug 'junegunn/vim-easy-align'
+    Plug 'terryma/vim-multiple-cursors'
 
     " searching
     Plug 'matchit.zip'
@@ -59,8 +60,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
     Plug 'itchyny/vim-cursorword'       " 커서가 위치한 word 아래에 underline 을 그어준다.
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
-    Plug 'xolox/vim-misc'
-        Plug 'xolox/vim-session'
 
     " language support
     Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
@@ -69,6 +68,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-xmark', { 'do': 'make' }
     Plug 'valloric/youcompleteme', { 'do': './install.py --all'}
     " Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+    Plug 'wesleyche/srcexpl'
 
     " Plug 'yggdroot/indentline'        " 문자열 ** 을 hidden 상태로 바꾼다. 몹시 짜증남. 다시는 설치하지 말 것.
     " Plug 'raimondi/delimitmate'       " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
@@ -79,6 +79,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'honza/vim-snippets'
     " Plug 'tpope/vim-liquid'
     " Plug 'tpope/vim-speeddating'
+    " Plug 'johngrib/vim-game-snake'
 
 call plug#end()
 
@@ -136,6 +137,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " 화면 표시
     set nu               " 라인 넘버 출력
+    set relativenumber
     set ruler            " 현재 커서 위치 (row, col) 좌표 출력
     set noerrorbells     " 에러 알림음 끄기
     set background=dark  " 검정배경을 사용 (이 색상에 맞춰 문법 하이라이트 색상이 달라짐.)
@@ -182,8 +184,11 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 " map ----------------------------------------------------------------------
     let mapleader = "\<Space>"
     let maplocalleader = "\\"
-    nnoremap <Leader>e :browse oldfiles<CR>
+    " nnoremap <Leader>e :browse oldfiles<CR>
     " nnoremap <f5> :!ctags -R<CR>
+    nnoremap <NL> :
+    vnoremap <NL> :
+    cnoremap <NL> <CR>
 
     nnoremap k gk
     nnoremap gk k
@@ -194,9 +199,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     xnoremap & :&&<CR>
 
     "nnoremap <F10>r :source ~/.vimrc<CR>
-    nnoremap <F10>r :source ~/.config/nvim/init.vim<CR>
     "nnoremap gv `[v`]    " highlight last inserted text
-    nnoremap <NL> i<CR><ESC>
+    nnoremap K i<CR><Esc>
 
     " copy , paste , select 기능 보완
     nnoremap Y y$
@@ -205,35 +209,35 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     vnoremap <Leader>y "*y
     nnoremap <Leader>p "*p
     nnoremap <Leader>P "*P
-    " nnoremap <Leader>a gg<S-v>G
-    "nnoremap gn       :call ToggleNumber()<cr>
     nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
     " 버퍼 관리
-    nnoremap <M-t> :enew<CR>       " 새로운 버퍼를 연다
-    nnoremap gt :bnext!<CR>        " 다음 버퍼로 이동
-    nnoremap gr :bprevious!<CR>    " 이전 버퍼로 이동
-    nnoremap <M-n> :bnext!<CR>        " 다음 버퍼로 이동
-    nnoremap <M-p> :bprevious!<CR>    " 이전 버퍼로 이동
-    nnoremap <M-q> :bp <BAR> bd #<CR> " 현재 버퍼를 닫고 이전 버퍼로 이동
+    " nnoremap <M-T> :enew<CR>       " 새로운 버퍼를 연다
+    nnoremap gt :bnext!<CR>
+    nnoremap gr :bprevious!<CR>
+    nnoremap <M-Q> :bp <BAR> bd #<CR> " 현재 버퍼를 닫고 이전 버퍼로 이동
 
     "Bubble lines
-    nnoremap <M-k> ddkP
-    nnoremap <M-j> ddp
+    " nnoremap <M-K> ddkP
+    " nnoremap <M-J> ddp
     " nnoremap gV `[v`]
 
     " nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
     " 윈도우 관리
-    nnoremap <M-=> <C-w>+
-    nnoremap <M--> <C-w>-
-    nnoremap <M-,> <C-w><
-    nnoremap <M-.> <C-w>>
+    nnoremap <M-+> <C-w>+
+    nnoremap <M-_> <C-w>-
+    nnoremap <M-<> <C-w><
+    nnoremap <M->> <C-w>>
+    nnoremap <nowait> <Esc>+ <C-w>+
+    nnoremap <nowait> <Esc>_ <C-w>-
+    nnoremap <nowait> <Esc>< <C-w><
+    nnoremap <nowait> <Esc>> <C-w>>
 
     " reselect visual block after indent/outdent
     " link: http://tilvim.com/2013/04/24/reindenting.html
-    vnoremap < <gv
-    vnoremap > >gv
+    " vnoremap < <gv
+    " vnoremap > >gv
 
     " completion
     " <c-x><c-l>  whole lines :h i^x^l
@@ -259,7 +263,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:AutoPairsShortcutBackInsert = ''
 
     " " incsearch
-    let g:incsearch#auto_nohlsearch = 1
+    let g:incsearch#auto_nohlsearch = 0
     map /  <Plug>(incsearch-forward)
     map ?  <Plug>(incsearch-backward)
     map g/ <Plug>(incsearch-stay)
@@ -272,6 +276,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " ctrlp
     let g:ctrlp_working_path_mode = 'ra'
+    " let g:ctrlp_map = ''
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
 
     " UndoTree
     nnoremap <LocalLeader>u :UndotreeToggle<cr>
@@ -282,9 +289,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " NERDTree
     let NERDTreeShowHidden = 1 "Show hidden files in NerdTree
-    nnoremap <LocalLeader>n :NERDTreeToggle<CR>
-    nnoremap <LocalLeader>m :NERDTreeMirrorToggle<CR>
-    nnoremap <LocalLeader>s :NERDTreeTabsFind<CR>
+    nnoremap <LocalLeader><LocalLeader>n :NERDTreeToggle<CR>
+    nnoremap <LocalLeader>n :NERDTreeFind<CR>
+    " nnoremap <LocalLeader>m :NERDTreeMirrorToggle<CR>
     let g:NERDTreeQuitOnOpen = 0
     let NERDTreeMinimalUI = 1
     let NERDTreeDirArrows = 1
@@ -309,29 +316,25 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
     " rainbow
-    nnoremap <F12>r :RainbowToggle<CR>
-
-    " MRU
-    let MRU_Auto_Close = 1
-    nnoremap <LocalLeader>e :<C-u>MRU<CR>
+    nnoremap <LocalLeader>r :RainbowToggle<CR>
 
     " Easy motion
     "let g:EasyMotion_do_mapping  = 0 " Disable default mappings
     let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
     let g:EasyMotion_smartcase = 1
     map  <Leader>  <Plug>(easymotion-prefix)
-    vmap s         <Plug>(easymotion-bd-f)
-    nmap s         <Plug>(easymotion-overwin-f2)
+    vmap <Leader>s <Plug>(easymotion-bd-f)
+    nmap <Leader>s <Plug>(easymotion-overwin-f2)
     nmap <Leader>l <Plug>(easymotion-lineforward)
+    vmap <Leader>l <Plug>(easymotion-lineforward)
     nmap <Leader>j <Plug>(easymotion-j)
+    vmap <Leader>j <Plug>(easymotion-j)
     nmap <Leader>k <Plug>(easymotion-k)
+    vmap <Leader>k <Plug>(easymotion-k)
     nmap <Leader>h <Plug>(easymotion-linebackward)
-
-    " indentline 설정
-    nnoremap <F12>i :IndentLinesToggle<CR>
+    vmap <Leader>h <Plug>(easymotion-linebackward)
 
     " Syntastic 설정
-    "   : ale 때문에 사용하지 않는 상태
     " https://thechefprogrammer.blogspot.kr/2014/05/syntax-check-for-php-and-javascript.html
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
@@ -344,7 +347,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:syntastic_check_on_wq = 0
     let g:syntastic_mode_map = { 'mode': 'passive' }
     let g:syntastic_auto_loc_list = 0
-    nnoremap <silent> <F6> :SyntasticCheck<CR>
+    " nnoremap <silent> <F6> :SyntasticCheck<CR>
 
     " au CursorHold,InsertLeave * nested call AutoSave()
 
@@ -366,17 +369,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " tabular
     vnoremap <C-t> :Tabularize /
 
-    " peekaboo 관련
-    " let g:peekaboo_window = 'vertical botright 30new'
-    " let g:peekaboo_delay = 0
-    " let g:peekaboo_compact = 0
-
     "ycm
     let g:ycm_key_list_select_completion = ['<C-n>']    " 본래 <Tab> 이지만 ultisnip 과 충돌을 막기 위해 변경
     let g:ycm_key_list_previous_completion=['<C-p>']
-    " let g:ycm_server_python_interpreter = '/usr/bin/python'
     let g:ycm_server_python_interpreter = '/usr/local/Cellar/python/2.7.13/bin/python'
-    " let g:ycm_server_python_interpreter = '/usr/local/Cellar/python3/3.6.0_1/bin/python3'
     let g:ycm_complete_in_comments = 1
     let g:ycm_min_num_of_chars_for_completion = 1
 
@@ -390,7 +386,25 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " fzf
     let g:fzf_launcher = "In_a_new_term_function %s"
-    imap <c-x><c-l> <plug>(fzf-complete-line)
+    imap <C-x><C-l> <plug>(fzf-complete-line)
+
+    " nnoremap <f1>f :call FzfOmniFiles()<CR>
+    nnoremap <f1> <nop>
+    nnoremap <f1><f1> :Files<CR>
+    nnoremap <f1>f :Files<CR>
+    nnoremap <f1>a :Ag 
+    nnoremap <f1>l :Lines<CR>
+    nnoremap <f1>m :Marks<CR>
+    " nnoremap <f1>o :Locate getcwd()
+    nnoremap <f1>h :History<CR>
+    nnoremap <f1>c :History:<CR>
+    nnoremap <f1>/ :History/<CR>
+    nnoremap <f1>b :Buffers<CR>
+    " gem install coderay
+    " let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -' .&lines.'"'
+    command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
+    command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
     " eregex
     nnoremap <leader>/ :call eregex#toggle()<CR>
@@ -409,8 +423,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " xmap ga <Plug>(EasyAlign)
 
     " camelize
-    map <LocalLeader>c <Plug>(operator-camelize)
-    map <LocalLeader>C <Plug>(operator-decamelize)
+    nmap <LocalLeader>c <Plug>(operator-camelize)
+    nmap <LocalLeader>C <Plug>(operator-decamelize)
 
     " UltiSnips
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -424,10 +438,64 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <LocalLeader>t :TagbarToggle<CR>
 
     " vim-auto-save
-    let g:auto_save = 1  " enable AutoSave on Vim startup
-    let g:auto_save_silent = 1  " do not display the auto-save notification
-    let g:auto_save_events = ["InsertLeave", "TextChanged"]
-    let g:auto_save_postsave_hook = 'SyntasticCheck'
+    nnoremap <silent> <Esc> <Esc>:w<CR>:SyntasticCheck<CR>
+    inoremap <silent> <Esc> <C-[>:w<CR>:SyntasticCheck<CR>
+    " nnoremap <F1><F2> :ToggleAutoSave()<CR>
+    " let g:auto_save = 1
+    " let g:auto_save_silent = 1
+    " let g:auto_save_events = ["CursorHold"]
+    " let g:auto_save_postsave_hook = 'SyntasticCheck'
+    " nnoremap <silent> <F6> :call ToggleSyntasticWithAutoSave()<CR>
+
+    " srcexpl
+    nmap <LocalLeader>e :SrcEplToggle<CR>
+    let g:SrcExpl_winHeight = 8
+    let g:SrcExpl_refreshTime = 300
+    let g:SrcExpl_jumpKey = "<ENTER>"
+    let g:SrcExpl_gobackKey = "<SPACE>"
+
+    " // In order to avoid conflicts, the Source Explorer should know what plugins
+    " // except itself are using buffers. And you need add their buffer names into
+    " // below listaccording to the command ":buffers!"
+    let g:SrcExpl_pluginList = [
+            \ "__Tag_List__",
+            \ "_NERD_tree_"
+        \ ]
+    let g:SrcExpl_searchLocalDef = 1
+    let g:SrcExpl_isUpdateTags = 0
+    let g:SrcExpl_prevDefKey = "<PAGEUP>"
+    let g:SrcExpl_nextDefKey = "<PAGEDOWN>"
+
+    " multiple_cursors
+    let g:multi_cursor_next_key='<C-n>'
+    let g:multi_cursor_prev_key='<C-p>'
+    let g:multi_cursor_skip_key='<C-x>'
+    let g:multi_cursor_quit_key='<Esc>'
+    nnoremap <C-c> :call multiple_cursors#quit()<CR>
+
+    " startify
+    nmap <LocalLeader>s :Startify<CR>
+    nmap <LocalLeader><LocalLeader>s :SSave<CR>
+
+    let g:startify_custom_header = ['']
+    let g:startify_update_oldfiles = 1
+    let g:startify_change_to_vcs_root = 1
+    let g:startify_session_sort = 1
+
+    let g:startify_commands = [
+        \ ':help startify',
+        \ ]
+
+    let g:startify_list_order = [
+                \ ['    Sessions'],
+                \'sessions',
+                \ ['    Most Recently Used files'],
+                \'files',
+                \'bookmarks',
+                \ ['    Commands'],
+                \'commands'
+                \]
+
 
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
@@ -438,6 +506,17 @@ function! ToggleNumber()
         set relativenumber
     endif
 endfunc
+
+function! FzfOmniFiles()
+    let is_git = system('git status')
+    if v:shell_error
+        :Files
+    else
+        :GitFiles
+    endif
+endfunc
+
+" autocmd BufEnter *.png,*.jpg,*gif exec "! imgcat ".expand("%") | :bw
 
 command! ToHtml :so $VIMRUNTIME/syntax/2html.vim
 
