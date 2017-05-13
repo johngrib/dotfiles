@@ -3,13 +3,14 @@
 require('modules.caffein')
 require('modules.mouse')
 local caffein = require('modules.caffein'):init({'shift'}, 'f15')
-local vim_mode = require('modules.vim'):init('f16', nil)
-local app_manager = require('modules.appman'):init('f18')
-local mouse = require('modules.mouse'):init('f17')
+local vim_mode = require('modules.vim'):init('f13', 'f18')
+-- local inputChange = require('modules.inputSourceChange'):init({}, 'escape', 'com.apple.keylayout.ABC')
+local app_manager = require('modules.appman'):init('f15')
+local mouse = require('modules.mouse'):init('f14')
 
 hs.alert.show('loaded')
 hs.hotkey.bind({'cmd'}, 'F17', hs.hints.windowHints)
-hs.hotkey.bind({'shift'}, 'space', function() hs.eventtap.keyStroke({'shift'}, 'F17') end)
+hs.hotkey.bind({'shift'}, 'space', function() hs.eventtap.keyStroke({'shift'}, 'F14') end)
 hs.hints.hintChars = {'F', 'U', 'I', 'O', 'P', 'H', 'J', 'K', 'L', 'B', 'N', 'M', 'Q', 'W', 'E', 'R', 'Z', 'X', 'C', 'V' }
 
 -- tab move

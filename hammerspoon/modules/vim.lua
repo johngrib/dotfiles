@@ -20,7 +20,7 @@ function obj:init(key1, key2)
 
     vim_icon:setClickCallback(setVimDisplay)
 
-    caps_mode:bind({}, 'F10', function() hs.reload() end, vim_end)
+    caps_mode:bind({'shift'}, 'r', function() hs.reload() end, vim_end)
 
     hs.fnutils.each({
         { mod={} , key='h' , func=rapidKey({} , 'left')  , repetition=true } ,
