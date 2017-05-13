@@ -23,6 +23,15 @@
   set surround
 
 " copy , paste , select 기능 보완 ------------------------------------------------
+  nnoremap <C-j> :
+  vnoremap <C-j> :
+  inoremap <C-j> <CR>
+  cnoremap <C-j> <CR>
+
+  nnoremap <Esc> <Esc>:w<CR>
+  inoremap <Esc> <Esc>:w<CR>
+
+
   nnoremap Y y$
   nnoremap <SPACE>y "+y
   vnoremap <SPACE>y "+y
@@ -41,7 +50,7 @@
 
   "라인 스플릿. :action 을 부르는 방식의 성능이 나쁘고, number operation 반복이 안 됨. 그냥 i<CR> 이 낫다.
   "nnoremap <c-j> :action EditorSplitLine<CR>
-  nnoremap <c-j> i<CR><ESC>
+  nnoremap K i<CR><ESC>
 
   "다음 기능들은 검색 창이 열린 다음에 포커스가 곧바로 에디터로 이동하므로 불편하고 쓸모가 없음.
   "실행한 다음 포커스가 남아 있기만 해도 굉장히 쓸만할 것 같은데 아쉽다.
