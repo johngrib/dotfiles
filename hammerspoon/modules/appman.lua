@@ -18,6 +18,7 @@ function obj:init(key)
             local screen = hs.window.focusedWindow():frame()
             local pt = hs.geometry.rectMidPoint(screen)
             hs.mouse.setAbsolutePosition(pt)
+            app_mode.triggered = true
         end
     end
 
@@ -35,6 +36,7 @@ function obj:init(key)
         app_focus('Slack')()
         hs.timer.usleep(100)
         hs.eventtap.keyStroke({'cmd'}, 'k')
+        app_mode.triggered = true
     end)
 
     local move_win = function(xx, yy, ww, hh)
@@ -46,6 +48,7 @@ function obj:init(key)
         f.w = max.w / ww
         f.h = max.h / hh
         win:setFrame(f)
+        app_mode.triggered = true
     end
 
     app_mode:bind({}, '1', function() move_win(0, 1, 2, 2) end)
@@ -74,7 +77,17 @@ function obj:init(key)
     app_mode:bind({}, 'b', send_window_next_monitor)
 
     local on_app_mode = function() app_mode:enter() end
-    local off_app_mode = function() app_mode:exit() end
+    local on_app_mode = function()
+        app_mode.triggered = false
+        app_mode:enter()
+    end
+
+    local off_app_mode = function()
+        app_mode:exit()
+        if not app_mode.triggered then
+            hs.eventtap.keyStroke({'shift'}, 'F14')
+        end
+    end
 
     hs.hotkey.bind({}, key, on_app_mode, off_app_mode)
 end

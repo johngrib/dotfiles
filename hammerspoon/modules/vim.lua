@@ -95,7 +95,7 @@ function obj:init(key1, key2)
             not mode.triggered
         then
             if not (input_source == inputEnglish) then
-                hs.eventtap.keyStroke({}, 'right')
+                hs.eventtap.keyStroke({}, 'shift')
                 hs.keycodes.currentSourceID(inputEnglish)
             end
             hs.eventtap.keyStroke({}, 'escape')
