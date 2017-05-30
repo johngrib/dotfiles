@@ -84,6 +84,11 @@ function obj:init(key1, key2)
         show_status_bar(true)
     end
 
+    caps_mode:bind({}, 'i', function()
+        local is = hs.keycodes.currentSourceID()
+        hs.alert.show(is)
+    end)
+
     local off_caps_mode = function()
         setVimDisplay()
 
@@ -95,9 +100,10 @@ function obj:init(key1, key2)
             not mode.triggered
         then
             if not (input_source == inputEnglish) then
-                hs.eventtap.keyStroke({}, 'shift')
+                hs.eventtap.keyStroke({}, 'right')
                 hs.keycodes.currentSourceID(inputEnglish)
             end
+            hs.eventtap.keyStroke({}, 'escape')
             hs.eventtap.keyStroke({}, 'escape')
         end
 
@@ -106,7 +112,7 @@ function obj:init(key1, key2)
         show_status_bar(false)
     end
 
-    caps_mode:bind({}, 'i', off_caps_mode)
+    -- caps_mode:bind({}, 'i', off_caps_mode)
 
     hs.hotkey.bind({}, key1, on_caps_mode, off_caps_mode)
     hs.hotkey.bind({'cmd'}, key1, on_caps_mode, off_caps_mode)
