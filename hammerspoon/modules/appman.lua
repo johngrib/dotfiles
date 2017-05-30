@@ -73,8 +73,8 @@ function obj:init(key)
         win:moveToScreen(nextScreen)
     end
 
-    app_mode:bind({}, 'n', send_window_prev_monitor)
-    app_mode:bind({}, 'b', send_window_next_monitor)
+    app_mode:bind({}, '=', send_window_prev_monitor)
+    app_mode:bind({}, '-', send_window_next_monitor)
 
     local on_app_mode = function() app_mode:enter() end
     local on_app_mode = function()
