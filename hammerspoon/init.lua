@@ -35,22 +35,17 @@ local function getActiveAppName()
 end
 
 local function tabMove(dir)
-
     return function()
-
         tab = tabTable[getActiveAppName()]
-
         if tab == nil then
             tab = tabTable['_else_']
         end
-
         hs.eventtap.keyStroke(tab[dir]['mod'], tab[dir]['key'])
     end
 end
 
-local function addVimMode()
+(function ()
     vim_mode:addKey({ mod={}, key=',', func=tabMove('left'), repetition=true })
     vim_mode:addKey({ mod={}, key='.', func=tabMove('right'), repetition=true })
-end
+end)()
 
-addVimMode()
