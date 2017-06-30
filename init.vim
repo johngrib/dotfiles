@@ -13,7 +13,8 @@ call plug#begin('~/.vim/plugged')
     " VIM POWER
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
     " Plug '907th/vim-auto-save'
-    Plug 'junegunn/vader.vim'
+    " Plug 'junegunn/vader.vim'
+    Plug 'tpope/vim-repeat'
 
     " tags
     Plug 'taglist.vim'
@@ -44,13 +45,38 @@ call plug#begin('~/.vim/plugged')
     Plug 'wellle/targets.vim'           " text object utils
     Plug 'jiangmiao/auto-pairs'
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
-    Plug 'junegunn/vim-easy-align'
-    Plug 'terryma/vim-multiple-cursors'
+    " Plug 'junegunn/vim-easy-align'
+    " Plug 'terryma/vim-multiple-cursors'
 
     " searching
     Plug 'matchit.zip'
-    Plug 'othree/eregex.vim'
-    Plug 'haya14busa/incsearch.vim'
+    " Plug 'othree/eregex.vim'
+    " Plug 'haya14busa/incsearch.vim'
+
+    " language support
+    Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
+    " Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
+    " Plug 'pangloss/vim-javascript'
+    Plug 'junegunn/vim-xmark', { 'do': 'make' }
+    Plug 'valloric/youcompleteme', { 'do': './install.py --all'}
+    " Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+    " Plug 'wesleyche/srcexpl'
+    " Plug 'udalov/kotlin-vim'
+    Plug 'tpope/vim-markdown'
+
+    " Plug 'yggdroot/indentline'        " 문자열 ** 을 hidden 상태로 바꾼다. 몹시 짜증남. 다시는 설치하지 말 것.
+    " Plug 'raimondi/delimitmate'       " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
+    " Plug 'kana/vim-operator-user'
+    "     Plug 'tyru/operator-camelize.vim'
+
+    " Plug 'SirVer/ultisnips'
+    " Plug 'honza/vim-snippets'
+
+    " Plug 'tpope/vim-liquid'
+    " Plug 'tpope/vim-speeddating'
+    " Plug 'johngrib/vim-game-snake'
+    Plug 'bartmalanczuk/vim-trex-runner'
+    Plug 'vim-scripts/TeTrIs.vim'
 
     " screen view
     Plug 'luochen1990/rainbow'          " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
@@ -58,28 +84,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'       " git diff 를 라인 넘버 옆에 표시.
     Plug 'johngrib/FlatColor-johngrib'  " color theme
     Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
-    Plug 'itchyny/vim-cursorword'       " 커서가 위치한 word 아래에 underline 을 그어준다.
+    " Plug 'itchyny/vim-cursorword'       " 커서가 위치한 word 아래에 underline 을 그어준다.
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
-
-    " language support
-    Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
-    " Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
-    Plug 'pangloss/vim-javascript'
-    Plug 'junegunn/vim-xmark', { 'do': 'make' }
-    Plug 'valloric/youcompleteme', { 'do': './install.py --all'}
-    " Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-    Plug 'wesleyche/srcexpl'
-
-    " Plug 'yggdroot/indentline'        " 문자열 ** 을 hidden 상태로 바꾼다. 몹시 짜증남. 다시는 설치하지 말 것.
-    " Plug 'raimondi/delimitmate'       " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
-    Plug 'kana/vim-operator-user'
-        Plug 'tyru/operator-camelize.vim'
-
-    Plug 'SirVer/ultisnips'
-        Plug 'honza/vim-snippets'
-    " Plug 'tpope/vim-liquid'
-    " Plug 'tpope/vim-speeddating'
-    " Plug 'johngrib/vim-game-snake'
 
 call plug#end()
 
@@ -102,6 +108,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     set path+=**
     set nofixeol
+    set conceallevel=0
 
     if executable('ag')
         set grepprg=ag\ --nogroup\ --nocolor\ --column
@@ -130,6 +137,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set mouse=a
 
     set hidden
+    set nopaste
 
     set smartcase ignorecase hlsearch incsearch
     "set tildeop    "~ 를 다른 오퍼레이터와 함께 사용한다.
@@ -187,8 +195,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nnoremap <Leader>e :browse oldfiles<CR>
     " nnoremap <f5> :!ctags -R<CR>
     nnoremap <NL> :
-    vnoremap <NL> :
-    cnoremap <NL> <CR>
+    nnoremap <C-m> :
+    vnoremap <C-m> :
 
     nnoremap k gk
     nnoremap gk k
@@ -263,16 +271,16 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:AutoPairsShortcutBackInsert = ''
 
     " " incsearch
-    let g:incsearch#auto_nohlsearch = 0
-    map /  <Plug>(incsearch-forward)
-    map ?  <Plug>(incsearch-backward)
-    map g/ <Plug>(incsearch-stay)
-    map n  <Plug>(incsearch-nohl-n)
-    map N  <Plug>(incsearch-nohl-N)
-    map *  <Plug>(incsearch-nohl-*)
-    map #  <Plug>(incsearch-nohl-#)
-    map g* <Plug>(incsearch-nohl-g*)
-    map g# <Plug>(incsearch-nohl-g#)
+    " let g:incsearch#auto_nohlsearch = 0
+    " map /  <Plug>(incsearch-forward)
+    " map ?  <Plug>(incsearch-backward)
+    " map g/ <Plug>(incsearch-stay)
+    " map n  <Plug>(incsearch-nohl-n)
+    " map N  <Plug>(incsearch-nohl-N)
+    " map *  <Plug>(incsearch-nohl-*)
+    " map #  <Plug>(incsearch-nohl-#)
+    " map g* <Plug>(incsearch-nohl-g*)
+    " map g# <Plug>(incsearch-nohl-g#)
 
     " ctrlp
     let g:ctrlp_working_path_mode = 'ra'
@@ -347,7 +355,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:syntastic_check_on_wq = 0
     let g:syntastic_mode_map = { 'mode': 'passive' }
     let g:syntastic_auto_loc_list = 0
-    " nnoremap <silent> <F6> :SyntasticCheck<CR>
+    nnoremap <silent> <F2> :SyntasticCheck<CR>
 
     " au CursorHold,InsertLeave * nested call AutoSave()
 
@@ -414,11 +422,12 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:eregex_force_case = 0
 
     " Trigger configuration. <Tab> 을 쓴다면 ycm 과 키가 중복되어 제대로 기능하지 않을 수 있다. 둘 중 하나의 설정을 바꿔준다.
+    let g:UltiSnipsUsePythonVersion = 2
     let g:UltiSnipsExpandTrigger="<Tab>"
     let g:UltiSnipsJumpForwardTrigger="<Tab>"
     let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split your window.
-
+    " let g:UltiSnipsSnippetDirectories='~/.vim/UltiSnips'
     " nmap ga <Plug>(EasyAlign)
     " xmap ga <Plug>(EasyAlign)
 
@@ -428,18 +437,19 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " UltiSnips
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-    " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
+    " let g:UltiSnipsExpandTrigger="<tab>"
+    " let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " " If you want :UltiSnipsEdit to split your window.
+    " let g:UltiSnipsEditSplit="vertical"
 
     " tagbar
     nnoremap <LocalLeader>t :TagbarToggle<CR>
 
     " vim-auto-save
-    nnoremap <silent> <Esc> <Esc>:w<CR>:SyntasticCheck<CR>
-    inoremap <silent> <Esc> <C-[>:w<CR>:SyntasticCheck<CR>
+    nnoremap <Space>w :w<CR>
+    " nnoremap <silent> <Esc> <Esc>:w<CR>
+    " inoremap <silent> <Esc> <C-[>:w<CR>
     " nnoremap <F1><F2> :ToggleAutoSave()<CR>
     " let g:auto_save = 1
     " let g:auto_save_silent = 1
