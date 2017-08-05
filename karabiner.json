@@ -6,6 +6,12 @@
     },
     "profiles": [
         {
+            "complex_modifications": {
+                "parameters": {
+                    "basic.to_if_alone_timeout_milliseconds": 1000
+                },
+                "rules": []
+            },
             "devices": [
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -49,6 +55,12 @@
             }
         },
         {
+            "complex_modifications": {
+                "parameters": {
+                    "basic.to_if_alone_timeout_milliseconds": 1000
+                },
+                "rules": []
+            },
             "devices": [],
             "fn_function_keys": {
                 "f1": "display_brightness_decrement",
@@ -69,10 +81,10 @@
             "simple_modifications": {
                 "caps_lock": "left_control",
                 "left_command": "left_command",
-                "left_control": "f16",
+                "left_control": "f13",
                 "left_option": "left_option",
-                "right_command": "f18",
-                "right_option": "f17"
+                "right_command": "f14",
+                "right_option": "f15"
             },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
@@ -80,7 +92,34 @@
             }
         },
         {
-            "devices": [],
+            "complex_modifications": {
+                "parameters": {
+                    "basic.to_if_alone_timeout_milliseconds": 1000
+                },
+                "rules": []
+            },
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 51966,
+                        "vendor_id": 65261
+                    },
+                    "ignore": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 627,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false
+                }
+            ],
             "fn_function_keys": {
                 "f1": "display_brightness_decrement",
                 "f10": "mute",
@@ -98,6 +137,7 @@
             "name": "HHKB jp kmt",
             "selected": true,
             "simple_modifications": {
+                "caps_lock": "f13",
                 "right_command": "f14",
                 "right_option": "f15"
             },
