@@ -13,6 +13,7 @@
 
   set vimpath=~/Applications/MacVim/mvim
   set nu
+  " set relativenumber
   set hi=1000 "history=1000
   set hls     "hlsearch
   set ic      "ignorecase
@@ -23,10 +24,10 @@
   set surround
 
 " copy , paste , select 기능 보완 ------------------------------------------------
-  nnoremap <C-j> :
-  vnoremap <C-j> :
-  inoremap <C-j> <CR>
-  cnoremap <C-j> <CR>
+  nnoremap <C-m> :
+  vnoremap <C-m> :
+  inoremap <C-m> <CR>
+  cnoremap <C-m> <CR>
 
   nnoremap <Esc> <Esc>:w<CR>
   inoremap <Esc> <Esc>:w<CR>
@@ -56,6 +57,7 @@
   "실행한 다음 포커스가 남아 있기만 해도 굉장히 쓸만할 것 같은데 아쉽다.
   nnoremap <SPACE>o :action GotoFile<ENTER>  
   nnoremap <SPACE>r :action RecentChangedFiles<CR>
+  nnoremap <SPACE>w :w<CR>
 
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 
@@ -76,26 +78,26 @@
   "nnoremap m0 :action ToggleBookmark0 <CR>
 
 " custom command 가 불가능하니 F10 키에 이것저것 붙여보자.
-nnoremap m<A-0> :action ToggleBookmark0<CR>
-nnoremap m<A-1> :action ToggleBookmark1<CR>
-nnoremap m<A-2> :action ToggleBookmark2<CR>
-nnoremap m<A-3> :action ToggleBookmark3<CR>
-nnoremap m<A-4> :action ToggleBookmark4<CR>
-nnoremap m<A-5> :action ToggleBookmark5<CR>
-nnoremap m<A-6> :action ToggleBookmark6<CR>
-nnoremap m<A-7> :action ToggleBookmark7<CR>
-nnoremap m<A-8> :action ToggleBookmark8<CR>
-nnoremap m<A-9> :action ToggleBookmark9<CR>
-nnoremap '<A-0> :action GotoBookmark0<CR>
-nnoremap '<A-1> :action GotoBookmark1<CR>
-nnoremap '<A-2> :action GotoBookmark2<CR>
-nnoremap '<A-3> :action GotoBookmark3<CR>
-nnoremap '<A-4> :action GotoBookmark4<CR>
-nnoremap '<A-5> :action GotoBookmark5<CR>
-nnoremap '<A-6> :action GotoBookmark6<CR>
-nnoremap '<A-7> :action GotoBookmark7<CR>
-nnoremap '<A-8> :action GotoBookmark8<CR>
-nnoremap '<A-9> :action GotoBookmark9<CR>
+nnoremap<C-m>0 :action ToggleBookmark0<CR>
+nnoremap<C-m>1 :action ToggleBookmark1<CR>
+nnoremap<C-m>2 :action ToggleBookmark2<CR>
+nnoremap<C-m>3 :action ToggleBookmark3<CR>
+nnoremap<C-m>4 :action ToggleBookmark4<CR>
+nnoremap<C-m>5 :action ToggleBookmark5<CR>
+nnoremap<C-m>6 :action ToggleBookmark6<CR>
+nnoremap<C-m>7 :action ToggleBookmark7<CR>
+nnoremap<C-m>8 :action ToggleBookmark8<CR>
+nnoremap<C-m>9 :action ToggleBookmark9<CR>
+" nnoremap ' :action GotoBookmark0<CR>
+" nnoremap ' :action GotoBookmark1<CR>
+" nnoremap ' :action GotoBookmark2<CR>
+" nnoremap ' :action GotoBookmark3<CR>
+" nnoremap ' :action GotoBookmark4<CR>
+" nnoremap ' :action GotoBookmark5<CR>
+" nnoremap ' :action GotoBookmark6<CR>
+" nnoremap ' :action GotoBookmark7<CR>
+" nnoremap ' :action GotoBookmark8<CR>
+" nnoremap ' :action GotoBookmark9<CR>
 nnoremap '. :action JumpToLastChange<CR>0
 nnoremap `. :action JumpToLastChange<CR>0
 
