@@ -17,7 +17,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-repeat'
 
     " tags
-    Plug 'taglist.vim'
+    Plug 'vim-scripts/taglist.vim'
     Plug 'ludovicchabant/vim-gutentags' " 자동으로 tags 파일을 갱신해 준다.
     Plug 'majutsushi/tagbar'
 
@@ -30,7 +30,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree'
         Plug 'jistr/vim-nerdtree-tabs'
         " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.sh --clang-completer --system-libclang' }
         Plug 'junegunn/fzf.vim'
 
     " editing
@@ -49,12 +49,12 @@ call plug#begin('~/.vim/plugged')
     " Plug 'terryma/vim-multiple-cursors'
 
     " searching
-    Plug 'matchit.zip'
+    Plug 'vim-scripts/matchit.zip'
     " Plug 'othree/eregex.vim'
     " Plug 'haya14busa/incsearch.vim'
 
     " language support
-    Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
+    " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     " Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
     " Plug 'pangloss/vim-javascript'
     Plug 'junegunn/vim-xmark', { 'do': 'make' }
@@ -62,7 +62,9 @@ call plug#begin('~/.vim/plugged')
     " Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
     " Plug 'wesleyche/srcexpl'
     " Plug 'udalov/kotlin-vim'
-    Plug 'tpope/vim-markdown'
+    " Plug 'tpope/vim-markdown'
+    " Plug 'vim-perl/vim-perl6'
+    Plug 'johngrib/vim-dracula'
 
     " Plug 'yggdroot/indentline'        " 문자열 ** 을 hidden 상태로 바꾼다. 몹시 짜증남. 다시는 설치하지 말 것.
     " Plug 'raimondi/delimitmate'       " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
@@ -74,18 +76,33 @@ call plug#begin('~/.vim/plugged')
 
     " Plug 'tpope/vim-liquid'
     " Plug 'tpope/vim-speeddating'
-    " Plug 'johngrib/vim-game-snake'
-    Plug 'bartmalanczuk/vim-trex-runner'
-    Plug 'vim-scripts/TeTrIs.vim'
+    Plug 'johngrib/vim-game-snake'
+    " Plug 'bartmalanczuk/vim-trex-runner'
+    " Plug 'vim-scripts/TeTrIs.vim'
 
     " screen view
     Plug 'luochen1990/rainbow'          " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
     Plug 'kshenoy/vim-signature'        " m mark 위치를 표시해준다.
     Plug 'airblade/vim-gitgutter'       " git diff 를 라인 넘버 옆에 표시.
-    Plug 'johngrib/FlatColor-johngrib'  " color theme
+    " Plug 'johngrib/FlatColor-johngrib'  " color theme
     Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
     " Plug 'itchyny/vim-cursorword'       " 커서가 위치한 word 아래에 underline 을 그어준다.
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
+    " Plug 'johngrib/vim-game-code-break'
+    " Plug 'junegunn/vim-peekaboo'
+    " Plug 'junegunn/seoul256.vim'
+    " 
+    " Plug 'koron/nyancat-vim'
+    Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+
+    " deoplete
+    if has('nvim')
+        " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+        " Plug 'Shougo/deoplete.nvim'
+        " Plug 'roxma/nvim-yarp'
+        " Plug 'roxma/vim-hug-neovim-rpc'
+    endif
 
 call plug#end()
 
@@ -94,7 +111,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Or if you have Neovim >= 0.1.5
 if (has("termguicolors"))
-    set termguicolors
+    " set termguicolors
 endif
 
 " Theme
@@ -119,16 +136,23 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     endif
 
     if has("nvim")
-        set termguicolors
+        " set termguicolors
         set clipboard^=unnamedplus
     endif
 
     if has("gui_macvim")
         set macmeta
         set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
+
+        " macVim 에서 esc 로 영문변환, imi 는 1 또는 2 로 설정해준다
+        set noimd
+        set imi=1
+    else
+        " tmux에서 배경색이 이상하게 나오는 문제를 해결한다.
+        " link : http://stackoverflow.com/a/15095377
+        set t_ut=
     endif
 
-    "set noimd  " normal 모드에서 한국어 입력시에도 영문으로 입력한 것처럼 동작 -> 제대로 작동하지 않는다.
     set nocompatible                  " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
     " set linebreak                     " break at word boundary
     " set showbreak=++
@@ -145,7 +169,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " 화면 표시
     set nu               " 라인 넘버 출력
-    set relativenumber
+    " set relativenumber
     set ruler            " 현재 커서 위치 (row, col) 좌표 출력
     set noerrorbells     " 에러 알림음 끄기
     set background=dark  " 검정배경을 사용 (이 색상에 맞춰 문법 하이라이트 색상이 달라짐.)
@@ -175,7 +199,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set cursorcolumn
     set langmap=ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz
 
-    colorscheme flatcolor-johngrib
+    " colorscheme flatcolor-johngrib
+    colorscheme dracula
+    " colorscheme seoul256
+    " let g:seoul256_background = 233
 
     if has("syntax")
         "syntax on
@@ -304,24 +331,24 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let NERDTreeMinimalUI = 1
     let NERDTreeDirArrows = 1
 
-    function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-        exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-        exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-    endfunction
+    " function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+    "     exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+    "     exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+    " endfunction
 
-    call NERDTreeHighlightFile('jade', 'Magenta', 'none', 'green', '#151515')
-    call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-    call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-    call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-    call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-    call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-    call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-    call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-    call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-    call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-    call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-    call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-    call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+    " call NERDTreeHighlightFile('jade', 'Magenta', 'none', 'green', '#151515')
+    " call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+    " call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+    " call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+    " call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+    " call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+    " call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+    " call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+    " call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+    " call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+    " call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+    " call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+    " call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
     " rainbow
     nnoremap <LocalLeader>r :RainbowToggle<CR>
@@ -344,8 +371,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " Syntastic 설정
     " https://thechefprogrammer.blogspot.kr/2014/05/syntax-check-for-php-and-javascript.html
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
+    " set statusline+=%#warningmsg#
+    " set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
@@ -355,7 +382,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:syntastic_check_on_wq = 0
     let g:syntastic_mode_map = { 'mode': 'passive' }
     let g:syntastic_auto_loc_list = 0
-    nnoremap <silent> <F2> :SyntasticCheck<CR>
+    " nnoremap <silent> <F2> :SyntasticCheck<CR>
 
     " au CursorHold,InsertLeave * nested call AutoSave()
 
@@ -481,7 +508,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:multi_cursor_prev_key='<C-p>'
     let g:multi_cursor_skip_key='<C-x>'
     let g:multi_cursor_quit_key='<Esc>'
-    nnoremap <C-c> :call multiple_cursors#quit()<CR>
+    " nnoremap <C-c> :call multiple_cursors#quit()<CR>
 
     " startify
     nmap <LocalLeader>s :Startify<CR>
@@ -506,6 +533,31 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
                 \'commands'
                 \]
 
+    let g:vim_game_code_break_item_limit = 8
+
+    " Use deoplete.
+    let g:deoplete#enable_at_startup = 1
+
+    let wiki1 = {}
+    let wiki1.path = '~/git/johngrib.github.io/_wiki/'
+    " let wiki1.path_html = '~/git/johngrib-wiki/html/'
+    " let wiki1.syntax = 'markdown'
+    let wiki1.ext = '.md'
+
+    let g:vimwiki_list = [wiki1]
+    let g:vimwiki_conceallevel = 0
+
+    command! WikiIndex :VimwikiIndex
+    nmap <LocalLeader>ww <Plug>VimwikiIndex
+    " nmap <LocalLeader>wt <Plug>VimwikiTabIndex
+    nmap <LocalLeader>ws <Plug>VimwikiUISelect
+    nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
+    nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
+    nmap <LocalLeader>w<LocalLeader>t <Plug>VimwikiTabMakeDiaryNote
+    nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
+    nmap <LocalLeader>wh <Plug>Vimwiki2HTML
+    nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
+    nmap <LocalLeader>wt :VimwikiTable<CR>
 
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
@@ -542,9 +594,23 @@ endif
 " 현재 편집중인 파일 경로로 pwd 를 변경한다
 command! Ncd :cd %:p:h
 
-" tmux에서 배경색이 이상하게 나오는 문제를 해결한다.
-" link : http://stackoverflow.com/a/15095377
-set t_ut=
+" command! Time :put =strftime('%Y-%m-%d %H:%M:%S +0900')
+
+" If buffer modified, update any 'Last modified: ' in the first 20 lines.
+" 'Last modified: ' can have up to 10 characters before (they are retained).
+" Restores cursor and window position using save_cursor variable.
+function! LastModified()
+  if &modified
+      echo('asdf')
+    let save_cursor = getpos(".")
+    let n = min([10, line("$")])
+    keepjumps exe '1,' . n . 's#^\(.\{,10}updated\s*: \).*#\1' .
+          \ strftime('%Y-%m-%d %H:%M:%S +0900') . '#e'
+    call histdel('search', -1)
+    call setpos('.', save_cursor)
+  endif
+endfun
+autocmd BufWritePre *.md call LastModified()
 
 " Change cursor shape between insert and normal mode in iTerm2.app + tmux + vim
 " https://gist.github.com/andyfowler/1195581
@@ -556,3 +622,17 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" http://perltricks.com/article/194/2015/9/22/Activating-Perl-6-syntax-highlighting-in-Vim/
+function! LooksLikePerl6 ()
+  if getline(1) =~# '^#!.*/bin/.*perl6'
+    set filetype=perl6
+  else
+    for i in [1,2,3,4,5]
+      if getline(i) == 'use v6;'
+        set filetype=perl6
+        break
+      endif
+    endfor
+  endif
+endfunction
+au bufRead *.pm,*.t,*.pl call LooksLikePerl6()
