@@ -12,8 +12,6 @@ call plug#begin('~/.vim/plugged')
 
     " VIM POWER
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-    " Plug '907th/vim-auto-save'
-    " Plug 'junegunn/vader.vim'
     Plug 'tpope/vim-repeat'
 
     " tags
@@ -29,7 +27,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'scrooloose/nerdtree'
         Plug 'jistr/vim-nerdtree-tabs'
-        " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.sh --clang-completer --system-libclang' }
         Plug 'junegunn/fzf.vim'
 
@@ -56,53 +53,31 @@ call plug#begin('~/.vim/plugged')
     " language support
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     " Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
-    " Plug 'pangloss/vim-javascript'
     Plug 'junegunn/vim-xmark', { 'do': 'make' }
     Plug 'valloric/youcompleteme', { 'do': './install.py --all'}
-    " Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
     " Plug 'wesleyche/srcexpl'
-    " Plug 'udalov/kotlin-vim'
-    " Plug 'tpope/vim-markdown'
-    " Plug 'vim-perl/vim-perl6'
     Plug 'johngrib/vim-dracula'
 
-    " Plug 'yggdroot/indentline'        " 문자열 ** 을 hidden 상태로 바꾼다. 몹시 짜증남. 다시는 설치하지 말 것.
-    " Plug 'raimondi/delimitmate'       " 따옴표, 괄호 등을 입력하면 닫는 따옴표,괄호를 추가해준다.
     " Plug 'kana/vim-operator-user'
     "     Plug 'tyru/operator-camelize.vim'
 
     " Plug 'SirVer/ultisnips'
     " Plug 'honza/vim-snippets'
 
-    " Plug 'tpope/vim-liquid'
     " Plug 'tpope/vim-speeddating'
-    Plug 'johngrib/vim-game-snake'
     " Plug 'bartmalanczuk/vim-trex-runner'
-    " Plug 'vim-scripts/TeTrIs.vim'
 
     " screen view
     Plug 'luochen1990/rainbow'          " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
     Plug 'kshenoy/vim-signature'        " m mark 위치를 표시해준다.
     Plug 'airblade/vim-gitgutter'       " git diff 를 라인 넘버 옆에 표시.
-    " Plug 'johngrib/FlatColor-johngrib'  " color theme
     Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
-    " Plug 'itchyny/vim-cursorword'       " 커서가 위치한 word 아래에 underline 을 그어준다.
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
-    " Plug 'johngrib/vim-game-code-break'
-    " Plug 'junegunn/vim-peekaboo'
-    " Plug 'junegunn/seoul256.vim'
-    " 
+
     " Plug 'koron/nyancat-vim'
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
-    " deoplete
-    if has('nvim')
-        " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        " Plug 'Shougo/deoplete.nvim'
-        " Plug 'roxma/nvim-yarp'
-        " Plug 'roxma/vim-hug-neovim-rpc'
-    endif
+    Plug 'diepm/vim-rest-console'
 
 call plug#end()
 
@@ -201,8 +176,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " colorscheme flatcolor-johngrib
     colorscheme dracula
-    " colorscheme seoul256
-    " let g:seoul256_background = 233
 
     if has("syntax")
         "syntax on
@@ -252,6 +225,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap gr :bprevious!<CR>
     nnoremap <M-Q> :bp <BAR> bd #<CR> " 현재 버퍼를 닫고 이전 버퍼로 이동
 
+    inoremap <C-e> <C-O>$
+
     "Bubble lines
     " nnoremap <M-K> ddkP
     " nnoremap <M-J> ddp
@@ -290,7 +265,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
 " Plugin 설정 -------------------------------------------------------------------
 
-    " Autofair
+    " Autopair
     let g:AutoPairsFlyMode = 0
     let g:AutoPairsShortcutToggle = ''
     let g:AutoPairsShortcutFastWrap = ''
@@ -415,6 +390,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     if has("nvim")
         "let g:deoplete#enable_at_startup = 1 " Use deoplete.
     endif
+
+    nnoremap s "
+    vnoremap s "
 
     "eclim
     " let g:EclimCompletionMethod = 'omnifunc'
