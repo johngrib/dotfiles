@@ -6,144 +6,111 @@
     },
     "profiles": [
         {
-            "complex_modifications": {
-                "parameters": {
-                    "basic.to_if_alone_timeout_milliseconds": 1000
-                },
-                "rules": []
-            },
-            "devices": [
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": false,
-                        "product_id": 627,
-                        "vendor_id": 1452
-                    },
-                    "ignore": false
-                }
-            ],
-            "fn_function_keys": {
-                "f1": "display_brightness_decrement",
-                "f10": "mute",
-                "f11": "volume_decrement",
-                "f12": "volume_increment",
-                "f2": "display_brightness_increment",
-                "f3": "mission_control",
-                "f4": "launchpad",
-                "f5": "illumination_decrement",
-                "f6": "illumination_increment",
-                "f7": "rewind",
-                "f8": "play_or_pause",
-                "f9": "fastforward"
-            },
-            "name": "realforce87u",
-            "selected": false,
-            "simple_modifications": {
-                "application": "right_shift",
-                "caps_lock": "f13",
-                "left_command": "left_option",
-                "left_option": "left_command",
-                "right_alt": "f14",
-                "right_command": "f15",
-                "right_control": "f13"
-            },
-            "virtual_hid_keyboard": {
-                "caps_lock_delay_milliseconds": 0,
-                "keyboard_type": "ansi"
-            }
-        },
-        {
-            "complex_modifications": {
-                "parameters": {
-                    "basic.to_if_alone_timeout_milliseconds": 1000
-                },
-                "rules": []
-            },
             "devices": [],
-            "fn_function_keys": {
-                "f1": "display_brightness_decrement",
-                "f10": "mute",
-                "f11": "volume_decrement",
-                "f12": "volume_increment",
-                "f2": "display_brightness_increment",
-                "f3": "mission_control",
-                "f4": "launchpad",
-                "f5": "illumination_decrement",
-                "f6": "illumination_increment",
-                "f7": "rewind",
-                "f8": "play_or_pause",
-                "f9": "fastforward"
-            },
-            "name": "built-in-keyboard",
-            "selected": false,
-            "simple_modifications": {
-                "caps_lock": "left_control",
-                "left_command": "left_command",
-                "left_control": "f13",
-                "left_option": "left_option",
-                "right_command": "f14",
-                "right_option": "f15"
-            },
-            "virtual_hid_keyboard": {
-                "caps_lock_delay_milliseconds": 0,
-                "keyboard_type": "ansi"
-            }
-        },
-        {
-            "complex_modifications": {
-                "parameters": {
-                    "basic.to_if_alone_timeout_milliseconds": 1000
-                },
-                "rules": []
-            },
-            "devices": [
+            "fn_function_keys": [
                 {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": false,
-                        "product_id": 51966,
-                        "vendor_id": 65261
+                    "from": {
+                        "key_code": "f1"
                     },
-                    "ignore": false
+                    "to": {
+                        "consumer_key_code": "display_brightness_decrement"
+                    }
                 },
                 {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": false,
-                        "product_id": 627,
-                        "vendor_id": 1452
+                    "from": {
+                        "key_code": "f2"
                     },
-                    "ignore": false
+                    "to": {
+                        "consumer_key_code": "display_brightness_increment"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f3"
+                    },
+                    "to": {
+                        "key_code": "mission_control"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f4"
+                    },
+                    "to": {
+                        "key_code": "launchpad"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f5"
+                    },
+                    "to": {
+                        "key_code": "illumination_decrement"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f6"
+                    },
+                    "to": {
+                        "key_code": "illumination_increment"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f7"
+                    },
+                    "to": {
+                        "consumer_key_code": "rewind"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f8"
+                    },
+                    "to": {
+                        "consumer_key_code": "play_or_pause"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f9"
+                    },
+                    "to": {
+                        "consumer_key_code": "fastforward"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f10"
+                    },
+                    "to": {
+                        "consumer_key_code": "mute"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f11"
+                    },
+                    "to": {
+                        "consumer_key_code": "volume_decrement"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f12"
+                    },
+                    "to": {
+                        "consumer_key_code": "volume_increment"
+                    }
                 }
             ],
-            "fn_function_keys": {
-                "f1": "display_brightness_decrement",
-                "f10": "mute",
-                "f11": "volume_decrement",
-                "f12": "volume_increment",
-                "f2": "display_brightness_increment",
-                "f3": "mission_control",
-                "f4": "launchpad",
-                "f5": "illumination_decrement",
-                "f6": "illumination_increment",
-                "f7": "rewind",
-                "f8": "play_or_pause",
-                "f9": "fastforward"
-            },
-            "name": "HHKB jp kmt",
+            "name": "Default profile",
             "selected": true,
-            "simple_modifications": {
-                "caps_lock": "f13",
-                "right_command": "f14",
-                "right_option": "f15"
-            },
+            "simple_modifications": [],
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
-                "keyboard_type": "ansi"
+                "keyboard_type": ""
             }
         }
     ]
