@@ -14,6 +14,8 @@
 	excludesfile = /Users/johngrib/.gitignore_global
 	editor = /usr/bin/vim
 	autocrlf = input
+	precomposeunicode = true
+	quotepath = false
 [diff]
     tool = vimdiff
 [difftool "vimdiff"]
