@@ -57,3 +57,5 @@ export PS1
 function google() {
     open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1";
 }
+
+source ~/git-completion.bash
