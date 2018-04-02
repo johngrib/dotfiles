@@ -54,7 +54,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     " Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
     Plug 'junegunn/vim-xmark', { 'do': 'make' }
-    Plug 'valloric/youcompleteme', { 'do': './install.py --all'}
+    Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer'}
     " Plug 'wesleyche/srcexpl'
     Plug 'johngrib/vim-dracula'
 
@@ -78,6 +78,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
     Plug 'diepm/vim-rest-console'
+    Plug 'tpope/vim-db'
+
 
 call plug#end()
 
@@ -113,11 +115,14 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     if has("nvim")
         " set termguicolors
         set clipboard^=unnamedplus
+    else
+        " set clipboard^=unnamed,unnamedplus
+        " set clipboard^=unnamedplus
     endif
 
     if has("gui_macvim")
         set macmeta
-        set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
+        set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h13
 
         " macVim 에서 esc 로 영문변환, imi 는 1 또는 2 로 설정해준다
         set noimd
@@ -194,9 +199,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let maplocalleader = "\\"
     " nnoremap <Leader>e :browse oldfiles<CR>
     " nnoremap <f5> :!ctags -R<CR>
-    nnoremap <NL> :
-    nnoremap <C-m> :
-    vnoremap <C-m> :
 
     nnoremap k gk
     nnoremap gk k
@@ -212,12 +214,14 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " copy , paste , select 기능 보완
     nnoremap Y y$
-    nnoremap <Leader>y "*y
-    nnoremap <Leader>Y "*yg_
-    vnoremap <Leader>y "*y
-    nnoremap <Leader>p "*p
-    nnoremap <Leader>P "*P
+    nnoremap <Leader>y "+y
+    nnoremap <Leader>Y "+yg_
+    vnoremap <Leader>y "+y
+    nnoremap <Leader>p "+p
+    nnoremap <Leader>P "+P
     nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+    nnoremap <F4>     :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
+    nnoremap <S-F4>   :execute "VWB" <Bar> :lopen<CR>
 
     " 버퍼 관리
     " nnoremap <M-T> :enew<CR>       " 새로운 버퍼를 연다
@@ -306,25 +310,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let NERDTreeMinimalUI = 1
     let NERDTreeDirArrows = 1
 
-    " function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-    "     exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-    "     exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-    " endfunction
-
-    " call NERDTreeHighlightFile('jade', 'Magenta', 'none', 'green', '#151515')
-    " call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-    " call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-    " call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-    " call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-    " call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-    " call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-    " call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-    " call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-    " call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-    " call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-    " call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-    " call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-
     " rainbow
     nnoremap <LocalLeader>r :RainbowToggle<CR>
 
@@ -359,7 +344,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:syntastic_auto_loc_list = 0
     " nnoremap <silent> <F2> :SyntasticCheck<CR>
 
-    " au CursorHold,InsertLeave * nested call AutoSave()
+    let g:ale_fixers = { 'javascript': ['eslint'] }
+    let g:ale_lint_on_save = 1
+    let g:ale_lint_on_text_changed = 0
 
     " vim-airline 설정
     " @link http://bakyeono.net/post/2015-08-13-vim-tab-madness-translate.html
@@ -382,17 +369,17 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     "ycm
     let g:ycm_key_list_select_completion = ['<C-n>']    " 본래 <Tab> 이지만 ultisnip 과 충돌을 막기 위해 변경
     let g:ycm_key_list_previous_completion=['<C-p>']
-    let g:ycm_server_python_interpreter = '/usr/local/Cellar/python/2.7.13/bin/python'
+    let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
     let g:ycm_complete_in_comments = 1
+    let g:ycm_complete_in_strings = 1
     let g:ycm_min_num_of_chars_for_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+    let g:ycm_autoclose_preview_window_after_completion = 1
 
     "deoplete
     if has("nvim")
         "let g:deoplete#enable_at_startup = 1 " Use deoplete.
     endif
-
-    nnoremap s "
-    vnoremap s "
 
     "eclim
     " let g:EclimCompletionMethod = 'omnifunc'
@@ -516,13 +503,19 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " Use deoplete.
     let g:deoplete#enable_at_startup = 1
 
-    let wiki1 = {}
-    let wiki1.path = '~/git/johngrib.github.io/_wiki/'
-    " let wiki1.path_html = '~/git/johngrib-wiki/html/'
-    " let wiki1.syntax = 'markdown'
-    let wiki1.ext = '.md'
+    let g:vimwiki_list = [
+                \{
+                \   'path': '~/git/johngrib.github.io/_wiki',
+                \   'ext' : '.md',
+                \   'diary_rel_path': '.',
+                \},
+                \{
+                \   'path': '~/Dropbox/wiki',
+                \   'ext' : '.md',
+                \   'diary_rel_path': '.',
+                \}
+                \]
 
-    let g:vimwiki_list = [wiki1]
     let g:vimwiki_conceallevel = 0
 
     command! WikiIndex :VimwikiIndex
@@ -578,8 +571,11 @@ command! Ncd :cd %:p:h
 " 'Last modified: ' can have up to 10 characters before (they are retained).
 " Restores cursor and window position using save_cursor variable.
 function! LastModified()
+    if g:md_modify_disabled
+        return
+    endif
   if &modified
-      echo('asdf')
+    " echo('markdown updated time modified')
     let save_cursor = getpos(".")
     let n = min([10, line("$")])
     keepjumps exe '1,' . n . 's#^\(.\{,10}updated\s*: \).*#\1' .
@@ -589,6 +585,8 @@ function! LastModified()
   endif
 endfun
 autocmd BufWritePre *.md call LastModified()
+
+let g:md_modify_disabled = 0
 
 " Change cursor shape between insert and normal mode in iTerm2.app + tmux + vim
 " https://gist.github.com/andyfowler/1195581
