@@ -1,5 +1,5 @@
 [user]
-	name = John Grib
+	name = 이종립
 	email = johngrib@woowahan.com
 [alias]
 	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
