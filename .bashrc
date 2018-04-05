@@ -18,7 +18,7 @@ else
 fi
 
 alias l.='ls -d .* --color=auto'
-alias ll='ls -al'
+alias ll='ls -alh'
 alias vi='mvim -v'
 alias rm='rm -i'
 alias mv='mv -i'
@@ -31,7 +31,7 @@ alias ctags='`brew --prefix`/bin/ctags'
 alias tmux="TERM=screen-256color tmux"
 alias tm="tmux attach || tmux new"
 
-alias composer='/usr/bin/php target/composer'
+# alias composer='/usr/bin/php target/composer'
 alias ag='ag --path-to-ignore ~/.agignore'
 
 # colors ----------------------------------------------------------------------
