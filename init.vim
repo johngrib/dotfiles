@@ -25,8 +25,8 @@ call plug#begin('~/.vim/plugged')
 
     " file browser
     Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'scrooloose/nerdtree'
-        Plug 'jistr/vim-nerdtree-tabs'
+    " Plug 'scrooloose/nerdtree'
+        " Plug 'jistr/vim-nerdtree-tabs'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.sh --clang-completer --system-libclang' }
         Plug 'junegunn/fzf.vim'
 
@@ -54,14 +54,26 @@ call plug#begin('~/.vim/plugged')
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     " Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
     Plug 'junegunn/vim-xmark', { 'do': 'make' }
+
     Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer'}
-    " Plug 'wesleyche/srcexpl'
+
+    if has('nvim')
+        " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+        " Plug 'Shougo/deoplete.nvim'
+        " Plug 'roxma/nvim-yarp'
+        " Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+
+    let g:deoplete#enable_at_startup = 1
+
+    Plug 'wesleyche/srcexpl'
     Plug 'johngrib/vim-dracula'
 
     " Plug 'kana/vim-operator-user'
     "     Plug 'tyru/operator-camelize.vim'
 
-    " Plug 'SirVer/ultisnips'
+    "Plug 'SirVer/ultisnips'
     " Plug 'honza/vim-snippets'
 
     " Plug 'tpope/vim-speeddating'
@@ -78,8 +90,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
     Plug 'diepm/vim-rest-console'
-    Plug 'tpope/vim-db'
+    " Plug 'tpope/vim-db'
+    Plug 'johngrib/vim-f-hangul'
+    Plug 'johngrib/FlatColor-johngrib'
+    Plug 'sheerun/vim-polyglot'
 
+    Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -114,7 +130,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     if has("nvim")
         " set termguicolors
-        set clipboard^=unnamedplus
+        " set clipboard^=unnamedplus
     else
         " set clipboard^=unnamed,unnamedplus
         " set clipboard^=unnamedplus
@@ -152,7 +168,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " set relativenumber
     set ruler            " 현재 커서 위치 (row, col) 좌표 출력
     set noerrorbells     " 에러 알림음 끄기
-    set background=dark  " 검정배경을 사용 (이 색상에 맞춰 문법 하이라이트 색상이 달라짐.)
+    " set background=dark  " 검정배경을 사용 (이 색상에 맞춰 문법 하이라이트 색상이 달라짐.)
     set laststatus=2     " 상태바를 언제나 표시할 것
     set showmatch        " 일치하는 괄호 하이라이팅
     set cursorline       " highlight current line
@@ -176,11 +192,11 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     "set noimd               " no imdisable 한글 입력기 관련인데 mac 에서는 안 통하는듯
     set cindent autoindent smartindent
     set history=200 undolevels=2000
-    set cursorcolumn
+    " set cursorcolumn
     set langmap=ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz
 
-    " colorscheme flatcolor-johngrib
-    colorscheme dracula
+    colorscheme flatcolor-johngrib
+    " colorscheme dracula
 
     if has("syntax")
         "syntax on
@@ -230,6 +246,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <M-Q> :bp <BAR> bd #<CR> " 현재 버퍼를 닫고 이전 버퍼로 이동
 
     inoremap <C-e> <C-O>$
+    inoremap <C-l> <right>
+
 
     "Bubble lines
     " nnoremap <M-K> ddkP
@@ -302,13 +320,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     endif
 
     " NERDTree
-    let NERDTreeShowHidden = 1 "Show hidden files in NerdTree
-    nnoremap <LocalLeader><LocalLeader>n :NERDTreeToggle<CR>
-    nnoremap <LocalLeader>n :NERDTreeFind<CR>
-    " nnoremap <LocalLeader>m :NERDTreeMirrorToggle<CR>
-    let g:NERDTreeQuitOnOpen = 0
-    let NERDTreeMinimalUI = 1
-    let NERDTreeDirArrows = 1
+    " let NERDTreeShowHidden = 1 "Show hidden files in NerdTree
+    " nnoremap <LocalLeader><LocalLeader>n :NERDTreeToggle<CR>
+    " nnoremap <LocalLeader>n :NERDTreeFind<CR>
+    " " nnoremap <LocalLeader>m :NERDTreeMirrorToggle<CR>
+    " let g:NERDTreeQuitOnOpen = 0
+    " let NERDTreeMinimalUI = 1
+    " let NERDTreeDirArrows = 1
 
     " rainbow
     nnoremap <LocalLeader>r :RainbowToggle<CR>
@@ -344,8 +362,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:syntastic_auto_loc_list = 0
     " nnoremap <silent> <F2> :SyntasticCheck<CR>
 
-    let g:ale_fixers = { 'javascript': ['eslint'] }
-    let g:ale_lint_on_save = 1
+    " let g:ale_fixers = { 'javascript': ['eslint'] }
+    " let g:ale_javascript_eslint_use_global = 1
+    let g:ale_lint_on_save = 0
     let g:ale_lint_on_text_changed = 0
 
     " vim-airline 설정
@@ -366,19 +385,20 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " tabular
     vnoremap <C-t> :Tabularize /
 
-    "ycm
-    let g:ycm_key_list_select_completion = ['<C-n>']    " 본래 <Tab> 이지만 ultisnip 과 충돌을 막기 위해 변경
-    let g:ycm_key_list_previous_completion=['<C-p>']
-    let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
-    let g:ycm_complete_in_comments = 1
-    let g:ycm_complete_in_strings = 1
-    let g:ycm_min_num_of_chars_for_completion = 1
-    let g:ycm_autoclose_preview_window_after_insertion = 1
-    let g:ycm_autoclose_preview_window_after_completion = 1
 
     "deoplete
     if has("nvim")
-        "let g:deoplete#enable_at_startup = 1 " Use deoplete.
+        " "let g:deoplete#enable_at_startup = 1 " Use deoplete.
+    else
+        "ycm
+        let g:ycm_key_list_select_completion = ['<C-n>']    " 본래 <Tab> 이지만 ultisnip 과 충돌을 막기 위해 변경
+        let g:ycm_key_list_previous_completion=['<C-p>']
+        let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
+        let g:ycm_complete_in_comments = 1
+        let g:ycm_complete_in_strings = 1
+        let g:ycm_min_num_of_chars_for_completion = 1
+        let g:ycm_autoclose_preview_window_after_insertion = 1
+        let g:ycm_autoclose_preview_window_after_completion = 1
     endif
 
     "eclim
@@ -391,15 +411,14 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nnoremap <f1>f :call FzfOmniFiles()<CR>
     nnoremap <f1> <nop>
     nnoremap <f1><f1> :Files<CR>
-    nnoremap <f1>f :Files<CR>
-    nnoremap <f1>a :Ag 
+    nnoremap <f1>a :Ag<CR>
     nnoremap <f1>l :Lines<CR>
     nnoremap <f1>m :Marks<CR>
     " nnoremap <f1>o :Locate getcwd()
     nnoremap <f1>h :History<CR>
     nnoremap <f1>c :History:<CR>
     nnoremap <f1>/ :History/<CR>
-    nnoremap <f1>b :Buffers<CR>
+    nnoremap <f1><f2> :Buffers<CR>
     " gem install coderay
     " let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -' .&lines.'"'
     command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
@@ -414,21 +433,19 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:eregex_force_case = 0
 
     " Trigger configuration. <Tab> 을 쓴다면 ycm 과 키가 중복되어 제대로 기능하지 않을 수 있다. 둘 중 하나의 설정을 바꿔준다.
-    let g:UltiSnipsUsePythonVersion = 2
     let g:UltiSnipsExpandTrigger="<Tab>"
     let g:UltiSnipsJumpForwardTrigger="<Tab>"
     let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split your window.
-    " let g:UltiSnipsSnippetDirectories='~/.vim/UltiSnips'
+    let g:UltiSnipsSnippetDirectories='~/.vim/UltiSnips'
     " nmap ga <Plug>(EasyAlign)
     " xmap ga <Plug>(EasyAlign)
 
     " camelize
-    nmap <LocalLeader>c <Plug>(operator-camelize)
-    nmap <LocalLeader>C <Plug>(operator-decamelize)
+    " nmap <LocalLeader>c <Plug>(operator-camelize)
+    " nmap <LocalLeader>C <Plug>(operator-decamelize)
 
     " UltiSnips
-    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     " let g:UltiSnipsExpandTrigger="<tab>"
     " let g:UltiSnipsJumpForwardTrigger="<c-b>"
     " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -438,22 +455,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " tagbar
     nnoremap <LocalLeader>t :TagbarToggle<CR>
 
-    " vim-auto-save
     nnoremap <Space>w :w<CR>
-    " nnoremap <silent> <Esc> <Esc>:w<CR>
-    " inoremap <silent> <Esc> <C-[>:w<CR>
-    " nnoremap <F1><F2> :ToggleAutoSave()<CR>
-    " let g:auto_save = 1
-    " let g:auto_save_silent = 1
-    " let g:auto_save_events = ["CursorHold"]
-    " let g:auto_save_postsave_hook = 'SyntasticCheck'
-    " nnoremap <silent> <F6> :call ToggleSyntasticWithAutoSave()<CR>
 
     " srcexpl
-    nmap <LocalLeader>e :SrcEplToggle<CR>
+    nmap <LocalLeader>e :SrcExplToggle<CR>
     let g:SrcExpl_winHeight = 8
     let g:SrcExpl_refreshTime = 300
-    let g:SrcExpl_jumpKey = "<ENTER>"
+    let g:SrcExpl_jumpKey = "<f2>"
     let g:SrcExpl_gobackKey = "<SPACE>"
 
     " // In order to avoid conflicts, the Source Explorer should know what plugins
@@ -578,7 +586,8 @@ function! LastModified()
     " echo('markdown updated time modified')
     let save_cursor = getpos(".")
     let n = min([10, line("$")])
-    keepjumps exe '1,' . n . 's#^\(.\{,10}updated\s*: \).*#\1' .
+
+    exe 'keepjumps 1,' . n . 's#^\(.\{,10}updated\s*: \).*#\1' .
           \ strftime('%Y-%m-%d %H:%M:%S +0900') . '#e'
     call histdel('search', -1)
     call setpos('.', save_cursor)
@@ -627,8 +636,8 @@ function! NewTemplate()
     echom 'new wiki page has created'
 endfunction
 augroup vimwikiauto
-    autocmd BufWritePre *.md call LastModified()
-    autocmd BufRead,BufNewFile *.md call NewTemplate()
+    autocmd BufWritePre *wiki/*.md keepjumps call LastModified()
+    autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
 augroup END
 
 let g:md_modify_disabled = 0

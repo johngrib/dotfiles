@@ -11,7 +11,8 @@
 
 " set commands -----------------------------------------------------------------
 
-  set vimpath=~/Applications/MacVim/mvim
+  " set vimpath=~/Applications/MacVim/mvim
+  set vimpath=~/Applications/VimR.app/Contents/MacOS/VimR
   set nu
   " set relativenumber
   set hi=1000 "history=1000
@@ -108,5 +109,6 @@ onoremap ]m :action MethodDown<CR>
 
 nnoremap <C-S-5> :action EditorMatchBrace<CR>
 
-set gvimpath=/usr/local/opt/macvim/bin/mvim
+" set gvimpath=/usr/local/opt/macvim/bin/mvim
+set gvimpath=/Users/johngrib/Applications/VimR.app/Contents/MacOS/VimR
 
