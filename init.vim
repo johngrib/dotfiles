@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'ctrlpvim/ctrlp.vim'
     " Plug 'scrooloose/nerdtree'
         " Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.sh --clang-completer --system-libclang' }
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.py --clang-completer --go-completer --js-completer --system-libclang --enable-debug --enable-coverage' }
         Plug 'junegunn/fzf.vim'
 
     " editing
@@ -73,8 +73,8 @@ call plug#begin('~/.vim/plugged')
     " Plug 'kana/vim-operator-user'
     "     Plug 'tyru/operator-camelize.vim'
 
-    "Plug 'SirVer/ultisnips'
-    " Plug 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
 
     " Plug 'tpope/vim-speeddating'
     " Plug 'bartmalanczuk/vim-trex-runner'
@@ -119,6 +119,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set path+=**
     set nofixeol
     set conceallevel=0
+    " set regexpengine=1
 
     if executable('ag')
         set grepprg=ag\ --nogroup\ --nocolor\ --column
@@ -138,7 +139,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     if has("gui_macvim")
         set macmeta
-        set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h13
+        set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h13
 
         " macVim 에서 esc 로 영문변환, imi 는 1 또는 2 로 설정해준다
         set noimd
@@ -395,10 +396,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
         let g:ycm_key_list_previous_completion=['<C-p>']
         let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
         let g:ycm_complete_in_comments = 1
+        let g:ycm_collect_identifiers_from_comments_and_strings = 1
         let g:ycm_complete_in_strings = 1
         let g:ycm_min_num_of_chars_for_completion = 1
-        let g:ycm_autoclose_preview_window_after_insertion = 1
-        let g:ycm_autoclose_preview_window_after_completion = 1
+        " let g:ycm_add_preview_to_completeopt = 1
+        " let g:ycm_autoclose_preview_window_after_insertion = 1
+        " let g:ycm_autoclose_preview_window_after_completion = 1
+        let g:ycm_add_preview_to_completeopt = 0
     endif
 
     "eclim
@@ -598,7 +602,7 @@ function! NewTemplate()
     let l:wiki_directory = v:false
 
     for wiki in g:vimwiki_list
-        if expand('%:p:h') . '/' == wiki.path
+        if expand('%:p:h') == expand(wiki.path)
             let l:wiki_directory = v:true
             break
         endif
@@ -666,3 +670,4 @@ function! LooksLikePerl6 ()
   endif
 endfunction
 au bufRead *.pm,*.t,*.pl call LooksLikePerl6()
+
