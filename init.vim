@@ -446,6 +446,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nmap ga <Plug>(EasyAlign)
     " xmap ga <Plug>(EasyAlign)
 
+    let g:UltiSnipsSnippetDirectories = []
+
     " camelize
     " nmap <LocalLeader>c <Plug>(operator-camelize)
     " nmap <LocalLeader>C <Plug>(operator-decamelize)
