@@ -68,13 +68,13 @@ call plug#begin('~/.vim/plugged')
     let g:deoplete#enable_at_startup = 1
 
     Plug 'wesleyche/srcexpl'
-    Plug 'johngrib/vim-dracula'
+    " Plug 'johngrib/vim-dracula'
 
     " Plug 'kana/vim-operator-user'
     "     Plug 'tyru/operator-camelize.vim'
 
-    Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
     " Plug 'tpope/vim-speeddating'
     " Plug 'bartmalanczuk/vim-trex-runner'
@@ -93,9 +93,11 @@ call plug#begin('~/.vim/plugged')
     " Plug 'tpope/vim-db'
     Plug 'johngrib/vim-f-hangul'
     Plug 'johngrib/FlatColor-johngrib'
-    Plug 'sheerun/vim-polyglot'
+    " Plug 'sheerun/vim-polyglot'
 
-    Plug 'posva/vim-vue'
+    " Plug 'posva/vim-vue'
+    " Plug 'johngrib/vim-game-code-break'
+    Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -670,4 +672,5 @@ function! LooksLikePerl6 ()
   endif
 endfunction
 au bufRead *.pm,*.t,*.pl call LooksLikePerl6()
+
 
