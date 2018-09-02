@@ -34,6 +34,7 @@ alias tm="tmux attach || tmux new"
 
 # alias composer='/usr/bin/php target/composer'
 alias ag='ag --path-to-ignore ~/.agignore'
+alias ncd='ncdu --color dark -rr -x'
 
 # colors ----------------------------------------------------------------------
 GREEN='\e[0;32m\]'
