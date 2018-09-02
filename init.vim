@@ -98,6 +98,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'posva/vim-vue'
     " Plug 'johngrib/vim-game-code-break'
     Plug 'SirVer/ultisnips'
+    Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
