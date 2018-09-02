@@ -520,7 +520,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     let g:vimwiki_list = [
                 \{
-                \   'path': '~/git/johngrib.github.io/_wiki',
+                \   'path': '~/Dropbox/johngrib.github.io/_wiki',
                 \   'ext' : '.md',
                 \   'diary_rel_path': '.',
                 \},
