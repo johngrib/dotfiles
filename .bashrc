@@ -2,7 +2,7 @@
 #    . ~/.bash_etc
 #fi
 
-PATH="/usr/local/bin:$PATH"
+PATH=".:/usr/local/bin:$PATH"
 export JAVA_HOME=$(/usr/libexec/java_home)
 export HISTCONTROL=ignoredups
 export HISTSIZE=10000
