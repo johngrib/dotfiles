@@ -51,7 +51,7 @@ COLOR_END='\[\033[0m\]'
 TIMESTAMP='\D{%F %a %T}'
 GIT_BRANCH=''
 if [ $(which vcprompt 2> /dev/null) ]; then
-  GIT_BRANCH="\$(vcprompt -f '[%b%r]')"
+  GIT_BRANCH="\$(vcprompt -f '[%b %r]')"
 fi
 PS1="${YELLOW}${TIMESTAMP} ${GREEN}\u ${B_MAGENTA}\h ${YELLOW}\w ${COLOR_END} ${GIT_BRANCH}\n\$ "
 #if [ $(which vcprompt 2> /dev/null) ]; then
