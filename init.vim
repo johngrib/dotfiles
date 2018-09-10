@@ -546,6 +546,16 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
     nmap <LocalLeader>wt :VimwikiTable<CR>
 
+    let s:vrc_auto_format_response_patterns = {
+                \   'json': 'jq',
+                \}
+
+    let g:vrc_response_default_content_type = 'application/json'
+
+    let g:vrc_curl_opts = {
+      \ '-s': '',
+    \}
+
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
     if(&relativenumber == 1)
