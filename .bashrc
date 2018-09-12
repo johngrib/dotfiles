@@ -9,6 +9,7 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 export TERM=xterm-256color
 export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
+export MANPAGER=vimpager
 
 # aliases ---------------------------------------------------------------------
 
