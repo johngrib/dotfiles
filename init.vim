@@ -462,6 +462,15 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " tagbar
     nnoremap <LocalLeader>t :TagbarToggle<CR>
+    let g:tagbar_type_markdown = {
+                \ 'ctagstype' : 'markdown',
+                \ 'kinds' : [
+                    \ 'h:headings',
+                    \ 'l:links',
+                    \ 'i:images'
+                \ ],
+                \ "sort" : 0
+                \ }
 
     nnoremap <Space>w :w<CR>
 
