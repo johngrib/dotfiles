@@ -202,6 +202,19 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " set cursorcolumn
     set langmap=ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz
 
+    " This enables us to undo files even if you exit Vim.
+    if has('persistent_undo')
+        let s:vimDir = '$HOME/.vim'
+        let &runtimepath.=','.s:vimDir
+        let s:undoDir = expand(s:vimDir . '/undodir')
+
+        call system('mkdir ' . s:vimDir)
+        call system('mkdir ' . s:undoDir)
+
+        let &undodir = s:undoDir
+        set undofile
+    endif
+
     colorscheme flatcolor-johngrib
     " colorscheme dracula
 
@@ -321,10 +334,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " UndoTree
     nnoremap <LocalLeader>u :UndotreeToggle<cr>
-    if has("persistent_undo")
-        set undodir=~/.undodir/
-        set undofile
-    endif
 
     " NERDTree
     " let NERDTreeShowHidden = 1 "Show hidden files in NerdTree
