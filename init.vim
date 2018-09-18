@@ -159,7 +159,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set omnifunc=syntaxcomplete#Complete
     set mouse=a
 
-    set hidden
+    set hidden  " Buffer should still exist if window is closed
     set nopaste
 
     set smartcase ignorecase hlsearch incsearch
@@ -181,6 +181,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " set sidescroll=2 sidescrolloff=10
     set wildmenu wildignorecase
     set wildmode=full
+
+    " 짜증나는 swp, backup 파일 안 만들기
+    set noswapfile
+    set nobackup
 
     set noerrorbells visualbell t_vb= " 사운드 벨, 비주얼 벨 비활성화
 
