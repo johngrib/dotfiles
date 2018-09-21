@@ -24,10 +24,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'mbbill/undotree'
 
     " file browser
-    Plug 'ctrlpvim/ctrlp.vim'
     " Plug 'scrooloose/nerdtree'
         " Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.py --clang-completer --go-completer --js-completer --system-libclang --enable-debug --enable-coverage' }
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
 
     " editing
@@ -43,7 +42,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
     " Plug 'junegunn/vim-easy-align'
-    " Plug 'terryma/vim-multiple-cursors'
 
     " searching
     Plug 'vim-scripts/matchit.zip'
@@ -53,7 +51,7 @@ call plug#begin('~/.vim/plugged')
     " language support
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     " Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
-    Plug 'junegunn/vim-xmark', { 'do': 'make' }
+    " Plug 'junegunn/vim-xmark', { 'do': 'make' }
 
     Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer'}
 
@@ -67,14 +65,14 @@ call plug#begin('~/.vim/plugged')
 
     let g:deoplete#enable_at_startup = 1
 
-    Plug 'wesleyche/srcexpl'
-    " Plug 'johngrib/vim-dracula'
+    " Plug 'wesleyche/srcexpl'
 
     " Plug 'kana/vim-operator-user'
     "     Plug 'tyru/operator-camelize.vim'
 
     Plug 'honza/vim-snippets'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'AndrewRadev/splitjoin.vim'
 
     " Plug 'tpope/vim-speeddating'
     " Plug 'bartmalanczuk/vim-trex-runner'
@@ -93,12 +91,12 @@ call plug#begin('~/.vim/plugged')
     " Plug 'tpope/vim-db'
     Plug 'johngrib/vim-f-hangul'
     Plug 'johngrib/FlatColor-johngrib'
-    " Plug 'sheerun/vim-polyglot'
+    Plug 'fatih/molokai'
 
-    " Plug 'posva/vim-vue'
     " Plug 'johngrib/vim-game-code-break'
     Plug 'SirVer/ultisnips'
     Plug 'leafgarland/typescript-vim'
+    Plug 'milkypostman/vim-togglelist'
 
 call plug#end()
 
@@ -155,7 +153,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set nocompatible                  " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
     " set linebreak                     " break at word boundary
     " set showbreak=++
-    set list listchars=tab:»\ ,trail:·,extends:>,precedes:<
+    set list listchars=tab:·\ ,trail:·,extends:>,precedes:<
     set omnifunc=syntaxcomplete#Complete
     set mouse=a
 
@@ -456,7 +454,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:UltiSnipsJumpForwardTrigger="<Tab>"
     let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsSnippetDirectories='~/.vim/UltiSnips'
+    let g:UltiSnipsSnippetDirectories='~/.vim/snippets'
     " nmap ga <Plug>(EasyAlign)
     " xmap ga <Plug>(EasyAlign)
 
@@ -577,6 +575,36 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:vrc_curl_opts = {
       \ '-s': '',
     \}
+
+    " vim-go
+    let g:go_addtags_transform = "camelcase"
+    let g:go_fmt_command = "goimports"
+    let g:go_autodetect_gopath = 1
+    let g:go_list_type = "quickfix"
+    let g:go_highlight_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_function_calls = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_generate_tags = 1
+    let g:go_highlight_operators = 1
+    let g:go_auto_type_info = 1
+    let g:go_auto_sameids = 1
+
+    nnoremap <C-n> :cnext<CR>
+    nnoremap <C-p> :cprevious<CR>
+    nnoremap <LocalLeader>q :call ToggleQuickfixList()<CR>
+    let g:toggle_list_no_mappings = 1
+
+    autocmd FileType go nnoremap <Tab>b :GoBuild<CR>
+    autocmd FileType go nnoremap <Tab>r :GoRun<CR>
+    autocmd FileType go nnoremap <Tab><Tab>r :GoRun %<CR>
+    autocmd FileType go nnoremap <Tab><Tab>t :GoTestFunc<CR>
+    autocmd FileType go nnoremap <Tab>t :GoTest<CR>
+    autocmd FileType go nnoremap <Tab>c :GoCoverageToggle<CR>
+    " autocmd FileType go nnoremap <Tab>i :GoInfo<CR>
+    set updatetime=100
+
 
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
