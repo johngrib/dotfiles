@@ -97,6 +97,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips'
     Plug 'leafgarland/typescript-vim'
     Plug 'milkypostman/vim-togglelist'
+    Plug 'jszakmeister/vim-togglecursor'
 
 call plug#end()
 
@@ -605,6 +606,16 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " autocmd FileType go nnoremap <Tab>i :GoInfo<CR>
     set updatetime=100
 
+    " vimpager
+    if exists("g:vimpager")
+        let g:less     = {}
+        let g:vimpager = {}
+        let g:less.enabled = 0
+        let g:less.scrolloff = 0
+        let g:vimpager.gvim = 1
+        let g:vimpager.enabled = 1
+        let g:vimpager.scrolloff = 0
+    endif
 
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
