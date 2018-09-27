@@ -70,7 +70,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'kana/vim-operator-user'
     "     Plug 'tyru/operator-camelize.vim'
 
-    Plug 'honza/vim-snippets'
+    " Plug 'honza/vim-snippets'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'AndrewRadev/splitjoin.vim'
 
@@ -455,11 +455,11 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:UltiSnipsJumpForwardTrigger="<Tab>"
     let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsSnippetDirectories='~/.vim/snippets'
+    " let g:UltiSnipsSnippetDirectories='~/.vim/snippets'
     " nmap ga <Plug>(EasyAlign)
     " xmap ga <Plug>(EasyAlign)
 
-    let g:UltiSnipsSnippetDirectories = []
+    let g:UltiSnipsSnippetDirectories = ['~/.vim/snippets']
 
     " camelize
     " nmap <LocalLeader>c <Plug>(operator-camelize)
