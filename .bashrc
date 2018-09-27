@@ -82,3 +82,5 @@ function share_history {
 }
 PROMPT_COMMAND='share_history'
 shopt -u histappend
+
+[ -f ~/.local/bin/fav-dir.sh ] && source ~/.local/bin/fav-dir.sh
