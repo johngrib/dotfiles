@@ -1,6 +1,15 @@
-[user]
-	name = John Grib
-	email = johngrib82@gmail.com
+; include file sample
+;
+; file : ~/.gitconfig
+; [user]
+;     name = John Grib
+;     email = johngrib82@gmail.com
+;     signingkey = 1234ABCDE
+; [commit]
+;     gpgsign = true
+; [include]
+;     path = ~/dotfiles/.gitconfig
+
 [alias]
 	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
     lh = "!git l | head -n 25"
@@ -9,10 +18,9 @@
     unassume = update-index --no-assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
     ch = "!git checkout $(git branch | fzf)"
-
 [core]
 	excludesfile = /Users/johngrib/.gitignore_global
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
 	autocrlf = input
 	precomposeunicode = true
 	quotepath = false
