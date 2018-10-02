@@ -609,6 +609,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " autocmd FileType go nnoremap <Tab>i :GoInfo<CR>
     set updatetime=100
 
+    let $GINKGO_EDITOR_INTEGRATION = "true"
+
     " vimpager
     if exists("g:vimpager")
         let g:less     = {}
