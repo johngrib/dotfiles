@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-scripts/taglist.vim'
     Plug 'ludovicchabant/vim-gutentags' " 자동으로 tags 파일을 갱신해 준다.
     Plug 'majutsushi/tagbar'
+    Plug 'jszakmeister/markdown2ctags', {'do' : 'cp ./markdown2ctags.py ~/.local/bin/markdown2ctags.py'}
 
     " version control
     Plug 'tpope/vim-fugitive'           " git 명령어 wrapper
@@ -28,6 +29,7 @@ call plug#begin('~/.vim/plugged')
         " Plug 'jistr/vim-nerdtree-tabs'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
+    Plug 'tpope/vim-vinegar'
 
     " editing
     Plug 'tpope/vim-surround'
@@ -243,7 +245,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap & :&&<CR>
     xnoremap & :&&<CR>
 
-    "nnoremap <F10>r :source ~/.vimrc<CR>
+    nnoremap <F10>r :source ~/.vimrc<CR>
     "nnoremap gv `[v`]    " highlight last inserted text
     nnoremap K i<CR><Esc>
 
@@ -254,9 +256,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     vnoremap <Leader>y "+y
     nnoremap <Leader>p "+p
     nnoremap <Leader>P "+P
-    nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
-    nnoremap <F4>     :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
-    nnoremap <S-F4>   :execute "VWB" <Bar> :lopen<CR>
+    " nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
     " 버퍼 관리
     " nnoremap <M-T> :enew<CR>       " 새로운 버퍼를 연다
@@ -342,6 +342,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " let g:NERDTreeQuitOnOpen = 0
     " let NERDTreeMinimalUI = 1
     " let NERDTreeDirArrows = 1
+    let g:netrw_liststyle = 3
+    let g:netrw_browse_split = 4
+    nnoremap <LocalLeader>e :25Vex<CR>
+
 
     " rainbow
     nnoremap <LocalLeader>r :RainbowToggle<CR>
@@ -436,7 +440,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <f1>h :History<CR>
     nnoremap <f1>c :History:<CR>
     nnoremap <f1>/ :History/<CR>
+    nnoremap <f1>t :call fzf#vim#tags('')
     nnoremap <f1><f2> :Buffers<CR>
+    nnoremap <F3> :call fzf#vim#tags(expand("<cword>"))<CR>
     " gem install coderay
     " let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -' .&lines.'"'
     command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
@@ -475,35 +481,40 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " tagbar
     nnoremap <LocalLeader>t :TagbarToggle<CR>
     let g:tagbar_type_markdown = {
-                \ 'ctagstype' : 'markdown',
+                \ 'ctagstype': 'markdown',
+                \ 'ctagsbin' : '~/markdown2ctags.py',
+                \ 'ctagsargs' : '-f - --sort=yes --sro=»',
                 \ 'kinds' : [
-                    \ 'h:headings',
-                    \ 'l:links',
+                    \ 's:sections',
                     \ 'i:images'
                 \ ],
-                \ "sort" : 0
+                \ 'sro' : '»',
+                \ 'kind2scope' : {
+                    \ 's' : 'section',
+                \ },
+                \ 'sort': 0,
                 \ }
 
     nnoremap <Space>w :w<CR>
 
     " srcexpl
-    nmap <LocalLeader>e :SrcExplToggle<CR>
-    let g:SrcExpl_winHeight = 8
-    let g:SrcExpl_refreshTime = 300
-    let g:SrcExpl_jumpKey = "<f2>"
-    let g:SrcExpl_gobackKey = "<SPACE>"
+    " nmap <LocalLeader>e :SrcExplToggle<CR>
+    " let g:SrcExpl_winHeight = 8
+    " let g:SrcExpl_refreshTime = 300
+    " let g:SrcExpl_jumpKey = "<f2>"
+    " let g:SrcExpl_gobackKey = "<SPACE>"
 
-    " // In order to avoid conflicts, the Source Explorer should know what plugins
-    " // except itself are using buffers. And you need add their buffer names into
-    " // below listaccording to the command ":buffers!"
-    let g:SrcExpl_pluginList = [
-            \ "__Tag_List__",
-            \ "_NERD_tree_"
-        \ ]
-    let g:SrcExpl_searchLocalDef = 1
-    let g:SrcExpl_isUpdateTags = 0
-    let g:SrcExpl_prevDefKey = "<PAGEUP>"
-    let g:SrcExpl_nextDefKey = "<PAGEDOWN>"
+    " " // In order to avoid conflicts, the Source Explorer should know what plugins
+    " " // except itself are using buffers. And you need add their buffer names into
+    " " // below listaccording to the command ":buffers!"
+    " let g:SrcExpl_pluginList = [
+    "         \ "__Tag_List__",
+    "         \ "_NERD_tree_"
+    "     \ ]
+    " let g:SrcExpl_searchLocalDef = 1
+    " let g:SrcExpl_isUpdateTags = 0
+    " let g:SrcExpl_prevDefKey = "<PAGEUP>"
+    " let g:SrcExpl_nextDefKey = "<PAGEDOWN>"
 
     " multiple_cursors
     let g:multi_cursor_next_key='<C-n>'
@@ -622,6 +633,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
         let g:vimpager.scrolloff = 0
     endif
 
+    " vim-gutentags
+    let g:gutentags_ctags_exclude=["node_modules"]
+    let g:gutentags_resolve_symlinks = 1
+
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
     if(&relativenumber == 1)
@@ -720,6 +735,9 @@ function! NewTemplate()
     echom 'new wiki page has created'
 endfunction
 augroup vimwikiauto
+    " autocmd FileType vimwiki nnoremap <F3> :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
+    " autocmd FileType vimwiki nnoremap <F3> :VWS /
+    " autocmd FileType vimwiki nnoremap <S-F3> :execute "VWB" <Bar> :lopen<CR>
     autocmd BufWritePre *wiki/*.md keepjumps call LastModified()
     autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
 augroup END
