@@ -51,6 +51,7 @@ alias grep='grep --color=auto'
 GREEN='\e[0;32m\]'
 B_MAGENTA='\e[1;35m\]'
 YELLOW='\e[0;33m\]'
+RED='\e[0;31m'
 COLOR_END='\[\033[0m\]'
 
 # PROMPT ----------------------------------------------------------------------
@@ -58,7 +59,7 @@ COLOR_END='\[\033[0m\]'
 TIMESTAMP='\D{%F %a %T}'
 GIT_BRANCH=''
 if [ $(which vcprompt 2> /dev/null) ]; then
-  GIT_BRANCH="\$(vcprompt -f '[%b %r]')"
+  GIT_BRANCH="\$(vcprompt -f '[%b %r] ${RED}%u %m${COLOR_END}')"
 fi
 PS1="${YELLOW}${TIMESTAMP} ${GREEN}\u ${B_MAGENTA}\h ${YELLOW}\w ${COLOR_END} ${GIT_BRANCH}\n\$ "
 #if [ $(which vcprompt 2> /dev/null) ]; then
