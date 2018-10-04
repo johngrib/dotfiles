@@ -71,7 +71,7 @@ function google() {
     open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1";
 }
 
-source ~/git-completion.bash
+[ -f ~/.local/bin/git-completion.bash ] && source ~/.local/bin/git-completion.bash
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
