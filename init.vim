@@ -482,7 +482,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <LocalLeader>t :TagbarToggle<CR>
     let g:tagbar_type_markdown = {
                 \ 'ctagstype': 'markdown',
-                \ 'ctagsbin' : '~/markdown2ctags.py',
+                \ 'ctagsbin' : '~/.local/bin/markdown2ctags.py',
                 \ 'ctagsargs' : '-f - --sort=yes --sro=»',
                 \ 'kinds' : [
                     \ 's:sections',
