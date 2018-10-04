@@ -440,9 +440,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <f1>h :History<CR>
     nnoremap <f1>c :History:<CR>
     nnoremap <f1>/ :History/<CR>
-    nnoremap <f1>t :call fzf#vim#tags('')
+    nnoremap <f1>t :Tags ^<CR>
     nnoremap <f1><f2> :Buffers<CR>
-    nnoremap <F3> :call fzf#vim#tags(expand("<cword>"))<CR>
+    nnoremap <f3> :execute ":Tags " . expand('<cword>')<CR>
     " gem install coderay
     " let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -' .&lines.'"'
     command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
