@@ -61,12 +61,7 @@ GIT_BRANCH=''
 if [ $(which vcprompt 2> /dev/null) ]; then
   GIT_BRANCH="\$(vcprompt -f '[%b %r] ${RED}%u %m${COLOR_END}')"
 fi
-PS1="${YELLOW}${TIMESTAMP} ${GREEN}\u ${B_MAGENTA}\h ${YELLOW}\w ${COLOR_END} ${GIT_BRANCH}\n\$ "
-#if [ $(which vcprompt 2> /dev/null) ]; then
-  #PS1="${PS1}\$(vcprompt -f '[%b %r]')"
-#fi
-#PS1="${PS1}\n\$ "
-export PS1
+export PS1="${YELLOW}${TIMESTAMP} ${GREEN}\u ${B_MAGENTA}\h ${YELLOW}\w ${COLOR_END} \$(/usr/local/bin/githud bash)\n\$ "
 
 function google() {
     open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1";
@@ -85,3 +80,4 @@ PROMPT_COMMAND='share_history'
 shopt -u histappend
 
 [ -f ~/.local/bin/fav-dir.sh ] && source ~/.local/bin/fav-dir.sh
+
