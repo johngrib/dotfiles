@@ -1,11 +1,12 @@
 # shorthand variable declaration
 snippet v
 	var ${1} = ${2}
-
 # require
 snippet req
 	var ${1} = require('${2}');
-
+# return
+snippet re
+	return ${0:result};
 # Functions
 # prototype
 snippet proto
@@ -98,9 +99,6 @@ snippet tryf "try { ... } catch(e) { ... } finally { ... }"
 # throw Error
 snippet terr
 	throw new Error('${1:error message}')
-# return
-snippet ret
-	return ${0:result};
 snippet for "for (...) {...}"
 	for (var ${1:i} = 0, ${2:len} = ${3:Things.length}; $1 < $2; $1++) {
 		${0:${VISUAL}}
