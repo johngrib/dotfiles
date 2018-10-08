@@ -1,0 +1,24 @@
+define mod(x,y) {
+  tmp   = scale
+  scale = 0
+  ret   = x%y
+  scale = tmp
+  return ret
+}
+
+/* to int */
+define int(number) {
+    auto oldscale
+    oldscale = scale
+    scale = 0
+    number /= 1 /* round number down */
+    scale = oldscale
+    return number
+}
+
+/* factorial */
+define f(x) {
+    if (x <= 1) return (1);
+    return (f(x-1) * x);
+}
+
