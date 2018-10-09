@@ -1,3 +1,34 @@
+# ginkgo - Describe
+snippet describe
+	import (
+		. "github.com/onsi/ginkgo"
+		. "github.com/onsi/gomega"
+	)
+	${1:var _ = }Describe("${2}", func() {
+		Context("", func() {
+			It("", func() {
+				Expect().To(Equal())
+			})
+		})
+	})
+# ginkgo - Describe
+snippet desc
+	${1:var _ = }Describe("${2}", func() {
+		${3}
+	})
+# ginkgo - Context
+snippet cont
+	Context("${2}", func() {
+		${3}
+	})
+# ginkgo - it
+snippet it
+	It("${2}", func() {
+		${3}
+	})
+# ginkgo - Expect
+snippet expect
+	Expect(${1}).${2:To}(${3:Equal()})
 # byte
 snippet re
 	return ${1}
