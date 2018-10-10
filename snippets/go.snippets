@@ -1,5 +1,5 @@
 # ginkgo - Describe
-snippet describe
+snippet describe "Describe + import ginkgo"
 	import (
 		"testing"
 		. "github.com/onsi/ginkgo"
@@ -17,199 +17,198 @@ snippet describe
 		})
 	})
 # ginkgo - Describe
-snippet desc
+snippet desc 'var _ = Describe("${2}", func() { ${3} })'
 	${1:var _ = }Describe("${2}", func() {
 		${3}
 	})
 # ginkgo - Context
-snippet cont
-	Context("${2}", func() {
-		${3}
+snippet cont 'Context("with/when", func() {...})'
+	Context("${1:with}", func() {
+		${2}
 	})
 # ginkgo - it
-snippet it
-	It("${2}", func() {
-		${3}
+snippet it 'It("...", func() {...})'
+	It("${1}", func() {
+		${2}
 	})
 # ginkgo - Expect
-snippet expect
+snippet expect "Expect(...).To(...)"
 	Expect(${1}).${2:To}(${3:Equal()})
 # byte
-snippet re
+snippet re "return"
 	return ${1}
-
 # shorthand variable declaration
-snippet v
+snippet v "name := value"
 	${1} := ${2}
 # variable initialization
-snippet vr
+snippet vr "var name type"
 	var ${1:t} ${0:string}
 # variable declaration
-snippet var
+snippet var "var name type = value"
 	var ${1} ${2} = ${3}
 # variables declaration
-snippet vars
+snippet vars "var ( name type = value )"
 	var (
-		${1} ${2} = ${3}
+		${1} = ${2}
 	)
 # append
-snippet ap
+snippet ap "append(slice, value)"
 	append(${1:slice}, ${0:value})
 # bool
-snippet bl
+snippet bo "bool"
 	bool
 # byte
-snippet bt
+snippet by "byte"
 	byte
 # break
-snippet br
+snippet br "break"
 	break
 # channel
-snippet ch
+snippet ch "chan ..."
 	chan ${0:int}
 # case
-snippet cs
+snippet case "case value:"
 	case ${1:value}:
 		${0:${VISUAL}}
 # const
-snippet c
+snippet c "const name = value"
 	const ${1:NAME} = ${0:0}
 # constants with iota
-snippet co
+snippet co "const ( name = value )"
 	const (
 		${1:NAME1} = iota
 		${0:NAME2}
 	)
 # continue
-snippet cn
+snippet con "continue"
 	continue
 # defer
-snippet df
+snippet def "defer func()"
 	defer ${0:func}()
 # defer recover
-snippet dfr
+snippet defer
 	defer func() {
 		if err := recover(); err != nil {
 			${0:${VISUAL}}
 		}
 	}()
 # int
-snippet i
+snippet i "int"
 	int
 # import
-snippet im
+snippet im "import ( package )"
 	import (
 		"${1:package}"
 	)
 # interface
-snippet in
+snippet in "interface{}"
 	interface{}
 # full interface snippet
-snippet inf
+snippet inte "interface name { ... }"
 	interface ${1:name} {
 		${2:/* methods */}
 	}
 # if condition
-snippet if
+snippet if "if con { ... }"
 	if ${1:/* condition */} {
 		${2:${VISUAL}}
 	}
-snippet ife
+snippet ife "if con { ... } else { ... }"
 	if ${1:/* condition */} {
 		${2:${VISUAL}}
 	} else {
 		${0}
 	}
 # else snippet
-snippet el
+snippet el "else { ... }"
 	else {
 		${0:${VISUAL}}
 	}
 # error snippet
-snippet ir
+snippet ifr "if err != nil { return err }"
 	if err != nil {
 		return err
 	}
 	${0}
 # false
-snippet f
+snippet f "false"
 	false
 # fallthrough
-snippet ft
+snippet ft "fallthrough"
 	fallthrough
 # float
-snippet fl
+snippet fl "float32"
 	float32
 # float32
-snippet f3
+snippet f3 "flaot32"
 	float32
 # float64
-snippet f6
+snippet f6 "float64"
 	float64
 # for int loop
-snippet for
+snippet for "for ... { ... }"
 	for ${1}{
 		${0:${VISUAL}}
 	}
 # for int loop
-snippet fori
+snippet fori "for i := 0; i < count; i++ { ... }"
 	for ${2:i} := 0; $2 < ${1:count}; $2${3:++} {
 		${0:${VISUAL}}
 	}
 # for range loop
-snippet forr
+snippet forr "for e := range items { ... }"
 	for ${1:e} := range ${2:collection} {
 		${0:${VISUAL}}
 	}
 # function simple
-snippet fun
+snippet fun "func name( ... ) error { ... }"
 	func ${1:funcName}(${2}) ${3:error} {
 		${4}
 	}
 	${0}
 # function on receiver
-snippet fum
+snippet fum "func (rec type) name( ... ) error { ... }"
 	func (${1:receiver} ${2:type}) ${3:funcName}(${4}) ${5:error} {
 		${6}
 	}
 	${0}
 # http handler function on reciever
-snippet fumh
+snippet fumh "func (rec type) name (http.ResponseWriter, r *http.Request) { ... }"
 	func (${1:receiver} ${2:type}) ${3:funcName}(${4:w} http.ResponseWriter, ${5:r} *http.Request) {
 		${0:${VISUAL}}
 	}
 # log printf
-snippet lf
+snippet lf 'log.Printf("%s", var)'
 	log.Printf("%${1:s}", ${2:var})
 # log printf
-snippet lp
+snippet lp 'log.Println("...")'
 	log.Println("${1}")
 # make
-snippet mk
+snippet mk "make([]string, 0)"
 	make(${1:[]string}, ${0:0})
 # map
-snippet mp
+snippet mp "map[string]int"
 	map[${1:string}]${0:int}
 # main()
-snippet main
+snippet main "func main() { ... }"
 	func main() {
 		${1}
 	}
 	${0}
 # new
-snippet nw
+snippet nw "new(type)"
 	new(${0:type})
 # package
-snippet pa
+snippet pa "package main"
 	package ${1:main}
 # panic
-snippet pn
+snippet pn 'panic("msg")'
 	panic("${0:msg}")
 # print
-snippet pr
+snippet pr 'fmt.Printf("%s\n", var)'
 	fmt.Printf("%${1:s}\n", ${2:var})
 # println
-snippet pl
+snippet pl 'fmt.Println("...")'
 	fmt.Println("${1:s}")
 # range
 snippet rn
@@ -221,7 +220,7 @@ snippet rt
 snippet rs
 	result
 # select
-snippet sl
+snippet sel "select"
 	select {
 	case ${1:v1} := <-${2:chan1}
 		${3}
@@ -229,16 +228,16 @@ snippet sl
 		${0}
 	}
 # string
-snippet sr
+snippet str "string"
 	string
 # struct
-snippet st
+snippet st "struct"
 	struct ${1:name} {
 		${2:/* data */}
 	}
 	${0}
 # switch
-snippet sw
+snippet sw "switch"
 	switch ${1:var} {
 	case ${2:value1}:
 		${3}
@@ -247,10 +246,10 @@ snippet sw
 	default:
 		${0}
 	}
-snippet sp
+snippet sp 'fmt.Sprintf("%s", var)'
 	fmt.Sprintf("%${1:s}", ${2:var})
 # true
-snippet t
+snippet t "true"
 	true
 # goroutine named function
 snippet g
@@ -277,7 +276,7 @@ snippet cl
 		${2:attrName} ${3:attrType}
 	}
 # if key in a map
-snippet om
+snippet om "if val, ok := map[key]; ok == true { ... }"
 	if ${1:value}, ok := ${2:map}[${3:key}]; ok == true {
 		${4:/* code */}
 	}
