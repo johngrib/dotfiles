@@ -1,13 +1,18 @@
 # ginkgo - Describe
 snippet describe
 	import (
+		"testing"
 		. "github.com/onsi/ginkgo"
 		. "github.com/onsi/gomega"
 	)
+	func TestGinkgo(t *testing.T) {
+		RegisterFailHandler(Fail)
+		RunSpecs(t, "Tests Suite")
+	}
 	${1:var _ = }Describe("${2}", func() {
 		Context("", func() {
 			It("", func() {
-				Expect().To(Equal())
+				Expect(1).To(Equal(1))
 			})
 		})
 	})
