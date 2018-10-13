@@ -25,11 +25,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'mbbill/undotree'
 
     " file browser
-    " Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
         " Plug 'jistr/vim-nerdtree-tabs'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
-    Plug 'tpope/vim-vinegar'
 
     " editing
     Plug 'tpope/vim-surround'
@@ -57,27 +57,10 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer'}
 
-    if has('nvim')
-        " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        " Plug 'Shougo/deoplete.nvim'
-        " Plug 'roxma/nvim-yarp'
-        " Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-
-    let g:deoplete#enable_at_startup = 1
-
     " Plug 'wesleyche/srcexpl'
-
-    " Plug 'kana/vim-operator-user'
-    "     Plug 'tyru/operator-camelize.vim'
-
     " Plug 'honza/vim-snippets'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'AndrewRadev/splitjoin.vim'
 
-    " Plug 'tpope/vim-speeddating'
-    " Plug 'bartmalanczuk/vim-trex-runner'
 
     " screen view
     Plug 'luochen1990/rainbow'          " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
@@ -90,17 +73,17 @@ call plug#begin('~/.vim/plugged')
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
     Plug 'diepm/vim-rest-console'
-    " Plug 'tpope/vim-db'
     Plug 'johngrib/vim-f-hangul'
     Plug 'johngrib/FlatColor-johngrib'
-    Plug 'fatih/molokai'
 
-    " Plug 'johngrib/vim-game-code-break'
     Plug 'SirVer/ultisnips'
-    Plug 'leafgarland/typescript-vim'
+    " Plug 'leafgarland/typescript-vim'
     Plug 'milkypostman/vim-togglelist'
     Plug 'jszakmeister/vim-togglecursor'
 
+    " Plug 'tpope/vim-db'
+    " Plug 'bartmalanczuk/vim-trex-runner'
+    " Plug 'johngrib/vim-game-code-break'
 call plug#end()
 
 " For Neovim 0.1.3 and 0.1.4
@@ -142,7 +125,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     if has("gui_macvim")
         set macmeta
-        set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h13
+        set guifont=Meslo\ LG\ S\ DZ\ Regular\ Nerd\ Font\ Complete:h13
 
         " macVim 에서 esc 로 영문변환, imi 는 1 또는 2 로 설정해준다
         set noimd
@@ -237,6 +220,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nnoremap <Leader>e :browse oldfiles<CR>
     " nnoremap <f5> :!ctags -R<CR>
 
+    nnoremap <C-j> :
     nnoremap k gk
     nnoremap gk k
     nnoremap j gj
@@ -284,6 +268,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <nowait> <Esc>_ <C-w>-
     nnoremap <nowait> <Esc>< <C-w><
     nnoremap <nowait> <Esc>> <C-w>>
+    nnoremap <M-h> <C-w>h
+    nnoremap <M-j> <C-w>j
+    nnoremap <M-k> <C-w>k
+    nnoremap <M-l> <C-w>l
 
     " reselect visual block after indent/outdent
     " link: http://tilvim.com/2013/04/24/reindenting.html
@@ -335,16 +323,18 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <LocalLeader>u :UndotreeToggle<cr>
 
     " NERDTree
-    " let NERDTreeShowHidden = 1 "Show hidden files in NerdTree
-    " nnoremap <LocalLeader><LocalLeader>n :NERDTreeToggle<CR>
-    " nnoremap <LocalLeader>n :NERDTreeFind<CR>
-    " " nnoremap <LocalLeader>m :NERDTreeMirrorToggle<CR>
-    " let g:NERDTreeQuitOnOpen = 0
-    " let NERDTreeMinimalUI = 1
-    " let NERDTreeDirArrows = 1
+    let NERDTreeShowHidden = 1 "Show hidden files in NerdTree
+    nnoremap <LocalLeader>e :NERDTreeToggle<CR>
+    nnoremap <LocalLeader><LocalLeader>e :NERDTreeFind<CR>
+    nnoremap <LocalLeader>m :NERDTreeMirrorToggle<CR>
+    let g:NERDTreeQuitOnOpen = 0
+    let NERDTreeMinimalUI = 1
+    let NERDTreeDirArrows = 1
+    let g:netrw_banner = 0
     let g:netrw_liststyle = 3
     let g:netrw_browse_split = 4
-    nnoremap <LocalLeader>e :25Vex<CR>
+
+
 
 
     " rainbow
@@ -617,6 +607,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     autocmd FileType go nnoremap <Tab>c :GoCoverageToggle<CR>
     autocmd FileType go nnoremap <Tab>i :GoImport
     autocmd FileType go nnoremap <Tab>d :GoDoc
+    autocmd FileType go set nolist
+    autocmd FileType go set colorcolumn=81
     " autocmd FileType go nnoremap <Tab>i :GoInfo<CR>
     set updatetime=100
 
