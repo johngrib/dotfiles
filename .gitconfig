@@ -18,6 +18,7 @@
     unassume = update-index --no-assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
     ch = "!git checkout $(git branch | fzf)"
+    a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
 [core]
 	excludesfile = /Users/johngrib/.gitignore_global
 	editor = /usr/local/bin/vim
