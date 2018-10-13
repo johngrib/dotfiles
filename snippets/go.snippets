@@ -1,3 +1,8 @@
+# ginkgo -BeforeEach
+snippet bef "BeforeEach"
+	BeforeEach(func() {
+		${1}
+	})
 # ginkgo - Describe
 snippet describe "Describe + import ginkgo"
 	import (
@@ -23,8 +28,8 @@ snippet desc 'var _ = Describe("${2}", func() { ${3} })'
 	})
 # ginkgo - Context
 snippet cont 'Context("with/when", func() {...})'
-	Context("${1:with}", func() {
-		${2}
+	Context("${1:with}${2: }", func() {
+		${3}
 	})
 # ginkgo - it
 snippet it 'It("...", func() {...})'
