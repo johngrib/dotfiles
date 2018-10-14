@@ -95,9 +95,7 @@ endif
 
 " Theme
 syntax enable
-" colorscheme OceanicNext
-
-"syntax on
+colorscheme flatcolor-johngrib
 filetype plugin indent on " Put your non-Plugin stuff after this line
 
 " set ----------------------------------------------------------------------
@@ -199,12 +197,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
         set undofile
     endif
 
-    colorscheme flatcolor-johngrib
-    " colorscheme dracula
-
-    if has("syntax")
-        "syntax on
-    endif
 
 " initialize 설정 ---------------------------------------------------------------
 
@@ -313,48 +305,12 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " map g* <Plug>(incsearch-nohl-g*)
     " map g# <Plug>(incsearch-nohl-g#)
 
-    " ctrlp
-    let g:ctrlp_working_path_mode = 'ra'
-    " let g:ctrlp_map = ''
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlP'
-
     " UndoTree
     nnoremap <LocalLeader>u :UndotreeToggle<cr>
-
-    " NERDTree
-    let NERDTreeShowHidden = 1 "Show hidden files in NerdTree
-    nnoremap <LocalLeader>e :NERDTreeToggle<CR>
-    nnoremap <LocalLeader><LocalLeader>e :NERDTreeFind<CR>
-    nnoremap <LocalLeader>m :NERDTreeMirrorToggle<CR>
-    let g:NERDTreeQuitOnOpen = 0
-    let NERDTreeMinimalUI = 1
-    let NERDTreeDirArrows = 1
-    let g:netrw_banner = 0
-    let g:netrw_liststyle = 3
-    let g:netrw_browse_split = 4
-
-
-
 
     " rainbow
     nnoremap <LocalLeader>r :RainbowToggle<CR>
 
-    " Easy motion
-    "let g:EasyMotion_do_mapping  = 0 " Disable default mappings
-    let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-    let g:EasyMotion_smartcase = 1
-    map  <Leader>  <Plug>(easymotion-prefix)
-    vmap <Leader>s <Plug>(easymotion-bd-f)
-    nmap <Leader>s <Plug>(easymotion-overwin-f2)
-    nmap <Leader>l <Plug>(easymotion-lineforward)
-    vmap <Leader>l <Plug>(easymotion-lineforward)
-    nmap <Leader>j <Plug>(easymotion-j)
-    vmap <Leader>j <Plug>(easymotion-j)
-    nmap <Leader>k <Plug>(easymotion-k)
-    vmap <Leader>k <Plug>(easymotion-k)
-    nmap <Leader>h <Plug>(easymotion-linebackward)
-    vmap <Leader>h <Plug>(easymotion-linebackward)
 
     " Syntastic 설정
     " https://thechefprogrammer.blogspot.kr/2014/05/syntax-check-for-php-and-javascript.html
@@ -375,18 +331,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " let g:ale_javascript_eslint_use_global = 1
     let g:ale_lint_on_save = 0
     let g:ale_lint_on_text_changed = 0
-
-    " vim-airline 설정
-    " @link http://bakyeono.net/post/2015-08-13-vim-tab-madness-translate.html
-    let g:airline#extensions#tabline#enabled = 1     " vim-airline 버퍼 목록 켜기
-    let g:airline#extensions#tabline#fnamemod = ':t' " vim-airline 버퍼 목록 파일명만 출력
-    let g:airline#extensions#tabline#buffer_nr_show = 1 " buffer number 를 보여준다
-    let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
-    let g:airline_powerline_fonts = 1
-    " let g:airline_left_sep = ''
-    " let g:airline_left_alt_sep = ''
-    " let g:airline_right_sep = ''
-    " let g:airline_right_alt_sep = ''
 
     " rainbow
     let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
@@ -416,29 +360,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     "eclim
     " let g:EclimCompletionMethod = 'omnifunc'
 
-    " fzf
-    let g:fzf_launcher = "In_a_new_term_function %s"
-    imap <C-x><C-l> <plug>(fzf-complete-line)
-
-    " nnoremap <f1>f :call FzfOmniFiles()<CR>
-    nnoremap <f1> <nop>
-    nnoremap <f1><f1> :Files<CR>
-    nnoremap <f1>a :Ag<CR>
-    nnoremap <f1>l :Lines<CR>
-    nnoremap <f1>m :Marks<CR>
-    " nnoremap <f1>o :Locate getcwd()
-    nnoremap <f1>h :History<CR>
-    nnoremap <f1>c :History:<CR>
-    nnoremap <f1>/ :History/<CR>
-    nnoremap <f1>t :Tags ^<CR>
-    nnoremap <f1><f2> :Buffers<CR>
-    nnoremap <f3> :execute ":Tags " . expand('<cword>')<CR>
-    " gem install coderay
-    " let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -' .&lines.'"'
-    command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
-    command! -bang -nargs=? -complete=dir Files
-      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
     " eregex
     nnoremap <leader>/ :call eregex#toggle()<CR>
     let g:eregex_default_enable = 0
@@ -446,44 +367,12 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:eregex_backward_delim = '?'
     let g:eregex_force_case = 0
 
-    " Trigger configuration. <Tab> 을 쓴다면 ycm 과 키가 중복되어 제대로 기능하지 않을 수 있다. 둘 중 하나의 설정을 바꿔준다.
-    let g:UltiSnipsExpandTrigger="<Tab>"
-    let g:UltiSnipsJumpForwardTrigger="<Tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-    let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split your window.
-    " let g:UltiSnipsSnippetDirectories='~/.vim/snippets'
     " nmap ga <Plug>(EasyAlign)
     " xmap ga <Plug>(EasyAlign)
-
-    let g:UltiSnipsSnippetDirectories = ['~/.vim/snippets']
 
     " camelize
     " nmap <LocalLeader>c <Plug>(operator-camelize)
     " nmap <LocalLeader>C <Plug>(operator-decamelize)
-
-    " UltiSnips
-    " let g:UltiSnipsExpandTrigger="<tab>"
-    " let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-    " " If you want :UltiSnipsEdit to split your window.
-    " let g:UltiSnipsEditSplit="vertical"
-
-    " tagbar
-    nnoremap <LocalLeader>t :TagbarToggle<CR>
-    let g:tagbar_type_markdown = {
-                \ 'ctagstype': 'markdown',
-                \ 'ctagsbin' : '~/.local/bin/markdown2ctags.py',
-                \ 'ctagsargs' : '-f - --sort=yes --sro=»',
-                \ 'kinds' : [
-                    \ 's:sections',
-                    \ 'i:images'
-                \ ],
-                \ 'sro' : '»',
-                \ 'kind2scope' : {
-                    \ 's' : 'section',
-                \ },
-                \ 'sort': 0,
-                \ }
 
     nnoremap <Space>w :w<CR>
 
@@ -513,121 +402,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:multi_cursor_quit_key='<Esc>'
     " nnoremap <C-c> :call multiple_cursors#quit()<CR>
 
-    " startify
-    nmap <LocalLeader>s :Startify<CR>
-    nmap <LocalLeader><LocalLeader>s :SSave<CR>
-
-    let g:startify_custom_header = ['']
-    let g:startify_update_oldfiles = 1
-    let g:startify_change_to_vcs_root = 1
-    let g:startify_session_sort = 1
-
-    let g:startify_commands = [
-        \ ':help startify',
-        \ ]
-
-    let g:startify_list_order = [
-                \ ['    Sessions'],
-                \'sessions',
-                \ ['    Most Recently Used files'],
-                \'files',
-                \'bookmarks',
-                \ ['    Commands'],
-                \'commands'
-                \]
-
     let g:vim_game_code_break_item_limit = 8
 
     " Use deoplete.
     let g:deoplete#enable_at_startup = 1
-
-    let g:vimwiki_list = [
-                \{
-                \   'path': '~/Dropbox/johngrib.github.io/_wiki',
-                \   'ext' : '.md',
-                \   'diary_rel_path': '.',
-                \},
-                \{
-                \   'path': '~/Dropbox/wiki',
-                \   'ext' : '.md',
-                \   'diary_rel_path': '.',
-                \}
-                \]
-
-    let g:vimwiki_conceallevel = 0
-
-    command! WikiIndex :VimwikiIndex
-    nmap <LocalLeader>ww <Plug>VimwikiIndex
-    " nmap <LocalLeader>wt <Plug>VimwikiTabIndex
-    nmap <LocalLeader>ws <Plug>VimwikiUISelect
-    nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
-    nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
-    nmap <LocalLeader>w<LocalLeader>t <Plug>VimwikiTabMakeDiaryNote
-    nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
-    nmap <LocalLeader>wh <Plug>Vimwiki2HTML
-    nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
-    nmap <LocalLeader>wt :VimwikiTable<CR>
-
-    let s:vrc_auto_format_response_patterns = {
-                \   'json': 'jq',
-                \}
-
-    let g:vrc_response_default_content_type = 'application/json'
-
-    let g:vrc_curl_opts = {
-      \ '-s': '',
-    \}
-
-    " vim-go
-    let g:go_addtags_transform = "camelcase"
-    let g:go_fmt_command = "goimports"
-    let g:go_autodetect_gopath = 1
-    let g:go_list_type = "quickfix"
-    let g:go_highlight_types = 1
-    let g:go_highlight_fields = 1
-    let g:go_highlight_functions = 1
-    let g:go_highlight_function_calls = 1
-    let g:go_highlight_extra_types = 1
-    let g:go_highlight_generate_tags = 1
-    let g:go_highlight_operators = 1
-    let g:go_auto_type_info = 1
-    let g:go_auto_sameids = 1
-    let g:go_doc_keywordprg_enabled = 0
-
-    nnoremap <C-n> :cnext<CR>
-    nnoremap <C-p> :cprevious<CR>
-    nnoremap <LocalLeader>q :call ToggleQuickfixList()<CR>
-    let g:toggle_list_no_mappings = 1
-
-    autocmd FileType go nnoremap <Tab>b :GoBuild<CR>
-    autocmd FileType go nnoremap <Tab>r :GoRun<CR>
-    autocmd FileType go nnoremap <Tab><Tab>r :GoRun %<CR>
-    autocmd FileType go nnoremap <Tab><Tab>t :GoTestFunc<CR>
-    autocmd FileType go nnoremap <Tab>t :GoTest<CR>
-    autocmd FileType go nnoremap <Tab>c :GoCoverageToggle<CR>
-    autocmd FileType go nnoremap <Tab>i :GoImport
-    autocmd FileType go nnoremap <Tab>d :GoDoc
-    autocmd FileType go set nolist
-    autocmd FileType go set colorcolumn=81
-    " autocmd FileType go nnoremap <Tab>i :GoInfo<CR>
-    set updatetime=100
-
-    let $GINKGO_EDITOR_INTEGRATION = "true"
-
-    " vimpager
-    if exists("g:vimpager")
-        let g:less     = {}
-        let g:vimpager = {}
-        let g:less.enabled = 0
-        let g:less.scrolloff = 0
-        let g:vimpager.gvim = 1
-        let g:vimpager.enabled = 1
-        let g:vimpager.scrolloff = 0
-    endif
-
-    " vim-gutentags
-    let g:gutentags_ctags_exclude=["node_modules"]
-    let g:gutentags_resolve_symlinks = 1
 
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
@@ -636,15 +414,6 @@ function! ToggleNumber()
         set number
     else
         set relativenumber
-    endif
-endfunc
-
-function! FzfOmniFiles()
-    let is_git = system('git status')
-    if v:shell_error
-        :Files
-    else
-        :GitFiles
     endif
 endfunc
 
@@ -666,76 +435,6 @@ command! Ncd :cd %:p:h
 
 " command! Time :put =strftime('%Y-%m-%d %H:%M:%S +0900')
 
-" If buffer modified, update any 'Last modified: ' in the first 20 lines.
-" 'Last modified: ' can have up to 10 characters before (they are retained).
-" Restores cursor and window position using save_cursor variable.
-function! LastModified()
-    if g:md_modify_disabled
-        return
-    endif
-  if &modified
-    " echo('markdown updated time modified')
-    let save_cursor = getpos(".")
-    let n = min([10, line("$")])
-
-    exe 'keepjumps 1,' . n . 's#^\(.\{,10}updated\s*: \).*#\1' .
-          \ strftime('%Y-%m-%d %H:%M:%S +0900') . '#e'
-    call histdel('search', -1)
-    call setpos('.', save_cursor)
-  endif
-endfun
-function! NewTemplate()
-
-    let l:wiki_directory = v:false
-
-    for wiki in g:vimwiki_list
-        if expand('%:p:h') == expand(wiki.path)
-            let l:wiki_directory = v:true
-            break
-        endif
-    endfor
-
-    if !l:wiki_directory
-        return
-    endif
-
-    if line("$") > 1
-        return
-    endif
-
-    let l:template = []
-    call add(l:template, '---')
-    call add(l:template, 'layout  : wiki')
-    call add(l:template, 'title   : ')
-    call add(l:template, 'summary : ')
-    call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-    call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-    call add(l:template, 'tags    : ')
-    call add(l:template, 'toc     : true')
-    call add(l:template, 'public  : true')
-    call add(l:template, 'parent  : ')
-    call add(l:template, 'latex   : false')
-    call add(l:template, '---')
-    call add(l:template, '* TOC')
-    call add(l:template, '{:toc}')
-    call add(l:template, '')
-    call add(l:template, '# ')
-    call setline(1, l:template)
-    execute 'normal! G'
-    execute 'normal! $'
-
-    echom 'new wiki page has created'
-endfunction
-augroup vimwikiauto
-    " autocmd FileType vimwiki nnoremap <F3> :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
-    " autocmd FileType vimwiki nnoremap <F3> :VWS /
-    " autocmd FileType vimwiki nnoremap <S-F3> :execute "VWB" <Bar> :lopen<CR>
-    autocmd BufWritePre *wiki/*.md keepjumps call LastModified()
-    autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
-augroup END
-
-let g:md_modify_disabled = 0
-
 " Change cursor shape between insert and normal mode in iTerm2.app + tmux + vim
 " https://gist.github.com/andyfowler/1195581
 if exists('$TMUX')
@@ -746,19 +445,4 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" http://perltricks.com/article/194/2015/9/22/Activating-Perl-6-syntax-highlighting-in-Vim/
-function! LooksLikePerl6 ()
-  if getline(1) =~# '^#!.*/bin/.*perl6'
-    set filetype=perl6
-  else
-    for i in [1,2,3,4,5]
-      if getline(i) == 'use v6;'
-        set filetype=perl6
-        break
-      endif
-    endfor
-  endif
-endfunction
-au bufRead *.pm,*.t,*.pl call LooksLikePerl6()
-
-
+runtime! vim-include/*.vim
