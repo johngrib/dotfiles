@@ -77,7 +77,7 @@ function share_history {
     history -c
     history -r
 }
-PROMPT_COMMAND='share_history'
+PROMPT_COMMAND="share_history; $PROMPT_COMMAND"
 shopt -u histappend
 
 [ -f ~/.local/bin/fav-dir.sh ] && source ~/.local/bin/fav-dir.sh
