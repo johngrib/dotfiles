@@ -80,6 +80,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'leafgarland/typescript-vim'
     Plug 'milkypostman/vim-togglelist'
     Plug 'jszakmeister/vim-togglecursor'
+    Plug 'johngrib/vim-autocomplete-recent-git-commit-message'
 
     " Plug 'tpope/vim-db'
     " Plug 'bartmalanczuk/vim-trex-runner'
