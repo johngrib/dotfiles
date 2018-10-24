@@ -11,7 +11,7 @@
 ;     path = ~/dotfiles/.gitconfig
 
 [alias]
-	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
     lh = "!git l | head -n 25"
     s = status -s
     assume   = update-index --assume-unchanged
@@ -20,11 +20,11 @@
     ch = "!git checkout $(git branch | fzf)"
     a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
 [core]
-	excludesfile = /Users/johngrib/.gitignore_global
-	editor = /usr/local/bin/vim
-	autocrlf = input
-	precomposeunicode = true
-	quotepath = false
+    excludesfile = /Users/johngrib/.gitignore_global
+    editor = /usr/local/bin/vim
+    autocrlf = input
+    precomposeunicode = true
+    quotepath = false
 [diff]
     tool = vimdiff
 [difftool "vimdiff"]
@@ -33,5 +33,5 @@
     tool = vimdiff
 [mergetool "vimdiff"]
     path = /usr/local/bin/vim
-	trustExitCode = true
+    trustExitCode = true
 
