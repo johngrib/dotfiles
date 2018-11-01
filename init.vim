@@ -376,6 +376,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nmap <LocalLeader>C <Plug>(operator-decamelize)
 
     nnoremap <Space>w :w<CR>
+    nnoremap <silent>s <S-">
+    vnoremap <silent>s <S-">
 
     " srcexpl
     " nmap <LocalLeader>e :SrcExplToggle<CR>
