@@ -26,10 +26,10 @@ autocmd FileType go nnoremap <Tab><Tab>r :GoRun %<CR>
 autocmd FileType go nnoremap <Tab><Tab>t :GoTestFunc<CR>
 autocmd FileType go nnoremap <Tab>t :GoTest<CR>
 autocmd FileType go nnoremap <Tab>c :GoCoverageToggle<CR>
-autocmd FileType go nnoremap <Tab>i :GoImport
+autocmd FileType go nnoremap <Tab>i :GoImport<Space>
 autocmd FileType go nnoremap <Tab>d :GoDoc
-autocmd FileType go set nolist
-autocmd FileType go set colorcolumn=81
+autocmd FileType go setlocal nolist
+autocmd FileType go setlocal colorcolumn=81
 " autocmd FileType go nnoremap <Tab>i :GoInfo<CR>
 set updatetime=100
 
