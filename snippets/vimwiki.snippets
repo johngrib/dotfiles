@@ -1,9 +1,26 @@
-
+# latex
+snippet ss "$$ $$"
+	$$ ${1} $$
+# latex
+snippet ㄴㄴ "$$ $$"
+	$$ ${1} $$
+# frac
+snippet frac "\frac{}{} 분수"
+	\frac{${1}}{${2}}${3}
 # align
-snippet align "\begin{align}"
+snippet beginAlign "\begin{align}"
 	$$
 	\begin{align}
 	${1} & = ${2} \\\\
 	\end{align}
 	$$
+# ⇒
+snippet Rightarrow "\Rightarrow ⇒"
+	\Rightarrow 
+# →
+snippet rightarrow "\rightarrow →"
+	\rightarrow 
+# overset
+snippet overset "\overset"
+	\overset{${1}}
 # vim:ft=snippets:
