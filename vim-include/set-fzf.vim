@@ -6,7 +6,7 @@ if !exists('g:include_set_fzf_loaded')
 
     " nnoremap <f1>f :call FzfOmniFiles()<CR>
     nnoremap <f1> <nop>
-    nnoremap <f1><f1> :Files<CR>
+    nnoremap <f1><f1> :call FzfOmniFiles()<CR>
     nnoremap <f1>a :Ag<CR>
     nnoremap <f1>l :Lines<CR>
     nnoremap <f1>m :Marks<CR>
