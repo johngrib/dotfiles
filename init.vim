@@ -85,6 +85,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'tpope/vim-db'
     " Plug 'bartmalanczuk/vim-trex-runner'
     " Plug 'johngrib/vim-game-code-break'
+    Plug 'johngrib/vim-mac-dictionary'
 call plug#end()
 
 " For Neovim 0.1.3 and 0.1.4
@@ -448,5 +449,8 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+nnoremap <LocalLeader>d :MacDictWord<CR>
+nnoremap <LocalLeader><LocalLeader>d :MacDictQuery<CR>
 
 runtime! vim-include/*.vim
