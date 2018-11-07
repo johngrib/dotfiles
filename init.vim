@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')
 
     " version control
     Plug 'tpope/vim-fugitive'           " git 명령어 wrapper
-    Plug 'mbbill/undotree'
+    Plug 'simnalamburt/vim-mundo'
 
     " file browser
     Plug 'scrooloose/nerdtree'
@@ -307,8 +307,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " map g* <Plug>(incsearch-nohl-g*)
     " map g# <Plug>(incsearch-nohl-g#)
 
-    " UndoTree
-    nnoremap <LocalLeader>u :UndotreeToggle<cr>
+    " Mundo
+    nnoremap <LocalLeader>u :MundoToggle<cr>
 
     " rainbow
     nnoremap <LocalLeader>r :RainbowToggle<CR>
