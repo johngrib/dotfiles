@@ -186,6 +186,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " set cursorcolumn
     set langmap=ㅁa,ㅠb,ㅊc,ㅇd,ㄷe,ㄹf,ㅎg,ㅗh,ㅑi,ㅓj,ㅏk,ㅣl,ㅡm,ㅜn,ㅐo,ㅔp,ㅂq,ㄱr,ㄴs,ㅅt,ㅕu,ㅍv,ㅈw,ㅌx,ㅛy,ㅋz
     set splitbelow
+    set splitright
+    set virtualedit=block   " visual block mode를 쓸 때 문자가 없는 곳도 선택 가능하다
 
     " This enables us to undo files even if you exit Vim.
     if has('persistent_undo')
@@ -213,7 +215,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let mapleader = "\<Space>"
     let maplocalleader = "\\"
     " nnoremap <Leader>e :browse oldfiles<CR>
-    " nnoremap <f5> :!ctags -R<CR>
 
     nnoremap <C-j> :
     nnoremap k gk
@@ -354,13 +355,17 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nmap ga <Plug>(EasyAlign)
     " xmap ga <Plug>(EasyAlign)
 
-    " camelize
-    " nmap <LocalLeader>c <Plug>(operator-camelize)
-    " nmap <LocalLeader>C <Plug>(operator-decamelize)
-
     nnoremap <Space>w :w<CR>
     nnoremap <silent>s <S-">
     vnoremap <silent>s <S-">
+
+    nnoremap n nzz
+    nnoremap N Nzz
+    nnoremap } }zz
+    nnoremap { {zz
+
+    nnoremap <LocalLeader>d :MacDictWord<CR>
+    nnoremap <LocalLeader><LocalLeader>d :MacDictQuery<CR>
 
     " srcexpl
     " nmap <LocalLeader>e :SrcExplToggle<CR>
@@ -427,8 +432,5 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
-nnoremap <LocalLeader>d :MacDictWord<CR>
-nnoremap <LocalLeader><LocalLeader>d :MacDictQuery<CR>
 
 runtime! vim-include/*.vim
