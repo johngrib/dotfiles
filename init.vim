@@ -52,7 +52,7 @@ call plug#begin('~/.vim/plugged')
 
     " language support
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
-    " Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
+    Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
     " Plug 'junegunn/vim-xmark', { 'do': 'make' }
 
     Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer'}
@@ -188,6 +188,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set splitbelow
     set splitright
     set virtualedit=block   " visual block mode를 쓸 때 문자가 없는 곳도 선택 가능하다
+    set autoread
 
     " This enables us to undo files even if you exit Vim.
     if has('persistent_undo')
@@ -234,6 +235,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <Leader>y "+y
     nnoremap <Leader>Y "+yg_
     vnoremap <Leader>y "+y
+    nnoremap <Leader>d "+d
+    nnoremap <Leader>D "+yD
+    vnoremap <Leader>d "+d
     nnoremap <Leader>p "+p
     nnoremap <Leader>P "+P
     " nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
@@ -434,3 +438,5 @@ else
 endif
 
 runtime! vim-include/*.vim
+
+let @q=":%s\/\\v\\s+/\\r/ggg$yjGA - $pggddGddvip:!bc:%s/-//vip:sort nG$yjGA - $pggddGddvip:!bc:%g/^1$/dG:.s/^$/is jolly jumper!/"
