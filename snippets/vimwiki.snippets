@@ -5,22 +5,65 @@ snippet ss "$$ $$"
 snippet ㄴㄴ "$$ $$"
 	$$ ${1} $$
 # frac
-snippet frac "\frac{}{} 분수"
-	\frac{${1}}{${2}}${3}
+snippet lfrac "\frac{}{} 분수"
+	\frac{${1}}{${2}}
 # align
-snippet beginAlign "\begin{align}"
+snippet lbeginAlign "\begin{align}"
 	$$
 	\begin{align}
 	${1} & = ${2} \\\\
 	\end{align}
 	$$
 # ⇒
-snippet Rightarrow "\Rightarrow ⇒"
+snippet lRightarrow "\Rightarrow ⇒ 이중 화살표"
 	\Rightarrow 
 # →
-snippet rightarrow "\rightarrow →"
+snippet lrightarrow "\rightarrow →"
 	\rightarrow 
 # overset
-snippet overset "\overset"
+snippet loverset "\overset 글자 위로 올리기"
 	\overset{${1}}
+# bar
+snippet lbar "\bar{A} 문자 위에 막대기(작은 사이즈)"
+	\bar{${1}}
+# overline
+snippet loverline "\overline{A} 문자 위에 막대기(중간 사이즈)"
+	\overline{${1}}
+# overline
+snippet loverline2 "\overline{\overline{A}} 2중 overline"
+	\overline{\overline{${1}}}
+# widebar
+snippet lwidebar "\widebar{A} 문자 위에 막대기(긴 사이즈)"
+	\widebar{${1}}
+# emptyset
+snippet lemptyset "\emptyset (길쭉한)공집합 ∅"
+	\emptyset 
+# emptyset nothing
+snippet lvarnothing "\varnothing 공집합 ∅"
+	\varnothing 
+# cap
+snippet lcap "\cap 교집합 ∩"
+	\cap 
+# cup
+snippet lcup "\cup 합집합 ∩"
+	\cup 
+# subseteq
+snippet lsubseteq "\subseteq 부분집합 ⊆"
+	\subseteq 
+# subsetneq
+snippet lsubsetneq "\subsetneq !부분집합 ⊊"
+	\subsetneq 
+# subset
+snippet lsubset "\subset 진부분집합 ⊂"
+	\subset 
+# in
+snippet lin "\in 원소 ∈"
+	\in 
+# notin
+snippet lnotin "\notin 원소가 아님 ∉"
+	\notin 
+# times
+snippet ltimes "\times 곱셈기호 ×"
+	\times 
 # vim:ft=snippets:
+
