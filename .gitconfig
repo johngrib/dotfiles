@@ -20,6 +20,7 @@
     ch = "!git checkout $(git branch | fzf)"
     a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
     cleanbranch = "!git branch -d $(git branch --merged | grep -v master)"
+    deletebranch = "!git branch -D $(git branch | egrep -v '\\<master\\>|^\\*' | fzf -m)"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
     editor = /usr/local/bin/vim
