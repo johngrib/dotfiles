@@ -1,28 +1,37 @@
-# latex
 snippet ss "$$ $$"
 	$$ ${1} $$
-# latex
 snippet ㄴㄴ "$$ $$"
 	$$ ${1} $$
-# frac
+snippet lcolor "\color{red}"
+	\color{${1:red}}
 snippet lfrac "\frac{}{} 분수"
 	\frac{${1}}{${2}}
-# align
-snippet lbeginAlign "\begin{align}"
+snippet lssBeginAlign "$$ \begin{align} $$"
 	$$
 	\begin{align}
 	${1} & = ${2} \\\\
+	${3} & = ${4} \\\\
 	\end{align}
 	$$
-# ⇒
-snippet lRightarrow "\Rightarrow ⇒ 이중 화살표"
+snippet lbeginAlign "\begin{align}"
+	\begin{align}
+	${1} & = ${2} \\\\
+	${3} & = ${4} \\\\
+	\end{align}
+snippet larrow_Left "\Leftarrow ⇐"
+	\Leftarrow 
+snippet larrow_left "\leftarrow ←"
+	\leftarrow 
+snippet larrow_Right "\Rightarrow ⇒"
 	\Rightarrow 
-# →
-snippet lrightarrow "\rightarrow →"
+snippet larrow_right "\rightarrow →"
 	\rightarrow 
-# overset
+snippet larrow_Up "\Uparrow ⇑"
+	\Uparrow 
+snippet larrow_up "\uparrow ↑"
+	\uparrow 
 snippet loverset "\overset 글자 위로 올리기"
-	\overset{${1}}
+	\overset{${1}}{${2}}
 # bar
 snippet lbar "\bar{A} 문자 위에 막대기(작은 사이즈)"
 	\bar{${1}}
@@ -35,6 +44,7 @@ snippet loverline2 "\overline{\overline{A}} 2중 overline"
 # widebar
 snippet lwidebar "\widebar{A} 문자 위에 막대기(긴 사이즈)"
 	\widebar{${1}}
+# 집합 -------------------------------------------------------------------------
 # emptyset
 snippet lemptyset "\emptyset (길쭉한)공집합 ∅"
 	\emptyset 
@@ -62,8 +72,59 @@ snippet lin "\in 원소 ∈"
 # notin
 snippet lnotin "\notin 원소가 아님 ∉"
 	\notin 
+# 연산자 -----------------------------------------------------------------------
 # times
 snippet ltimes "\times 곱셈기호 ×"
 	\times 
+# sum
+snippet lsum "\sum 합 Σ"
+	\sum 
+snippet lsumm "\sum_{}^{} 합 Σ"
+	\sum_{${1}}^{${2}} 
+# 그리스 문자 ------------------------------------------------------------------
+snippet lTheta "\Theta 쎄타 Θ"
+	\Theta
+snippet lLambda "\Lambda 람다 Λ"
+	\Lambda
+snippet llambda "\lambda 람다 λ"
+	\lambda
+snippet lSigma "\Sigma 시그마 "
+	\Sigma
+snippet lOmega "\Omega 오메가 Ω"
+	\Omega
+# 등호, 괄호 -------------------------------------------------------------------
+snippet l= "& ="
+	& = 
+snippet l{ "\{ \}"
+	\\{ ${1} \\}
+snippet l} "\{ \}"
+	\\{ ${1} \\}
+snippet lapprox "\approx 근사값(물결 두 개) ≈"
+	\approx
+snippet lsim "\sim ~"
+	\sim
+snippet lequiv "\equiv 동치, 합동 ≡"
+	\equiv
+# \therefore
+snippet ltherefore "\therefore 그러므로 ∴
+	\therefore
+# space
+snippet lspace "\ 스페이스"
+	 \ 
+# thin space
+snippet lspaceThin "\; 얇은 스페이스"
+	\;
+# wide space
+snippet lspaceWide "\quad 넓은 스페이스"
+	\quad
+# more wide space
+snippet lspaceMoreWide "\qquad 더 넓은 스페이스"
+	\qquad
+# backslash
+snippet lbackslash "\backslash 백슬래시 \"
+	\backslash
+# html entity -----------------------------------------------------------------
+snippet hbar "&#124; 파이프 |"
+	&#124;
 # vim:ft=snippets:
 
