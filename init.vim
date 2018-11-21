@@ -66,7 +66,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'luochen1990/rainbow'          " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
     Plug 'kshenoy/vim-signature'        " m mark 위치를 표시해준다.
     Plug 'airblade/vim-gitgutter'       " git diff 를 라인 넘버 옆에 표시.
-    Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
+    " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
 
     " Plug 'koron/nyancat-vim'
@@ -440,3 +440,6 @@ endif
 runtime! vim-include/*.vim
 
 let @q=":%s\/\\v\\s+/\\r/ggg$yjGA - $pggddGddvip:!bc:%s/-//vip:sort nG$yjGA - $pggddGddvip:!bc:%g/^1$/dG:.s/^$/is jolly jumper!/"
+
+iabbr <expr> TS strftime("%c")
+
