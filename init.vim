@@ -439,7 +439,10 @@ endif
 
 runtime! vim-include/*.vim
 
-let @q=":%s\/\\v\\s+/\\r/ggg$yjGA - $pggddGddvip:!bc:%s/-//vip:sort nG$yjGA - $pggddGddvip:!bc:%g/^1$/dG:.s/^$/is jolly jumper!/"
-
-iabbr <expr> TS strftime("%c")
+iabbr __email johngrib82@gmail.com
+iabbr <expr> __time strftime("%Y-%m-%d %H:%M:%S")
+iabbr <expr> __file expand('%:p')
+iabbr <expr> __name expand('%')
+iabbr <expr> __pwd expand('%:p:h')
+iabbr <expr> __branch system("git rev-parse --abbrev-ref HEAD")
 
