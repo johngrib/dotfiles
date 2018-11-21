@@ -19,8 +19,8 @@
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
     ch = "!git checkout $(git branch | fzf)"
     a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
-    cleanbranch = "!git branch -d $(git branch --merged | grep -v '\\<master\\>|^\\*')"
-    deletebranch = "!git branch -d $(git branch | egrep -v '\\<master\\>|^\\*' | fzf -m)"
+    cleanbranch = "!git branch -d $(git branch --merged | grep -v '^\\*\\|\\<master$')"
+    deletebranch = "!git branch -d $(git branch | grep -v '^\\*\\|\\<master$' | fzf -m)"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
     editor = /usr/local/bin/vim
