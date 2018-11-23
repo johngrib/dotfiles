@@ -1,0 +1,352 @@
+snippet bef "BeforeEach [ginkgo]"
+BeforeEach(func() {
+	${1}
+})
+endsnippet
+
+snippet describe "Describe + import [ginkgo]"
+import (
+	"testing"
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
+)
+func TestGinkgo(t *testing.T) {
+	RegisterFailHandler(Fail)
+	RunSpecs(t, "Tests Suite")
+}
+${1:var _ = }Describe("${2}", func() {
+	Context("", func() {
+		It("", func() {
+			Expect(1).To(Equal(1))
+		})
+	})
+})
+endsnippet
+
+snippet desc "Describe [ginkgo]"
+${1:var _ = }Describe("${2}", func() {
+	${3}
+})
+endsnippet
+
+snippet cont "Context [ginkgo]"
+Context("${1:with }${2}", func() {
+	${3}
+})
+endsnippet
+
+snippet it "It [ginkgo]"
+It("${1:returns }", func() {
+	${2}
+})
+endsnippet
+
+snippet expect "Expect(...).To(...) [ginkgo]"
+Expect(${1}).${2:To}(${3:Equal()})
+endsnippet
+
+snippet re "return"
+return ${1}
+endsnippet
+
+snippet v "name := value"
+${1} := ${2}
+endsnippet
+
+snippet var "var name type = value"
+var ${1} ${2} = ${3}
+endsnippet
+
+snippet vars "var ( name type = value )"
+var (
+	${1} = ${2}
+)
+endsnippet
+
+snippet ap "append(slice, value)"
+append(${1:slice}, ${0:value})
+endsnippet
+
+snippet case "case value:"
+case ${1:value}:
+	${0:${VISUAL}}
+endsnippet
+
+snippet c "const name = value"
+const ${1:NAME} = ${0:0}
+endsnippet
+
+# constants with iota
+snippet co "const ( name = value )"
+const (
+	${1:NAME1} = iota
+	${0:NAME2}
+)
+endsnippet
+
+snippet con "continue"
+	continue
+endsnippet
+
+snippet def "defer func()"
+defer ${0:func}()
+endsnippet
+
+snippet defer
+defer func() {
+	if err := recover(); err != nil {
+		${0:${VISUAL}}
+	}
+}()
+endsnippet
+
+# import
+snippet im "import ( package )"
+import (
+	"${1:package}"
+)
+endsnippet
+
+# interface
+snippet in "interface{}"
+interface{}
+endsnippet
+
+# full interface snippet
+snippet inte "interface name { ... }"
+interface ${1:name} {
+	${2:/* methods */}
+}
+endsnippet
+
+# if condition
+snippet if "if con { ... }"
+if ${1:/* condition */} {
+	${2:${VISUAL}}
+}
+endsnippet
+
+snippet ife "if con { ... } else { ... }"
+if ${1:/* condition */} {
+	${2:${VISUAL}}
+} else {
+	${0}
+}
+endsnippet
+# else snippet
+snippet el "else { ... }"
+else {
+	${0:${VISUAL}}
+}
+endsnippet
+# error snippet
+snippet ifr "if err != nil { return err }"
+if err != nil {
+	return err
+}
+${0}
+endsnippet
+# false
+snippet f "false"
+false
+endsnippet
+# fallthrough
+snippet ft "fallthrough"
+fallthrough
+endsnippet
+# float
+snippet fl "float32"
+float32
+endsnippet
+# float32
+snippet f3 "flaot32"
+float32
+endsnippet
+# float64
+snippet f6 "float64"
+float64
+endsnippet
+# for int loop
+snippet for "for ... { ... }"
+for ${1}{
+	${0:${VISUAL}}
+}
+endsnippet
+# for int loop
+snippet fori "for i := 0; i < count; i++ { ... }"
+for ${2:i} := 0; $2 < ${1:count}; $2${3:++} {
+	${0:${VISUAL}}
+}
+endsnippet
+# for range loop
+snippet forr "for e := range items { ... }"
+for ${1:e} := range ${2:collection} {
+	${0:${VISUAL}}
+}
+endsnippet
+# function simple
+snippet fun "func name( ... ) error { ... }"
+func ${1:funcName}(${2}) ${3:error} {
+	${4}
+}
+${0}
+endsnippet
+# function on receiver
+snippet fum "func (rec type) name( ... ) error { ... }"
+func (${1:receiver} ${2:type}) ${3:funcName}(${4}) ${5:error} {
+	${6}
+}
+${0}
+endsnippet
+# http handler function on reciever
+snippet fumh "func (rec type) name (http.ResponseWriter, r *http.Request) { ... }"
+func (${1:receiver} ${2:type}) ${3:funcName}(${4:w} http.ResponseWriter, ${5:r} *http.Request) {
+	${0:${VISUAL}}
+}
+endsnippet
+# log printf
+snippet lf "log.Printf('%s', var)"
+log.Printf("%${1:s}", ${2:var})
+endsnippet
+# log printf
+snippet lp "log.Println('...')"
+log.Println("${1}")
+endsnippet
+# make
+snippet mk "make([]string, 0)"
+make(${1:[]string}, ${0:0})
+endsnippet
+# map
+snippet mp "map[string]int"
+map[${1:string}]${0:int}
+endsnippet
+# main()
+snippet main "func main() { ... }"
+func main() {
+	${1}
+}
+${0}
+endsnippet
+# new
+snippet nw "new(type)"
+new(${0:type})
+endsnippet
+# package
+snippet pa "package main"
+package ${1:main}
+endsnippet
+# panic
+snippet pn "panic(`msg`)"
+panic("${0:msg}")
+endsnippet
+# print
+snippet pr "fmt.Printf(`%s\n`, var)"
+fmt.Printf("%${1:s}\n", ${2:var})
+endsnippet
+# println
+snippet pl "fmt.Println(`...`)"
+fmt.Println("${1:s}")
+endsnippet
+# range
+snippet rn
+range ${0}
+endsnippet
+# return
+snippet rt
+return ${0}
+endsnippet
+# result
+snippet rs
+result
+endsnippet
+# select
+snippet sel "select"
+select {
+case ${1:v1} := <-${2:chan1}
+	${3}
+default:
+	${0}
+}
+endsnippet
+# string
+snippet str "string"
+string
+endsnippet
+# struct
+snippet st "struct"
+struct ${1:name} {
+	${2:/* data */}
+}
+${0}
+endsnippet
+# switch
+snippet sw "switch"
+switch ${1:var} {
+case ${2:value1}:
+	${3}
+case ${4:value2}:
+	${5}
+default:
+	${0}
+}
+endsnippet
+snippet sp "fmt.Sprintf(`%s`, var)"
+fmt.Sprintf("%${1:s}", ${2:var})
+endsnippet
+# true
+snippet t "true"
+true
+endsnippet
+# goroutine named function
+snippet g
+go ${1:funcName}(${0})
+endsnippet
+# goroutine anonymous function
+snippet ga
+go func(${1} ${2:type}) {
+	${3:/* code */}
+}(${0})
+endsnippet
+snippet test "test function"
+func Test${1:name}(t *testing.T) {
+	${0:${VISUAL}}
+}
+endsnippet
+snippet bench "benchmark function"
+func Benchmark${1:name}(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		${2}
+	}
+}
+${0}
+endsnippet
+# composite literals
+snippet cl
+type ${1:name} struct {
+	${2:attrName} ${3:attrType}
+}
+endsnippet
+# if key in a map
+snippet om "if val, ok := map[key]; ok == true { ... }"
+if ${1:value}, ok := ${2:map}[${3:key}]; ok == true {
+	${4:/* code */}
+}
+endsnippet
+
+# Grouped globals with anonymous struct
+snippet gg
+var ${1:var} = struct{
+	${2:name} ${3:type}
+}{
+	$2: ${4:value},
+}
+endsnippet
+
+# Marshalable json alias
+snippet ja
+type ${1:parentType}Alias $1
+
+func (p *$1) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&struct{ *$1Alias }{(*$1Alias)(p)})
+}
+endsnippet

@@ -1,130 +1,233 @@
 snippet ss "$$ $$"
-	$$ ${1} $$
+$$ ${1} $$
+endsnippet
+
 snippet ㄴㄴ "$$ $$"
-	$$ ${1} $$
+$$ ${1} $$
+endsnippet
+
 snippet lcolor "\color{red}"
-	\color{${1:red}}
+\color{${1:red}}
+endsnippet
+
 snippet lfrac "\frac{}{} 분수"
-	\frac{${1}}{${2}}
+\frac{${1}}{${2}}
+endsnippet
+
 snippet lssBeginAlign "$$ \begin{align} $$"
-	$$
-	\begin{align}
-	${1} & = ${2} \\\\
-	${3} & = ${4} \\\\
-	\end{align}
-	$$
+$$
+\begin{align}
+${1} & = ${2} \\\\
+${3} & = ${4} \\\\
+\end{align}
+$$
+endsnippet
+
 snippet lbeginAlign "\begin{align}"
-	\begin{align}
-	${1} & = ${2} \\\\
-	${3} & = ${4} \\\\
-	\end{align}
+\begin{align}
+${1} & = ${2} \\\\
+${3} & = ${4} \\\\
+\end{align}
+endsnippet
+
 snippet larrow_Left "\Leftarrow ⇐"
-	\Leftarrow 
+\Leftarrow
+endsnippet
+
 snippet larrow_left "\leftarrow ←"
-	\leftarrow 
+\leftarrow
+endsnippet
+
 snippet larrow_Right "\Rightarrow ⇒"
-	\Rightarrow 
+\Rightarrow
+endsnippet
+
 snippet larrow_right "\rightarrow →"
-	\rightarrow 
+\rightarrow
+endsnippet
+
 snippet larrow_Up "\Uparrow ⇑"
-	\Uparrow 
+\Uparrow
+endsnippet
+
 snippet larrow_up "\uparrow ↑"
-	\uparrow 
+\uparrow
+endsnippet
+
 snippet loverset "\overset 글자 위로 올리기"
-	\overset{${1}}{${2}}
+\overset{${1}}{${2}}
+endsnippet
+
 # bar
 snippet lbar "\bar{A} 문자 위에 막대기(작은 사이즈)"
-	\bar{${1}}
+\bar{${1}}
+endsnippet
+
 # overline
 snippet loverline "\overline{A} 문자 위에 막대기(중간 사이즈)"
-	\overline{${1}}
+\overline{${1}}
+endsnippet
+
 # overline
 snippet loverline2 "\overline{\overline{A}} 2중 overline"
-	\overline{\overline{${1}}}
+\overline{\overline{${1}}}
+endsnippet
+
 # widebar
 snippet lwidebar "\widebar{A} 문자 위에 막대기(긴 사이즈)"
-	\widebar{${1}}
+\widebar{${1}}
+endsnippet
+
 # 집합 -------------------------------------------------------------------------
 # emptyset
 snippet lemptyset "\emptyset (길쭉한)공집합 ∅"
-	\emptyset 
+\emptyset
+endsnippet
+
 # emptyset nothing
 snippet lvarnothing "\varnothing 공집합 ∅"
-	\varnothing 
+\varnothing
+endsnippet
+
 # cap
 snippet lcap "\cap 교집합 ∩"
-	\cap 
+\cap
+endsnippet
+
 # cup
 snippet lcup "\cup 합집합 ∩"
-	\cup 
+\cup
+endsnippet
+
 # subseteq
 snippet lsubseteq "\subseteq 부분집합 ⊆"
-	\subseteq 
+\subseteq
+endsnippet
+
 # subsetneq
 snippet lsubsetneq "\subsetneq !부분집합 ⊊"
-	\subsetneq 
+\subsetneq
+endsnippet
+
 # subset
 snippet lsubset "\subset 진부분집합 ⊂"
-	\subset 
+\subset
+endsnippet
+
 # in
 snippet lin "\in 원소 ∈"
-	\in 
+\in
+endsnippet
+
 # notin
 snippet lnotin "\notin 원소가 아님 ∉"
-	\notin 
+\notin
+endsnippet
+
 # 연산자 -----------------------------------------------------------------------
 # times
 snippet ltimes "\times 곱셈기호 ×"
-	\times 
+\times
+endsnippet
+
 # sum
 snippet lsum "\sum 합 Σ"
-	\sum 
+\sum
+endsnippet
+
 snippet lsumm "\sum_{}^{} 합 Σ"
-	\sum_{${1}}^{${2}} 
+\sum_{${1}}^{${2}}
+endsnippet
+
 # 그리스 문자 ------------------------------------------------------------------
 snippet lTheta "\Theta 쎄타 Θ"
-	\Theta
+\Theta
+endsnippet
+
 snippet lLambda "\Lambda 람다 Λ"
-	\Lambda
+\Lambda
+endsnippet
+
 snippet llambda "\lambda 람다 λ"
-	\lambda
+\lambda
+endsnippet
+
 snippet lSigma "\Sigma 시그마 "
-	\Sigma
+\Sigma
+endsnippet
+
 snippet lOmega "\Omega 오메가 Ω"
-	\Omega
+\Omega
+endsnippet
+
 # 등호, 괄호 -------------------------------------------------------------------
 snippet l= "& ="
-	& = 
+& = 
+endsnippet
+
 snippet l{ "\{ \}"
-	\\{ ${1} \\}
+\\{ ${1} \\}
+endsnippet
+
 snippet l} "\{ \}"
-	\\{ ${1} \\}
+\\{ ${1} \\}
+endsnippet
+
 snippet lapprox "\approx 근사값(물결 두 개) ≈"
-	\approx
+\approx
+endsnippet
+
 snippet lsim "\sim ~"
-	\sim
+\sim
+endsnippet
+
 snippet lequiv "\equiv 동치, 합동 ≡"
-	\equiv
-# \therefore
-snippet ltherefore "\therefore 그러므로 ∴
-	\therefore
-# space
+\equiv
+endsnippet
+
+snippet ltherefore "\therefore 그러므로 ∴"
+\therefore
+endsnippet
+
 snippet lspace "\ 스페이스"
-	 \ 
-# thin space
+ \ 
+endsnippet
+
 snippet lspaceThin "\; 얇은 스페이스"
-	\;
-# wide space
+\;
+endsnippet
+
 snippet lspaceWide "\quad 넓은 스페이스"
-	\quad
-# more wide space
+\quad
+endsnippet
+
 snippet lspaceMoreWide "\qquad 더 넓은 스페이스"
-	\qquad
-# backslash
+\qquad
+endsnippet
+
 snippet lbackslash "\backslash 백슬래시 \"
-	\backslash
+\backslash
+endsnippet
+
 # html entity -----------------------------------------------------------------
 snippet hbar "&#124; 파이프 |"
-	&#124;
-# vim:ft=snippets:
+&#124;
+endsnippet
+
+snippet hlt "&lt; <"
+&lt;
+endsnippet
+
+snippet hgt "&gt; >"
+&gt;
+endsnippet
+
+snippet today
+Today is the `date +%d.%m.%y`.
+endsnippet
+
+snippet title "Title transformation"
+${1:a text}
+${1/\w+\s*/\u$0/}
+endsnippet
 

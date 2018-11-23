@@ -6,6 +6,7 @@ if !exists('g:include_set_ultisnips_loaded')
     let g:UltiSnipsJumpForwardTrigger="<Tab>"
     let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsSnippetDirectories = ['~/.vim/snippets']
+    " let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
+    let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 
 endif
