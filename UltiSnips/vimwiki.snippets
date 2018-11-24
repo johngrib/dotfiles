@@ -231,3 +231,14 @@ ${1:a text}
 ${1/\w+\s*/\u$0/}
 endsnippet
 
+snippet wow
+${1:Text}`!p snip.rv = (30-2*len(t[1]))*' '+t[1].upper()`
+endsnippet
+
+snippet "([^\s].*)\.return" "Return (postfix)" r
+return `!p snip.rv = match.group(1)`$0
+endsnippet
+
+snippet indent
+Indent is: `!v indent(".")`.
+endsnippet
