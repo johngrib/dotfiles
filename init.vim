@@ -117,10 +117,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     if has("nvim")
         " set termguicolors
-        " set clipboard^=unnamedplus
-    else
-        " set clipboard^=unnamed,unnamedplus
-        " set clipboard^=unnamedplus
     endif
 
     if has("gui_macvim")
@@ -217,7 +213,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let maplocalleader = "\\"
     " nnoremap <Leader>e :browse oldfiles<CR>
 
-    nnoremap <C-j> :
+    nnoremap <CR> :
+    " nnoremap / /\v
     nnoremap k gk
     nnoremap gk k
     nnoremap j gj
@@ -244,8 +241,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " 버퍼 관리
     " nnoremap <M-T> :enew<CR>       " 새로운 버퍼를 연다
-    nnoremap <C-pagedown> :bnext!<CR>
-    nnoremap <C-pageup> :bprevious!<CR>
+    nnoremap <silent> <C-j> :bnext!<CR>
+    nnoremap <silent> <C-k> :bprevious!<CR>
     nnoremap <M-Q> :bp <BAR> bd #<CR> " 현재 버퍼를 닫고 이전 버퍼로 이동
 
     inoremap <C-e> <C-O>$
@@ -337,7 +334,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " let g:ale_fixers = { 'javascript': ['eslint'] }
     " let g:ale_javascript_eslint_use_global = 1
-    let g:ale_lint_on_save = 0
+    let g:ale_lint_on_save = 1
     let g:ale_lint_on_text_changed = 0
 
     " rainbow
