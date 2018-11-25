@@ -144,6 +144,14 @@ snippet lTheta "\Theta 쎄타 Θ"
 \Theta
 endsnippet
 
+snippet lDelta "\Delta 델타 Δ"
+\Delta
+endsnippet
+
+snippet ldelta "\delta 델타 δ"
+\delta
+endsnippet
+
 snippet lLambda "\Lambda 람다 Λ"
 \Lambda
 endsnippet
@@ -152,8 +160,12 @@ snippet llambda "\lambda 람다 λ"
 \lambda
 endsnippet
 
-snippet lSigma "\Sigma 시그마 "
+snippet lSigma "\Sigma 시그마 Σ"
 \Sigma
+endsnippet
+
+snippet lsigma "\sigma 시그마 σ"
+\sigma
 endsnippet
 
 snippet lOmega "\Omega 오메가 Ω"
@@ -235,8 +247,8 @@ snippet wow
 ${1:Text}`!p snip.rv = (30-2*len(t[1]))*' '+t[1].upper()`
 endsnippet
 
-snippet "([^\s].*)\.return" "Return (postfix)" r
-return `!p snip.rv = match.group(1)`$0
+snippet <
+<${1:tag}>`!p snip.rv = '</'+t[1]+'>'`$0
 endsnippet
 
 snippet indent
