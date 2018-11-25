@@ -241,9 +241,11 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " 버퍼 관리
     " nnoremap <M-T> :enew<CR>       " 새로운 버퍼를 연다
-    nnoremap <silent> <C-j> :bnext!<CR>
-    nnoremap <silent> <C-k> :bprevious!<CR>
-    nnoremap <M-Q> :bp <BAR> bd #<CR> " 현재 버퍼를 닫고 이전 버퍼로 이동
+    nnoremap <silent> <F8>        :bnext!<CR>
+    nnoremap <silent> <F7>        :bprevious!<CR>
+    nnoremap <silent> <F12>d      :bd!<CR>
+    nnoremap <silent> <F12>q      :bp <BAR> bd #<CR> " 현재 버퍼를 닫고 이전 버퍼로 이동
+    nnoremap <silent> <F12><F12>  :Buffers<CR>
 
     inoremap <C-e> <C-O>$
     inoremap <C-l> <right>
