@@ -30,12 +30,36 @@ ${3} & = ${4} \\\\
 \end{align}
 endsnippet
 
+snippet lssbeginArray "\begin{array}{rl}"
+$$
+\begin{array}{rlc}
+${1} & ${2} & ${3} \\\\
+${4} & ${5} & ${6} \\\\
+\end{array}
+$$
+endsnippet
+
+snippet lbeginArray "\begin{array}{rl}"
+\begin{array}{rl}
+${1} & ${2} & ${3} \\\\
+${4} & ${5} & ${6} \\\\
+\end{array}
+endsnippet
+
+snippet lbox "\boxed{ ... }"
+\boxed{${1}}$0
+endsnippet
+
 snippet larrow_Left "\Leftarrow ⇐"
 \Leftarrow
 endsnippet
 
 snippet larrow_left "\leftarrow ←"
 \leftarrow
+endsnippet
+
+snippet larrow_long_left "\longleftarrow ←-"
+\longleftarrow
 endsnippet
 
 snippet larrow_Right "\Rightarrow ⇒"
@@ -46,6 +70,14 @@ snippet larrow_right "\rightarrow →"
 \rightarrow
 endsnippet
 
+snippet larrow_long_right "\longrightarrow -→"
+\longrightarrow
+endsnippet
+
+snippet larrow_under_right "\underrightarrow →"
+\underrightarrow{${1}}$0
+endsnippet
+
 snippet larrow_Up "\Uparrow ⇑"
 \Uparrow
 endsnippet
@@ -54,28 +86,24 @@ snippet larrow_up "\uparrow ↑"
 \uparrow
 endsnippet
 
+snippet larrow_down "\downarrow ↓"
+\downarrow
+endsnippet
+
 snippet loverset "\overset 글자 위로 올리기"
 \overset{${1}}{${2}}
 endsnippet
 
-# bar
 snippet lbar "\bar{A} 문자 위에 막대기(작은 사이즈)"
 \bar{${1}}
 endsnippet
 
-# overline
-snippet loverline "\overline{A} 문자 위에 막대기(중간 사이즈)"
+snippet loverline "\overline{A} 문자 위에 막대기(길이 자동 조절)"
 \overline{${1}}
 endsnippet
 
-# overline
 snippet loverline2 "\overline{\overline{A}} 2중 overline"
 \overline{\overline{${1}}}
-endsnippet
-
-# widebar
-snippet lwidebar "\widebar{A} 문자 위에 막대기(긴 사이즈)"
-\widebar{${1}}
 endsnippet
 
 # 집합 -------------------------------------------------------------------------
@@ -137,6 +165,10 @@ endsnippet
 
 snippet lsumm "\sum_{}^{} 합 Σ"
 \sum_{${1}}^{${2}}
+endsnippet
+
+snippet lpipe "\vert 파이프 |"
+\vert
 endsnippet
 
 # 그리스 문자 ------------------------------------------------------------------
@@ -232,6 +264,10 @@ endsnippet
 
 snippet hgt "&gt; >"
 &gt;
+endsnippet
+
+snippet tbr "<br/>"
+<br/>
 endsnippet
 
 snippet today
