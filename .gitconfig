@@ -49,7 +49,7 @@
     deletebranch = "!git branch -d $(git branch | grep -v '^\\*\\|\\<master$' | fzf -m)"
     alias = "!git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/'"
     diffs = "!git diff $(git status -s | egrep '^\\s*M' | awk '{print $2}' | fzf -m)"
-    sync = "!f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
+    sync = "!_f_s() { git fetch $1 && git reset --hard $1/$(git b0); }; _f_s"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
     editor = /usr/local/bin/vim
