@@ -16,16 +16,16 @@
     s = status -s
     co = checkout
     ci = commit
-    bb = "! # Branch Tools. Type 'git bb help' ; \n\
-        f() { \n\
+    bb = "! # Branch tools. Type 'git bb help' ; \n\
+        __f_bb() { \n\
             if [ $# = 0 ]; then \
                 git checkout $(git bb list | fzf); \
             elif [ $1 = 'help' ]; then \
                 echo 'git bb           : Select and checkout branch'; \
+                echo 'git bb c, clean  : Clean all merged branches'; \
                 echo 'git bb d, D      : Delete seleted branches(D: force)'; \
-                echo 'git bb clean,  c : Clean all merged branches'; \
-                echo 'git bb list,   l : List branches excluding *, master'; \
-                echo 'git bb merged, m : List merged branches excluding *, master'; \
+                echo 'git bb l, list   : List branches excluding *, master'; \
+                echo 'git bb m, merged : List merged branches excluding *, master'; \
             elif [ $1 = 'd' -o $1 = 'D' ]; then \
                 git branch -$1 $(git bb list | fzf -m); \
             elif [ $1 = 'clean' -o $1 = 'c' ]; then \
@@ -37,7 +37,7 @@
             else \
                 git bb help; \
             fi; \
-        }; f"
+        }; __f_bb"
     b0 = "!git branch | awk '/^\\*/{print $2}'"
     back = "!git co -b backup-`git b0` && git co -"
     assume   = update-index --assume-unchanged
