@@ -17,7 +17,7 @@
     co = checkout
     ci = commit
     bb = "! # Branch tools. Type 'git bb help' ; \n\
-        __f_bb() { \n\
+        f() { \n\
             if [ $# = 0 ]; then \
                 git checkout $(git bb list | fzf); \
             elif [ $1 = 'help' ]; then \
@@ -37,7 +37,7 @@
             else \
                 git bb help; \
             fi; \
-        }; __f_bb"
+        }; f"
     b0 = "!git branch | awk '/^\\*/{print $2}'"
     back = "!git co -b backup-`git b0` && git co -"
     assume   = update-index --assume-unchanged
@@ -49,7 +49,7 @@
     deletebranch = "!git branch -d $(git branch | grep -v '^\\*\\|\\<master$' | fzf -m)"
     alias = "!git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/'"
     diffs = "!git diff $(git status -s | egrep '^\\s*M' | awk '{print $2}' | fzf -m)"
-    sync = "!_f_s() { git fetch $1 && git reset --hard $1/$(git b0); }; _f_s"
+    sync = "!f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
     editor = /usr/local/bin/vim
