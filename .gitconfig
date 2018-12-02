@@ -24,14 +24,14 @@
                 echo 'git bb           : Select and checkout branch'; \
                 echo 'git bb c, clean  : Clean all merged branches'; \
                 echo 'git bb d, D      : Delete seleted branches(D: force)'; \
-                echo 'git bb l, list   : List branches excluding *, master'; \
-                echo 'git bb m, merged : List merged branches excluding *, master'; \
+                echo 'git bb l, list   : List branches excluding the current branch'; \
+                echo 'git bb m, merged : List merged branches excluding the current and master branches'; \
             elif [ $1 = 'd' -o $1 = 'D' ]; then \
                 git branch -$1 $(git bb list | fzf -m); \
             elif [ $1 = 'clean' -o $1 = 'c' ]; then \
                 git branch -d $(git bb merged); \
             elif [ $1 = 'list' -o $1 = 'l' ]; then \
-                git branch | grep -v '^\\*\\|\\<master$'; \
+                git branch | grep -v '^\\*'; \
             elif [ $1 = 'merged' -o $1 = 'm' ]; then \
                 git branch --merged | grep -v '^\\*\\|\\<master$'; \
             else \
