@@ -19,7 +19,7 @@
     bb = "! # Branch tools. Type 'git bb help' ; \n\
         f() { \n\
             if [ $# = 0 ]; then \
-                git checkout $(git bb list | fzf); \
+                git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}'); \
             elif [ $1 = 'help' ]; then \
                 echo 'git bb           : Select and checkout branch'; \
                 echo 'git bb c, clean  : Clean all merged branches'; \
@@ -39,11 +39,11 @@
             fi; \
         }; f"
     b0 = "!git branch | awk '/^\\*/{print $2}'"
-    back = "!git co -b backup-`git b0` && git co -"
+    back = "!git branch backup-`git b0`"
     assume   = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
-    ch = "!git checkout $(git branch | fzf)"
+    ch = "!git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}')"
     a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
     cleanbranch = "!git branch -d $(git branch --merged | grep -v '^\\*\\|\\<master$')"
     deletebranch = "!git branch -d $(git branch | grep -v '^\\*\\|\\<master$' | fzf -m)"
