@@ -7,8 +7,7 @@ if !exists('g:include_set_easymotion_loaded')
     let g:EasyMotion_smartcase = 1
     map  <Leader>  <Plug>(easymotion-prefix)
     vmap <Leader>s <Plug>(easymotion-bd-f)
-    " nmap <Leader>s <Plug>(easymotion-overwin-f2)
-    nmap S <Plug>(easymotion-overwin-f)
+    nmap S <Plug>(easymotion-overwin-f2)
     nmap <Leader>l <Plug>(easymotion-lineforward)
     vmap <Leader>l <Plug>(easymotion-lineforward)
     nmap <Leader>j <Plug>(easymotion-j)
@@ -17,5 +16,6 @@ if !exists('g:include_set_easymotion_loaded')
     vmap <Leader>k <Plug>(easymotion-k)
     nmap <Leader>h <Plug>(easymotion-linebackward)
     vmap <Leader>h <Plug>(easymotion-linebackward)
-
+    nmap <Leader>a <Plug>(easymotion-jumptoanywhere)
+    vmap <Leader>a <Plug>(easymotion-jumptoanywhere)
 endif
