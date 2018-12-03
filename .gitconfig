@@ -38,30 +38,36 @@
             elif [ $1 = 'd' -o $1 = 'D' ]; then \
                 git branch -$1 $(git bb list | fzf -m); \
             elif [ $1 = 'clean' -o $1 = 'c' ]; then \
-                git branch -d $(git bb merged); \
-                for branch in $(git bb l) ; do \
-                    echo \"\nSearch :\\033[32m $branch \\033[0m\"; \
-                    if [ $(git l | grep $branch -c) -gt 0 ]; then \
-                        git l | egrep \"Merge.*$branch\" -C 2; \
-                        read -p \"Delete $branch? [y|n] \" -r; \
-                        REPLY=${REPLY:-"n"}; \
-                        if [ $REPLY = \"y\" ]; then \
-                            git branch -D $branch; \
-                            echo \"\\033[32m$branch \\033[0mhas been\\033[31m deleted\\033[0m.\n\"; \
-                        fi; \
-                    fi; \
-                done \n\
+                git bclean; \
             elif [ $1 = 'list' -o $1 = 'l' ]; then \
-                git branch | grep -v '^\\*'; \
+                git blist; \
             elif [ $1 = 'merged' -o $1 = 'm' ]; then \
-                git branch --merged | grep -v '^\\*\\|\\<master$'; \
+                git blist-merged; \
             elif [ $1 = 'select' -o $1 = 's' ]; then \
-                git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}'; \
+                git bselect; \
             else \
                 git bb help; \
             fi; \
         }; f"
     b0 = "!git branch | awk '/^\\*/{print $2}'"
+    bselect = "!git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}'"
+    blist = "!git branch | grep -v '^\\*'"
+    blist-merged = "!git branch --merged | grep -v '^\\*\\|\\<master$'"
+    bclean = "! # Search and delete merged branches;\n\
+        git branch -d $(git blist-merged); \
+        for branch in $(git blist) ; do \
+            echo \"\nSearch :\\033[32m $branch \\033[0m\"; \
+            if [ $(git l | grep $branch -c) -gt 0 ]; then \
+                git l | egrep \"Merge.*$branch\" -C 1; \
+                read -p \"Delete $branch? [y|n] \" -r; \
+                REPLY=${REPLY:-"n"}; \
+                if [ $REPLY = \"y\" ]; then \
+                    git branch -D $branch; \
+                    echo \"\\033[32m$branch \\033[0mhas been\\033[31m deleted\\033[0m.\n\"; \
+                fi; \
+            fi; \
+        done \n\
+    "
     back = "!git branch backup-`git b0`"
     assume   = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
