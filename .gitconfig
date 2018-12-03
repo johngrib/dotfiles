@@ -12,14 +12,23 @@
 
 [alias]
     l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-    lh = "!git l | head -n 25"
+    la = "! git l --all"
+    lh = "! # Show log | head \n\
+        f() { \
+            if [ $# = 0 ]; then \
+                git l | head -n 25; \
+            else \
+                git l | head -n $1; \
+            fi; \
+        }; f"
     s = status -s
     co = checkout
     ci = commit
+    ch = "!git bb $1"
     bb = "! # Branch tools. Type 'git bb help' ; \n\
         f() { \n\
             if [ $# = 0 ]; then \
-                git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}'); \
+                git checkout $(git bb select); \
             elif [ $1 = 'help' ]; then \
                 echo 'git bb           : Select and checkout branch'; \
                 echo 'git bb c, clean  : Clean all merged branches'; \
@@ -30,10 +39,24 @@
                 git branch -$1 $(git bb list | fzf -m); \
             elif [ $1 = 'clean' -o $1 = 'c' ]; then \
                 git branch -d $(git bb merged); \
+                for branch in $(git bb l) ; do \
+                    echo \"\nSearch :\\033[32m $branch \\033[0m\"; \
+                    if [ $(git l | grep $branch -c) -gt 0 ]; then \
+                        git l | egrep \"Merge.*$branch\" -C 2; \
+                        read -p \"Delete $branch? [y|n] \" -r; \
+                        REPLY=${REPLY:-"n"}; \
+                        if [ $REPLY = \"y\" ]; then \
+                            git branch -D $branch; \
+                            echo \"\\033[32m$branch \\033[0mhas been\\033[31m deleted\\033[0m.\n\"; \
+                        fi; \
+                    fi; \
+                done \n\
             elif [ $1 = 'list' -o $1 = 'l' ]; then \
                 git branch | grep -v '^\\*'; \
             elif [ $1 = 'merged' -o $1 = 'm' ]; then \
                 git branch --merged | grep -v '^\\*\\|\\<master$'; \
+            elif [ $1 = 'select' -o $1 = 's' ]; then \
+                git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}'; \
             else \
                 git bb help; \
             fi; \
@@ -43,7 +66,6 @@
     assume   = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
-    ch = "!git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}')"
     a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
     cleanbranch = "!git branch -d $(git branch --merged | grep -v '^\\*\\|\\<master$')"
     deletebranch = "!git branch -d $(git branch | grep -v '^\\*\\|\\<master$' | fzf -m)"
