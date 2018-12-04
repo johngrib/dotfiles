@@ -58,7 +58,7 @@
         for branch in $(git blist) ; do \
             echo \"\nSearch :\\033[32m $branch \\033[0m\"; \
             if [ $(git l | grep $branch -c) -gt 0 ]; then \
-                git l | egrep \"Merge.*$branch\" -C 1; \
+                git l | egrep \"Merge.*$branch\\s\" -C 1; \
                 read -p \"Delete $branch? [y|n] \" -r; \
                 REPLY=${REPLY:-"n"}; \
                 if [ $REPLY = \"y\" ]; then \
