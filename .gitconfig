@@ -53,7 +53,7 @@
     bselect = "! # select branch with preview; \n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
-            git branch | egrep -v '^\\*' | awk '{print $1}' | fzf --preview \"git l {} | head -n $_height\"; \
+            git branch | egrep -v '^\\*' | fzf --preview \"git l {1} | head -n $_height\"; \
         }; f"
     blist = "!git branch | grep -v '^\\*'"
     blist-merged = "!git branch --merged | grep -v '^\\*\\|\\<master$'"
