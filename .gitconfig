@@ -103,6 +103,8 @@
             echo '';\
         fi; \
     }; f"
+    stash-apply = "!git stash list | fzf --preview \"echo {} | cut -d: -f1 | xargs git stash show -p | pygmentize  \" | cut -d: -f1 | xargs git stash apply"
+    stash-pop= "!git stash list | fzf --preview \"echo {} | cut -d: -f1 | xargs git stash show -p | pygmentize \" | cut -d: -f1 | xargs git stash pop"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
     editor = /usr/local/bin/vim
