@@ -50,7 +50,11 @@
             fi; \
         }; f"
     b0 = "!git branch | awk '/^\\*/{print $2}'"
-    bselect = "!git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}'"
+    bselect = "! # select branch with preview; \n\
+        f() { \
+            _height=$(stty size | awk '{print $1}');\
+            git branch | egrep -v '^\\*' | awk '{print $1}' | fzf --preview \"git l {} | head -n $_height\"; \
+        }; f"
     blist = "!git branch | grep -v '^\\*'"
     blist-merged = "!git branch --merged | grep -v '^\\*\\|\\<master$'"
     bclean = "! # Search and delete merged branches;\n\
