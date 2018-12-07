@@ -80,7 +80,13 @@
     a = "! # add files with fzf preview diffs; \n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
-            git diff-info | fzf -m --header \"$(git diff --shortstat)\" --preview \"git diff {2} | head -n $_height | pygmentize\" | awk '{print $2}' | xargs git add; \
+            git diff-info \
+            | fzf -m --header \"$(git diff --shortstat)\" --preview \
+                \"if [[ {1} == '??' ]]; then cat {2}; else git diff {2}; fi \
+                | head -n $_height \
+                | pygmentize\" \
+            | awk '{print $2}' \
+            | xargs git add; \
         }; f"
     diff-info = "! # get diff info;\n\
         fileA=/tmp/git-s-$(uuidgen); \
