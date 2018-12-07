@@ -80,21 +80,13 @@
     a = "! # add files with fzf preview diffs; \n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
-            git diff-info-no-color | fzf -m --header \"$(git diff --stat | tail -1)\" --preview \"git diff {2} | head -n $_height | pygmentize\" | awk '{print $2}' | xargs git add; \
+            git diff-info | fzf -m --header \"$(git diff --stat | tail -1)\" --preview \"git diff {2} | head -n $_height | pygmentize\" | awk '{print $2}' | xargs git add; \
         }; f"
     diff-info = "! # get diff info;\n\
         files=$(git s | awk '{print $2}'); \
         for file in $files; do \
-            name=$(git s $file | awk '{print \"\\033[31m\"$1\"\\033[0m\", $2}'); \
-            count=$(git diff --stat $file | tail -1 | sed 's/,//g; s/^.*changed//; s/ insertions*//; s/ deletions*//' | awk '{print \"\\033[32m\"$0\"\\033[0m\"}'); \
-            echo $name $count; \
-        done; \
-    "
-    diff-info-no-color = "! # get diff info;\n\
-        files=$(git s | awk '{print $2}'); \
-        for file in $files; do \
             name=$(git s $file | awk '{print $1, $2}'); \
-            count=$(git diff --stat $file | tail -1 | sed 's/,//g; s/^.*changed//; s/ insertions*//; s/ deletions*//' | awk '{print $0}'); \
+            count=$(git diff --stat $file | tail -1 | sed 's/[a-z ]//g' | cut -d',' -f2 -f3); \
             echo $name $count; \
         done; \
     "
