@@ -4,7 +4,7 @@
 
 PATH=".:/usr/local/bin:$PATH"
 export JAVA_HOME=$(/usr/libexec/java_home)
-export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 export TERM=xterm-256color
@@ -73,13 +73,8 @@ function google() {
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-function share_history {
-    history -a
-    history -c
-    history -r
-}
-PROMPT_COMMAND="share_history; $PROMPT_COMMAND"
-shopt -u histappend
+# PROMPT_COMMAND="share_history; $PROMPT_COMMAND"
+shopt -s histappend
 
 [ -f ~/.local/bin/fav-dir.sh ] && source ~/.local/bin/fav-dir.sh
 
