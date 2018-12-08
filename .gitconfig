@@ -110,8 +110,6 @@
                 | pygmentize\" \
             | awk '{print $3}'; \
         }; f"
-    cleanbranch = "!git branch -d $(git branch --merged | grep -v '^\\*\\|\\<master$')"
-    deletebranch = "!git branch -d $(git branch | grep -v '^\\*\\|\\<master$' | fzf -m)"
     alias = "!git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/'"
     diffs = "!git diff $(git status -s | egrep '^\\s*M' | awk '{print $2}' | fzf -m)"
     sync = "!f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
