@@ -9,6 +9,7 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 export TERM=xterm-256color
 export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
+export FZF_DEFAULT_OPTS="--bind=ctrl-space:print-query --cycle"
 export MANPAGER=vimpager
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;33m'
