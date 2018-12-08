@@ -82,13 +82,13 @@
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
     add-select = "!git add $(git status -s | fzf -m | awk '{print $2}')"
     a = "!git diff-select | xargs git add"
+    unstage = "!git diff-unstage-select | xargs git reset HEAD"
     diff-select = "! # add files with fzf preview diffs; \n\
         f() { \
-            _height=$(stty size | awk '{print $1}');\
             git diff-info \
+            | egrep -v '[^?] *STAGED ' \
             | fzf -m --header \"$(git diff --shortstat)\" --preview \
                 \"if [[ {1} == '??' ]]; then cat {3}; else git diff {3}; fi \
-                | head -n $_height \
                 | pygmentize\" \
             | awk '{print $3}'; \
         }; f"
@@ -97,9 +97,18 @@
         fileB=/tmp/git-diff-$(uuidgen); \
         git s | awk '{print $2,$1}' > $fileA; \
         git diff --numstat | awk '{print $3,$1,$2}' > $fileB; \
-        join -t' ' -a 1 $fileA $fileB | awk '{print $2, \"(+\"$3 \",-\"$4\")\", $1}' | sed 's/(+,-)/./' | column -t -s' ' ; \
+        join -t' ' -a 1 $fileA $fileB | awk '{print $2, \"(+\"$3 \",-\"$4\")\", $1}' | sed 's/(+,-)/./; s/^\\([^?]\\) *\\./\\1 STAGED/' | column -t -s' ' ; \
         rm -f $fileA $fileB; \
     "
+    diff-unstage-select = "! # add files with fzf preview diffs; \n\
+        f() { \
+            git diff-info \
+            | egrep '[^?] *STAGED ' \
+            | fzf -m --header \"$(git diff --shortstat)\" --preview \
+                \"if [[ {1} == '??' ]]; then cat {3}; else git diff --cached {3}; fi \
+                | pygmentize\" \
+            | awk '{print $3}'; \
+        }; f"
     cleanbranch = "!git branch -d $(git branch --merged | grep -v '^\\*\\|\\<master$')"
     deletebranch = "!git branch -d $(git branch | grep -v '^\\*\\|\\<master$' | fzf -m)"
     alias = "!git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/'"
