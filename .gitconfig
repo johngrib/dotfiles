@@ -28,7 +28,7 @@
     bb = "! # Branch tools. Type 'git bb help' ; \n\
         f() { \n\
             if [ $# = 0 ]; then \
-                git checkout $(git bb select); \
+                git branch-select | awk '{print $2}' | xargs git checkout; \
             elif [ $1 = 'help' ]; then \
                 echo 'git bb           : Select and checkout branch'; \
                 echo 'git bb c, clean  : Clean all merged branches'; \
@@ -53,9 +53,13 @@
     branch-select = "! # select branch with preview; \n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
-            git branch | egrep -v '^\\*' | fzf --preview \"git l {1} | head -n $_height\"; \
+            git branch-list-detail | fzf --preview \"git l {2} | head -n $_height\"; \
         }; f"
     branch-list = "!git branch | grep -v '^\\*'"
+    branch-list-detail = "! # branch list with commit date ;\n\
+        git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
+        | column -ts'|' \
+        | sed 's/^ /./'"
     branch-list-merged = "!git branch --merged | grep -v '^\\*\\|\\<master$'"
     branch-clean = "! # Search and delete merged branches;\n\
         git branch -d $(git branch-list-merged); \
