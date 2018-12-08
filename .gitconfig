@@ -132,8 +132,17 @@
             echo '';\
         fi; \
     }; f"
-    stash-apply = "!git stash list | fzf --preview \"echo {} | cut -d: -f1 | xargs git stash show -p | pygmentize  \" | cut -d: -f1 | xargs git stash apply"
-    stash-pop= "!git stash list | fzf --preview \"echo {} | cut -d: -f1 | xargs git stash show -p | pygmentize \" | cut -d: -f1 | xargs git stash pop"
+    stash-op = "!f() { git stash-select | xargs git stash $1; }; f"
+    stash-apply = "!git stash-op apply"
+    stash-pop= "!git stash-op pop"
+    stash-drop= "! # drop selected stash items; \n\
+        for sid in $(git stash-select -m) ; do \
+            git stash drop $sid; \
+        done;"
+    stash-select = "!f() { \
+        git stash-list | fzf $1 --preview \"git stash show -p {1} | pygmentize\" | cut -d' ' -f1; \
+    }; f"
+    stash-list = "!git stash list | sed 's/:/ /'"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
     editor = /usr/local/bin/vim
