@@ -77,9 +77,7 @@
     unassume = update-index --no-assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
     add-select = "!git add $(git status -s | fzf -m | awk '{print $2}')"
-    a = "! # add files with fzf preview diffs; \n\
-        git diff-select | xargs git add; \
-        "
+    a = "!git diff-select | xargs git add"
     diff-select = "! # add files with fzf preview diffs; \n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
