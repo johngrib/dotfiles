@@ -12,8 +12,8 @@
 
 [alias]
     l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-    la = "! git l --all"
-    lh = "! # Show log | head \n\
+    la = "!git l --all"
+    lh = "!# Show log | head \n\
         f() { \
             if [ $# = 0 ]; then \
                 git l | head -n 25; \
@@ -25,7 +25,7 @@
     co = checkout
     ci = commit
     ch = "!git bb $1"
-    bb = "! # Branch tools. Type 'git bb help' ; \n\
+    bb = "!# Branch tools. Type 'git bb help' ; \n\
         f() { \n\
             if [ $# = 0 ]; then \
                 git branch-select | awk '{print $2}' | xargs git checkout; \
@@ -51,18 +51,18 @@
         }; f"
     b0 = "!git branch | awk '/^\\*/{print $2}'"
     b-s = "!git branch-select"
-    branch-select = "! # select branch with preview; \n\
+    branch-select = "!# select branch with preview; \n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
             git branch-list-detail | fzf --preview \"git l {2} | head -n $_height\"; \
         }; f"
     branch-list = "!git branch | grep -v '^\\*'"
-    branch-list-detail = "! # branch list with commit date ;\n\
+    branch-list-detail = "!# branch list with commit date ;\n\
         git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
         | column -ts'|' \
         | sed 's/^ /./'"
     branch-list-merged = "!git branch --merged | grep -v '^\\*\\|\\<master$'"
-    branch-clean = "! # Search and delete merged branches;\n\
+    branch-clean = "!# Search and delete merged branches;\n\
         git branch -d $(git branch-list-merged); \
         for branch in $(git branch-list) ; do \
             echo \"\nSearch :\\033[32m $branch \\033[0m\"; \
@@ -85,7 +85,7 @@
     a-c = "!# add, commit; \n git a; git commit"
     a = "!git diff-select | xargs git add"
     unstage = "!git diff-unstage-select | xargs git reset HEAD"
-    diff-select = "! # add files with fzf preview diffs; \n\
+    diff-select = "!# add files with fzf preview diffs; \n\
         f() { \
             git diff-info \
             | egrep -v '[^?] *STAGED ' \
@@ -94,7 +94,7 @@
                 | pygmentize\" \
             | awk '{print $3}'; \
         }; f"
-    diff-info = "! # get diff info;\n\
+    diff-info = "!# get diff info;\n\
         fileA=/tmp/git-s-$(uuidgen); \
         fileB=/tmp/git-diff-$(uuidgen); \
         git s | awk '{print $2,$1}' > $fileA; \
@@ -102,7 +102,7 @@
         join -t' ' -a 1 $fileA $fileB | awk '{print $2, \"(+\"$3 \",-\"$4\")\", $1}' | sed 's/(+,-)/./; s/^\\([^?]\\) *\\./\\1 STAGED/' | column -t -s' ' ; \
         rm -f $fileA $fileB; \
     "
-    diff-unstage-select = "! # add files with fzf preview diffs; \n\
+    diff-unstage-select = "!# add files with fzf preview diffs; \n\
         f() { \
             git diff-info \
             | egrep '[^?] *STAGED ' \
@@ -114,7 +114,7 @@
     alias = "!git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/'"
     diffs = "!git diff $(git status -s | egrep '^\\s*M' | awk '{print $2}' | fzf -m)"
     sync = "!f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
-    alias-tools-install-guide = "! # install guide : Pygments, fzf;\n\
+    alias-tools-install-guide = "!# install guide : Pygments, fzf;\n\
     f() { \
         if [ $(which pygmentize | wc -l) -lt 1 ]; then \
             echo 'Not found : Pygments(pygmentize)'; \
@@ -134,7 +134,7 @@
     stash-apply = "!# Select and apply a stash item;\n\
         git stash-op apply"
     s-a = "!git stash-apply"
-    stash-drop= "! # Select and drop stash items;\n\
+    stash-drop= "!# Select and drop stash items;\n\
         for sid in $(git stash-select -m) ; do \
             git stash drop $sid; \
         done;"
