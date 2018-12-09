@@ -131,20 +131,32 @@
             echo '';\
         fi; \
     }; f"
+    stash-apply = "!# Select and apply a stash item;\n\
+        git stash-op apply"
     s-a = "!git stash-apply"
-    s-p = "!git stash-pop"
-    s-d = "!git stash-drop"
-    stash-op = "!f() { git stash-select | xargs git stash $1; }; f"
-    stash-apply = "!git stash-op apply"
-    stash-pop= "!git stash-op pop"
-    stash-drop= "! # drop selected stash items; \n\
+    stash-drop= "! # Select and drop stash items;\n\
         for sid in $(git stash-select -m) ; do \
             git stash drop $sid; \
         done;"
-    stash-select = "!f() { \
-        git stash-list | fzf $1 --preview \"git stash show -p {1} | pygmentize\" | cut -d' ' -f1; \
-    }; f"
-    stash-list = "!git stash list | sed 's/:/ /'"
+    s-d = "!git stash-drop"
+    stash-list = "!# List stash items;\n\
+        git stash list --pretty=format:\"%C(red)%gd%C(reset) %C(green)(%cr) %C(reset)%s\""
+    s-l = "!git stash-list"
+    stash-pop= "!# Select and pop a stash item;\n\
+        git stash-op pop"
+    s-p = "!git stash-pop"
+    stash-save = "!# Save changes into a stash item;\n \
+        git diff-info; \
+        read -p \"save message: \" msg; \
+        git stash save \"$msg\""
+    s-s = "!git stash-save"
+    stash-op = "!f() { git stash-select | xargs git stash $1; }; f"
+    stash-select = "!# Select stash item(s);\n\
+        f() { \
+            git stash-list \
+            | fzf --ansi $1 --preview \"git stash show -p {1} | pygmentize\" \
+            | cut -d' ' -f1; \
+        }; f"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
     editor = /usr/local/bin/vim
