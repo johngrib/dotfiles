@@ -126,7 +126,7 @@
                 | pygmentize\" \
             | awk '{print $3}'; \
         }; f"
-    unstage = "!# Select staged files and Unstage them;\n\
+    unstage = "!# Select staged files and Unstage them.;\n\
         git diff-unselect | xargs git reset HEAD"
     alias-stash = "!#----------------------------------------------------------;\n\
         git alias | grep stash"
