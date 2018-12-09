@@ -11,9 +11,19 @@
 ;     path = ~/dotfiles/.gitconfig
 
 [alias]
+    alias-basic = "!#----------------------------------------------------------;\n\
+        git alias | head -7"
+    ci = commit
+    co = checkout
+    s = status -s
+    assume   = update-index --assume-unchanged
+    assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+    unassume = update-index --no-assume-unchanged
+
+    alias-log = "!#----------------------------------------------------------;\n\
+        git alias | grep 'log'"
     l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-    la = "!git l --all"
-    lh = "!# Show log | head \n\
+    lh = "!# Show log graph | head \n\
         f() { \
             if [ $# = 0 ]; then \
                 git l | head -n 25; \
@@ -21,14 +31,18 @@
                 git l | head -n $1; \
             fi; \
         }; f"
-    s = status -s
-    co = checkout
-    ci = commit
-    ch = "!git bb $1"
-    bb = "!# Branch tools. Type 'git bb help' ; \n\
+
+    alias-branch = "!#----------------------------------------------------------;\n\
+        git alias | egrep '[bB]ranch'"
+    b0 = "!# Print current branch.;\n\
+        git branch | awk '/^\\*/{print $2}'"
+    back = "!# Back up current branch.;\n\
+        echo created new branch: backup-`git b0`;\
+        git branch backup-`git b0`"
+    bb = "!# Branch tools. Type 'git bb help'.;\n\
         f() { \n\
             if [ $# = 0 ]; then \
-                git branch-select | awk '{print $2}' | xargs git checkout; \
+                git branch-select | xargs git checkout; \
             elif [ $1 = 'help' ]; then \
                 echo 'git bb           : Select and checkout branch'; \
                 echo 'git bb c, clean  : Clean all merged branches'; \
@@ -36,36 +50,22 @@
                 echo 'git bb l, list   : List branches excluding the current branch'; \
                 echo 'git bb m, merged : List merged branches excluding the current and master branches'; \
             elif [ $1 = 'd' -o $1 = 'D' ]; then \
-                git branch -$1 $(git bb list | fzf -m); \
+                git branch -$1 $(git bb list | fzf -m | awk '{print $2}'); \
             elif [ $1 = 'clean' -o $1 = 'c' ]; then \
                 git branch-clean; \
             elif [ $1 = 'list' -o $1 = 'l' ]; then \
                 git branch-list; \
             elif [ $1 = 'merged' -o $1 = 'm' ]; then \
-                git branch-list-merged; \
+                git branch-merged; \
             elif [ $1 = 'select' -o $1 = 's' ]; then \
                 git branch-select; \
             else \
                 git bb help; \
             fi; \
         }; f"
-    b0 = "!git branch | awk '/^\\*/{print $2}'"
-    b-s = "!git branch-select"
-    branch-select = "!# select branch with preview; \n\
-        f() { \
-            _height=$(stty size | awk '{print $1}');\
-            git branch-list-detail | fzf --preview \"git l {2} | head -n $_height\"; \
-        }; f"
-    branch-list = "!git branch | grep -v '^\\*'"
-    branch-list-detail = "!# branch list with commit date ;\n\
-        git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
-        | column -ts'|' \
-        | sed 's/^ /./'"
-    branch-list-merged = "!git branch --merged | grep -v '^\\*\\|\\<master$'"
-    branch-clean = "!# Search and delete merged branches;\n\
-        git branch -d $(git branch-list-merged); \
-        for branch in $(git branch-list) ; do \
-            echo \"\nSearch :\\033[32m $branch \\033[0m\"; \
+    branch-clean = "!# Search and delete merged branches.;\n\
+        git branch -d $(git branch-merged) 2> /dev/null; \
+        for branch in $(git branch-list | awk '{print $2}' | grep -v '^master$') ; do \
             if [ $(git l | grep $branch -c) -gt 0 ]; then \
                 git l | egrep \"Merge.*$branch\\s\" -C 1; \
                 read -p \"Delete $branch? [y|n] \" -r; \
@@ -75,17 +75,40 @@
                     echo \"\\033[32m$branch \\033[0mhas been\\033[31m deleted\\033[0m.\n\"; \
                 fi; \
             fi; \
-        done \n\
+        done"
+    b-c = "!git branch-clean"
+    branch-list = "!# List the branches.;\n\
+        git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
+        | column -ts'|' \
+        | sed 's/^ /./'"
+    b-l = "!git branch-list"
+    branch-merged = "!# List the merged branches.;\n\
+        git branch --merged | grep -v '^\\*\\|\\<master$'"
+    branch-select = "!# Select a branch.;\n\
+        f() { \
+            _height=$(stty size | awk '{print $1}');\
+            git branch-list | fzf --preview \"git l {2} | head -n $_height\" | awk '{print $2}'; \
+        }; f"
+    b-s = "!git branch-select"
+    ch = "!# Branch tools. Same with bb.;\n\
+        git bb $1"
+    sync = "!# Sync with a branch with the same name in the remote repo.;\n\
+        f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
+    alias-stage = "!#----------------------------------------------------------;\n\
+        git alias | egrep '(add|diff|stage)' -i"
+    a = "!# Select files and Add them.;\n\
+        git diff-select | xargs git add"
+    a-c = "!# Add, Commit.;\n\
+        git a; git commit"
+    diff-info = "!# Print diff report.;\n\
+        fileA=/tmp/git-s-$(uuidgen); \
+        fileB=/tmp/git-diff-$(uuidgen); \
+        git s | awk '{print $2,$1}' > $fileA; \
+        git diff --numstat | awk '{print $3,$1,$2}' > $fileB; \
+        join -t' ' -a 1 $fileA $fileB | awk '{print $2, \"(+\"$3 \",-\"$4\")\", $1}' | sed 's/(+,-)/./; s/^\\([^?]\\) *\\./\\1 STAGED/' | column -t -s' ' ; \
+        rm -f $fileA $fileB; \
     "
-    back = "!git branch backup-`git b0`"
-    assume   = update-index --assume-unchanged
-    unassume = update-index --no-assume-unchanged
-    assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
-    add-select = "!git add $(git status -s | fzf -m | awk '{print $2}')"
-    a-c = "!# add, commit; \n git a; git commit"
-    a = "!git diff-select | xargs git add"
-    unstage = "!git diff-unstage-select | xargs git reset HEAD"
-    diff-select = "!# add files with fzf preview diffs; \n\
+    diff-select = "!# Select changed files to add them.;\n\
         f() { \
             git diff-info \
             | egrep -v '[^?] *STAGED ' \
@@ -94,15 +117,7 @@
                 | pygmentize\" \
             | awk '{print $3}'; \
         }; f"
-    diff-info = "!# get diff info;\n\
-        fileA=/tmp/git-s-$(uuidgen); \
-        fileB=/tmp/git-diff-$(uuidgen); \
-        git s | awk '{print $2,$1}' > $fileA; \
-        git diff --numstat | awk '{print $3,$1,$2}' > $fileB; \
-        join -t' ' -a 1 $fileA $fileB | awk '{print $2, \"(+\"$3 \",-\"$4\")\", $1}' | sed 's/(+,-)/./; s/^\\([^?]\\) *\\./\\1 STAGED/' | column -t -s' ' ; \
-        rm -f $fileA $fileB; \
-    "
-    diff-unstage-select = "!# add files with fzf preview diffs; \n\
+    diff-unselect = "!# Select staged files to unstage them.;\n\
         f() { \
             git diff-info \
             | egrep '[^?] *STAGED ' \
@@ -111,10 +126,41 @@
                 | pygmentize\" \
             | awk '{print $3}'; \
         }; f"
-    alias = "!git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/'"
-    diffs = "!git diff $(git status -s | egrep '^\\s*M' | awk '{print $2}' | fzf -m)"
-    sync = "!f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
-    alias-doctor = "!# Check the dependency tools;\n\
+    unstage = "!# Select staged files and Unstage them;\n\
+        git diff-unselect | xargs git reset HEAD"
+    alias-stash = "!#----------------------------------------------------------;\n\
+        git alias | grep stash"
+    stash-apply = "!# Select a stash item and Apply it.;\n\
+        git stash-op apply"
+    s-a = "!git stash-apply"
+    stash-drop= "!# Select the stash items and Drop them.;\n\
+        for sid in $(git stash-select -m) ; do \
+            git stash drop $sid; \
+        done;"
+    s-d = "!git stash-drop"
+    stash-list = "!# List stash items.;\n\
+        git stash list --pretty=format:\"%C(red)%gd%C(reset) %C(green)(%cr) %C(reset)%s\""
+    s-l = "!git stash-list"
+    stash-pop= "!# Select a stash item and Pop it.;\n\
+        git stash-op pop"
+    s-p = "!git stash-pop"
+    stash-save = "!# Save changes into the stash stack.;\n \
+        git diff-info; \
+        read -p \"save message: \" msg; \
+        git stash save \"$msg\""
+    s-s = "!git stash-save"
+    stash-select = "!# Select stash item(s).;\n\
+        f() { \
+            git stash-list \
+            | fzf --ansi $1 --preview \"git stash show -p {1} | pygmentize\" \
+            | cut -d' ' -f1; \
+        }; f"
+    stash-op = "!#A private stash tool.;\nf() { git stash-select | xargs git stash $1; }; f"
+    alias-alias = "!#----------------------------------------------------------;\n\
+        git alias | grep alias"
+    alias = "!# Prints all aliases.;\n\
+        git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/' | column -t -s'=' | sed 's/!#* *//; s/;$//' | cut -c1-85"
+    alias-doctor = "!# Check the dependency tools.;\n\
     f() { \
         if [ $(which pygmentize | wc -l) -lt 1 ]; then \
             echo 'Not found : Pygments(pygmentize)'; \
@@ -131,32 +177,6 @@
             echo '';\
         fi; \
     }; f"
-    stash-apply = "!# Select and apply a stash item;\n\
-        git stash-op apply"
-    s-a = "!git stash-apply"
-    stash-drop= "!# Select and drop stash items;\n\
-        for sid in $(git stash-select -m) ; do \
-            git stash drop $sid; \
-        done;"
-    s-d = "!git stash-drop"
-    stash-list = "!# List stash items;\n\
-        git stash list --pretty=format:\"%C(red)%gd%C(reset) %C(green)(%cr) %C(reset)%s\""
-    s-l = "!git stash-list"
-    stash-pop= "!# Select and pop a stash item;\n\
-        git stash-op pop"
-    s-p = "!git stash-pop"
-    stash-save = "!# Save changes into a stash item;\n \
-        git diff-info; \
-        read -p \"save message: \" msg; \
-        git stash save \"$msg\""
-    s-s = "!git stash-save"
-    stash-op = "!f() { git stash-select | xargs git stash $1; }; f"
-    stash-select = "!# Select stash item(s);\n\
-        f() { \
-            git stash-list \
-            | fzf --ansi $1 --preview \"git stash show -p {1} | pygmentize\" \
-            | cut -d' ' -f1; \
-        }; f"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
     editor = /usr/local/bin/vim
