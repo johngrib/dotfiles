@@ -21,7 +21,16 @@
     unassume = update-index --no-assume-unchanged
 
     alias-log = "!#----------------------------------------------------------;\n\
-        git alias | grep 'log'"
+        git alias | egrep 'log|commit-'"
+    commit-select = "!# Select a commit hash from log graph.;\n\
+        git l --all \
+        | fzf -m --ansi --layout=reverse --preview=\"echo {} | sed 's/-.*$//' | egrep -o '[0-9a-f]+' | xargs git show --color=always \" \
+        | sed 's/-.*$//' \
+        | egrep -o '[0-9a-f]+'"
+    c-s = "!git commit-select"
+    commit-copy = "!# Select & copy a commit hash from log graph.;\n\
+        git commit-select | pbcopy && echo Copied : `pbpaste`;"
+    c-c = "!git commit-copy"
     l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
     lh = "!# Show log graph | head \n\
         f() { \
@@ -152,7 +161,7 @@
     stash-select = "!# Select stash item(s).;\n\
         f() { \
             git stash-list \
-            | fzf --ansi $1 --preview \"git stash show -p {1} | pygmentize\" \
+            | fzf --ansi $1 --preview \"git stash show -p {1} --color=always\" \
             | cut -d' ' -f1; \
         }; f"
     stash-op = "!#A private stash tool.;\nf() { git stash-select | xargs git stash $1; }; f"
