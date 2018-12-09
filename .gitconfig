@@ -50,6 +50,7 @@
             fi; \
         }; f"
     b0 = "!git branch | awk '/^\\*/{print $2}'"
+    b-s = "!git branch-select"
     branch-select = "! # select branch with preview; \n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
@@ -81,7 +82,7 @@
     unassume = update-index --no-assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
     add-select = "!git add $(git status -s | fzf -m | awk '{print $2}')"
-    ac = "!git a; git commit"
+    a-c = "!# add, commit; \n git a; git commit"
     a = "!git diff-select | xargs git add"
     unstage = "!git diff-unstage-select | xargs git reset HEAD"
     diff-select = "! # add files with fzf preview diffs; \n\
@@ -130,6 +131,9 @@
             echo '';\
         fi; \
     }; f"
+    s-a = "!git stash-apply"
+    s-p = "!git stash-pop"
+    s-d = "!git stash-drop"
     stash-op = "!f() { git stash-select | xargs git stash $1; }; f"
     stash-apply = "!git stash-op apply"
     stash-pop= "!git stash-op pop"
