@@ -78,7 +78,7 @@ function google() {
 shopt -s histappend
 
 [ -f ~/.local/bin/fav-dir.sh ] && source ~/.local/bin/fav-dir.sh
-bind '"\C-v": "fav\C-m"'
+bind '"\ev": "fav\C-m"'
 
 eval $(thefuck --alias)
 
