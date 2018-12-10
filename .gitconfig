@@ -122,8 +122,7 @@
             git diff-info \
             | egrep -v '[^?] *STAGED ' \
             | fzf -m --header \"$(git diff --shortstat)\" --preview \
-                \"if [[ {1} == '??' ]]; then cat {3}; else git diff {3}; fi \
-                | pygmentize\" \
+                \"if [[ {1} == '??' ]]; then pygmentize {3}; else git diff --color=always {3}; fi\" \
             | awk '{print $3}'; \
         }; f"
     diff-unselect = "!# Select staged files to unstage them.;\n\
@@ -131,8 +130,7 @@
             git diff-info \
             | egrep '[^?] *STAGED ' \
             | fzf -m --header \"$(git diff --shortstat)\" --preview \
-                \"if [[ {1} == '??' ]]; then cat {3}; else git diff --cached {3}; fi \
-                | pygmentize\" \
+                \"if [[ {1} == '??' ]]; then pygmentize {3}; else git diff --color=always --cached {3}; fi\" \
             | awk '{print $3}'; \
         }; f"
     unstage = "!# Select staged files and Unstage them.;\n\
