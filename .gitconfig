@@ -103,15 +103,17 @@
         git bb $1"
     sync = "!# Sync with a branch with the same name in the remote repo.;\n\
         remote=$( \
-            f(){ \
+            { \
                 git remote -v | egrep '^(origin|upstream)\\s'; \
                 git remote -v | egrep -v '^(origin|upstream)\\s' | sort; \
-            }; f \
+            } \
             | awk '{print $1, $2}' | uniq \
             | column -t \
             | fzf | awk '{print $1}' \
         ); \
-        git fetch $remote && git reset --hard $remote/`git b0`;"
+        if ! [ -z $remote ]; then \
+            git fetch $remote && git reset --hard $remote/`git b0`; \
+        fi"
     alias-stage = "!#----------------------------------------------------------;\n\
         git alias | egrep '(add|diff|stage)' -i"
     a = "!# Select files and Add them.;\n\
