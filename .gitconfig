@@ -102,7 +102,16 @@
     ch = "!# Branch tools. Same with bb.;\n\
         git bb $1"
     sync = "!# Sync with a branch with the same name in the remote repo.;\n\
-        f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
+        remote=$( \
+            f(){ \
+                git remote -v | egrep '^(origin|upstream)\\s'; \
+                git remote -v | egrep -v '^(origin|upstream)\\s' | sort; \
+            }; f \
+            | awk '{print $1, $2}' | uniq \
+            | column -t \
+            | fzf | awk '{print $1}' \
+        ); \
+        git fetch $remote && git reset --hard $remote/`git b0`;"
     alias-stage = "!#----------------------------------------------------------;\n\
         git alias | egrep '(add|diff|stage)' -i"
     a = "!# Select files and Add them.;\n\
