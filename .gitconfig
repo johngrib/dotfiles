@@ -101,7 +101,8 @@
     b-s = "!git branch-select"
     ch = "!# Branch tools. Same with bb.;\n\
         git bb $1"
-    sync = "!f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
+    sync = "!# Sync with a branch with the same name in the remote repo.;\n\
+        f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
     alias-stage = "!#----------------------------------------------------------;\n\
         git alias | egrep '(add|diff|stage)' -i"
     a = "!# Select files and Add them.;\n\
