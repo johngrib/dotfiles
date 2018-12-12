@@ -23,7 +23,7 @@
     alias-log = "!#----------------------------------------------------------;\n\
         git alias | egrep 'log|commit-'"
     commit-select = "!# Select a commit hash from log graph.;\n\
-        git l --all \
+        git l \
         | fzf -m --ansi --layout=reverse --preview=\"echo {} | sed 's/-.*$//' | egrep -o '[0-9a-f]+' | xargs git show --color=always \" \
         | sed 's/-.*$//' \
         | egrep -o '[0-9a-f]+'"
