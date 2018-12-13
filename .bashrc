@@ -52,9 +52,15 @@ alias bc='bc -l ~/.bcrc -q'
 
 # colors ----------------------------------------------------------------------
 GREEN='\e[0;32m\]'
+B_GREEN='\e[1;32m\]'
+MAGENTA='\e[0;35m\]'
 B_MAGENTA='\e[1;35m\]'
 YELLOW='\e[0;33m\]'
+B_YELLOW='\e[1;33m\]'
 RED='\e[0;31m'
+BLUE='\e[0;34m'
+B_BLUE='\e[1;34m'
+CYAN='\e[0;36m\]'
 COLOR_END='\[\033[0m\]'
 
 # PROMPT ----------------------------------------------------------------------
@@ -64,7 +70,7 @@ GIT_BRANCH=''
 if [ $(which vcprompt 2> /dev/null) ]; then
   GIT_BRANCH="\$(vcprompt -f '[%b %r] ${RED}%u %m${COLOR_END}')"
 fi
-export PS1="${YELLOW}${TIMESTAMP} ${GREEN}\u ${B_MAGENTA}\h ${YELLOW}\w ${COLOR_END} \$(/usr/local/bin/githud bash)\n\$ "
+export PS1="${MAGENTA}\$(date +%Y-%m-%d-%a) ${B_YELLOW}\$(date +%T) ${GREEN}\u ${B_MAGENTA}\h ${B_BLUE}\w ${COLOR_END}\$(/usr/local/bin/githud bash)\n\$ "
 
 function google() {
     open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1";
