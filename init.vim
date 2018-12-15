@@ -75,6 +75,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'diepm/vim-rest-console'
     Plug 'johngrib/vim-f-hangul'
     Plug 'johngrib/FlatColor-johngrib'
+    Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+    Plug 'tomasr/molokai'
+    Plug 'johngrib/hosu'
 
     Plug 'SirVer/ultisnips'
     " Plug 'leafgarland/typescript-vim'
@@ -121,7 +124,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     if has("gui_macvim")
         set macmeta
-        set guifont=Meslo\ LG\ S\ DZ\ Regular\ Nerd\ Font\ Complete:h13
+        set guifont=Meslo\ LG\ S\ DZ\ Regular\ Nerd\ Font\ Complete:h14
 
         " macVim 에서 esc 로 영문변환, imi 는 1 또는 2 로 설정해준다
         set noimd
