@@ -89,6 +89,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'bartmalanczuk/vim-trex-runner'
     " Plug 'johngrib/vim-game-code-break'
     Plug 'johngrib/vim-mac-dictionary'
+    Plug 'tenfyzhong/axring.vim'
 call plug#end()
 
 " For Neovim 0.1.3 and 0.1.4
@@ -366,11 +367,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <silent>s <S-">
     vnoremap <silent>s <S-">
 
-    nnoremap n nzz
-    nnoremap N Nzz
-    nnoremap } }zz
-    nnoremap { {zz
-
     nnoremap <LocalLeader>d :MacDictWord<CR>
     nnoremap <LocalLeader><LocalLeader>d :MacDictQuery<CR>
 
@@ -401,6 +397,29 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nnoremap <C-c> :call multiple_cursors#quit()<CR>
 
     let g:vim_game_code_break_item_limit = 8
+
+    let g:axring_rings = [
+                \ ['&&', '||'],
+                \ ['&', '|', '^'],
+                \ ['&=', '|=', '^='],
+                \ ['>>', '<<'],
+                \ ['>>=', '<<='],
+                \ ['==', '!='],
+                \ ['>', '<', '>=', '<='],
+                \ ['++', '--'],
+                \ ['true', 'false'],
+                \ ['verbose', 'debug', 'info', 'warn', 'error', 'fatal'],
+                \ ]
+
+    let g:axring_rings_go = [
+                \ [':=', '='],
+                \ ['byte', 'rune'],
+                \ ['complex64', 'complex128'],
+                \ ['int', 'int8', 'int16', 'int32', 'int64'],
+                \ ['uint', 'uint8', 'uint16', 'uint32', 'uint64'],
+                \ ['float32', 'float64'],
+                \ ['interface', 'struct'],
+                \ ]
 
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
