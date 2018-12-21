@@ -40,6 +40,8 @@
                 git l | head -n $1; \
             fi; \
         }; f"
+    ranking = "!# List commit counts of contributors;\n\
+        git shortlog -sn"
 
     alias-branch = "!#----------------------------------------------------------;\n\
         git alias | egrep '[bB]ranch'"
