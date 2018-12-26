@@ -90,6 +90,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'johngrib/vim-game-code-break'
     Plug 'johngrib/vim-mac-dictionary'
     Plug 'tenfyzhong/axring.vim'
+    Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 " For Neovim 0.1.3 and 0.1.4
@@ -369,6 +370,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     nnoremap <LocalLeader>d :MacDictWord<CR>
     nnoremap <LocalLeader><LocalLeader>d :MacDictQuery<CR>
+
+    nnoremap =e :Autoformat<CR>
 
     " srcexpl
     " nmap <LocalLeader>e :SrcExplToggle<CR>
