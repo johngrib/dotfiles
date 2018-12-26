@@ -8,6 +8,7 @@ if !exists('g:include_set_youcompleteme_loaded')
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
     let g:ycm_complete_in_strings = 1
     let g:ycm_min_num_of_chars_for_completion = 1
+    set completeopt=menuone
     " let g:ycm_add_preview_to_completeopt = 1
     " let g:ycm_autoclose_preview_window_after_insertion = 1
     " let g:ycm_autoclose_preview_window_after_completion = 1
