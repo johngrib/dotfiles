@@ -116,6 +116,17 @@
         if ! [ -z $remote ]; then \
             git fetch $remote && git reset --hard $remote/`git b0`; \
         fi"
+    update = "!# Synchronize the contents of local files with the repository;\n\
+        remote=$( \
+            { \
+                git remote -v | egrep '^(origin|upstream)\\s'; \
+                git remote -v | egrep -v '^(origin|upstream)\\s' | sort; \
+            } \
+            | awk '{print $1, $2}' | uniq \
+            | column -t \
+            | fzf | awk '{print $1}' \
+        ); \
+        git stash; git pull --rebase $remote `git b0`; git stash pop;"
     alias-stage = "!#----------------------------------------------------------;\n\
         git alias | egrep '(add|diff|stage)' -i"
     a = "!# Select files and Add them.;\n\
