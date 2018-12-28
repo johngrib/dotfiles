@@ -44,6 +44,7 @@ alias tm="tmux attach || tmux new"
 
 # alias composer='/usr/bin/php target/composer'
 alias ag='ag --path-to-ignore ~/.agignore'
+alias agl='ag --pager="less -XFR"'
 alias ncd='ncdu --color dark -rr -x'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
