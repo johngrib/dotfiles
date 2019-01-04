@@ -149,7 +149,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     set smartcase ignorecase hlsearch incsearch
     "set tildeop    "~ 를 다른 오퍼레이터와 함께 사용한다.
-    set wmnu        " tab 자동완성시 가능한 목록을 보여줌
 
     " 화면 표시
     set nu               " 라인 넘버 출력
