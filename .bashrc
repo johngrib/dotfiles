@@ -102,3 +102,15 @@ function bgcolors {
         [ ! $((($i - 15) % 6)) -eq 0 ] && printf ' ' || printf '\n'
     done
 }
+
+function exam {
+    file=`egrep 'parent\s*:\s*command-line' ~/Dropbox/johngrib.github.io/_wiki/* -l 2> /dev/null \
+        | egrep "$1.md$"`
+    starts=`grep ':toc' $file -n | cut -d':' -f1`
+
+    cat $file | tail -n +$((starts+1)) \
+        | egrep -v "^\`\`\`" \
+        | sed -E 's/^\$/ /' \
+        | pygmentize -l sh \
+        | less -XRF
+    }
