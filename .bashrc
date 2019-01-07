@@ -104,8 +104,22 @@ function bgcolors {
 }
 
 function exam {
-    file=`egrep 'parent\s*:\s*command-line' ~/Dropbox/johngrib.github.io/_wiki/* -l 2> /dev/null \
-        | egrep "$1.md$"`
+    wiki=`stat -f "%N" ~/Dropbox/johngrib.github.io/_wiki`
+
+    if [ "$1" = "-l" ]; then
+        egrep 'parent\s*:\s*command-line' $wiki/* -l 2> /dev/null \
+            | egrep -o '\/[a-z0-9\-]+\.md$'
+        return
+    fi
+
+    file=`egrep 'parent\s*:\s*command-line' $wiki/* -l 2> /dev/null \
+        | egrep "/$1.md$"`
+
+    if [ "$file" = "" ]; then
+        echo $wiki/$1.md : No such file.
+        return
+    fi
+
     starts=`grep ':toc' $file -n | cut -d':' -f1`
 
     cat $file | tail -n +$((starts+1)) \
