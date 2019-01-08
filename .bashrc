@@ -128,3 +128,4 @@ function exam {
         | pygmentize -l sh \
         | less -XRF
     }
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
