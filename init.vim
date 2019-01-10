@@ -55,7 +55,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
     " Plug 'junegunn/vim-xmark', { 'do': 'make' }
 
-    Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer'}
+    Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
 
     " Plug 'wesleyche/srcexpl'
     " Plug 'honza/vim-snippets'
