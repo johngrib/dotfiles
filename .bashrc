@@ -108,8 +108,10 @@ function exam {
 
     if [ "$1" = "-l" ]; then
         egrep 'parent\s*:\s*command-line' $wiki/* -l 2> /dev/null \
-            | egrep -o '\/[a-z0-9\-]+\.md$'
-        return
+            | xargs grep 'summary' \
+            | sed "s,"$wiki"/,,; s,\.md:summary,," \
+            | column -ts':' | sort
+        return 0
     fi
 
     file=`egrep 'parent\s*:\s*command-line' $wiki/* -l 2> /dev/null \
@@ -117,7 +119,7 @@ function exam {
 
     if [ "$file" = "" ]; then
         echo $wiki/$1.md : No such file.
-        return
+        return 0
     fi
 
     starts=`grep ':toc' $file -n | cut -d':' -f1`
