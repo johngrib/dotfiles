@@ -130,4 +130,28 @@ function exam {
         | pygmentize -l sh \
         | less -XRF
     }
+
+function todo {
+    file=`stat -f "%N" ~/Dropbox/wiki/todo.md`
+
+    if [ "$1" = "edit" ]; then
+        vim $file
+        return 0
+    fi
+
+    start=2
+    last=`egrep -n '^# Done$' $file | cut -d: -f1`
+    last=$(($last - 1))
+    esc=$(printf '\033')
+
+    head -$last $file \
+        | egrep -v '^\s*$' \
+        | tail -n +$start \
+        | sort -r \
+        | sed -E "s,^\*,${esc}[32m&${esc}[0m," \
+        | sed -E "s,([0-9]+-){2}[0-9]+,${esc}[33m&${esc}[0m,"
+}
+
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+
+
