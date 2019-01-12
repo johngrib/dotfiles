@@ -1,0 +1,186 @@
+snippet php
+<?php
+${1}
+?>
+endsnippet
+
+snippet re "return"
+return ${1};
+endsnippet
+
+snippet ex "extends"
+extends ${1}
+endsnippet
+
+snippet inc "include"
+include '${1:file}';${2}
+endsnippet
+
+snippet inco "include_once"
+include_once '${1:file}';${2}
+endsnippet
+
+snippet req "require"
+require '${1:file}';${2}
+endsnippet
+
+snippet reqo "require_once"
+require_once '${1:file}';${2}
+endsnippet
+
+# $GLOBALS['...']
+snippet globals
+$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${5}
+endsnippet
+
+snippet cookie "$_COOKIE['...']"
+$_COOKIE['${1:variable}']${2}
+endsnippet
+
+snippet env "$_ENV['...']"
+$_ENV['${1:variable}']${2}
+endsnippet
+
+snippet files "$_FILES['...']"
+$_FILES['${1:variable}']${2}
+endsnippet
+
+snippet get "G_GET['...']"
+$_GET['${1:variable}']${2}
+endsnippet
+
+snippet post "$_POST['...']"
+$_POST['${1:variable}']${2}
+endsnippet
+
+snippet request "$_REQUEST['...']"
+$_REQUEST['${1:variable}']${2}
+endsnippet
+
+snippet server "$_SERVER['...']"
+$_SERVER['${1:variable}']${2}
+endsnippet
+
+snippet session "$_SESSION['...']"
+$_SESSION['${1:variable}']${2}
+endsnippet
+
+snippet /* "/* */"
+/*
+ * ${1}
+ */
+endsnippet
+
+snippet /** "/** */"
+/**
+ * ${1}
+ */
+endsnippet
+
+snippet class "class"
+/**
+ * ${1}
+ **/
+class ${2:ClassName}
+{
+	${3}
+	function ${4:__construct}(${5:argument})
+	{
+		${6:// code...}
+	}
+}
+endsnippet
+
+snippet def "define"
+define('${1}'${2});${3}
+endsnippet
+
+snippet defi "defined"
+${1}defined('${2}')${3}
+endsnippet
+
+snippet while "while"
+while (${1:/* condition */}) {
+	${2:// code...}
+}
+endsnippet
+
+snippet do "do while"
+do {
+	${2:// code... }
+} while (${1:/* condition */});
+endsnippet
+
+snippet if "if"
+if (${1:/* condition */}) {
+	${2:// code...}
+}
+endsnippet
+
+snippet ife "if else"
+if (${1:/* condition */}) {
+	${2:// code...}
+} else {
+	${3:// code...}
+}
+${4}
+endsnippet
+
+snippet else "else"
+else {
+	${1:// code...}
+}
+endsnippet
+
+snippet elseif "elseif"
+elseif (${1:/* condition */}) {
+	${2:// code...}
+}
+endsnippet
+
+# Tertiary conditional
+snippet t
+$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};${5}
+endsnippet
+
+snippet switch
+switch ($${1:variable}) {
+	case '${2:value}':
+		${3:// code...}
+		break;
+	${5}
+	default:
+		${4:// code...}
+		break;
+}
+endsnippet
+
+snippet case
+case '${1:value}':
+	${2:// code...}
+	break;${3}
+endsnippet
+
+snippet for
+for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
+	${4: // code...}
+}
+endsnippet
+
+snippet fore "foreach"
+foreach ($${1:variable} as $${2:key}) {
+	${3:// code...}
+}
+endsnippet
+
+snippet fun "function"
+${1:public }function ${2:FunctionName}(${3})
+{
+	${4:// code...}
+}
+endsnippet
+
+# $... = array (...)
+snippet array
+$${1:arrayName} = array('${2}' => ${3});${4}
+endsnippet

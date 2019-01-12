@@ -61,7 +61,6 @@ call plug#begin('~/.vim/plugged')
     " Plug 'honza/vim-snippets'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-
     " screen view
     Plug 'luochen1990/rainbow'          " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
     Plug 'kshenoy/vim-signature'        " m mark 위치를 표시해준다.
@@ -93,6 +92,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Chiel92/vim-autoformat'
 
     Plug 'ternjs/tern_for_vim'
+    Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 call plug#end()
 
 " For Neovim 0.1.3 and 0.1.4
