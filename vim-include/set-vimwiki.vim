@@ -93,8 +93,8 @@ if !exists('g:include_set_vimwiki_loaded')
         " autocmd FileType vimwiki nnoremap <S-F3> :execute "VWB" <Bar> :lopen<CR>
         autocmd BufWritePre *wiki/*.md keepjumps call LastModified()
         autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
-        autocmd FileType vimwiki inoremap <C-s> <C-r>=vimwiki#tbl#kbd_tab()<CR>
-        autocmd FileType vimwiki inoremap <C-a> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
+        autocmd FileType vimwiki inoremap <Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
+        autocmd FileType vimwiki inoremap <Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
     augroup END
 
     let g:md_modify_disabled = 0
