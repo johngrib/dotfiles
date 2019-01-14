@@ -143,8 +143,8 @@ function todo {
 
     head -$last $file \
         | egrep -v '^\s*$' \
+        | egrep -v '^\s*\*\s*\[X\]' \
         | tail -n +$start \
-        | sort -r \
         | sed -E "s,^\*,${esc}[32m&${esc}[0m," \
         | sed -E "s,([0-9]+-){2}[0-9]+,${esc}[33m&${esc}[0m,"
 }
