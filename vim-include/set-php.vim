@@ -5,13 +5,18 @@ if !exists('g:include_set_php_loaded')
     augroup vimphp
         autocmd FileType php setlocal omnifunc=phpactor#Complete
         autocmd FileType php nnoremap <Tab><Tab> :call phpactor#ContextMenu()<CR>
+        autocmd FileType php nnoremap <Tab>s :call phpactor#Status()<CR>
         autocmd FileType php nnoremap <Tab>u :call phpactor#UseAdd()<CR>
         autocmd FileType php nnoremap <Tab>i :call phpactor#Hover()<CR>
         autocmd FileType php nnoremap <Tab>n :call phpactor#Navigate()<CR>
         autocmd FileType php nnoremap <Tab>c :call phpactor#ClassNew()<CR>
+        autocmd FileType php nnoremap <Tab>d :call phpactor#FindReferences()<CR>
+
+        autocmd FileType php vnoremap <Tab>m :call phpactor#ExtractMethod()<CR>
+
+        autocmd FileType php setlocal colorcolumn=81
     augroup END
 
     " nmap <Leader>tt :call phpactor#Transform()<CR>
-    " nmap <Leader>cc :call phpactor#ClassNew()<CR>
 
 endif
