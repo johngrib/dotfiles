@@ -4,6 +4,15 @@ ${1}
 ?>
 endsnippet
 
+snippet s "$var"
+$
+endsnippet
+
+snippet v "$var = ;"
+$${1:var} = ${2};
+${3}
+endsnippet
+
 snippet re "return"
 return ${1};
 endsnippet
@@ -167,9 +176,9 @@ for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
 }
 endsnippet
 
-snippet fore "foreach"
-foreach ($${1:variable} as $${2:key}) {
-	${3:// code...}
+snippet foreach "foreach"
+foreach ($${1:arr} as $${2:key}${3: => $${4:value}}) {
+	${5}
 }
 endsnippet
 
@@ -183,4 +192,26 @@ endsnippet
 # $... = array (...)
 snippet array
 $${1:arrayName} = array('${2}' => ${3});${4}
+endsnippet
+
+snippet print_r "Prints readable information(2:false) or returns it(2:true)"
+print_r($${1:var}${2:, true});
+endsnippet
+
+snippet empty "empty($v): bool. True when '', 0, 0.0, '0', null, false, array()"
+empty($${1:var})${2}
+endsnippet
+
+snippet is_array "is_array($v): bool. True when $v is array"
+is_array($${1:var})${2}
+endsnippet
+
+snippet array_map "array_map(func, $array): array"
+${1:$${2:var} = }array_map(${3:"func_name"}, ${4:$array});
+endsnippet
+
+snippet lambda "anonymous function"
+function (${1})${2: use ($${3:var})} {
+	${4:// code...}
+}
 endsnippet
