@@ -17,23 +17,23 @@ snippet re "return"
 return ${1};
 endsnippet
 
-snippet ex "extends"
+snippet extends "extends"
 extends ${1}
 endsnippet
 
-snippet inc "include"
+snippet include "include 'file';"
 include '${1:file}';${2}
 endsnippet
 
-snippet inco "include_once"
+snippet include_once "include_once 'file';"
 include_once '${1:file}';${2}
 endsnippet
 
-snippet req "require"
+snippet require "require 'file';"
 require '${1:file}';${2}
 endsnippet
 
-snippet reqo "require_once"
+snippet require_once "require_once 'file';"
 require_once '${1:file}';${2}
 endsnippet
 
@@ -100,11 +100,11 @@ class ${2:ClassName}
 }
 endsnippet
 
-snippet def "define"
+snippet define "define"
 define('${1}'${2});${3}
 endsnippet
 
-snippet defi "defined"
+snippet defined "defined"
 ${1}defined('${2}')${3}
 endsnippet
 
@@ -172,7 +172,7 @@ endsnippet
 
 snippet for
 for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
-	${4: // code...}
+	${4}
 }
 endsnippet
 
@@ -183,15 +183,15 @@ foreach ($${1:arr} as $${2:key}${3: => $${4:value}}) {
 endsnippet
 
 snippet fun "function"
-${1:public }function ${2:FunctionName}(${3})
+${1:public }function ${2:name}(${3})
 {
-	${4:// code...}
+	${4}
 }
 endsnippet
 
 # $... = array (...)
 snippet array
-$${1:arrayName} = array('${2}' => ${3});${4}
+$${1:var} = array('${2}' => ${3});${4}
 endsnippet
 
 snippet print_r "Prints readable information(2:false) or returns it(2:true)"
