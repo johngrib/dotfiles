@@ -104,14 +104,14 @@ function exam {
     wiki=`stat -f "%N" ~/Dropbox/johngrib.github.io/_wiki`
 
     if [ "$1" = "-l" ]; then
-        egrep 'parent\s*:\s*command-line' $wiki/* -l 2> /dev/null \
+        egrep 'tags\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
             | xargs grep 'summary' \
             | sed "s,"$wiki"/,,; s,\.md:summary,," \
             | column -ts':' | sort
         return 0
     fi
 
-    file=`egrep 'parent\s*:\s*command-line' $wiki/* -l 2> /dev/null \
+    file=`egrep 'tags\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
         | egrep "/$1.md$"`
 
     if [ "$file" = "" ]; then
