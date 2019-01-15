@@ -467,6 +467,7 @@ runtime! vim-include/*.vim
 
 iabbr __email johngrib82@gmail.com
 iabbr <expr> __time strftime("%Y-%m-%d %H:%M:%S")
+iabbr <expr> __date strftime("%Y-%m-%d")
 iabbr <expr> __file expand('%:p')
 iabbr <expr> __name expand('%')
 iabbr <expr> __pwd expand('%:p:h')
