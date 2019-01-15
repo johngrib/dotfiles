@@ -7,7 +7,7 @@ if !exists('g:include_set_vimwiki_loaded')
                 \   'diary_rel_path': '.',
                 \},
                 \{
-                \   'path': '~/Dropbox/localwiki/_wiki',
+                \   'path': '~/Dropbox/git/localwiki/_wiki',
                 \   'ext' : '.md',
                 \   'diary_rel_path': '.',
                 \}
