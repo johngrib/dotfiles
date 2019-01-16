@@ -129,7 +129,7 @@ function exam {
     }
 
 function todo {
-    file=`stat -f "%N" ~/Dropbox/wiki/todo.md`
+    file=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/todo.md`
 
     if [ "$1" = "edit" ]; then
         vim $file
