@@ -1,0 +1,38 @@
+#!  /usr/local/bin/bash
+
+MYGITHUB=johngrib
+RAW=/tmp/$MYGITHUB-github
+TABLE=/tmp/$MYGITHUB-github-table
+COLORS=/tmp/$MYGITHUB-github-colors
+
+curl -s https://github.com/$MYGITHUB/ > $RAW
+
+TITLE=`cat /tmp/johngrib-github | pcregrep -M '[0-9,]+ contributions\s*\n\s*in the last year'`
+echo github.com/$MYGITHUB
+echo $TITLE
+
+cat $RAW \
+    | egrep '<rect class="day"[^>]+>' \
+    | sed -E 's/.*x="(-?[0-9]+)".*y="([0-9]+)".*(#[a-f0-9]+).*data-count="([0-9]+)".*data-date="([^"]+)".*/\2 level \3 count \4 \5/' > $TABLE
+
+LV=0
+for color in `cat $RAW | pcregrep -M 'Less.*(\n|.)*More' | egrep -o '#[a-f0-9]+'`; do
+    sed -i.bak 's/'"$color"'/'"$LV"'/' "$TABLE"
+    LV=$(( $LV + 1 ))
+done
+
+COLORS=(238 148 71 34 22)
+
+for row in 0 10 20 30 40 50 60; do
+    for level in `egrep "^$row" $TABLE | awk '{print $3}'`; do
+        COLOR=${COLORS[$level]}
+        printf "\e[48;5;%dm  " $COLOR $LEVEL;
+        printf '\e[0m';
+    done
+    printf "\n"
+done
+
+tail -1 $TABLE | awk '{print $6, "today:", $5}'
+
+exit
+

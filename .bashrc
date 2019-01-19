@@ -5,6 +5,12 @@ if [[ ! "$PATH" == *~/.cargo/bin* ]]; then
     PATH="$PATH:~/.cargo/bin"
 fi
 
+if [ -z "`echo $PATH | grep -o /dotfiles-home/bin/`" -a "`hostname -s`" == "JohnGribAtHome" ]; then
+    PATH="$PATH:~/Dropbox/dotfiles-home/bin/"
+elif [ -z "`echo $PATH | grep -o /dotfiles-arti/bin/`" -a "`hostname -s`" == "JohnGribAtArti" ]; then
+    PATH="$PATH:~/Dropbox/dotfiles-arti/bin/"
+fi
+
 export JAVA_HOME=$(/usr/libexec/java_home)
 export TERM=xterm-256color
 
