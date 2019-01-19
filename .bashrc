@@ -15,9 +15,12 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 export TERM=xterm-256color
 
 # history setting
-export HISTCONTROL=ignoreboth:erasedups
-export HISTSIZE=10000
-export HISTFILESIZE=10000
+export HISTCONTROL=ignoreboth
+export HISTSIZE=1000000
+export HISTFILESIZE=1000000000
+export HISTTIMEFORMAT="%F %T "
+shopt -s histappend     # 히스토리 파일 뒤에 추가한다
+shopt -s cmdhist        # 여러 줄에 걸쳐 작성된 멍령을 세미콜론으로 연결된 하나의 문장으로 저장
 
 # fzf
 export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
@@ -82,7 +85,6 @@ export PS1="${MAGENTA}\$(date +%Y-%m-%d-%a) ${B_YELLOW}\$(date +%T) ${GREEN}\u $
 
 
 # PROMPT_COMMAND="share_history; $PROMPT_COMMAND"
-shopt -s histappend
 
 [ -f ~/.local/bin/git-completion.bash ] && source ~/.local/bin/git-completion.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
