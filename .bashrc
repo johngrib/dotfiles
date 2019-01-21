@@ -14,8 +14,6 @@ fi
 export JAVA_HOME=$(/usr/libexec/java_home)
 export TERM=xterm-256color
 
-shopt -s globstar   # wildcard globbing 할 때 서브 디렉토리도 포함한다
-
 # history setting
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000000
