@@ -52,7 +52,7 @@ call plug#begin('~/.vim/plugged')
 
     " language support
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
-    Plug 'w0rp/ale'                      " 실시간으로 문법 검사 (syntastic 과 중복되는 기능)
+    Plug 'w0rp/ale', { 'do': 'brew install php-cs-fixer' }
     " Plug 'junegunn/vim-xmark', { 'do': 'make' }
 
     Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
