@@ -167,6 +167,28 @@ snippet symbol_equiv "≡ 동치"
 ≡ 
 endsnippet
 
+snippet symbol_floor "⌊x⌋ 바닥함수"
+⌊${1:x}⌋$2
+endsnippet
+
+snippet symbol_ceil "⌈x⌉ 천장함수"
+⌈${1:x}⌉$2
+endsnippet
+
+snippet ldef_floor_ceil "바닥 함수와 천장 함수 정의"
+$$
+\def\ceil#1{\lceil #1 \rceil}
+\def\floor#1{\lfloor #1 \rfloor}
+\def\frfr#1{\{ #1 \}}
+\def\bigceil#1{ \biggr\lceil #1 \biggr\rceil }
+\def\bigfloor#1{ \biggr\lfloor #1 \biggr\rfloor }
+$$
+endsnippet
+
+snippet symbol_le "≤"
+≤
+endsnippet
+
 # 집합 -------------------------------------------------------------------------
 # emptyset
 snippet lemptyset "\emptyset (길쭉한)공집합 ∅"
