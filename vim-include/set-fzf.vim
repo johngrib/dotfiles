@@ -19,6 +19,10 @@ if !exists('g:include_set_fzf_loaded')
     nnoremap <f1>t :Tags ^<CR>
     nnoremap <f1><f2> :Buffers<CR>
     nnoremap <f3> :execute ":Tags " . expand('<cword>')<CR>
+
+    " nnoremap <f1>d :call fzf#vim#tags('^', {'options': '--exact --select-1 --exit-0 +i'})<CR>
+    nnoremap <f1>u call fzf#vim#ag('', {'options': '--select-2'})
+
     " gem install coderay
     " let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -' .&lines.'"'
     command! -bang -nargs=? -complete=dir Files
