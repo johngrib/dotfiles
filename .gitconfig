@@ -219,7 +219,8 @@
 [difftool "vimdiff"]
     path = /usr/local/bin/vim
 [merge]
-    tool = vimdiff
+    tool = meld
+    trustExitCode = true
 [mergetool "vimdiff"]
     path = /usr/local/bin/vim
     trustExitCode = true
