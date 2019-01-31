@@ -39,6 +39,7 @@
             else \
                 git l | head -n $1; \
             fi; \
+            echo ''; \
         }; f"
     ranking = "!# List commit counts of contributors;\n\
         git shortlog -sn"
