@@ -12,9 +12,13 @@ if !exists('g:include_set_php_loaded')
         autocmd FileType php nnoremap <Tab>c :call phpactor#ClassNew()<CR>
         autocmd FileType php nnoremap <Tab>d :call phpactor#FindReferences()<CR>
 
+        autocmd FileType php nnoremap <C-]> :call phpactor#GotoDefinition()<CR>
+        autocmd FileType php nnoremap g<C-]> <C-]>
+
         autocmd FileType php vnoremap <Tab>m :call phpactor#ExtractMethod()<CR>
 
         autocmd FileType php setlocal colorcolumn=81
+        let g:phpactorOmniAutoClassImport = v:true
     augroup END
 
     " nmap <Leader>tt :call phpactor#Transform()<CR>
