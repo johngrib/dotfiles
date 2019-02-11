@@ -97,6 +97,17 @@ if !exists('g:include_set_vimwiki_loaded')
         autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
     augroup END
 
+
+    function! UpdateBookProgress()
+        let save_cursor = getpos(".")
+        %g,\v^\d+\s\%\s*:\s*\d+\s*\/\s*\d+$,exe "normal! 0df:yypI100 * V:!bcA %kddpkJi :"
+        call setpos('.', save_cursor)
+    endfunction
+
+    augroup todoauto
+        autocmd BufWritePre *wiki/todo.md call UpdateBookProgress()
+    augroup END
+
     let g:md_modify_disabled = 0
 
 endif
