@@ -425,8 +425,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
                 \ ['interface', 'struct'],
                 \ ]
 
-    " let g:ale_fixers = {'php': ['php_cs_fixer']}
-    " let g:ale_fix_on_save = 1
+    let g:ale_fixers = {'php': ['php_cs_fixer']}
+    let g:ale_fix_on_save = 1
 
 " functions -------------------------------------------------------------------
 function! ToggleNumber()
