@@ -137,19 +137,20 @@ function exam {
     }
 
 function todo {
-    file=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/todo.md`
+    file1=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/todo.md`
+    file2=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/times.md`
 
     if [ "$1" = "edit" ]; then
-        vim $file
+        vim $file1 $file2
         return 0
     fi
 
     start=2
-    last=`egrep -n '^# Done$' $file | cut -d: -f1`
+    last=`egrep -n '^# Done$' $file1 | cut -d: -f1`
     last=$(($last - 1))
     esc=$(printf '\033')
 
-    head -$last $file \
+    head -$last $file1 \
         | egrep -v '^\s*$' \
         | egrep -v '^\s*\*\s*\[X\]' \
         | tail -n +$start \
