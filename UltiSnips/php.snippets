@@ -215,3 +215,21 @@ function (${1})${2: use ($${3:var})} {
 	${4:// code...}
 }
 endsnippet
+
+snippet context "context('...', function...)"
+context('${1:when}', function () {
+	${2}
+});
+endsnippet
+
+snippet it "it('...', function...)"
+it('${1:returns}', function () {
+	${2}
+});
+endsnippet
+
+snippet desc "describe('...', function...)"
+describe('${1}', function () {
+	${2}
+});
+endsnippet
