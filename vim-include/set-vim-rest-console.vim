@@ -11,5 +11,6 @@ if !exists('g:include_set_vim_rest_console_loaded')
     let g:vrc_debug = 0
     let g:vrc_curl_opts = {
                 \ '-s': '',
+                \ '-D -': '',
                 \}
 endif
