@@ -146,7 +146,7 @@ function todo {
     fi
 
     start=2
-    last=`egrep -n '^# Done$' $file1 | cut -d: -f1`
+    last=`egrep -n '^# In Progress$' $file1 | cut -d: -f1`
     last=$(($last - 1))
     esc=$(printf '\033')
 
