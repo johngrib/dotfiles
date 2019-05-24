@@ -97,11 +97,12 @@ if !exists('g:include_set_vimwiki_loaded')
         autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
     augroup END
 
-
     function! UpdateBookProgress()
-        let save_cursor = getpos(".")
-        %g,\v^\d+\s\%\s*:\s*\d+\s*\/\s*\d+$,exe "normal! 0df:yypI100 * V:!bcA %kddpkJi :"
-        call setpos('.', save_cursor)
+        let l:save_cursor = getpos(".")
+        " \d+ % : \d+ / \d+ 형식의 라인이 있으면 퍼센테이지를 계산해 업데이트한다
+        let l:awk_command = "awk '{print int($4 * 100 / $6), \"\\% :\", $4, $5, $6 }'"
+        %g,\v^\d+ \% : \d+ \/ \d+,exe "normal! V!" . l:awk_command . ""
+        call setpos('.', l:save_cursor)
     endfunction
 
     augroup todoauto
