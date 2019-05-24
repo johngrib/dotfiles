@@ -55,7 +55,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'w0rp/ale', { 'do': 'brew install php-cs-fixer' }
     " Plug 'junegunn/vim-xmark', { 'do': 'make' }
 
-    Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
+    " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
 
     " Plug 'wesleyche/srcexpl'
     " Plug 'honza/vim-snippets'
@@ -93,6 +93,10 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'ternjs/tern_for_vim'
     Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
+
+    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+
+    Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 
 " For Neovim 0.1.3 and 0.1.4
