@@ -162,3 +162,5 @@ function google() {
     open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1";
 }
 
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
