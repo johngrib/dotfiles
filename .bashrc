@@ -12,6 +12,7 @@ elif [ -z "`echo $PATH | grep -o /dotfiles-arti/bin/`" -a "`hostname -s`" == "Jo
 fi
 
 export JAVA_HOME=$(/usr/libexec/java_home)
+export GOBIN=$HOME/go/bin
 export TERM=xterm-256color
 
 # history setting
