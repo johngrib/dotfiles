@@ -16,6 +16,9 @@ if !exists('g:include_set_vim_go_loaded')
     let g:go_auto_sameids = 1
     let g:go_doc_keywordprg_enabled = 0
 
+    let g:go_def_mode='gopls'
+    let g:go_info_mode='gopls'
+
     nnoremap <C-n> :cnext<CR>
     nnoremap <C-p> :cprevious<CR>
 
