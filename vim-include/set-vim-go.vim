@@ -25,6 +25,9 @@ if !exists('g:include_set_vim_go_loaded')
     let g:toggle_list_no_mappings = 1
 
     augroup vimgo
+        let g:go_def_mapping_enabled = 0
+        autocmd FileType go nmap <silent> <C-]> <Plug>(coc-definition)
+
         autocmd FileType go nnoremap <Tab>b :GoBuild<CR>
         autocmd FileType go nnoremap <Tab>r :GoRun<CR>
         autocmd FileType go nnoremap <Tab><Tab>r :GoRun %<CR>
