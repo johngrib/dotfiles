@@ -29,8 +29,10 @@ if !exists('g:include_set_vim_go_loaded')
         autocmd FileType go nmap <silent> <C-]> <Plug>(coc-definition)
 
         autocmd FileType go nnoremap <Tab>b :GoBuild<CR>
-        autocmd FileType go nnoremap <Tab>r :GoRun<CR>
-        autocmd FileType go nnoremap <Tab><Tab>r :GoRun %<CR>
+        " autocmd FileType go nnoremap <Tab>r :GoRename<CR>
+        autocmd FileType go nmap <silent> <Tab>r <Plug>(coc-rename)
+        autocmd FileType go nnoremap <Tab>e :GoRun<CR>
+        autocmd FileType go nnoremap <Tab><Tab>e :GoRun %<CR>
         autocmd FileType go nnoremap <Tab><Tab>t :GoTestFunc<CR>
         autocmd FileType go nnoremap <Tab>t :GoTest<CR>
         autocmd FileType go nnoremap <Tab>c :GoCoverageToggle<CR>
