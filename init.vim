@@ -47,6 +47,7 @@ call plug#begin('~/.vim/plugged')
 
     " searching
     Plug 'vim-scripts/matchit.zip'
+    Plug 'google/vim-searchindex'
     " Plug 'othree/eregex.vim'
     " Plug 'haya14busa/incsearch.vim'
 
@@ -97,6 +98,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
     Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'vim-scripts/vim-auto-save'
+
 call plug#end()
 
 " For Neovim 0.1.3 and 0.1.4
@@ -471,6 +474,9 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+" Autosave: https://github.com/907th/vim-auto-save
+let g:auto_save_silent = 1
 
 runtime! vim-include/*.vim
 

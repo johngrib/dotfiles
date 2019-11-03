@@ -106,7 +106,7 @@ if !exists('g:include_set_vimwiki_loaded')
     endfunction
 
     augroup todoauto
-        autocmd BufWritePre *wiki/todo.md call UpdateBookProgress()
+        autocmd BufWritePre *wiki/book.md call UpdateBookProgress()
     augroup END
 
     let g:md_modify_disabled = 0

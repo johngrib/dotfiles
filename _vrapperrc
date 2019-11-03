@@ -25,8 +25,8 @@ inoremap kj <Esc>
 inoremap ㅓㅏ <Esc>
 inoremap ㅏㅓ <Esc>
 
-" ctrl-j 로 라인을 분리.
-nnoremap <c-j> i<ENTER><ESC>
+" ctrl-k 로 라인을 분리.
+nnoremap <s-k> i<ENTER><ESC>
 
 " typing assist ------------------------------------------------
 inoremap ,/ /* */<ESC>2F*a<SPACE>

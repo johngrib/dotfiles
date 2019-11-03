@@ -15,6 +15,7 @@ if !exists('g:include_set_vim_go_loaded')
     let g:go_auto_type_info = 1
     let g:go_auto_sameids = 1
     let g:go_doc_keywordprg_enabled = 0
+    let g:go_template_autocreate = 0
 
     let g:go_info_mode='guru'
 

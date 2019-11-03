@@ -5,10 +5,18 @@ BeforeEach(func() {
 endsnippet
 
 snippet testCode
-func TestHello(t *testing.T) {
-	want := "Hello, world."
-	if got := Hello(); got != want {
-		t.Errorf("Hello() = %q, want %q", got, want)
+func Test${1:Hello}(t *testing.T) {
+	type ex struct {
+		given int
+		expect int
+	}
+	sample := [...]ex {
+		ex{},
+	}
+	for _, v := range sample {
+		if res := testSample(v.given); res != v.expect {
+			t.Errorf("given: %d, expect: %d, result %d", v.given, v.expect, res)
+		}
 	}
 }
 endsnippet
@@ -183,6 +191,12 @@ for ${2:i} := 0; $2 < ${1:count}; $2${3:++} {
 	${0:${VISUAL}}
 }
 endsnippet
+# for int loop
+snippet forj "for j := 0; j < count; j++ { ... }"
+for ${2:j} := 0; $2 < ${1:count}; $2${3:++} {
+	${0:${VISUAL}}
+}
+endsnippet
 # for range loop
 snippet forr "for e := range items { ... }"
 for ${1:e} := range ${2:collection} {
@@ -244,7 +258,7 @@ snippet pn "panic(`msg`)"
 panic("${0:msg}")
 endsnippet
 # print
-snippet pr "fmt.Printf(`%s\n`, var)"
+snippet pf "fmt.Printf(`%s\n`, var)"
 fmt.Printf("%${1:s}\n", ${2:var})
 endsnippet
 # println
@@ -254,10 +268,6 @@ endsnippet
 # range
 snippet rn
 range ${0}
-endsnippet
-# return
-snippet rt
-return ${0}
 endsnippet
 # result
 snippet rs
@@ -352,5 +362,18 @@ type ${1:parentType}Alias $1
 
 func (p *$1) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct{ *$1Alias }{(*$1Alias)(p)})
+}
+endsnippet
+
+snippet template_main
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("hello world")
+	${1}
 }
 endsnippet
