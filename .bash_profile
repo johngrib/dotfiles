@@ -15,3 +15,7 @@ fi
 if [ -f ~/.bashrc ]; then
   . ~/.bashrc
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/johngrib/.sdkman"
+[[ -s "/Users/johngrib/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/johngrib/.sdkman/bin/sdkman-init.sh"

@@ -138,10 +138,11 @@ function exam {
 
 function todo {
     file1=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/todo.md`
-    file2=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/times.md`
+    # file2=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/times.md`
 
     if [ "$1" = "edit" ]; then
-        vim $file1 $file2
+        # vim $file1 $file2
+        vim $file1
         return 0
     fi
 
