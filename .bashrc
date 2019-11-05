@@ -9,6 +9,8 @@ if [ -z "`echo $PATH | grep -o /dotfiles-home/bin/`" -a "`hostname -s`" == "John
     PATH="$PATH:~/Dropbox/dotfiles-home/bin/"
 elif [ -z "`echo $PATH | grep -o /dotfiles-arti/bin/`" -a "`hostname -s`" == "JohnGribAtArti" ]; then
     PATH="$PATH:~/Dropbox/dotfiles-arti/bin/"
+elif [ -z "`echo $PATH | grep -o /dotfiles-com/bin/`" -a "`hostname -s`" == "tf-mac-068" ]; then
+    PATH="$PATH:~/Dropbox/dotfiles-com/bin/"
 fi
 
 export JAVA_HOME=$(/usr/libexec/java_home)
