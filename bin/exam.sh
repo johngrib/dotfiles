@@ -1,31 +1,26 @@
 function exam {
     wiki=`stat -f "%N" ~/Dropbox/johngrib.github.io/_wiki`
 
-    if [ "wiki" = "" ]; then
+    if [ "$wiki" = "" ]; then
         echo "invalid wiki location."
         return 0
     fi
 
-    if [ "$1" = "-l" -o "$1" = "" ]; then
-        egrep 'tag\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
-            | xargs grep 'summary' \
-            | sed "s,"$wiki"/,,; s,\.md:summary,," \
-            | column -ts':' | sort
-                    return 0
-    fi
+    name=`egrep 'tag\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
+        | xargs grep 'summary' \
+        | sed "s,"$wiki"/,,; s,\.md:summary,," \
+        | column -ts':' \
+        | sort \
+        | fzf --preview "pygmentize ~/Dropbox/johngrib.github.io/_wiki/{1}.md" \
+        | awk '{print $1}' \
+        `
 
-    file=`egrep 'tag\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
-        | egrep "/$1.md$"`
-
-    if [ "$file" = "" ]; then
-        echo $wiki/$1.md : No such file.
+    if [ "$name" = "" ]; then
         return 0
     fi
 
-    starts=`grep ':toc' $file -n | cut -d':' -f1`
+    bat ~/Dropbox/johngrib.github.io/_wiki/$name.md
 
-    cat $file | tail -n +$((starts+1)) \
-        | sed -E 's/^\$/ /' \
-        | pygmentize -l sh \
-        | less -XRF
-    }
+    return 0
+
+}
