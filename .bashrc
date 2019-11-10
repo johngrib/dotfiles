@@ -91,7 +91,8 @@ export PS1="${MAGENTA}\$(date +%Y-%m-%d-%a) ${B_YELLOW}\$(date +%T) ${GREEN}\u $
 [ -f ~/.local/bin/git-completion.bash ] && source ~/.local/bin/git-completion.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
-[ -f ~/.local/bin/fav-dir.sh ] && source ~/.local/bin/fav-dir.sh
+
+for f in ~/.local/bin/*.sh; do source $f; done
 bind '"\ev": "fav\C-m"'
 
 eval $(thefuck --alias)
@@ -109,33 +110,6 @@ function bgcolors {
         [ ! $((($i - 15) % 6)) -eq 0 ] && printf ' ' || printf '\n'
     done
 }
-
-function exam {
-    wiki=`stat -f "%N" ~/Dropbox/johngrib.github.io/_wiki`
-
-    if [ "$1" = "-l" ]; then
-        egrep 'tag\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
-            | xargs grep 'summary' \
-            | sed "s,"$wiki"/,,; s,\.md:summary,," \
-            | column -ts':' | sort
-        return 0
-    fi
-
-    file=`egrep 'tag\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
-        | egrep "/$1.md$"`
-
-    if [ "$file" = "" ]; then
-        echo $wiki/$1.md : No such file.
-        return 0
-    fi
-
-    starts=`grep ':toc' $file -n | cut -d':' -f1`
-
-    cat $file | tail -n +$((starts+1)) \
-        | sed -E 's/^\$/ /' \
-        | pygmentize -l sh \
-        | less -XRF
-    }
 
 function todo {
     file1=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/todo.md`
