@@ -1,7 +1,12 @@
 function exam {
     wiki=`stat -f "%N" ~/Dropbox/johngrib.github.io/_wiki`
 
-    if [ "$1" = "-l" ]; then
+    if [ "wiki" = "" ]; then
+        echo "invalid wiki location."
+        return 0
+    fi
+
+    if [ "$1" = "-l" -o "$1" = "" ]; then
         egrep 'tag\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
             | xargs grep 'summary' \
             | sed "s,"$wiki"/,,; s,\.md:summary,," \
