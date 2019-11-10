@@ -1,6 +1,4 @@
-if [[ ! "$PATH" == *~/.local/bin* ]]; then
-    PATH="$PATH:~/.local/bin"
-fi
+PATH="$PATH:~/.local/bin"
 if [[ ! "$PATH" == *~/.cargo/bin* ]]; then
     PATH="$PATH:~/.cargo/bin"
 fi
