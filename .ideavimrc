@@ -60,6 +60,8 @@
   nnoremap <SPACE>r :action RecentChangedFiles<CR>
   nnoremap <SPACE>w :w<CR>
 
+  nnoremap \t :action ActivateStructureToolWindow<CR>
+
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 
   "ideavim 에서는 insert mode <C-P>, <C-N> 이 작동하지 않는다. 대신 IntelliJ 의 keymap 중
