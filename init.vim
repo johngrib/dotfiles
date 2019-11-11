@@ -87,7 +87,7 @@ call plug#begin('~/.vim/plugged')
 
     " Plug 'tpope/vim-db'
     " Plug 'bartmalanczuk/vim-trex-runner'
-    " Plug 'johngrib/vim-game-code-break'
+    Plug 'johngrib/vim-game-code-break'
     Plug 'johngrib/vim-mac-dictionary'
     Plug 'tenfyzhong/axring.vim'
     Plug 'Chiel92/vim-autoformat'
@@ -434,7 +434,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
                 \ ['interface', 'struct'],
                 \ ]
 
-    let g:ale_fixers = {'php': ['php_cs_fixer']}
+    " let g:ale_fixers = {'php': ['php_cs_fixer']}
+    let g:ale_fixers = {}
     let g:ale_fix_on_save = 1
 
 " functions -------------------------------------------------------------------

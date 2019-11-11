@@ -12,7 +12,7 @@ elif [ -z "`echo $PATH | grep -o /dotfiles-com/bin/`" -a "`hostname -s`" == "tf-
 fi
 
 LANG="en_US.UTF-8"
-export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=$(/usr/libexec/java_home)
 export GOBIN=$HOME/go/bin
 export TERM=xterm-256color
 

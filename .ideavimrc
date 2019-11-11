@@ -22,7 +22,10 @@
   set scs     "smartcase
   set mps     "matchpairs
   set ul=2000 "undolevels
+
+  " plugins
   set surround
+  set commentary
 
 " copy , paste , select 기능 보완 ------------------------------------------------
   nnoremap <C-m> :
@@ -114,3 +117,6 @@ nnoremap <C-S-5> :action EditorMatchBrace<CR>
 " set gvimpath=/usr/local/opt/macvim/bin/mvim
 set gvimpath=/Users/johngrib/Applications/VimR.app/Contents/MacOS/VimR
 
+nnoremap <Space>v :action CopyPaths<CR>
+set ideajoin
+set ideamarks
