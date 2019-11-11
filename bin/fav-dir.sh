@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function fav() {
 
     FAV_TMP_FILE="/tmp/fav-dir-tempfile"

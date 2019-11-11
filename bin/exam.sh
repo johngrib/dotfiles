@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function exam {
     wiki=`stat -f "%N" ~/Dropbox/johngrib.github.io/_wiki`
 
