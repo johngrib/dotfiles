@@ -9,20 +9,20 @@ function exam {
     fi
 
     name=`egrep 'tag\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
-        | xargs grep 'summary' \
-        | sed "s,"$wiki"/,,; s,\.md:summary,," \
+        | xargs egrep 'summary|title' \
+        | awk -F':' 'NR%2==1 { name=$1; title=$3 } NR%2==0 { print name, ":", title, ":", $3 }' \
+        | sed "s,"$wiki"/,," \
         | column -ts':' \
         | sort \
-        | fzf --preview "pygmentize ~/Dropbox/johngrib.github.io/_wiki/{1}.md" \
-        | awk '{print $1}' \
-        `
+        | fzf --preview "pygmentize $wiki/{1}" \
+        | cut -d' ' -f1 \
+    `
 
     if [ "$name" = "" ]; then
         return 0
     fi
 
-    bat ~/Dropbox/johngrib.github.io/_wiki/$name.md
+    bat $wiki/$name
 
     return 0
-
 }
