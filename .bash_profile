@@ -1,5 +1,7 @@
 # bash_profile
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # git-flow-completion
 # https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion#homebrew
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
