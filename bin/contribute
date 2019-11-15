@@ -7,7 +7,7 @@ COLORS=/tmp/$MYGITHUB-github-colors
 
 curl -s https://github.com/$MYGITHUB/ > $RAW
 
-TITLE=`cat /tmp/johngrib-github | pcregrep -M '[0-9,]+ contributions\s*\n\s*in the last year'`
+TITLE=`cat $RAW | pcregrep -M '[0-9,]+ contributions\s*\n\s*in the last year'`
 echo github.com/$MYGITHUB
 echo $TITLE
 
