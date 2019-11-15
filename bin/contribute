@@ -21,7 +21,7 @@ for color in `cat $RAW | pcregrep -M 'Less.*(\n|.)*More' | egrep -o '#[a-f0-9]+'
     LV=$(( $LV + 1 ))
 done
 
-COLORS=(238 148 71 34 22)
+COLORS=(255 148 71 34 22)
 
 for row in 0 13 26 39 52 65 78; do
     for level in `egrep "^$row" $TABLE | awk '{print $3}'`; do
