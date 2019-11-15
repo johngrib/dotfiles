@@ -23,7 +23,7 @@ done
 
 COLORS=(238 148 71 34 22)
 
-for row in 0 10 20 30 40 50 60; do
+for row in 0 13 26 39 52 65 78; do
     for level in `egrep "^$row" $TABLE | awk '{print $3}'`; do
         COLOR=${COLORS[$level]}
         printf "\e[48;5;%dm  " $COLOR $LEVEL;
