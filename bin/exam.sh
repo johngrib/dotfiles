@@ -14,7 +14,7 @@ function exam {
         | sed "s,"$wiki"/,," \
         | column -ts':' \
         | sort \
-        | fzf --preview "pygmentize $wiki/{1}" --query="$1"\
+        | fzf --preview "tail -n +16 $wiki/{1} | bat -l md --color=always" --query="$1" \
         | cut -d' ' -f1 \
     `
 
