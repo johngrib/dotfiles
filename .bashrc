@@ -67,6 +67,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 alias bc='bc -l ~/.bcrc -q'
+alias weather='curl v2.wttr.in/Seoul'
 
 # colors
 GREEN='\e[0;32m\]'
