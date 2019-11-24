@@ -59,11 +59,13 @@
 
   "다음 기능들은 검색 창이 열린 다음에 포커스가 곧바로 에디터로 이동하므로 불편하고 쓸모가 없음.
   "실행한 다음 포커스가 남아 있기만 해도 굉장히 쓸만할 것 같은데 아쉽다.
-  nnoremap <SPACE>o :action GotoFile<ENTER>  
+  nnoremap <F1><F1> :action GotoFile<CR>
   nnoremap <SPACE>r :action RecentChangedFiles<CR>
   nnoremap <SPACE>w :w<CR>
 
+  nnoremap \s :action Switcher<CR>
   nnoremap \t :action ActivateStructureToolWindow<CR>
+  nnoremap \u :action ShowUsages<CR>
 
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 
@@ -71,39 +73,6 @@
   "  Main Menu > Code > Code > Completion > Cyclic Expand Word 가 비슷한 기능을 한다.
   "  Cyclic Expand Word 에 ^p, Cyclic Expand Word (Backward) 에 ^n 을 지정해주면 된다.
 
-" IntelliJ 에서의 mark 사용 -------------------------------------------------------
-
-  " m[a-zA-Z] 로 사용 가능하며, m[0-9] 는 작동하지 않는다.
-  " 범위는 파일이므로 mark 로 파일을 넘나들 수는 없다.
-  " 단, :marks 로 확인은 가능하다.
-  " IntelliJ 의 내부 기능인 GotoBookmark[0-9] 를 사용하면 괜찮을 것 같아서 테스트를 해 봤지만, 잘 통하지 않는다.
-  " m0, '0 은 잘 되지만, 0 외의 숫자는 m 과 함께 작동하지 않는다.
-  " 따라서 m[0-9] 방식은 사용할 수가 없다.
-  " 궁여지책으로 IntelliJ 내부 키맵으로 <M-M>[0-9] 로 등록하여 사용하고 있다.
-  "nnoremap '0 :action GotoBookmark0 <CR>
-  "nnoremap m0 :action ToggleBookmark0 <CR>
-
-" custom command 가 불가능하니 F10 키에 이것저것 붙여보자.
-nnoremap<C-m>0 :action ToggleBookmark0<CR>
-nnoremap<C-m>1 :action ToggleBookmark1<CR>
-nnoremap<C-m>2 :action ToggleBookmark2<CR>
-nnoremap<C-m>3 :action ToggleBookmark3<CR>
-nnoremap<C-m>4 :action ToggleBookmark4<CR>
-nnoremap<C-m>5 :action ToggleBookmark5<CR>
-nnoremap<C-m>6 :action ToggleBookmark6<CR>
-nnoremap<C-m>7 :action ToggleBookmark7<CR>
-nnoremap<C-m>8 :action ToggleBookmark8<CR>
-nnoremap<C-m>9 :action ToggleBookmark9<CR>
-" nnoremap ' :action GotoBookmark0<CR>
-" nnoremap ' :action GotoBookmark1<CR>
-" nnoremap ' :action GotoBookmark2<CR>
-" nnoremap ' :action GotoBookmark3<CR>
-" nnoremap ' :action GotoBookmark4<CR>
-" nnoremap ' :action GotoBookmark5<CR>
-" nnoremap ' :action GotoBookmark6<CR>
-" nnoremap ' :action GotoBookmark7<CR>
-" nnoremap ' :action GotoBookmark8<CR>
-" nnoremap ' :action GotoBookmark9<CR>
 nnoremap '. :action JumpToLastChange<CR>0
 nnoremap `. :action JumpToLastChange<CR>0
 
