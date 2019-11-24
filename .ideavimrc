@@ -66,6 +66,7 @@
   nnoremap \s :action Switcher<CR>
   nnoremap \t :action ActivateStructureToolWindow<CR>
   nnoremap \u :action ShowUsages<CR>
+  nnoremap \r :action ManageRecentProjects<CR>
 
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 
