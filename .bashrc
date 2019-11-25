@@ -26,7 +26,7 @@ shopt -s cmdhist        # 여러 줄에 걸쳐 작성된 멍령을 세미콜론�
 
 # fzf
 export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
-export FZF_DEFAULT_OPTS="--bind=ctrl-space:print-query --cycle"
+export FZF_DEFAULT_OPTS="--bind ctrl-space:print-query,pgup:preview-up,pgdn:preview-down --cycle"
 
 # less color
 export LESS_TERMCAP_mb=$'\E[01;31m'
