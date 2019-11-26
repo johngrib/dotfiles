@@ -15,7 +15,7 @@ function droller() {
 
     # open, o # 현재 지정된 문서를 열어준다
     if [ "$cmd" == "open" -o "$cmd" == "o" ]; then
-        head -1 $tmp_file | cut -d' ' -f4 | xargs open
+        head -1 $tmp_file | sed -E "s/^.*] http/http/" | xargs open
         return 0;
     fi
 
@@ -64,8 +64,9 @@ function droller() {
         vim $tmp_file
         if [ "$?" == "0" ]; then
             hash=`head -1 $tmp_file | cut -d ' ' -f1`
-            grep -v $hash $index > test.txt
-            cat $tmp_file >> test.txt
+            grep -v $hash $index > $index.old
+            head -1 $tmp_file >> $index.old
+            cat $index.old > $index
         fi
         droller s
         return 0;
