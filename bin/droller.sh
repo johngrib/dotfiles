@@ -19,8 +19,9 @@ function droller() {
         return 0;
     fi
 
-    if [ "$cmd" == "open" ]; then
-        head -1 $index | cut -d' ' -f4 | xargs open
+    # top, t : 인덱스의 가장 위에 있는 문서를 선택한다
+    if [ "$cmd" == "top" -o "$cmd" == "t" ]; then
+        head -1 $index > $tmp_file
         return 0;
     fi
 
