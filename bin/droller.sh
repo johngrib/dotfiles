@@ -13,6 +13,12 @@ function droller() {
         return 0;
     fi
 
+    # open, o : 현재 지정된 문서를 열어준다
+    if [ "$cmd" == "open" -o "$cmd" == "o" ]; then
+        head -1 $tmp_file | cut -d' ' -f4 | xargs open
+        return 0;
+    fi
+
     if [ "$cmd" == "open" ]; then
         head -1 $index | cut -d' ' -f4 | xargs open
         return 0;
