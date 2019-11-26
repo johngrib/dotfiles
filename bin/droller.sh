@@ -7,6 +7,12 @@ function droller() {
     cmd="$1"
     uri="$2"
 
+    # status, s : 상태를 확인한다
+    if [ "$cmd" == "status" -o "$cmd" == "s" ]; then
+        head -1 $tmp_file | cut -c 42-
+        return 0;
+    fi
+
     if [ "$cmd" == "open" ]; then
         head -1 $index | cut -d' ' -f4 | xargs open
         return 0;
