@@ -26,7 +26,20 @@ function droller() {
         newPoint=$(($point + 1))
 
         sed -i '' "s/$hash $point /$hash $newPoint /" $tmp_file
-        sed -i '' -E "s/$hash [0-9]{1,} /$hash $newPoint /" $index
+        sed -i '' -E "s/$hash -?[0-9]{1,} /$hash $newPoint /" $index
+
+        droller s
+        return 0;
+    fi
+
+    # -1 # 현재 지정된 문서에 -1
+    if [ "$cmd" == "-1" ]; then
+        hash=`head -1 $tmp_file | cut -d' ' -f1`
+        point=`head -1 $tmp_file | awk '{print $2}'`
+        newPoint=$(($point - 1))
+
+        sed -i '' "s/$hash $point /$hash $newPoint /" $tmp_file
+        sed -i '' -E "s/$hash -?[0-9]{1,} /$hash $newPoint /" $index
 
         droller s
         return 0;
