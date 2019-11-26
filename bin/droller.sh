@@ -22,12 +22,14 @@ function droller() {
     # top, t : 인덱스의 가장 위에 있는 문서를 선택한다
     if [ "$cmd" == "top" -o "$cmd" == "t" ]; then
         head -1 $index > $tmp_file
+        droller s
         return 0;
     fi
 
-    if [ "$cmd" == "" ]; then
+    # "", random, r : 랜덤으로 문서를 선택한다.
+    if [ "$cmd" == "" -o "$cmd" == "random" -o "$cmd" == "r" ]; then
         sort -R $index | head -1 | awk "{ print $1 }" > $tmp_file
-        cat $tmp_file
+        droller s
         return 0;
     fi
 
