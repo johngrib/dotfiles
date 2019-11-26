@@ -33,22 +33,26 @@ function droller() {
         return 0;
     fi
 
-    if [ "$cmd" == "edit" ]; then
+    # edit : 선택된 문서 정보를 편집한다
+    if [ "$cmd" == "edit" -o "$cmd" == "e" ]; then
         vim $tmp_file
         if [ "$?" == "0" ]; then
             hash=`head -1 $tmp_file | cut -d ' ' -f1`
             grep -v $hash $index > test.txt
             cat $tmp_file >> test.txt
         fi
+        droller s
         return 0;
     fi
 
-
+    # hash : sha1 값을 계산한다
     if [ "$cmd" == "hash" ]; then
         openssl sha1 <<< $uri
         return 0
+    fi
 
-    elif [ "$cmd" == "add" ]; then
+    # add, d : 새로운 문서를 추가한다
+    if [ "$cmd" == "add" -o "$cmd" == "a" ]; then
         hash=`openssl sha1 <<< $uri`
 
         grep $hash $index
@@ -57,13 +61,14 @@ function droller() {
             return 0;
         else
             printf "%s 0 [](%s )\n" $hash $uri >> $index
-            echo $hash > $tmp_file
             echo "링크를 추가하였습니다."
+            droller s
             return 0;
         fi
 
     fi
 
+    # droller http:// : 새로운 문서를 추가한다
     egrep '^https?:' <<< $1 > /dev/null
     if [ "$?" == "0" ]; then
         uri="$1"
