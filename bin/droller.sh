@@ -88,7 +88,9 @@ function droller() {
             grep $hash $index | head -1 > $tmp_file
             return 0;
         else
-            printf "%s 0 [] %s\n" $hash $uri >> $index
+            title=`curl -s $uri | egrep -o '<title>[^<]*?</title>' | sed -E 's,</?title>,,g'`
+            count="0"
+            printf "%s %s %s %s\n" $hash $count "[$title]" $uri >> $index
             echo "링크를 추가하였습니다."
             grep $hash $index | head -1 > $tmp_file
             droller s
