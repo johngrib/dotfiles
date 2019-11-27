@@ -89,7 +89,6 @@ function droller() {
         else
             printf "%s 0 [](%s )\n" $hash $uri >> $index
             echo "링크를 추가하였습니다."
-            droller s
             return 0;
         fi
 
