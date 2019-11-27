@@ -78,7 +78,7 @@ function droller() {
         return 0
     fi
 
-    # add, d # 새로운 문서를 추가한다
+    # add, a # 새로운 문서를 추가한다
     if [ "$cmd" == "add" -o "$cmd" == "a" ]; then
         hash=`openssl sha1 <<< $uri`
 
@@ -93,6 +93,15 @@ function droller() {
             return 0;
         fi
 
+    fi
+
+    # delete, d # 선택된 문서를 삭제한다
+    if [ "$cmd" == "delete" -o "$cmd" == "d" ]; then
+        hash=`head -1 $tmp_file | cut -d ' ' -f1`
+        grep -v $hash $index > $index.old
+        cat $index.old > $index
+        droller r
+        return 0;
     fi
 
     # help # 도움말을 출력한다
