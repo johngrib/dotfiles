@@ -85,10 +85,13 @@ function droller() {
         grep $hash $index
         if [ "$?" == "0" ]; then
             echo "이미 존재하는 링크입니다."
+            grep $hash $index | head -1 > $tmp_file
             return 0;
         else
             printf "%s 0 [](%s )\n" $hash $uri >> $index
             echo "링크를 추가하였습니다."
+            grep $hash $index | head -1 > $tmp_file
+            droller s
             return 0;
         fi
 
