@@ -88,7 +88,7 @@ function droller() {
             grep $hash $index | head -1 > $tmp_file
             return 0;
         else
-            printf "%s 0 [](%s )\n" $hash $uri >> $index
+            printf "%s 0 [] %s\n" $hash $uri >> $index
             echo "링크를 추가하였습니다."
             grep $hash $index | head -1 > $tmp_file
             droller s
