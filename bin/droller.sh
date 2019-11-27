@@ -54,7 +54,7 @@ function droller() {
 
     # , random, r # 랜덤으로 문서를 선택한다.
     if [ "$cmd" == "" -o "$cmd" == "random" -o "$cmd" == "r" ]; then
-        sort -R $index | head -1 | awk "{ print $1 }" > $tmp_file
+        sort -R $index | head -1  > $tmp_file
         droller s
         return 0;
     fi
