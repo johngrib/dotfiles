@@ -28,6 +28,8 @@ if !exists('g:include_set_vimwiki_loaded')
     nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
     nmap <LocalLeader>wt :VimwikiTable<CR>
 
+    nmap <Tab>d 0f]lli__date<Space><esc>
+
     " If buffer modified, update any 'Last modified: ' in the first 20 lines.
     " 'Last modified: ' can have up to 10 characters before (they are retained).
     " Restores cursor and window position using save_cursor variable.
@@ -96,6 +98,7 @@ if !exists('g:include_set_vimwiki_loaded')
         autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
         autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
         autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
+        autocmd FileType vimwiki nnoremap <Space>w :w<CR>:e<CR>
     augroup END
 
     function! UpdateBookProgress()
