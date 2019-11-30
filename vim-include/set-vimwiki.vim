@@ -1,5 +1,6 @@
 if !exists('g:include_set_vimwiki_loaded')
     let g:include_set_vimwiki_loaded = 1
+    let g:vim_wiki_set_path = expand('<sfile>:p:h')
     let g:vimwiki_list = [
                 \{
                 \   'path': '~/Dropbox/johngrib.github.io/_wiki',
@@ -7,7 +8,7 @@ if !exists('g:include_set_vimwiki_loaded')
                 \   'diary_rel_path': '.',
                 \},
                 \{
-                \   'path': '~/Dropbox/git/localwiki/_wiki',
+                \   'path': '~/Dropbox/localwiki/_wiki',
                 \   'ext' : '.md',
                 \   'diary_rel_path': '.',
                 \}
@@ -98,15 +99,13 @@ if !exists('g:include_set_vimwiki_loaded')
     augroup END
 
     function! UpdateBookProgress()
-        let l:save_cursor = getpos(".")
-        " \d+ % : \d+ / \d+ 형식의 라인이 있으면 퍼센테이지를 계산해 업데이트한다
-        let l:awk_command = "awk '{print int($4 * 100 / $6), \"\\% :\", $4, $5, $6 }'"
-        %g,\v^\d+ \% : \d+ \/ \d+,exe "normal! V!" . l:awk_command . ""
-        call setpos('.', l:save_cursor)
+        let l:cmd = g:vim_wiki_set_path . "/bookProgressUpdate.sh " . expand('%:p')
+        call system(l:cmd)
+        edit
     endfunction
 
     augroup todoauto
-        autocmd BufWritePre *wiki/book.md call UpdateBookProgress()
+        autocmd BufWritePost *wiki/book.md call UpdateBookProgress()
     augroup END
 
     let g:md_modify_disabled = 0
