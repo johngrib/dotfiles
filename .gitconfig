@@ -31,20 +31,21 @@
     commit-copy = "!# Select & copy a commit hash from log graph.;\n\
         git commit-select | pbcopy && echo Copied : `pbpaste`;"
     c-c = "!git commit-copy"
-    ll = "log \
-        --color --graph \
-        --abbrev-commit \
-        --pretty=format:'%Cred%h %Creset-%C(yellow)%d %Creset%s %Cgreen(%cr)%C(bold blue)<%an>'"
     l = "log \
+        --color --graph --decorate \
+        --date=format:'%Y-%m-%d' \
+        --abbrev-commit \
+        --pretty=format:'%C(red)%h%C(auto)%d %s %C(green)(%cr)%C(bold blue) %an'"
+    ll = "log \
         --color --graph --decorate \
         --date=format:'%Y-%m-%d' \
         --pretty=format:'%C(cyan)%h%C(auto)%d %s %C(magenta)(%ad)%C(bold blue) %an'"
     lh = "!# Show log graph | head \n\
         f() { \
             if [ $# = 0 ]; then \
-                git l | head -n 25; \
+                git l -25; \
             else \
-                git l | head -n $1; \
+                git l -$1; \
             fi; \
             echo ''; \
         }; f"
