@@ -99,12 +99,17 @@ if !exists('g:include_set_vimwiki_loaded')
         autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
         autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
         autocmd FileType vimwiki nnoremap <Space>w :w<CR>:e<CR>
+        autocmd VimLeavePre *.md call CloseTagbar()
     augroup END
 
     function! UpdateBookProgress()
         let l:cmd = g:vim_wiki_set_path . "/bookProgressUpdate.sh " . expand('%:p')
         call system(l:cmd)
         edit
+    endfunction
+
+    function! CloseTagbar()
+        TagbarClose
     endfunction
 
     augroup todoauto
