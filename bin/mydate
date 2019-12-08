@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+getDiff() {
+    ymd="$1"
+    python -c "from datetime import date as d; print(d.today() - d($ymd))" | awk '{print $1+1}'
+}
+
+printAll() {
+    for line in `cat ~/Dropbox/my-files/date.md`; do
+        title=`echo $line | cut -d: -f2`
+        fromDate=`echo $line | cut -d: -f1 | tr '-' ','`
+        days=`getDiff $fromDate`
+        printf "%s: %s 부터 %s 일째\n" $title $fromDate $days
+    done
+}
+
+printAll | column -ts:
