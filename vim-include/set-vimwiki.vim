@@ -98,7 +98,7 @@ if !exists('g:include_set_vimwiki_loaded')
         autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
         autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
         autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
-        autocmd FileType vimwiki nnoremap <Space>w :w<CR>:e<CR>
+        autocmd FileType vimwiki nnoremap <Space><Space>w :w<CR>:e<CR>
         autocmd VimLeavePre *.md call CloseTagbar()
     augroup END
 
