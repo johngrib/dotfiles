@@ -6,7 +6,7 @@ getDiff() {
 }
 
 printAll() {
-    for line in `cat ~/Documents/my-files/date.md`; do
+    for line in `cat ~/my-files/date.md`; do
         title=`echo $line | cut -d: -f2`
         fromDate=`echo $line | cut -d: -f1 | tr '-' ','`
         days=`getDiff $fromDate`
