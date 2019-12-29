@@ -41,6 +41,9 @@ export LESS_TERMCAP_us=$'\E[01;36m'
 export EDITOR=$(which vim)
 # export MANPAGER=vimpager
 
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # aliases
 if ls --version > /dev/null 2>&1; then
     alias ls='ls --color=auto'; #gnu
