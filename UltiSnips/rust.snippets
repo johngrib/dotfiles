@@ -1,17 +1,55 @@
+# 함수
 snippet fn "fn"
-fn ${1:name}() {
-	${2}
+fn ${1:name}(${2})${3: -> ${4:i32}} {
+	${5}
 }
 endsnippet
-
 snippet pl "println!"
 println!(${1});
+${2}
 endsnippet
-
+snippet pf "println!"
+println!("${1} {}", ${2});
+${3}
+endsnippet
 snippet ex "extern crate"
 extern crate ${1};
 endsnippet
-
 snippet l "let"
 let ${1:name} = ${2};
+${3}
+endsnippet
+snippet lm "let"
+let mut ${1:name} = ${2};
+${3}
+endsnippet
+snippet c "const"
+const ${1} = ${2};
+${3}
+endsnippet
+# if, else, while, for
+snippet if "if .. { .. }"
+if ${1:bool} {
+	${2}
+}
+endsnippet
+snippet else "else { .. }"
+else {
+	${1}
+}
+endsnippet
+snippet while "while { ... }"
+while ${1:bool} {
+	${2}
+}
+endsnippet
+snippet for "for .. in .. { .. }"
+for ${1:item} in ${2:collection} {
+	${3}
+}
+endsnippet
+snippet fori "for .. in 1..n { .. }"
+for ${1:i} in ${2:1..100} {
+	${3}
+}
 endsnippet
