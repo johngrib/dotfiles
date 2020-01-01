@@ -53,3 +53,29 @@ for ${1:i} in ${2:1..100} {
 	${3}
 }
 endsnippet
+# 구조체
+snippet struct "struct .. { .. }"
+struct ${1:Name} {
+	${2:key}: ${3:Type},
+	${4}
+}
+endsnippet
+snippet k "key: .. ,"
+${1:key}: ${2:value},
+${3}
+endsnippet
+snippet p "param: Type,"
+${1:param}: ${2:Type}${3:,}
+endsnippet
+snippet impl "impl Struct { .. }"
+impl ${1:struct_name} {
+	fn ${2:method_name}(&self) -> u32 {
+		${3}
+	}
+}
+endsnippet
+snippet method "fn method(&self) { .. }"
+fn ${1:method_name} (&self) -> bool {
+	${2}
+}
+endsnippet
