@@ -79,3 +79,17 @@ fn ${1:method_name} (&self) -> bool {
 	${2}
 }
 endsnippet
+# enum
+snippet enum "enum"
+enum ${1:EnumerateName} {
+	${2}
+}
+endsnippet
+snippet enum_example "enum"
+enum ${1:EnumerateName} {
+	Quit,
+	Move { x: i32, y: i32 },
+	Write(String),
+	ChangeColor(i32, i32, i32),
+}
+endsnippet
