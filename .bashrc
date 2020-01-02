@@ -71,6 +71,7 @@ alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 alias bc='bc -l ~/.bcrc -q'
 alias weather='curl v2.wttr.in/Seoul'
+alias myfortune='fortune ~/Dropbox/my-fortune'
 
 # colors
 GREEN='\e[0;32m\]'
@@ -147,4 +148,5 @@ function google() {
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 ls /usr/local/bin | sort -R | head -1 | xargs printf "Did you know about %s ?\n"
-fortune ~/Dropbox/my-fortune
+
+myfortune
