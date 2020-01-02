@@ -81,6 +81,7 @@ fn ${1:method_name} (&self) -> bool {
 endsnippet
 # enum
 snippet enum "enum"
+#[derive(Debug)]
 enum ${1:EnumerateName} {
 	${2}
 }
@@ -92,4 +93,13 @@ enum ${1:EnumerateName} {
 	Write(String),
 	ChangeColor(i32, i32, i32),
 }
+endsnippet
+snippet match "match"
+match ${1:target} {
+	${2:pattern} => ${3:result},
+}
+endsnippet
+# kebab-case to snake_case
+snippet "([\S]+(\-[\S]+)+)" "kebab-case to snake_case" r
+`!p snip.rv = re.sub('-','_', match.group(1))`$0
 endsnippet
