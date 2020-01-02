@@ -44,6 +44,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
     " Plug 'junegunn/vim-easy-align'
+    Plug 'AndrewRadev/splitjoin.vim'
 
     " searching
     Plug 'vim-scripts/matchit.zip'
