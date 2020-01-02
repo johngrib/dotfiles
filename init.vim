@@ -55,7 +55,6 @@ call plug#begin('~/.vim/plugged')
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     Plug 'w0rp/ale', { 'do': 'brew install php-cs-fixer' }
     " Plug 'junegunn/vim-xmark', { 'do': 'make' }
-    Plug 'rust-lang/rust.vim'
 
     " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
 
@@ -80,7 +79,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tomasr/molokai'
     Plug 'johngrib/hosu'
 
-    Plug 'SirVer/ultisnips'
     " Plug 'leafgarland/typescript-vim'
     Plug 'milkypostman/vim-togglelist'
     Plug 'jszakmeister/vim-togglecursor'
@@ -96,10 +94,20 @@ call plug#begin('~/.vim/plugged')
     Plug 'ternjs/tern_for_vim'
     Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
+    " typescript syntax highlight
+    Plug 'HerringtonDarkholme/yats.vim'
+    " Plug 'vim-scripts/vim-auto-save'
+
     Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
-    Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'vim-scripts/vim-auto-save'
+    Plug 'SirVer/ultisnips'
+    Plug 'neoclide/coc-sources', { 'do': ':CocInstall coc-ultisnips' }
+
+    Plug 'rust-lang/rust.vim'
+    Plug 'neoclide/coc-rls', { 'do': ':CocInstall coc-rls' }
+
+    Plug 'neoclide/coc-tsserver', { 'do': ':CocInstall coc-tsserver' }
+    Plug 'marlonfan/coc-phpls', { 'do': ':CocInstall coc-phpls' }
 
 call plug#end()
 
