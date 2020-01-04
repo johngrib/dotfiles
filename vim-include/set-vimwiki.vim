@@ -98,9 +98,16 @@ if !exists('g:include_set_vimwiki_loaded')
         autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
         autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
         autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
-        autocmd FileType vimwiki nnoremap <Space><Space>w :w<CR>:e<CR>
+        autocmd FileType vimwiki nnoremap <Space>w :w<CR>:call RefreshTagbar()<CR>
         autocmd VimLeavePre *.md call CloseTagbar()
     augroup END
+
+    function! RefreshTagbar()
+         let l:is_tagbar_open = bufwinnr('__Tagbar__') != -1
+         if l:is_tagbar_open
+             edit
+         endif
+    endfunction
 
     function! UpdateBookProgress()
         let l:cmd = g:vim_wiki_set_path . "/bookProgressUpdate.sh " . expand('%:p')
