@@ -96,6 +96,7 @@ if !exists('g:include_set_vimwiki_loaded')
         " autocmd FileType vimwiki nnoremap <S-F3> :execute "VWB" <Bar> :lopen<CR>
         autocmd BufWritePre *wiki/*.md keepjumps call LastModified()
         autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
+        autocmd BufRead,BufNewFile *wiki/*.md TagbarOpen
         autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
         autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
         autocmd FileType vimwiki nnoremap <Space>w :w<CR>:call RefreshTagbar()<CR>
