@@ -1,7 +1,17 @@
 # 함수
 snippet fn "fn"
+fn ${1:name}(${2}) {
+	${5}
+}
+endsnippet
+snippet fn- "fn ->"
 fn ${1:name}(${2})${3: -> ${4:i32}} {
 	${5}
+}
+endsnippet
+snippet main "main"
+fn main() {
+	${0}
 }
 endsnippet
 snippet pl "println!"
@@ -107,4 +117,22 @@ endsnippet
 # kebab-case to snake_case
 snippet "([\S]+(\-[\S]+)+)" "kebab-case to snake_case" r
 `!p snip.rv = re.sub('-','_', match.group(1))`$0
+endsnippet
+snippet mod "mod"
+mod ${1:mod_name} {
+	${0}
+}
+endsnippet
+snippet mod; "mod name;"
+mod ${1:mod_name};
+${0}
+endsnippet
+snippet p "pub"
+pub ${0}
+endsnippet
+snippet use "use"
+use ${0};
+endsnippet
+snippet super "super"
+super::${0}
 endsnippet
