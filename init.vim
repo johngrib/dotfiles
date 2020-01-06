@@ -54,7 +54,8 @@ call plug#begin('~/.vim/plugged')
 
     " language support
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
-    Plug 'w0rp/ale', { 'do': 'brew install php-cs-fixer' }
+    Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
+    " https://github.com/dense-analysis/ale
     " Plug 'junegunn/vim-xmark', { 'do': 'make' }
 
     " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
@@ -96,22 +97,37 @@ call plug#begin('~/.vim/plugged')
     Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
     " typescript syntax highlight
-    Plug 'HerringtonDarkholme/yats.vim'
+    " Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'eafgarland/typescript-vim'
     " Plug 'vim-scripts/vim-auto-save'
 
-    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+    Plug 'neoclide/coc.nvim', {
+        \'branch': 'release',
+        \'do': [
+            \':CocInstall coc-rls'
+            \,':CocInstall coc-tsserver'
+            \,':CocInstall coc-phpls'
+            \,':CocInstall coc-calc'
+            \,':CocInstall coc-ultisnips'
+        \]}
 
     Plug 'SirVer/ultisnips'
-    Plug 'neoclide/coc-sources', { 'do': ':CocInstall coc-ultisnips' }
+    " Plug 'neoclide/coc-sources', { 'do': ':CocInstall coc-ultisnips' }
 
     Plug 'rust-lang/rust.vim'
-    Plug 'neoclide/coc-rls', { 'do': ':CocInstall coc-rls' }
-
-    Plug 'neoclide/coc-tsserver', { 'do': ':CocInstall coc-tsserver' }
-    Plug 'marlonfan/coc-phpls', { 'do': ':CocInstall coc-phpls' }
-    Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
+    " Plug 'neoclide/coc-rls', { 'do': ':CocInstall coc-rls' }
+    " Plug 'neoclide/coc-tsserver', { 'do': ':CocInstall coc-tsserver' }
+    " Plug 'marlonfan/coc-phpls', { 'do': ':CocInstall coc-phpls' }
+    " Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
 
 call plug#end()
+
+function! InstallCocPlugins()
+    CocInstall coc-rls
+    CocInstall coc-tsserver
+    CocInstall coc-calc
+    CocInstall coc-phpls
+endfunction
 
 " For Neovim 0.1.3 and 0.1.4
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
