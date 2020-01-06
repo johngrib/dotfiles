@@ -9,7 +9,8 @@ if !exists('g:include_set_startify_loaded')
     let g:startify_change_to_vcs_root = 1
     let g:startify_session_sort = 1
     let g:startify_session_persistence = 1
-
+    " let g:startify_files_number = 5
+    let g:startify_fortune_use_unicode = 1
     let g:startify_commands = [
                 \ ':help startify',
                 \ ]
@@ -23,4 +24,7 @@ if !exists('g:include_set_startify_loaded')
                 \ ['    Commands'],
                 \'commands'
                 \]
+    let g:startify_custom_header =
+                \ map(split(system('fortune ~/my-fortune'), '\n'), '"   ". v:val')
+
 endif
