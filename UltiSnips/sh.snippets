@@ -1,0 +1,17 @@
+snippet #! ""
+#!/usr/bin/env bash
+
+${0}
+endsnippet
+snippet if "if"
+if [ "${1}" = "" ]; then
+	${2}
+fi
+${0}
+endsnippet
+snippet elif "elif"
+elif [ "${1}" = "" ]; then
+	${2}
+fi
+${0}
+endsnippet
