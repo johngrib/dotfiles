@@ -88,7 +88,13 @@ COLOR_END='\[\033[0m\]'
 
 # PROMPT ----------------------------------------------------------------------
 # PS1="\h:\W \u\$ "  # default promopt
-export PS1="${MAGENTA}\$(date +%Y-%m-%d-%a) ${B_YELLOW}\$(date +%T) ${GREEN}\u ${B_MAGENTA}\h ${B_BLUE}\w ${COLOR_END}\$(/usr/local/bin/githud bash)\n\$ "
+export PS1="${MAGENTA}\$(date +%Y-%m-%d-%a) \
+${B_YELLOW}\$(date +%T) \
+${GREEN}\u \
+${B_MAGENTA}\h \
+${B_BLUE}\w \
+${COLOR_END}\
+\$(/usr/local/bin/githud bash)\n\$ "
 
 
 # PROMPT_COMMAND="share_history; $PROMPT_COMMAND"
