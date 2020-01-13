@@ -102,6 +102,9 @@
         | column -ts'|' \
         | sed 's/^ /./'"
     b-l = "!git branch-list"
+    branch-list-all = "!# List all branches.;\n\
+         for branch in `git branch -r --merged | grep -v HEAD`; do echo `git show --format=\"%ci ; %cr ; %an ;\" $branch | head -n 1` $branch; done | sort -r | column -ts';'"
+    b-la = "!git branch-list-all"
     branch-merged = "!# List the merged branches.;\n\
         git branch --merged | grep -v '^\\*\\|\\<master$'"
     branch-select = "!# Select a branch.;\n\
