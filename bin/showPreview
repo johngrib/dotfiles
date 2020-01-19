@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-tail -n +16 $1 | egrep -v "^\`\`\`" | bat -l bash --color=always
+# tail -n +16 $1 | egrep -v "^\`\`\`" | bat -l bash --color=always
+tail -n +16 $1 | glow - -s dark
