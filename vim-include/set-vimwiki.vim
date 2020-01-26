@@ -89,22 +89,22 @@ function! NewTemplate()
     echom 'new wiki page has created'
 endfunction
 augroup vimwikiauto
-    " autocmd FileType vimwiki nnoremap <F3> :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
-    " autocmd FileType vimwiki nnoremap <F3> :VWS /
-    " autocmd FileType vimwiki nnoremap <S-F3> :execute "VWB" <Bar> :lopen<CR>
     autocmd BufWritePre *wiki/*.md keepjumps call LastModified()
     autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
-    autocmd BufRead,BufNewFile *wiki/*.md TagbarOpen
     autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
     autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
-    autocmd FileType vimwiki nnoremap <Space>w :w<CR>:call RefreshTagbar()<CR>
-    autocmd VimLeavePre *.md call CloseTagbar()
+augroup END
+
+augroup vimwiki_tagbar
+    autocmd BufRead,BufNewFile *wiki/*.md TagbarOpen
+    autocmd VimLeavePre *.md TagbarClose
 augroup END
 
 function! RefreshTagbar()
      let l:is_tagbar_open = bufwinnr('__Tagbar__') != -1
      if l:is_tagbar_open
-         edit
+         TagbarClose
+         TagbarOpen
      endif
 endfunction
 
@@ -112,10 +112,6 @@ function! UpdateBookProgress()
     let l:cmd = g:vim_wiki_set_path . "/bookProgressUpdate.sh " . expand('%:p')
     call system(l:cmd)
     edit
-endfunction
-
-function! CloseTagbar()
-    TagbarClose
 endfunction
 
 augroup todoauto
