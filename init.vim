@@ -508,7 +508,9 @@ endif
 " Autosave: https://github.com/907th/vim-auto-save
 let g:auto_save_silent = 1
 
-runtime! vim-include/*.vim
+for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
+    execute "source " . include_file
+endfor
 
 iabbr __email johngrib82@gmail.com
 iabbr <expr> __time strftime("%Y-%m-%d %H:%M:%S")
