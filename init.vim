@@ -1,12 +1,4 @@
-" init.vim : .nvimrc
-" location of init.vim : ~/.config/nvim/
-
-" for deoplete plugin
-    function! DoRemote(arg)
-        UpdateRemotePlugins
-    endfunction
-
-" Vim-Plug 설정 ------------------------------------------------------------------
+" Vim-Plug 설정
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
 call plug#begin('~/.vim/plugged')
 
