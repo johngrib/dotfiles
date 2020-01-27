@@ -6,3 +6,5 @@
 --langmap=vimwiki:.md
 --regex-vimwiki=/^(#+[ \t]+.*)/\1/h,heading,headings/
 
+--exclude=.git
+--exclude=*.html
