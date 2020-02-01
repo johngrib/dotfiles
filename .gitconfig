@@ -38,7 +38,8 @@
     ll = "log \
         --color --graph --decorate \
         --date=format:'%Y-%m-%d' \
-        --pretty=format:'%C(cyan)%h%C(auto)%d %s %C(magenta)(%ad)%C(bold blue) %an'"
+        --abbrev-commit \
+        --pretty=format:'%C(red)%H%C(auto)%d %s %C(green)(%cr)%C(bold blue) %an'"
     lh = "!# Show log graph | head \n\
         f() { \
             if [ $# = 0 ]; then \
@@ -83,16 +84,18 @@
             fi; \
         }; f"
     branch-clean = "!# Search and delete merged branches.;\n\
-        git branch -d $(git branch-merged) 2> /dev/null; \
-        for branch in $(git branch-list | awk '{print $2}' | grep -v '^master$') ; do \
-            if [ $(git l | grep $branch -c) -gt 0 ]; then \
-                git l | egrep \"Merge.*$branch\\s\" -C 1; \
-                read -p \"Delete $branch? [y|n] \" -r; \
-                REPLY=${REPLY:-"n"}; \
-                if [ $REPLY = \"y\" ]; then \
-                    git branch -D $branch; \
-                    echo \"\\033[32m$branch \\033[0mhas been\\033[31m deleted\\033[0m.\n\"; \
-                fi; \
+        curr_hash=`git show -s | head -1 | cut -d ' ' -f2`; \
+        for branch in `find .git/refs/heads -type f | egrep -v '/(master|develop)$'` ; do \
+            hash=`cat $branch`; \
+            if [ $hash = $curr_hash ]; then \
+                continue; \
+            fi; \
+            git ll | egrep $hash -C 1; \
+            read -p \"Delete $branch? [y|n] \" -r; \
+            REPLY=${REPLY:-"n"}; \
+            if [ $REPLY = \"y\" ]; then \
+                rm $branch; \
+                echo \"\\033[32m$branch \\033[0mhas been\\033[31m deleted\\033[0m.\n\"; \
             fi; \
         done"
     b-c = "!git branch-clean"
