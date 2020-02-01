@@ -24,9 +24,8 @@
         git alias | egrep 'log|commit-'"
     commit-select = "!# Select a commit hash from log graph.;\n\
         git l \
-        | fzf -m --ansi --layout=reverse --preview=\"echo {} | sed 's/-.*$//' | egrep -o '[0-9a-f]+' | xargs git show --color=always \" \
-        | sed 's/-.*$//' \
-        | egrep -o '[0-9a-f]+'"
+        | fzf -m --ansi --layout=reverse --preview=\"echo {} | sed 's/^[*| ]*//g' | cut -d' ' -f1 | xargs git show --color=always \" \
+        | sed 's/^[*| ]*//g' | cut -d' ' -f1"
     c-s = "!git commit-select"
     commit-copy = "!# Select & copy a commit hash from log graph.;\n\
         git commit-select | pbcopy && echo Copied : `pbpaste`;"
