@@ -277,12 +277,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <silent> <PageUp>    :bnext!<CR>
     nnoremap <silent> <F7>        :bprevious!<CR>
     nnoremap <silent> <PageDown>  :bprevious!<CR>
-    nnoremap <silent> <F12>d      :bd!<CR>
+    nnoremap <silent> <F9>d      :bd!<CR>
     " 현재 버퍼를 닫고 이전 버퍼로 이동
-    nnoremap <silent> <F12>q      :bp <BAR> bd #<CR>
-    nnoremap <silent> <F12><F12>  :Buffers<CR>
+    nnoremap <silent> <F9><F6>      :bp <BAR> bd #<CR>
+    nnoremap <silent> <F9>q      :bp <BAR> bd #<CR>
+    nnoremap <silent> <F9><F9>  :Buffers<CR>
     " 현재 버퍼만 남기고 모두 닫기
-    nnoremap <silent> <F12>o      :%bd <BAR> e # <BAR> bd #<CR>
+    nnoremap <silent> <F9>o      :%bd <BAR> e # <BAR> bd #<CR>
 
     inoremap <C-e> <C-O>$
     inoremap <C-l> <right>
