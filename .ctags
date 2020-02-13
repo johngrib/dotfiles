@@ -6,5 +6,9 @@
 --langmap=vimwiki:.md
 --regex-vimwiki=/^(#+[ \t]+.*)/\1/h,heading,headings/
 
+--langdef=asciidoc
+--langmap=asciidoc:.adoc
+--regex-asciidoc=/^(\=+[ \t]+.*)/\1/h,heading,headings/
+
 --exclude=.git
 --exclude=*.html

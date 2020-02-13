@@ -7,3 +7,11 @@ let g:tagbar_type_vimwiki = {
         \ 'h:Heading'
     \ ]
 \ }
+
+let g:tagbar_type_asciidoc = {
+    \ 'ctagstype' : 'asciidoc',
+    \ 'sort': 0,
+    \ 'kinds' : [
+        \ 'h:Heading'
+    \ ]
+\ }
