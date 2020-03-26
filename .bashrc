@@ -96,7 +96,7 @@ function gbr {
         branch="`git branch | grep '^\*' | cut -c 3-`"
         branch_str="\033[1;031m$branch\033[0m"
 
-        stat=`git s | awk '{print $1}' | uniq -c | tr '\n' ' ' | sed -E 's/([0-9]+) /\1/g; s/  */ /g; s/ *$//'`
+        stat=`git s | awk '{print $1}' | sort | uniq -c | tr '\n' ' ' | sed -E 's/([0-9]+) /\1/g; s/  */ /g; s/ *$//'`
 
         stash_size=`git stash list | wc -l | sed 's/ //g'`
         stash_icon=" \e[0;92m≡\033[0m"
