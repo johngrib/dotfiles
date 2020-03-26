@@ -100,7 +100,7 @@
         done"
     b-c = "!git branch-clean"
     branch-list = "!# List the branches.;\n\
-        git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
+        git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD) %(refname:strip=2) | %(committerdate:relative) | %(authorname)' \
         | column -ts'|' \
         | sed 's/^ /./'"
     b-l = "!git branch-list"
@@ -228,6 +228,7 @@
     quotepath = false
 [diff]
     tool = vimdiff
+    wsErrorHighlight = all
 [difftool "vimdiff"]
     path = /usr/local/bin/vim
 [merge]
