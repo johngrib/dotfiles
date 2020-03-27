@@ -93,7 +93,7 @@ function gbr {
     if [ "$?" -ne "0" ]; then
         return 1
     else
-        branch="`git b0`"
+        branch="`git branch | grep '^\*' | cut -c 3-`"
         branch_str="\033[1;031m$branch\033[0m"
 
         stat=`git s | awk '{print $1}' | uniq -c | tr '\n' ' ' | sed -E 's/([0-9]+) /\1/g; s/  */ /g; s/ *$//'`
