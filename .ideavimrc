@@ -83,6 +83,7 @@ onoremap [m :action MethodUp<CR>
 onoremap ]m :action MethodDown<CR>
 
 nnoremap <C-S-5> :action EditorMatchBrace<CR>
+nnoremap <Tab>d :action QuickJavaDoc<CR>
 
 " set gvimpath=/usr/local/opt/macvim/bin/mvim
 set gvimpath=/Users/johngrib/Applications/VimR.app/Contents/MacOS/VimR
@@ -90,3 +91,33 @@ set gvimpath=/Users/johngrib/Applications/VimR.app/Contents/MacOS/VimR
 nnoremap <Space>v :action CopyPaths<CR>
 set ideajoin
 set ideamarks
+
+
+let mapleader=" "
+set easymotion
+
+nmap <Leader>l <Plug>(easymotion-lineforward)
+nmap <Leader>j <Plug>(easymotion-j)
+nmap <Leader>k <Plug>(easymotion-k)
+nmap <Leader>h <Plug>(easymotion-linebackward)
+nmap <Leader>a <Plug>(easymotion-jumptoanywhere)
+" nnoremap <Space>j <Plug>(easymotion-j)
+" map <Leader>l <Plug>(easymotion-fl)
+" map <Leader>j <Plug>(easymotion-f)
+" map <Leader>k <Plug>(easymotion-F)
+" map <Leader>h <Plug>(easymotion-Fl)
+" map <Leader>J <Plug>(easymotion-j)
+" map <Leader>K <Plug>(easymotion-k)
+
+
+" map  <Leader>  <Plug>(easymotion-prefix)
+" vmap <Leader>s <Plug>(easymotion-bd-f)
+" nmap <Leader>j <Plug>(easymotion-j)
+" vmap <Leader>j <Plug>(easymotion-j)
+" nmap <Leader>k <Plug>(easymotion-k)
+" vmap <Leader>k <Plug>(easymotion-k)
+" nmap <Leader>h <Plug>(easymotion-linebackward)
+" vmap <Leader>h <Plug>(easymotion-linebackward)
+" nmap <Leader>a <Plug>(easymotion-jumptoanywhere)
+" vmap <Leader>a <Plug>(easymotion-jumptoanywhere)
+
