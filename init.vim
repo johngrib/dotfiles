@@ -514,3 +514,7 @@ iabbr <expr> __pwd expand('%:p:h')
 iabbr <expr> __branch system("git rev-parse --abbrev-ref HEAD")
 iabbr <expr> __uuid system("uuidgen")
 
+iabbr ㅇ. 있다.
+iabbr ㅇ.. 입니다.
+iabbr ㄱ. 그리고
+
