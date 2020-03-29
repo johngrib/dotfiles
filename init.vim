@@ -47,13 +47,10 @@ call plug#begin('~/.vim/plugged')
     " language support
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
-    " https://github.com/dense-analysis/ale
     " Plug 'junegunn/vim-xmark', { 'do': 'make' }
 
     " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
 
-    " Plug 'wesleyche/srcexpl'
-    " Plug 'honza/vim-snippets'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
     " screen view
@@ -63,7 +60,6 @@ call plug#begin('~/.vim/plugged')
     " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
 
-    " Plug 'koron/nyancat-vim'
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
     Plug 'diepm/vim-rest-console'
@@ -73,7 +69,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tomasr/molokai'
     Plug 'johngrib/hosu'
 
-    " Plug 'leafgarland/typescript-vim'
     Plug 'milkypostman/vim-togglelist'
     Plug 'jszakmeister/vim-togglecursor'
     Plug 'johngrib/vim-git-msg-wheel'
@@ -86,12 +81,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Chiel92/vim-autoformat'
 
     Plug 'ternjs/tern_for_vim'
-    Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
-
-    " typescript syntax highlight
-    " Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'eafgarland/typescript-vim'
-    " Plug 'vim-scripts/vim-auto-save'
+    " Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
     Plug 'neoclide/coc.nvim', {
         \'branch': 'release',
@@ -100,8 +90,15 @@ call plug#begin('~/.vim/plugged')
             \,':CocInstall coc-tsserver'
             \,':CocInstall coc-phpls'
             \,':CocInstall coc-calc'
-            \,':CocInstall coc-ultisnips'
         \]}
+
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'thomasfaingnaert/vim-lsp-snippets'
+    Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 
     Plug 'SirVer/ultisnips'
     " Plug 'neoclide/coc-sources', { 'do': ':CocInstall coc-ultisnips' }
@@ -517,4 +514,10 @@ iabbr <expr> __uuid system("uuidgen")
 iabbr ㅇ. 있다.
 iabbr ㅇ.. 입니다.
 iabbr ㄱ. 그리고
+
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 

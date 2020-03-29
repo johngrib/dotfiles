@@ -6,3 +6,8 @@ let g:UltiSnipsEditSplit="vertical"     " If you want :UltiSnipsEdit to split yo
 " let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
 let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 
+call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+    \ 'name': 'ultisnips',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+    \ }))
