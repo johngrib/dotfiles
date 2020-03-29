@@ -11,6 +11,8 @@ elif [ -z "`echo $PATH | grep -o /dotfiles-com/bin/`" -a "`hostname -s`" == "tf-
     PATH="$PATH:~/Dropbox/dotfiles-com/bin/"
 fi
 
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
 LANG="en_US.UTF-8"
 # export JAVA_HOME=$(/usr/libexec/java_home)
 export GOBIN=$HOME/go/bin
