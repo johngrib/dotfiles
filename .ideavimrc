@@ -96,11 +96,13 @@ set ideamarks
 let mapleader=" "
 set easymotion
 
-nmap <Leader>l <Plug>(easymotion-lineforward)
-nmap <Leader>j <Plug>(easymotion-j)
-nmap <Leader>k <Plug>(easymotion-k)
-nmap <Leader>h <Plug>(easymotion-linebackward)
-nmap <Leader>a <Plug>(easymotion-jumptoanywhere)
+nmap sl <Plug>(easymotion-lineforward)
+nmap sj <Plug>(easymotion-j)
+nmap sk <Plug>(easymotion-k)
+nmap sh <Plug>(easymotion-linebackward)
+nmap sa <Plug>(easymotion-jumptoanywhere)
+nmap sf <Plug>(easymotion-f)
+
 " nnoremap <Space>j <Plug>(easymotion-j)
 " map <Leader>l <Plug>(easymotion-fl)
 " map <Leader>j <Plug>(easymotion-f)
