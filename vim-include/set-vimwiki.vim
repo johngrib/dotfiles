@@ -101,7 +101,7 @@ augroup vimwikiauto
 augroup END
 
 augroup vimwiki_tagbar
-    autocmd BufRead,BufNewFile *wiki/*.md TagbarOpen
+    " autocmd BufRead,BufNewFile *wiki/*.md TagbarOpen
     autocmd VimLeavePre *.md TagbarClose
 augroup END
 
