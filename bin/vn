@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+
+responses_yes = ['y', 'yes', 'Y']
+responses_no = ['n', 'no', 'N']
+
+import sys, os, shlex, tempfile
+
+if len(sys.argv) == 1 or '-h' in sys.argv or '--help' in sys.argv:
+    print('''Usage:
+  {self} [-iyh] file1 [file2 ...]
+
+It creates a temporary file and opens Vim. There you edit each name as you
+wish, but keep each file on its own line (the line number works as an ID for
+the file, so if you put a filename on the wrong line number, a different file
+will be renamed!). Then just :wq and ViNamer will perform the renames and clean
+up the temp file.
+
+ViNamer will print each rename operation it performs, so even if you made a
+mistake, you can see how each file was renamed.
+
+Options:
+  -i
+    Interactive mode, where you are asked to confirm each rename individually.
+    Recommended when you first use it.
+
+  -c
+    Show a summary and ask for confirmation after exiting Vim.
+    Recommended the second time you use it. To cancel renaming, you can also
+    just undo your changes (`u` in Vim) and then `:q`. ViNamer will tell you
+    that the file was not changed and exits without any renames.
+
+  -h  --help
+    Show this help text and exit
+
+Note that options must be before filenames. This also means that you don't
+need -- to separate options from filenames.
+
+Example usage:
+  {self} -i /tmp/*
+
+Copyright 2019 Luc Gommans, distributed as GPLv3: see the `LICENSE` file.
+'''.format(self = sys.argv[0]))
+    exit(1)
+
+confirmChanges = False
+confirmEachChange = False
+if sys.argv[1] == '-c':
+    confirmChanges = True
+    sys.argv = sys.argv[1:]
+elif sys.argv[1] == '-i':
+    confirmChanges = False
+    confirmEachChange = True
+    sys.argv = sys.argv[1:]
+
+f = tempfile.NamedTemporaryFile(prefix='tmp-virenamer-', delete=False, mode='w')
+path = f.name
+f.write('\n'.join(sys.argv[1:]))
+f.close()
+
+os.system("vim " + path)
+
+f = open(path)
+renamed = f.read().strip().split('\n')
+f.close()
+os.unlink(path)
+
+if len(renamed) != len(sys.argv) - 1:
+    print('Error: edited file has a different number of lines.')
+    print('Please read the help text to understand how this tool works.')
+    exit(2)
+
+changed = 0
+for i, arg in enumerate(sys.argv[1:]):
+    if arg != renamed[i]:
+        changed += 1
+
+if changed == 0:
+    print('You did not make any changes.')
+    exit(0)
+
+if confirmChanges:
+    response = input('You edited {}/{} lines. Do you want to continue? [y/n] '
+        .format(changed, len(sys.argv) - 1))
+    if response not in responses_yes:
+        if response not in responses_no:
+            print('Accepted responses are y, n, Y, N, yes and no. Exiting.')
+            exit(1)
+        else:
+            print('You chose to discard your changes.')
+            exit(0)
+
+for i, arg in enumerate(sys.argv[1:]):
+    if arg == renamed[i]:
+        print('Unchanged: "{}"'.format(arg))
+    else:
+        if confirmEachChange:
+            response = input('Confirm renaming "{}" to "{}"? [y/n/Ctrl+C] '.format(arg, renamed[i]))
+            if response not in responses_yes:
+                if response not in responses_no:
+                    print('Accepted responses are y, n, Y, N, yes and no. Exiting.')
+                    exit(1)
+                else:
+                    print('Not renamed.')
+                    continue
+
+        print('Renaming "{}" to "{}".'.format(arg, renamed[i]))
+        os.rename(arg, renamed[i])
+
