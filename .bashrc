@@ -127,7 +127,7 @@ ${COLOR_END}\
 [ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
 
 for f in ~/.local/bin/*.sh; do source $f; done
-bind '"\ev": "fav\C-m"'
+bind '"\ev": "\C-ufav\C-m"'
 bind '"\ed": "droller \"`pbpaste`\"\C-m"'
 
 eval $(thefuck --alias)
