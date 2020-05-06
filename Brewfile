@@ -2,6 +2,7 @@ tap "eddieantonio/eddieantonio"
 tap "gbataille/gba"
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "isacikgoz/taps"
@@ -68,6 +69,10 @@ cask "hammerspoon"
 cask "firefox"
 cask "karabiner-elements"
 cask "dropbox"
+cask 'font-meslolg-nerd-font'
 mas "1Password", id: 443987910
+mas "Keynote", id: 409183694
+mas "LINE", id: 539883307
 mas "Slack", id: 803453959
 mas "Trello", id: 1278508951
+mas "Xcode", id: 497799835
