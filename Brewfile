@@ -31,6 +31,7 @@ brew "libressl"
 brew "llvm"
 brew "lua"
 brew "luarocks"
+brew "mas"
 brew "nethack"
 brew "node"
 brew "php-cs-fixer"
@@ -67,3 +68,6 @@ cask "hammerspoon"
 cask "firefox"
 cask "karabiner-elements"
 cask "dropbox"
+mas "1Password", id: 443987910
+mas "Slack", id: 803453959
+mas "Trello", id: 1278508951
