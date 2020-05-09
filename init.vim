@@ -88,11 +88,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'ternjs/tern_for_vim'
     Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
-    " typescript syntax highlight
-    " Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'eafgarland/typescript-vim'
-    " Plug 'vim-scripts/vim-auto-save'
-
     Plug 'neoclide/coc.nvim', {
         \'branch': 'release',
         \'do': [
