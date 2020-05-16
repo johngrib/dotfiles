@@ -177,4 +177,6 @@ function google() {
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 ls /usr/local/bin | sort -R | head -1 | xargs printf "Did you know about %s ?\n"
 
+echo ''
+
 myfortune
