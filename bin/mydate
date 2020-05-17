@@ -10,7 +10,9 @@ printAll() {
         title=`echo $line | cut -d: -f2`
         fromDate=`echo $line | cut -d: -f1 | tr '-' ','`
         days=`getDiff $fromDate`
-        printf "%s: %s 부터 %s 일째\n" $title $fromDate $days
+        years=`echo "$days / 365.0" | bc`
+        remain=`echo "scale=0; $days % 365" | bc`
+        printf "%s: %s 부터 %s 일째 (%s 년 %s 일)\n" $title $fromDate $days $years $remain
     done
 }
 
