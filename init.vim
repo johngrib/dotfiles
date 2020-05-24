@@ -270,7 +270,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nnoremap <M-T> :enew<CR>       " 새로운 버퍼를 연다
     nnoremap <silent> <F8>        :bnext!<CR>
     nnoremap <silent> <PageUp>    :bnext!<CR>
-    nnoremap <silent> <F7>        :bprevious!<CR>
+    nnoremap <silent> <F7><F8>        :bprevious!<CR>
     nnoremap <silent> <PageDown>  :bprevious!<CR>
     nnoremap <silent> <F9>d      :bd!<CR>
     " 현재 버퍼를 닫고 이전 버퍼로 이동
