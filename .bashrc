@@ -40,7 +40,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 
 # vim, tmux
-export EDITOR=$(which vim)
+export EDITOR=$(which nvim)
 # export MANPAGER=vimpager
 
 # rust
@@ -55,7 +55,9 @@ else
     alias l.='ls -dG .*'
 fi
 alias ll='ls -alh'
-alias vi='mvim -v'
+# alias vi='mvim -v'
+alias vi='nvim'
+alias vim='nvim'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
