@@ -107,6 +107,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'neoclide/coc-tsserver', { 'do': ':CocInstall coc-tsserver' }
     " Plug 'marlonfan/coc-phpls', { 'do': ':CocInstall coc-phpls' }
     " Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
+    Plug 'stephpy/vim-yaml'
 
 call plug#end()
 
