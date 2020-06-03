@@ -96,6 +96,7 @@ call plug#begin('~/.vim/plugged')
             \,':CocInstall coc-phpls'
             \,':CocInstall coc-calc'
             \,':CocInstall coc-ultisnips'
+            \,':CocInstall coc-java'
         \]}
 
     Plug 'SirVer/ultisnips'
