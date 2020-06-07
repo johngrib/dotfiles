@@ -129,6 +129,9 @@ ${COLOR_END}\
 [ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
 
 for f in ~/.local/bin/*.sh; do source $f; done
+
+source $(which fav.sh)
+
 bind '"\ev": "\C-ufav\C-m"'
 bind '"\ed": "droller \"`pbpaste`\"\C-m"'
 
