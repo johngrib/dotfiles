@@ -90,14 +90,14 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'neoclide/coc.nvim', {
         \'branch': 'release',
-        \'do': [
-            \':CocInstall coc-rls'
-            \,':CocInstall coc-tsserver'
-            \,':CocInstall coc-phpls'
-            \,':CocInstall coc-calc'
-            \,':CocInstall coc-ultisnips'
-            \,':CocInstall coc-java'
-        \]}
+        \}
+        " \'do': [
+        "     \':CocInstall coc-rls'
+        "     \,':CocInstall coc-tsserver'
+        "     \,':CocInstall coc-phpls'
+        "     \,':CocInstall coc-calc'
+        "     \,':CocInstall coc-ultisnips'
+        "     \,':CocInstall coc-java'
 
     Plug 'SirVer/ultisnips'
     " Plug 'neoclide/coc-sources', { 'do': ':CocInstall coc-ultisnips' }
@@ -108,6 +108,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'marlonfan/coc-phpls', { 'do': ':CocInstall coc-phpls' }
     " Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
     Plug 'stephpy/vim-yaml'
+    Plug 'tpope/vim-speeddating'
 
 call plug#end()
 
@@ -453,6 +454,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
                 \ ['uint', 'uint8', 'uint16', 'uint32', 'uint64'],
                 \ ['float32', 'float64'],
                 \ ['interface', 'struct'],
+                \ ]
+
+    let g:axring_rings_vimwiki = [
+                \ ['##', '###'],
                 \ ]
 
     " let g:ale_fixers = {'php': ['php_cs_fixer']}
