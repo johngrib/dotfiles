@@ -522,3 +522,5 @@ iabbr ㅇ. 있다.
 iabbr ㅇ.. 입니다.
 iabbr ㄱ. 그리고
 
+set fileencodings=utf-8,euc-kr
+
