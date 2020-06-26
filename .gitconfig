@@ -222,7 +222,7 @@
     }; f"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
-    editor = /usr/local/bin/vim
+    editor = /usr/local/bin/nvim
     autocrlf = input
     precomposeunicode = true
     quotepath = false
