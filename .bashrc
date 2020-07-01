@@ -76,6 +76,7 @@ alias grep='grep --color=auto'
 alias bc='bc -l ~/.bcrc -q'
 alias weather='curl v2.wttr.in/Seoul'
 alias myfortune='fortune ~/Dropbox/my-fortune'
+alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
 
 # colors
 GREEN='\e[0;32m\]'
