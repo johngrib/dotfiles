@@ -84,6 +84,11 @@ onoremap ]m :action MethodDown<CR>
 
 nnoremap <C-S-5> :action EditorMatchBrace<CR>
 nnoremap <Tab>d :action QuickJavaDoc<CR>
+nnoremap <Tab>f :action QuickFixes<CR>
+nnoremap <Tab>o :action CloseAllEditorsButActive<CR>
+nnoremap <Tab>i :action InspectCode<CR>
+nnoremap <Tab>u :action FindUsages<CR>
+nnoremap <Tab>, :e ~/.ideavimrc<CR>
 
 " set gvimpath=/usr/local/opt/macvim/bin/mvim
 set gvimpath=/Users/johngrib/Applications/VimR.app/Contents/MacOS/VimR
