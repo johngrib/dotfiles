@@ -19,6 +19,9 @@ let g:EasyMotion_smartcase = 1
 
 map  s  <Plug>(easymotion-prefix)
 vmap ss <Plug>(easymotion-s)
+nmap ss <Plug>(easymotion-s)
+imap <c-s> <c-o><Plug>(easymotion-s)
+nmap <c-s> <Plug>(easymotion-s)
 nmap S <Plug>(easymotion-overwin-f2)
 nmap sl <Plug>(easymotion-lineforward)
 vmap sl <Plug>(easymotion-lineforward)
