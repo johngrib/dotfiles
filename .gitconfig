@@ -35,11 +35,21 @@
         --date=format:'%Y-%m-%d' \
         --abbrev-commit \
         --pretty=format:'%C(red)%h%C(auto)%d %s %C(green)(%cr)%C(bold blue) %an'"
+    ld = "log \
+        --color --graph --decorate \
+        --date=format:'%Y-%m-%d %H:%M:%S' \
+        --abbrev-commit \
+        --pretty=format:'%C(red)%h%C(auto)%d %s %C(green)(%ad)%C(bold blue) %an'"
     ll = "log \
         --color --graph --decorate \
         --date=format:'%Y-%m-%d' \
         --abbrev-commit \
         --pretty=format:'%C(red)%H%C(auto)%d %s %C(green)(%cr)%C(bold blue) %an'"
+    lld = "log \
+        --color --graph --decorate \
+        --date=format:'%Y-%m-%d %H:%M:%S' \
+        --abbrev-commit \
+        --pretty=format:'%C(red)%H%C(auto)%d %s %C(green)(%ad)%C(bold blue) %an'"
     lh = "!# Show log graph | head \n\
         f() { \
             if [ $# = 0 ]; then \
