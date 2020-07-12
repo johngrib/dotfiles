@@ -114,7 +114,7 @@ function gbr {
     fi
 }
 
-export PS1="${MAGENTA}\$(date +%Y-%m-%d-%a) \
+export PS1="${MAGENTA}\$(date '+%Y-%m-%d-%a %VW') \
 ${B_YELLOW}\$(date +%T) \
 ${GREEN}\u \
 ${B_MAGENTA}\h \
