@@ -15,6 +15,8 @@
         git alias | head -7"
     ci = commit
     co = checkout
+    sw = switch
+    re = restore
     s = status -s
     assume   = update-index --assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
