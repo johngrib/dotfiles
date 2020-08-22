@@ -81,6 +81,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'tpope/vim-db'
     " Plug 'bartmalanczuk/vim-trex-runner'
     Plug 'johngrib/vim-game-code-break'
+    Plug 'johngrib/vim-game-snake'
     Plug 'johngrib/vim-mac-dictionary'
     Plug 'tenfyzhong/axring.vim'
     Plug 'Chiel92/vim-autoformat'
