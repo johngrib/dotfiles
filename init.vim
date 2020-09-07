@@ -84,7 +84,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'johngrib/vim-game-snake'
     Plug 'johngrib/vim-mac-dictionary'
     Plug 'tenfyzhong/axring.vim'
-    Plug 'Chiel92/vim-autoformat'
+    " Plug 'Chiel92/vim-autoformat'
 
     Plug 'ternjs/tern_for_vim'
     Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
