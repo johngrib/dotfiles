@@ -459,6 +459,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     let g:axring_rings_vimwiki = [
                 \ ['##', '###'],
+                \ ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                 \ ]
 
     " let g:ale_fixers = {'php': ['php_cs_fixer']}
