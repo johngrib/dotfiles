@@ -211,6 +211,13 @@
             | cut -d' ' -f1; \
         }; f"
     stash-op = "!#A private stash tool.;\nf() { git stash-select | xargs git stash $1; }; f"
+    tag-refresh = "!# Re reference tag.;\n \
+        f() { \
+            tag_name=`git tag | fzf`; \
+            echo $tag_name; \
+            git tag -d $tag_name; \
+            git tag $tag_name; \
+        }; f"
     alias-alias = "!#----------------------------------------------------------;\n\
         git alias | grep alias"
     alias = "!# Prints all aliases.;\n\
