@@ -95,6 +95,7 @@ function! NewTemplate()
 endfunction
 augroup vimwikiauto
     autocmd BufWritePre *wiki/*.md keepjumps call LastModified()
+    autocmd BufWritePre */log/*.md keepjumps call LastModified()
     autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
     autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
     autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
