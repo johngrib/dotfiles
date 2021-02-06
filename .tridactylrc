@@ -1,0 +1,6 @@
+
+bind j scrollline 1
+bind k scrollline -1
+
+" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" vim: set filetype=tridactyl
