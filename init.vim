@@ -49,12 +49,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
     " https://github.com/dense-analysis/ale
     " Plug 'junegunn/vim-xmark', { 'do': 'make' }
-
     " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
-
     " Plug 'wesleyche/srcexpl'
     " Plug 'honza/vim-snippets'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'tridactyl/vim-tridactyl'
 
     " screen view
     Plug 'luochen1990/rainbow'          " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
