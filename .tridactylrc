@@ -1,6 +1,8 @@
 
 bind j scrollline 1
 bind k scrollline -1
+bind d scrollpage 0.5
+bind u scrollpage -0.5
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
