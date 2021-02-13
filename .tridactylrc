@@ -1,5 +1,8 @@
 set smoothscroll true
 
+bind --mode=normal i mode ignore
+bind --mode=ignore <Escape> mode normal
+
 bind j scrollline 1
 bind k scrollline -1
 bind d scrollpage 0.5
