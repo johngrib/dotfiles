@@ -1,3 +1,4 @@
+set smoothscroll true
 
 bind j scrollline 1
 bind k scrollline -1
