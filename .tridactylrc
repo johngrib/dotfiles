@@ -1,12 +1,49 @@
-set smoothscroll true
+
+" This wipes all existing settings. This means that if a setting in this file
+" is removed, then it will return to default. In other words, this file serves
+" as an enforced single point of truth for Tridactyl's configuration.
+sanitize tridactyllocal tridactylsync
+
+set smoothscroll false
 
 bind --mode=normal i mode ignore
 bind --mode=ignore <Escape> mode normal
 
 bind j scrollline 1
 bind k scrollline -1
-bind d scrollpage 0.5
-bind u scrollpage -0.5
+bind d scrollpage 0.3
+bind u scrollpage -0.3
+
+" search
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+
+" tab
+bind x tabclose
+
+" text editing
+bind --mode=ex     <C-a> text.beginning_of_line
+bind --mode=ex     <C-e> text.end_of_line
+bind --mode=ex     <C-u> text.backward_kill_line
+bind --mode=ex     <C-w> text.backward_kill_word
+bind --mode=input  <C-a> text.beginning_of_line
+bind --mode=input  <C-e> text.end_of_line
+bind --mode=input  <C-u> text.backward_kill_line
+bind --mode=input  <C-w> text.backward_kill_word
+bind --mode=insert <C-a> text.beginning_of_line
+bind --mode=insert <C-e> text.end_of_line
+bind --mode=insert <C-u> text.backward_kill_line
+bind --mode=insert <C-w> text.backward_kill_word
+
+" 구글 검색에서 검색 결과에만 클릭 힌트를 달아준다
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search <space>f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search <space>F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+" bindurl www.google.com <space>f hint -Jc #search div:not(.action-menu) > a
+" bindurl www.google.com <space>F hint -Jbc #search div:not(.action-menu) > a
+
+autocmd DocStart mail.google.com mode ignore
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
