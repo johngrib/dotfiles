@@ -4,13 +4,21 @@
 " as an enforced single point of truth for Tridactyl's configuration.
 sanitize tridactyllocal tridactylsync
 
+" set newtab https://google.com
+
+" :home 을 입력하면 지정한 웹 페이지를 새 탭에 열어줍니다.
+set homepages ["file:///Users/johngrib/Dropbox/JohnGrib/home.html", "https://mail.google.com/mail/u/1/#inbox"]
+
 set smoothscroll false
 
+" tridactyl의 ignore 모드는 기본 키가 복잡하다. vim처럼 i 가 편하다.
 bind --mode=normal i mode ignore
 bind --mode=ignore <Escape> mode normal
 
 bind j scrollline 1
 bind k scrollline -1
+
+" <c-d>, <c-u> 가 좋겠지만 귀찮다. vimium 과 똑같이 설정한다.
 bind d scrollpage 0.3
 bind u scrollpage -0.3
 
@@ -23,7 +31,7 @@ bind N findnext -1
 " tab
 bind x tabclose
 
-" text editing
+" emacs 스타일 text editing 이 편하다
 bind --mode=ex     <C-a> text.beginning_of_line
 bind --mode=ex     <C-e> text.end_of_line
 bind --mode=ex     <C-u> text.backward_kill_line
@@ -43,6 +51,7 @@ bindurl google(\.[a-zA-Z0-9]+){1,2}/search <space>F hint -Jbc #top_nav a, #searc
 " bindurl www.google.com <space>f hint -Jc #search div:not(.action-menu) > a
 " bindurl www.google.com <space>F hint -Jbc #search div:not(.action-menu) > a
 
+" gmail 에서는 tridactyl을 안 쓴다
 autocmd DocStart mail.google.com mode ignore
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
