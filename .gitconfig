@@ -213,7 +213,8 @@
     stash-op = "!#A private stash tool.;\nf() { git stash-select | xargs git stash $1; }; f"
     tag-refresh = "!# Re reference tag.;\n \
         f() { \
-            tag_name=`git tag | fzf`; \
+            _height=$(stty size | awk '{print $1}');\
+            tag_name=`git tag | fzf --preview=\"git l {1} | head -n $_height\" `; \
             echo $tag_name; \
             git tag -d $tag_name; \
             git tag $tag_name; \
