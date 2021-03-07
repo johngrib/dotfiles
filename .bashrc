@@ -186,3 +186,4 @@ ls /usr/local/bin | sort -R | head -1 | xargs printf "Did you know about %s ?\n"
 echo ''
 
 myfortune
+ioreg -r -d 1 -k BatteryPercent | grep BatteryPercent | tr -d ' '
