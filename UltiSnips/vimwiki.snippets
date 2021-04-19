@@ -397,6 +397,15 @@ snippet lbackslash "\backslash 백슬래시 \"
 \backslash
 endsnippet
 
+# 그 외 LaTeX 문법
+snippet lcases "\begin{cases} ... \end{cases}"
+T(n) =
+\begin{cases}
+    \Theta(1), & n = 1 \\\\
+    T(n/2) + \Theta(1), & n \ge 2 \\\\
+\end{cases}
+endsnippet
+
 # html entity -----------------------------------------------------------------
 snippet hbar "&#124; 파이프 |"
 &#124;
@@ -471,6 +480,11 @@ ${0}
 endsnippet
 
 snippet detail "접기/펼치기"
+<details><summary>${1:접기/펼치기}</summary><div markdown="1">
+</div></details>
+endsnippet
+
+snippet fold "접기/펼치기"
 <details><summary>${1:접기/펼치기}</summary><div markdown="1">
 </div></details>
 endsnippet
