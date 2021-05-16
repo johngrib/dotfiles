@@ -240,6 +240,30 @@
             echo '';\
         fi; \
     }; f"
+    knot = "!# Merge two commits with 1 depth.;\n\
+    f() { \
+        if [ $(git status --short | egrep -v '^\\?' | wc -l) -gt 0 ]; then \
+            echo '변경사항을 먼저 정리해 주세요.';\
+            return; \
+        fi; \
+        _branch=`git b0`; \
+        _current=backup-`uuidgen`; \
+        _knot1=`uuidgen`; \
+        _knot2=`uuidgen`; \
+        git tag $_current; \
+        git switch -c $_knot2 $2; \
+        git switch -c $_knot1 $1; \
+        git merge $2 --no-ff; \
+        git switch $_branch; \
+        git rebase -i -r $_knot1; \
+        git branch -D $_knot1; \
+        git branch -D $_knot2; \
+        read -p \"Delete backup tag $_current ? [y|n] \" -r; \
+        REPLY=${REPLY:-"n"}; \
+        if [ $REPLY = \"y\" ]; then \
+            git tag -d $_current; \
+        fi; \
+    }; f"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
     editor = /usr/local/bin/nvim
