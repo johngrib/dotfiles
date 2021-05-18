@@ -26,6 +26,7 @@
   " plugins
   set surround
   set commentary
+  set textobj-entire
 
 " copy , paste , select 기능 보완 ------------------------------------------------
   nnoremap <C-m> :
