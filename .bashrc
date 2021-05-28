@@ -51,10 +51,13 @@ if ls --version > /dev/null 2>&1; then
     alias ls='ls --color=auto'; #gnu
     alias l.='ls -d .* --color=auto'
 else
-    alias ls='ls -G'; #osx
+    # alias ls='ls -G'; #osx
+    # alias ls='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S"'; #osx
+    alias ls='exa --icons --time-style="long-iso"'; #osx
     alias l.='ls -dG .*'
 fi
 alias ll='ls -alh'
+# alias ll='exa --icons --time-style="long-iso" -alh'
 # alias vi='mvim -v'
 alias vi='nvim'
 alias vim='nvim'
