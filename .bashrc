@@ -184,9 +184,7 @@ function google() {
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-ls /usr/local/bin | sort -R | head -1 | xargs printf "Did you know about %s ?\n"
+ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
 
-echo ''
-
-myfortune
+myfortune && echo ''
 ioreg -r -d 1 -k BatteryPercent | grep BatteryPercent | tr -d ' '
