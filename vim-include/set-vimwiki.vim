@@ -40,6 +40,12 @@ function! LastModified()
     if g:md_modify_disabled
         return
     endif
+
+    let l:this_file_type = &filetype
+    if l:this_file_type != 'vimwiki'
+        return
+    endif
+
     if &modified
         " echo('markdown updated time modified')
         let save_cursor = getpos(".")
@@ -96,7 +102,7 @@ endfunction
 augroup vimwikiauto
     autocmd BufWritePre *wiki/*.md keepjumps call LastModified()
     autocmd BufWritePre */log/*.md keepjumps call LastModified()
-    autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
+    autocmd BufRead,BufNewFile *.md call NewTemplate()
     autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
     autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
 augroup END
