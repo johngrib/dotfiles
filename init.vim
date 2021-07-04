@@ -64,6 +64,7 @@ call plug#begin('~/.vim/plugged')
 
     " Plug 'koron/nyancat-vim'
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+    Plug 'johngrib/grib-wiki'
 
     Plug 'diepm/vim-rest-console'
     Plug 'johngrib/vim-f-hangul'
