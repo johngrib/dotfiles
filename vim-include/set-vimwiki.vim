@@ -41,8 +41,7 @@ function! LastModified()
         return
     endif
 
-    let l:this_file_type = &filetype
-    if l:this_file_type != 'vimwiki'
+    if (&filetype != "vimwiki")
         return
     endif
 
@@ -62,7 +61,7 @@ function! NewTemplate()
     let l:wiki_directory = v:false
 
     for wiki in g:vimwiki_list
-        if expand('%:p:h') == expand(wiki.path)
+        if expand('%:p:h') =~ expand(wiki.path)
             let l:wiki_directory = v:true
             break
         endif
@@ -100,8 +99,7 @@ function! NewTemplate()
     echom 'new wiki page has created'
 endfunction
 augroup vimwikiauto
-    autocmd BufWritePre *wiki/*.md keepjumps call LastModified()
-    autocmd BufWritePre */log/*.md keepjumps call LastModified()
+    autocmd BufWritePre *.md keepjumps call LastModified()
     autocmd BufRead,BufNewFile *.md call NewTemplate()
     autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
     autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
