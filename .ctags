@@ -1,10 +1,10 @@
 --langdef=markdown
 --langmap=markdown:.md
---regex-markdown=/^(#+[ \t]+.*)/\1/h,heading,headings/
+--regex-markdown=/^(##+[ \t]+.*)/\1/h,heading,headings/
 
 --langdef=vimwiki
 --langmap=vimwiki:.md
---regex-vimwiki=/^(#+[ \t]+.*)/\1/h,heading,headings/
+--regex-vimwiki=/^(##+[ \t]+.*)/\1/h,heading,headings/
 
 --langdef=asciidoc
 --langmap=asciidoc:.adoc
