@@ -16,19 +16,11 @@
                 },
                 "rules": [
                     {
-                        "available_since": "12.6.9",
-                        "description": "John Grib's configurations",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_unless",
-                                        "value": 0
-                                    }
-                                ],
+                                "description": "f15 to hyper",
                                 "from": {
-                                    "key_code": "spacebar",
+                                    "key_code": "f15",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -37,142 +29,12 @@
                                 },
                                 "to": [
                                     {
-                                        "pointing_button": "button1"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_unless",
-                                        "value": 0
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
+                                        "key_code": "left_shift",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
                                         ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "pointing_button": "button2"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "j"
-                                },
-                                "to": [
-                                    {
-                                        "mouse_key": {
-                                            "vertical_wheel": 32
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "k"
-                                },
-                                "to": [
-                                    {
-                                        "mouse_key": {
-                                            "vertical_wheel": -32
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "s"
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -g hammerspoon://mouse-move-center"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "e"
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -g hammerspoon://mouse-move-e"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "q"
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -g hammerspoon://mouse-move-q"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "w"
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -g hammerspoon://mouse-move-w"
                                     }
                                 ],
                                 "type": "basic"

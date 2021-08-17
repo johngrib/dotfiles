@@ -17,7 +17,7 @@
                 "rules": [
                     {
                         "available_since": "12.6.9",
-                        "description": "John Grib's configurations",
+                        "description": "Multitouch Mouse Buttons (rev 2)",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -51,7 +51,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "left_control",
+                                    "key_code": "tab",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -69,18 +69,21 @@
                                 "conditions": [
                                     {
                                         "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
+                                        "type": "variable_unless",
+                                        "value": 0
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "j"
+                                    "key_code": "3",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "mouse_key": {
-                                            "vertical_wheel": 32
-                                        }
+                                        "pointing_button": "button3"
                                     }
                                 ],
                                 "type": "basic"
@@ -89,18 +92,21 @@
                                 "conditions": [
                                     {
                                         "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
+                                        "type": "variable_unless",
+                                        "value": 0
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "k"
+                                    "key_code": "4",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "mouse_key": {
-                                            "vertical_wheel": -32
-                                        }
+                                        "pointing_button": "button4"
                                     }
                                 ],
                                 "type": "basic"
@@ -109,16 +115,21 @@
                                 "conditions": [
                                     {
                                         "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
+                                        "type": "variable_unless",
+                                        "value": 0
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "s"
+                                    "key_code": "5",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -g hammerspoon://mouse-move-center"
+                                        "pointing_button": "button5"
                                     }
                                 ],
                                 "type": "basic"
@@ -127,16 +138,21 @@
                                 "conditions": [
                                     {
                                         "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
+                                        "type": "variable_unless",
+                                        "value": 0
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "e"
+                                    "key_code": "6",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -g hammerspoon://mouse-move-e"
+                                        "pointing_button": "button6"
                                     }
                                 ],
                                 "type": "basic"
@@ -145,16 +161,21 @@
                                 "conditions": [
                                     {
                                         "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
+                                        "type": "variable_unless",
+                                        "value": 0
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "q"
+                                    "key_code": "7",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -g hammerspoon://mouse-move-q"
+                                        "pointing_button": "button7"
                                     }
                                 ],
                                 "type": "basic"
@@ -163,16 +184,44 @@
                                 "conditions": [
                                     {
                                         "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
+                                        "type": "variable_unless",
+                                        "value": 0
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "w"
+                                    "key_code": "8",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -g hammerspoon://mouse-move-w"
+                                        "pointing_button": "button8"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "multitouch_extension_finger_count_total",
+                                        "type": "variable_unless",
+                                        "value": 0
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "pointing_button": "button9"
                                     }
                                 ],
                                 "type": "basic"

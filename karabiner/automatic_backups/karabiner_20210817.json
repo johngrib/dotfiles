@@ -66,53 +66,7 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "j"
-                                },
-                                "to": [
-                                    {
-                                        "mouse_key": {
-                                            "vertical_wheel": 32
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "k"
-                                },
-                                "to": [
-                                    {
-                                        "mouse_key": {
-                                            "vertical_wheel": -32
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
+                                "type": "basic",
                                 "from": {
                                     "key_code": "s"
                                 },
@@ -121,61 +75,13 @@
                                         "shell_command": "open -g hammerspoon://mouse-move-center"
                                     }
                                 ],
-                                "type": "basic"
-                            },
-                            {
                                 "conditions": [
                                     {
-                                        "name": "multitouch_extension_finger_count_total",
                                         "type": "variable_if",
+                                        "name": "multitouch_extension_finger_count_total",
                                         "value": 1
                                     }
-                                ],
-                                "from": {
-                                    "key_code": "e"
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -g hammerspoon://mouse-move-e"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "q"
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -g hammerspoon://mouse-move-q"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "multitouch_extension_finger_count_total",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "w"
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -g hammerspoon://mouse-move-w"
-                                    }
-                                ],
-                                "type": "basic"
+                                ]
                             }
                         ]
                     }
