@@ -176,6 +176,24 @@
                                     }
                                 ],
                                 "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "multitouch_extension_finger_count_total",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c"
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -g hammerspoon://mouse-move-c"
+                                    }
+                                ],
+                                "type": "basic"
                             }
                         ]
                     }
@@ -434,6 +452,16 @@
                         },
                         {
                             "from": {
+                                "key_code": "left_control"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "f13"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
                                 "key_code": "right_command"
                             },
                             "to": [
@@ -449,16 +477,6 @@
                             "to": [
                                 {
                                     "key_code": "f17"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "left_control"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "f13"
                                 }
                             ]
                         }
