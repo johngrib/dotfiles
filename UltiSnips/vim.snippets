@@ -1,0 +1,45 @@
+snippet today
+Today is the `date +%d.%m.%y`.
+endsnippet
+
+snippet wow
+${1:Text}`!p snip.rv = (30-2*len(t[1]))*' '+t[1].upper()`
+endsnippet
+
+snippet "([^\s].*)\.return" "Return (postfix)" r
+return `!p snip.rv = match.group(1)`$0
+endsnippet
+
+snippet "<([^\s].*)" "tag <...></...>" r
+`!p snip.rv='<'+match.group(1)+'>'+'</'+match.group(1)+'>'`$0
+endsnippet
+
+snippet <
+<${1:tag}>`!p snip.rv = '</'+t[1]+'>'`$0
+endsnippet
+
+snippet ii "magic import" b
+import `!p
+def formatVariableName(path):
+  parts = path.split('/')
+  module = parts[0]
+  if len(parts) > 1:
+    return parts[-1]
+  else:
+    return re.sub(r'[_\-]', '', module.title())
+snip.rv = formatVariableName(t[1])
+` from '${1}';$0
+endsnippet
+
+# kebab-case to snake_case
+snippet "([\S]+(\-[\S]+)+)" "kebab-case to snake_case" r
+`!p snip.rv = re.sub('-','_', match.group(1))`$0
+endsnippet
+
+snippet func "function name(arg1...)"
+function ${1:name}(${2:arg1}) {
+	${2};
+}${0}
+endsnippet
+
+
