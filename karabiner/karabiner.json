@@ -194,6 +194,24 @@
                                     }
                                 ],
                                 "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "multitouch_extension_finger_count_total",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "z"
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -g hammerspoon://mouse-move-z"
+                                    }
+                                ],
+                                "type": "basic"
                             }
                         ]
                     }
