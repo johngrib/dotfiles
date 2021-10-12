@@ -46,7 +46,8 @@
   vnoremap <SPACE>a ggVG
 
 " 키 navigation 기능 보완 ---------------------------------------------------------
-  nnoremap gr gT
+  nnoremap <PageDown> gT
+  nnoremap <PageUp> gt
   nnoremap gl 1gtgT
   nnoremap gf 1gt
 
