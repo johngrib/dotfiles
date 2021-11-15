@@ -110,6 +110,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
     Plug 'stephpy/vim-yaml'
     Plug 'tpope/vim-speeddating'
+    Plug 'github/copilot.vim'
 
 call plug#end()
 
