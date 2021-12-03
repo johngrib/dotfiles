@@ -33,7 +33,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'kana/vim-textobj-indent'
         Plug 'thinca/vim-textobj-between'
     Plug 'wellle/targets.vim'           " text object utils
-    Plug 'jiangmiao/auto-pairs'
+    " Plug 'jiangmiao/auto-pairs'
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
     " Plug 'junegunn/vim-easy-align'
     Plug 'AndrewRadev/splitjoin.vim'
