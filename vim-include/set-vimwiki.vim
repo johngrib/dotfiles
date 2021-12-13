@@ -1,6 +1,11 @@
 let g:vim_wiki_set_path = expand('<sfile>:p:h')
 let g:vimwiki_list = [
             \{
+            \   'path': '~/johngrib.github.io/_wiki',
+            \   'ext' : '.md',
+            \   'diary_rel_path': '.',
+            \},
+            \{
             \   'path': '~/Dropbox/johngrib.github.io-home/_wiki',
             \   'ext' : '.md',
             \   'diary_rel_path': '.',
