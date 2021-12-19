@@ -2,6 +2,9 @@
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+
 # git-flow-completion
 # https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion#homebrew
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -24,4 +27,3 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-export PATH="/usr/local/sbin:$PATH"
