@@ -1,18 +1,3 @@
-PATH="$PATH:~/.local/bin"
-if [[ ! "$PATH" == *~/.cargo/bin* ]]; then
-    PATH="$PATH:~/.cargo/bin"
-fi
-
-if [ -z "`echo $PATH | grep -o /dotfiles-home/bin/`" -a "`hostname -s`" == "JohnGribAtHome" ]; then
-    PATH="$PATH:~/Dropbox/dotfiles-home/bin/"
-elif [ -z "`echo $PATH | grep -o /dotfiles-arti/bin/`" -a "`hostname -s`" == "JohnGribAtArti" ]; then
-    PATH="$PATH:~/Dropbox/dotfiles-arti/bin/"
-elif [ -z "`echo $PATH | grep -o /dotfiles-com/bin/`" -a "`hostname -s`" == "tf-mac-068" ]; then
-    PATH="$PATH:~/Dropbox/dotfiles-com/bin/"
-fi
-
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-
 LANG="en_US.UTF-8"
 # export JAVA_HOME=$(/usr/libexec/java_home)
 export GOBIN=$HOME/go/bin
@@ -42,9 +27,6 @@ export LESS_TERMCAP_us=$'\E[01;36m'
 # vim, tmux
 export EDITOR=$(which nvim)
 # export MANPAGER=vimpager
-
-# rust
-export PATH="$HOME/.cargo/bin:$PATH"
 
 # aliases
 if ls --version > /dev/null 2>&1; then
@@ -183,7 +165,6 @@ function google() {
 }
 
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
 
 myfortune && echo ''
