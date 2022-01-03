@@ -113,11 +113,10 @@ nmap scH :action :cursive.actions.paredit/barf-backwards<CR>
 nmap scL :action :cursive.actions.paredit/barf-forwards<CR>
 nmap scl :action :cursive.actions.paredit/slurp-forwards<CR>
 
-" command - option - h
-nmap <M-A-h> :action :cursive.actions.paredit/slurp-backwards<CR>
-" command - option - H
-nmap <C-A-S-h> :action :cursive.actions.paredit/barf-backwards<CR>
-
+nmap <Tab>h :action :cursive.actions.paredit/slurp-backwards<CR>
+nmap <Tab>H :action :cursive.actions.paredit/barf-backwards<CR>
+nmap <Tab>L :action :cursive.actions.paredit/barf-forwards<CR>
+nmap <Tab>l :action :cursive.actions.paredit/slurp-forwards<CR>
 
 nmap sct :action :cursive.actions.paredit/thread-form<CR>
 nmap scT :action :cursive.actions.paredit/unthread-form<CR>
