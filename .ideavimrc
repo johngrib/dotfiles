@@ -22,10 +22,25 @@
   set nrformats
   set visualbell
 
-  " plugins
-  set surround
-  set commentary
-  set textobj-entire
+  " https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-commentary'
+  Plug 'tommcdo/vim-exchange'
+  Plug 'tpope/vim-commentary'
+  Plug 'easymotion/vim-easymotion'
+
+    " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
+    nmap sl <Plug>(easymotion-lineforward)
+    nmap sj <Plug>(easymotion-j)
+    nmap sk <Plug>(easymotion-k)
+    nmap sh <Plug>(easymotion-linebackward)
+    nmap sa <Plug>(easymotion-jumptoanywhere)
+    nmap sf <Plug>(easymotion-f)
+
+  " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
+  Plug 'preservim/nerdtree'
+
+    nmap \f :NERDTreeFind<CR>
 
   " ideavim only
   set ideajoin
@@ -98,14 +113,6 @@ nnoremap <Tab>, :e ~/.ideavimrc<CR>
 nnoremap <Space>v :action CopyPaths<CR>
 
 let mapleader=" "
-set easymotion
-
-nmap sl <Plug>(easymotion-lineforward)
-nmap sj <Plug>(easymotion-j)
-nmap sk <Plug>(easymotion-k)
-nmap sh <Plug>(easymotion-linebackward)
-nmap sa <Plug>(easymotion-jumptoanywhere)
-nmap sf <Plug>(easymotion-f)
 
 " Slurp, Barf
 nmap sch :action :cursive.actions.paredit/slurp-backwards<CR>
