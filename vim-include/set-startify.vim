@@ -10,7 +10,8 @@ let g:startify_session_persistence = 1
 let g:startify_fortune_use_unicode = 1
 let g:startify_commands = [
             \ ':help startify',
-            \ "!curl 'https://haksa.knou.ac.kr/haksa/abc/abcp/retrieveAtndLesnPlc.data?yosa=2021&seme=1&lcuvCd=032&shgr=3&deptMajrCd=34' | jq '.rows'"
+            \ "!curl 'https://haksa.knou.ac.kr/haksa/abc/abcp/retrieveAtndLesnPlc.data?yosa=2021&seme=1&lcuvCd=032&shgr=3&deptMajrCd=34' | jq '.rows'",
+            \ "!ls -alh"
             \ ]
 
 let g:startify_list_order = [

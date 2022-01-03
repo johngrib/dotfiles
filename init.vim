@@ -29,7 +29,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'easymotion/vim-easymotion'
     Plug 'tpope/vim-commentary'
     Plug 'kana/vim-textobj-user'
-        Plug 'kana/vim-textobj-entire'
+        " Plug 'kana/vim-textobj-entire'
         Plug 'kana/vim-textobj-indent'
         Plug 'thinca/vim-textobj-between'
     Plug 'wellle/targets.vim'           " text object utils
@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
     " Plug 'junegunn/vim-easy-align'
     Plug 'AndrewRadev/splitjoin.vim'
+    Plug 'tommcdo/vim-exchange'
 
     " searching
     Plug 'vim-scripts/matchit.zip'
