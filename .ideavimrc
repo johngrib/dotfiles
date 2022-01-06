@@ -79,12 +79,13 @@
 
   "다음 기능들은 검색 창이 열린 다음에 포커스가 곧바로 에디터로 이동하므로 불편하고 쓸모가 없음.
   "실행한 다음 포커스가 남아 있기만 해도 굉장히 쓸만할 것 같은데 아쉽다.
-  nnoremap <F1><F1> :action SearchEverywhere<CR>
-  nnoremap <F1><F2> :action RecentFiles<CR>
+  " nnoremap <F1><F1> :action SearchEverywhere<CR>
+  nmap <F1><F1> <Action>(SearchEverywhere)
+  nmap <F1><F2> <Action>(RecentFiles)
 
-  nnoremap \t :action ActivateStructureToolWindow<CR>
-  nnoremap \u :action ShowUsages<CR>
-  nnoremap \s :action ManageRecentProjects<CR>
+  nmap \t <Action>(ActivateStructureToolWindow)
+  nmap \u <Action>(ShowUsages)
+  nmap \s <Action>(ManageRecentProjects)
 
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 
@@ -120,122 +121,103 @@ nmap scH :action :cursive.actions.paredit/barf-backwards<CR>
 nmap scL :action :cursive.actions.paredit/barf-forwards<CR>
 nmap scl :action :cursive.actions.paredit/slurp-forwards<CR>
 
-nmap <Tab>h :action :cursive.actions.paredit/slurp-backwards<CR>
-nmap <Tab>H :action :cursive.actions.paredit/barf-backwards<CR>
-nmap <Tab>L :action :cursive.actions.paredit/barf-forwards<CR>
-nmap <Tab>l :action :cursive.actions.paredit/slurp-forwards<CR>
+" nmap <Tab>h :action :cursive.actions.paredit/slurp-backwards<CR>
+nmap <Tab>h <Action>(:cursive.actions.paredit/slurp-backwards)
+nmap <Tab>H <Action>(:cursive.actions.paredit/barf-backwards)
+nmap <Tab>L <Action>(:cursive.actions.paredit/barf-forwards)
+nmap <Tab>l <Action>(:cursive.actions.paredit/slurp-forwards)
 
-nmap sct :action :cursive.actions.paredit/thread-form<CR>
-nmap scT :action :cursive.actions.paredit/unthread-form<CR>
+nmap sct <Action>(:cursive.actions.paredit/thread-form)
+nmap scT <Action>(:cursive.actions.paredit/unthread-form)
 
 " Parinfer 토글
-nmap scp :action :cursive.actions.paredit/toggle<CR>
+nmap scp <Action>(:cursive.actions.paredit/toggle)
 
 " REPL 출력을 clear 한다.
-nmap scrc :action :cursive.repl.actions/clear-repl<CR>
+nmap scrc <Action>(:cursive.repl.actions/clear-repl)
 
 " 폼 좌우 이동
-nmap scj :action :cursive.actions.paredit/move-form-up<CR>
-nmap sck :action :cursive.actions.paredit/move-form-down<CR>
+nmap scj <Action>(:cursive.actions.paredit/move-form-up)
+nmap sck <Action>(:cursive.actions.paredit/move-form-down)
 
-nmap <Tab>? :action :cursive.actions.paredit/clojure-edit-group<CR>
+nmap <Tab>? <Action>(:cursive.actions.paredit/clojure-edit-group)
 
 " 컬렉션 타입을 순환시킨다. #{} -> () -> {} -> [] -> #{}
 " nmap scss :action :cursive.actions.paredit/cycle-collection-type<CR>
 
 
-" nnoremap <Space>j <Plug>(easymotion-j)
-" map <Leader>l <Plug>(easymotion-fl)
-" map <Leader>j <Plug>(easymotion-f)
-" map <Leader>k <Plug>(easymotion-F)
-" map <Leader>h <Plug>(easymotion-Fl)
-" map <Leader>J <Plug>(easymotion-j)
-" map <Leader>K <Plug>(easymotion-k)
-
-
-" map  <Leader>  <Plug>(easymotion-prefix)
-" vmap <Leader>s <Plug>(easymotion-bd-f)
-" nmap <Leader>j <Plug>(easymotion-j)
-" vmap <Leader>j <Plug>(easymotion-j)
-" nmap <Leader>k <Plug>(easymotion-k)
-" vmap <Leader>k <Plug>(easymotion-k)
-" nmap <Leader>h <Plug>(easymotion-linebackward)
-" vmap <Leader>h <Plug>(easymotion-linebackward)
-" nmap <Leader>a <Plug>(easymotion-jumptoanywhere)
-" vmap <Leader>a <Plug>(easymotion-jumptoanywhere)
-
 " Bookmarks 알파벳 마크는 글로벌 마크만 왼쪽에 표시된다. 글로벌 마크만 쓰자.
-nmap `0 :action GotoBookmark0<CR>
-nmap `1 :action GotoBookmark1<CR>
-nmap `2 :action GotoBookmark2<CR>
-nmap `3 :action GotoBookmark3<CR>
-nmap `4 :action GotoBookmark4<CR>
-nmap `5 :action GotoBookmark5<CR>
-nmap `6 :action GotoBookmark6<CR>
-nmap `7 :action GotoBookmark7<CR>
-nmap `8 :action GotoBookmark8<CR>
-nmap `9 :action GotoBookmark9<CR>
-nmap `a :action GotoBookmarkA<CR>
-nmap `b :action GotoBookmarkB<CR>
-nmap `c :action GotoBookmarkC<CR>
-nmap `d :action GotoBookmarkD<CR>
-nmap `e :action GotoBookmarkE<CR>
-nmap `f :action GotoBookmarkF<CR>
-nmap `g :action GotoBookmarkG<CR>
-nmap `h :action GotoBookmarkH<CR>
-nmap `i :action GotoBookmarkI<CR>
-nmap `j :action GotoBookmarkJ<CR>
-nmap `k :action GotoBookmarkK<CR>
-nmap `l :action GotoBookmarkL<CR>
-nmap `m :action GotoBookmarkM<CR>
-nmap `n :action GotoBookmarkN<CR>
-nmap `o :action GotoBookmarkO<CR>
-nmap `p :action GotoBookmarkP<CR>
-nmap `q :action GotoBookmarkQ<CR>
-nmap `r :action GotoBookmarkR<CR>
-nmap `s :action GotoBookmarkS<CR>
-nmap `t :action GotoBookmarkT<CR>
-nmap `u :action GotoBookmarkU<CR>
-nmap `v :action GotoBookmarkV<CR>
-nmap `w :action GotoBookmarkW<CR>
-nmap `x :action GotoBookmarkX<CR>
-nmap `y :action GotoBookmarkY<CR>
-nmap `z :action GotoBookmarkZ<CR>
+nmap `0 <Action>(GotoBookmark0)
+nmap `1 <Action>(GotoBookmark1)
+nmap `2 <Action>(GotoBookmark2)
+nmap `3 <Action>(GotoBookmark3)
+nmap `4 <Action>(GotoBookmark4)
+nmap `5 <Action>(GotoBookmark5)
+nmap `6 <Action>(GotoBookmark6)
+nmap `7 <Action>(GotoBookmark7)
+nmap `8 <Action>(GotoBookmark8)
+nmap `9 <Action>(GotoBookmark9)
+nmap `a <Action>(GotoBookmarkA)
+nmap `b <Action>(GotoBookmarkB)
+nmap `c <Action>(GotoBookmarkC)
+nmap `d <Action>(GotoBookmarkD)
+nmap `e <Action>(GotoBookmarkE)
+nmap `f <Action>(GotoBookmarkF)
+nmap `g <Action>(GotoBookmarkG)
+nmap `h <Action>(GotoBookmarkH)
+nmap `i <Action>(GotoBookmarkI)
+nmap `j <Action>(GotoBookmarkJ)
+nmap `k <Action>(GotoBookmarkK)
+nmap `l <Action>(GotoBookmarkL)
+nmap `m <Action>(GotoBookmarkM)
+nmap `n <Action>(GotoBookmarkN)
+nmap `o <Action>(GotoBookmarkO)
+nmap `p <Action>(GotoBookmarkP)
+nmap `q <Action>(GotoBookmarkQ)
+nmap `r <Action>(GotoBookmarkR)
+nmap `s <Action>(GotoBookmarkS)
+nmap `t <Action>(GotoBookmarkT)
+nmap `u <Action>(GotoBookmarkU)
+nmap `v <Action>(GotoBookmarkV)
+nmap `w <Action>(GotoBookmarkW)
+nmap `x <Action>(GotoBookmarkX)
+nmap `y <Action>(GotoBookmarkY)
+nmap `z <Action>(GotoBookmarkZ)
 
-nmap m0 :action ToggleBookmark0<CR>
-nmap m1 :action ToggleBookmark1<CR>
-nmap m2 :action ToggleBookmark2<CR>
-nmap m3 :action ToggleBookmark3<CR>
-nmap m4 :action ToggleBookmark4<CR>
-nmap m5 :action ToggleBookmark5<CR>
-nmap m6 :action ToggleBookmark6<CR>
-nmap m7 :action ToggleBookmark7<CR>
-nmap m8 :action ToggleBookmark8<CR>
-nmap m9 :action ToggleBookmark9<CR>
-nmap ma :action ToggleBookmarkA<CR>
-nmap mb :action ToggleBookmarkB<CR>
-nmap mc :action ToggleBookmarkC<CR>
-nmap md :action ToggleBookmarkD<CR>
-nmap me :action ToggleBookmarkE<CR>
-nmap mf :action ToggleBookmarkF<CR>
-nmap mg :action ToggleBookmarkG<CR>
-nmap mh :action ToggleBookmarkH<CR>
-nmap mi :action ToggleBookmarkI<CR>
-nmap mj :action ToggleBookmarkJ<CR>
-nmap mk :action ToggleBookmarkK<CR>
-nmap ml :action ToggleBookmarkL<CR>
-nmap mm :action ToggleBookmarkM<CR>
-nmap mn :action ToggleBookmarkN<CR>
-nmap mo :action ToggleBookmarkO<CR>
-nmap mp :action ToggleBookmarkP<CR>
-nmap mq :action ToggleBookmarkQ<CR>
-nmap mr :action ToggleBookmarkR<CR>
-nmap ms :action ToggleBookmarkS<CR>
-nmap mt :action ToggleBookmarkT<CR>
-nmap mu :action ToggleBookmarkU<CR>
-nmap mv :action ToggleBookmarkV<CR>
-nmap mw :action ToggleBookmarkW<CR>
-nmap mx :action ToggleBookmarkX<CR>
-nmap my :action ToggleBookmarkY<CR>
-nmap mz :action ToggleBookmarkZ<CR>
+nmap m0 <Action>(ToggleBookmark0)
+nmap m1 <Action>(ToggleBookmark1)
+nmap m2 <Action>(ToggleBookmark2)
+nmap m3 <Action>(ToggleBookmark3)
+nmap m4 <Action>(ToggleBookmark4)
+nmap m5 <Action>(ToggleBookmark5)
+nmap m6 <Action>(ToggleBookmark6)
+nmap m7 <Action>(ToggleBookmark7)
+nmap m8 <Action>(ToggleBookmark8)
+nmap m9 <Action>(ToggleBookmark9)
+nmap ma <Action>(ToggleBookmarkA)
+nmap mb <Action>(ToggleBookmarkB)
+nmap mc <Action>(ToggleBookmarkC)
+nmap md <Action>(ToggleBookmarkD)
+nmap me <Action>(ToggleBookmarkE)
+nmap mf <Action>(ToggleBookmarkF)
+nmap mg <Action>(ToggleBookmarkG)
+nmap mh <Action>(ToggleBookmarkH)
+nmap mi <Action>(ToggleBookmarkI)
+nmap mj <Action>(ToggleBookmarkJ)
+nmap mk <Action>(ToggleBookmarkK)
+nmap ml <Action>(ToggleBookmarkL)
+nmap mm <Action>(ToggleBookmarkM)
+nmap mn <Action>(ToggleBookmarkN)
+nmap mo <Action>(ToggleBookmarkO)
+nmap mp <Action>(ToggleBookmarkP)
+nmap mq <Action>(ToggleBookmarkQ)
+nmap mr <Action>(ToggleBookmarkR)
+nmap ms <Action>(ToggleBookmarkS)
+nmap mt <Action>(ToggleBookmarkT)
+nmap mu <Action>(ToggleBookmarkU)
+nmap mv <Action>(ToggleBookmarkV)
+nmap mw <Action>(ToggleBookmarkW)
+nmap mx <Action>(ToggleBookmarkX)
+nmap my <Action>(ToggleBookmarkY)
+nmap mz <Action>(ToggleBookmarkZ)
 
