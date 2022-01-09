@@ -528,6 +528,3 @@ iabbr ㄱ.. 그리고
 
 set fileencodings=utf-8,euc-kr
 
-inoremap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
-
