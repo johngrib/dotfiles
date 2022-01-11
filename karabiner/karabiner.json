@@ -28,7 +28,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "spacebar",
+                                    "key_code": "f",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -51,7 +51,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "tab",
+                                    "key_code": "v",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -514,21 +514,21 @@
                     "simple_modifications": [
                         {
                             "from": {
-                                "key_code": "right_option"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "f17"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
                                 "key_code": "right_command"
                             },
                             "to": [
                                 {
                                     "key_code": "f13"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "f17"
                                 }
                             ]
                         }
