@@ -17,7 +17,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'simnalamburt/vim-mundo'
 
     " file browser
-    Plug 'scrooloose/nerdtree'
+    " Plug 'preservim/nerdtree'
     Plug 'ryanoasis/vim-devicons'
         " Plug 'jistr/vim-nerdtree-tabs'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -47,12 +47,11 @@ call plug#begin('~/.vim/plugged')
 
     " language support
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
-    Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
+    " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
     " https://github.com/dense-analysis/ale
     " Plug 'junegunn/vim-xmark', { 'do': 'make' }
     " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
     " Plug 'wesleyche/srcexpl'
-    " Plug 'honza/vim-snippets'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'tridactyl/vim-tridactyl'
 
@@ -88,7 +87,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'Chiel92/vim-autoformat'
 
     Plug 'ternjs/tern_for_vim'
-    Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
+    " Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
     Plug 'neoclide/coc.nvim', {
         \'branch': 'release',
@@ -104,7 +103,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips'
     " Plug 'neoclide/coc-sources', { 'do': ':CocInstall coc-ultisnips' }
 
-    Plug 'rust-lang/rust.vim'
+    " Plug 'rust-lang/rust.vim'
     " Plug 'neoclide/coc-rls', { 'do': ':CocInstall coc-rls' }
     " Plug 'neoclide/coc-tsserver', { 'do': ':CocInstall coc-tsserver' }
     " Plug 'marlonfan/coc-phpls', { 'do': ':CocInstall coc-phpls' }
@@ -112,6 +111,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'stephpy/vim-yaml'
     Plug 'tpope/vim-speeddating'
     Plug 'github/copilot.vim'
+
+    " clojure
+    Plug 'Olical/conjure'
 
 call plug#end()
 
@@ -260,18 +262,24 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     nnoremap <F10>r :source ~/.vimrc<CR>
     "nnoremap gv `[v`]    " highlight last inserted text
-    nnoremap K i<CR><Esc>
+    " option 키와 알파벳의 조합은 shift가 함께 있어야 잘 작동한다. <M-k>는 까다로움. <M-S-k>가 낫다.
+    nnoremap <M-S-k> i<CR><Esc>
+
+    nnoremap <M-/> :echom "[1] Explorer  [2] Tagbar"<CR>
+        nmap <A-1> :CocCommand explorer<CR>
+        nmap <A-2> :TagbarToggle<CR>:e<CR>
+        nmap <A-3> :Startify<CR>
 
     " copy , paste , select 기능 보완
     nnoremap Y y$
-    nnoremap <Leader>y "+y
-    nnoremap <Leader>Y "+yg_
-    vnoremap <Leader>y "+y
-    nnoremap <Leader>d "+d
-    nnoremap <Leader>D "+yD
-    vnoremap <Leader>d "+d
-    nnoremap <Leader>p "+p
-    nnoremap <Leader>P "+P
+    nnoremap <Space>y "+y
+    nnoremap <Space>Y "+yg_
+    vnoremap <Space>y "+y
+    nnoremap <Space>d "+d
+    nnoremap <Space>D "+yD
+    vnoremap <Space>d "+d
+    nnoremap <Space>p "+p
+    nnoremap <Space>P "+P
     " nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
     " 버퍼 관리
@@ -354,10 +362,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " map g# <Plug>(incsearch-nohl-g#)
 
     " Mundo
-    nnoremap <LocalLeader>u :MundoToggle<cr>
+    nnoremap \u :MundoToggle<cr>
 
     " rainbow
-    nnoremap <LocalLeader>r :RainbowToggle<CR>
+    nnoremap \r :RainbowToggle<CR>
 
 
     " Syntastic 설정
@@ -379,6 +387,11 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " let g:ale_javascript_eslint_use_global = 1
     let g:ale_lint_on_save = 1
     let g:ale_lint_on_text_changed = 0
+    let g:ale_linters = {'clojure': ['clj-kondo']}
+    let g:ale_open_list = 1
+    let g:ale_keep_list_window_open = 1
+    let g:ale_set_loclist = 0
+    let g:ale_set_quickfix = 1
 
     " rainbow
     let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
@@ -390,11 +403,11 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " let g:EclimCompletionMethod = 'omnifunc'
 
     " eregex
-    nnoremap <leader>/ :call eregex#toggle()<CR>
-    let g:eregex_default_enable = 0
-    let g:eregex_forward_delim = '/'
-    let g:eregex_backward_delim = '?'
-    let g:eregex_force_case = 0
+    " nnoremap <Space>/ :call eregex#toggle()<CR>
+    " let g:eregex_default_enable = 0
+    " let g:eregex_forward_delim = '/'
+    " let g:eregex_backward_delim = '?'
+    " let g:eregex_force_case = 0
 
     " nmap ga <Plug>(EasyAlign)
     " xmap ga <Plug>(EasyAlign)
@@ -403,8 +416,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <silent>s <S-">
     vnoremap <silent>s <S-">
 
-    nnoremap <LocalLeader>d :MacDictWord<CR>
-    nnoremap <LocalLeader><LocalLeader>d :MacDictQuery<CR>
+    nnoremap \d :MacDictWord<CR>
+    nnoremap \\d :MacDictQuery<CR>
 
     nnoremap =e :Autoformat<CR>
 
