@@ -1,5 +1,5 @@
-nmap <LocalLeader>s :Startify<CR>
-nmap <LocalLeader><LocalLeader>s :SSave<CR>
+nmap \s :Startify<CR>
+nmap \\s :SSave<CR>
 
 " let g:startify_custom_header = ['']
 let g:startify_update_oldfiles = 1
@@ -26,3 +26,6 @@ let g:startify_list_order = [
 let g:startify_custom_header =
             \ map(split(system('fortune ~/my-fortune'), '\n'), '"   ". v:val')
 
+augroup vimstartify
+    autocmd User Startified setlocal cursorline
+augroup END
