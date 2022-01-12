@@ -19,7 +19,7 @@ let g:go_info_mode='guru'
 nnoremap <C-n> :cnext<CR>
 nnoremap <C-p> :cprevious<CR>
 
-nnoremap <LocalLeader>q :call ToggleQuickfixList()<CR>
+nnoremap \q :call ToggleQuickfixList()<CR>
 let g:toggle_list_no_mappings = 1
 
 augroup vimgo
