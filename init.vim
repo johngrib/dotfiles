@@ -26,6 +26,7 @@ call plug#begin('~/.vim/plugged')
     " editing
     Plug 'tpope/vim-surround'
     Plug 'bling/vim-airline'           " BUFFER navigator, status line 을 제공한다.
+    Plug 'kazhala/close-buffers.nvim'
     Plug 'easymotion/vim-easymotion'
     Plug 'tpope/vim-commentary'
     Plug 'kana/vim-textobj-user'
@@ -114,6 +115,8 @@ call plug#begin('~/.vim/plugged')
 
     " clojure
     Plug 'Olical/conjure'
+    Plug 'guns/vim-sexp'
+    Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
 call plug#end()
 
