@@ -74,7 +74,7 @@
   "ideavim 에서는 :command 명령을 사용할 수 없다...
 
   "라인 스플릿. :action 을 부르는 방식의 성능이 나쁘고, number operation 반복이 안 됨
-  nnoremap sj i<CR><ESC>
+  nnoremap <A-DOWN> i<CR><ESC>
 
   "다음 기능들은 검색 창이 열린 다음에 포커스가 곧바로 에디터로 이동하므로 불편하고 쓸모가 없음.
   "실행한 다음 포커스가 남아 있기만 해도 굉장히 쓸만할 것 같은데 아쉽다.

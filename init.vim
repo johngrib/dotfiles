@@ -265,7 +265,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     nnoremap <F10>r :source ~/.vimrc<CR>
     "nnoremap gv `[v`]    " highlight last inserted text
-    nnoremap sj i<CR><Esc>
+    nnoremap <M-DOWN> i<CR><Esc>
 
     nnoremap <M-/> :echom "[1] Explorer  [2] Tagbar"<CR>
         nmap <A-1> :CocCommand explorer<CR>
