@@ -51,7 +51,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "v",
+                                    "key_code": "r",
                                     "modifiers": {
                                         "optional": [
                                             "any"
