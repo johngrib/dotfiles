@@ -265,8 +265,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     nnoremap <F10>r :source ~/.vimrc<CR>
     "nnoremap gv `[v`]    " highlight last inserted text
-    " option 키와 알파벳의 조합은 shift가 함께 있어야 잘 작동한다. <M-k>는 까다로움. <M-S-k>가 낫다.
-    nnoremap <M-S-k> i<CR><Esc>
+    nnoremap sj i<CR><Esc>
 
     nnoremap <M-/> :echom "[1] Explorer  [2] Tagbar"<CR>
         nmap <A-1> :CocCommand explorer<CR>
