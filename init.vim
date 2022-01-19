@@ -116,7 +116,7 @@ call plug#begin('~/.vim/plugged')
     " clojure
     Plug 'Olical/conjure'
     Plug 'guns/vim-sexp'
-    Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+    " Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
 call plug#end()
 
@@ -253,7 +253,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let maplocalleader = "\\"
     " nnoremap <Leader>e :browse oldfiles<CR>
 
-    nnoremap <CR> :
     " nnoremap / /\v
     nnoremap k gk
     nnoremap gk k
@@ -265,7 +264,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     nnoremap <F10>r :source ~/.vimrc<CR>
     "nnoremap gv `[v`]    " highlight last inserted text
-    nnoremap <M-DOWN> i<CR><Esc>
+    nnoremap K i<CR><Esc>
 
     nnoremap <M-/> :echom "[1] Explorer  [2] Tagbar"<CR>
         nmap <A-1> :CocCommand explorer<CR>
