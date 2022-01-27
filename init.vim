@@ -114,8 +114,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'github/copilot.vim'
 
     " clojure
-    Plug 'Olical/conjure'
-    Plug 'guns/vim-sexp'
+    " Plug 'Olical/conjure'
+    Plug 'guns/vim-sexp',    {'for': 'clojure'}
+    Plug 'liquidz/vim-iced', {'for': 'clojure'}
     " Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
 call plug#end()

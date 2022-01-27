@@ -1,13 +1,20 @@
 
 augroup vim_conjure
     " Goto the definition
-    autocmd FileType clojure nmap <silent> <C-]> <localleader>gd
+    " autocmd FileType clojure nmap <silent> <C-]> <localleader>gd
     " autocmd FileType clojure let g:conjure#mapping#doc_word = ["\<Tab>d"]
     let g:conjure#mapping#prefix = "<leader>"
 
-    autocmd FileType clojure set sessionoptions=blank,curdir,folds,help,tabpages,winsize
-    autocmd VimEnter * call system("~/.config/nvim/vim-include/fix-conjure-session.sh")
-    autocmd BufRead,BufNewFile *.clj ParinferOff
+    " autocmd FileType clojure set sessionoptions=blank,curdir,folds,help,tabpages,winsize
+    " autocmd VimEnter * call system("~/.config/nvim/vim-include/fix-conjure-session.sh")
+    " autocmd BufRead,BufNewFile *.clj ParinferOff
+augroup END
+
+let g:iced_default_key_mapping_leader = '<Leader>'
+let g:iced_enable_default_key_mappings = v:true
+
+
+augroup vim_iced
 augroup END
 
 " https://github.com/Olical/conjure/issues/244

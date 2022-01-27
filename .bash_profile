@@ -22,6 +22,7 @@ fi
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+export PATH="$PATH:~/.vim/plugged/vim-iced/bin"
 
 # git-flow-completion
 # https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion#homebrew
