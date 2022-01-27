@@ -220,3 +220,4 @@ nmap mx <Action>(ToggleBookmarkX)
 nmap my <Action>(ToggleBookmarkY)
 nmap mz <Action>(ToggleBookmarkZ)
 
+nmap \p <Action>(ParameterNameHints)
