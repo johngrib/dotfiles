@@ -518,7 +518,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f13"
+                                    "key_code": "f15"
                                 }
                             ]
                         },
@@ -529,6 +529,26 @@
                             "to": [
                                 {
                                     "key_code": "f17"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_control"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_control"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "f13"
                                 }
                             ]
                         }
