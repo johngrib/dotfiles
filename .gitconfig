@@ -30,7 +30,7 @@
         | sed 's/^[*| ]*//g' | cut -d' ' -f1"
     c-s = "!git commit-select"
     commit-copy = "!# Select & copy a commit hash from log graph.;\n\
-        git commit-select | pbcopy && echo Copied : `pbpaste`;"
+        git commit-select | tr -d '\n' | pbcopy && echo Copied: `pbpaste`;"
     c-c = "!git commit-copy"
     l = "log \
         --color --graph --decorate \
