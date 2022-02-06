@@ -20,6 +20,12 @@ if [ "$2" = "-f" ]; then
     rm -f $FILE_NAME
 fi
 
+# 파일을 편집한다.
+if [ "$2" = "-e" ]; then
+    vim $FILE_NAME
+    exit 0
+fi
+
 FILE_RECENTLY_UPDATED=$(find $FILE_NAME -mtime -7 2> /dev/null | wc -l)
 FILE_LINE_COUNT=$(wc -l $FILE_NAME 2> /dev/null | awk '{print $1}')
 
