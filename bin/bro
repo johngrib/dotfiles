@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+
+# 이 프로그램은 다음 목록에 의존합니다.
+# jq, perl
+
+BRO_URL="http://bropages.org/$1.json"
+FILE_NAME="/tmp/bropages-$1.bash"
+# \n
+new_line=9B554040-2F2B-4F7A-9A8A-C06D0F42824E
+# \\n
+new_line_escaped=6547547E-C791-4135-8F26-B04328243CFB
+# \\\n =>
+new_line_string=A4992D5F-AF1D-44D7-B34B-774FCDEF7CE3
+
+# 30일이 지난 캐시 파일을 삭제한다.
+find /tmp/bropages-* -mtime +30 2> /dev/null | xargs \rm
+
+# -f 옵션을 주면 (다시 다운로드받도록) 캐시 파일을 삭제한다.
+if [ "$2" = "-f" ]; then
+    rm -f $FILE_NAME
+fi
+
+FILE_RECENTLY_UPDATED=$(find $FILE_NAME -mtime -7 2> /dev/null | wc -l)
+FILE_LINE_COUNT=$(wc -l $FILE_NAME 2> /dev/null | awk '{print $1}')
+
+if [ $FILE_RECENTLY_UPDATED = "1" ]; then
+    # 파일이 최근에 업데이트 되었고,
+    if ! [ $FILE_LINE_COUNT = "0" ]; then
+        # 파일이 비어있지 않으면
+        echo "최근에 저장해둔 $FILE_NAME 내용을 출력합니다."
+        bat $FILE_NAME -p --theme Dracula
+        exit 0
+    fi
+fi
+
+echo "자료를 다운로드합니다."
+echo -n '' > $FILE_NAME
+
+# curl http://bropages.org/tr.json 을 호출하면 다음과 같은 응답이 돌아온다.
+# [
+#   {
+#     "cmd": "tr",
+#     "msg": "# Squeeze whitespace (space, tab, and unicode whitestuff) into a single blank\ntr -s '[:blank:]' ' '",
+#     "updated_at": "2017-03-16T19:47:06.000Z",
+#     "id": 611,
+#     "up": 8,
+#     "down": 0
+#   },
+#   { 생략 }
+# ]
+# cmd: 명령 이름, msg: 설명과 예제 코드, updated_at: 최종 수정 날짜, id: 아이디, up: 추천 수, down: 비추천 수
+
+# 문제는 msg 에 설명과 예제 코드가 하나의 String으로 들어가 있다는 것이다.
+#                                                                                       개행문자
+#           셜명 시작                                                           설명 끝 ↓ 코드 시작
+# "msg": "# Squeeze whitespace (space, tab, and unicode whitestuff) into a single blank\ntr -s '[:blank:]' ' '",
+
+# 설명이 여러줄인 경우에는 \n 이 여러 차례 들어가므로 첫번째 \n 까지를 설명으로 자를 수 없다.
+# 게다가 예제 코드 내에서 \n 과 \\n 을 쓰는 경우가 모두 들어가 있다.
+# 따라서 설명과 예제 코드를 분리하려 하면 망한다.
+# \n 과 \\n 을 그대로 살려 파일로 저장하고, \n과 \\n 을 올바르게 보여주면 된다.
+    # json String이므로 \n 은 개행문자이며, \\n 은 \n 으로 보여줘야 한다.
+    # \n 을 개행문자로 replace할 때 \\n 도 replace되지 않도록 주의해야 한다.
+
+# https://stackoverflow.com/questions/33950596/iterating-through-json-array-in-shell-script
+readarray -t bro_list < <(curl -s $BRO_URL | jq -c '.[]')
+
+index=-1
+for item in "${bro_list[@]}"; do
+  index=$(expr $index + 1)
+
+  up=$(jq '.up' <<< "$item")
+  down=$(jq '.down' <<< "$item")
+  updated_time=$(jq '.updated_at' <<< "$item")
+  updated=$(echo $updated_time | perl -pe 's/^"(.*)T.*"$/\1/')
+
+  # 코드 조각의 메타 정보를 보여준다.
+  printf "\n# no: %d, up: %s, down: %s, updated: %s\n" $index $up $down $updated >> $FILE_NAME
+
+  msg=$(jq '.msg' <<< "$item" | perl -pe 's/^"(.*)"$/\1/')
+  # echo msg \\\n 을 리플레이스
+  msg=$(perl -pe 's/\\\\\\n/'$new_line_string'/g' <<< $msg)
+  # echo msg \\n 을 리플레이스
+  msg=$(perl -pe 's/\\\\n/'$new_line_escaped'/g' <<< "$msg")
+  # echo msg \n 도 리플레이스
+  msg=$(perl -pe 's/\\n/'$new_line'/g' <<< "$msg")
+
+  # 설명과 코드 조각을 보여준다.
+  # 각각의 perl 명령은 한 줄로도 작성할 수 있지만 디버깅 편의를 위해 4줄로 분리했다.
+  echo -e "$msg" \
+      | perl -pe 's/\\"/"/g;' \
+      | perl -pe 's/'$new_line_escaped'/\\n/g' \
+      | perl -pe 's/'$new_line'/\n/g' \
+      | perl -pe 's/'$new_line_string'/\\\n/g' \
+      >> $FILE_NAME
+done
+
+# 파일에 굳이 저장하지 않아도 되겠지만 코딩 편의상 걍 파일에 저장하고 보여준다.
+# bat $FILE_NAME --theme Dracula --number
+bat $FILE_NAME -p --theme Dracula
+
