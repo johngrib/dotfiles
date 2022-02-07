@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # 이 프로그램은 다음 목록에 의존합니다.
-# jq, perl
+# jq, perl, bat
 
 BRO_URL="http://bropages.org/$1.json"
 FILE_NAME="/tmp/bropages-$1.bash"
