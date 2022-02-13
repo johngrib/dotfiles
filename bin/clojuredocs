@@ -116,6 +116,7 @@ curl_from_clojuredocs() {
         | egrep -o '"search-results".*"search-controls"' \
         | egrep -o "<h2>.*?</h3>" \
         | sed -E 's,^.*href="/([^"]+)/([^/]+)".*$,\1 \2 https://clojuredocs.org/\1/\2,' \
+        | sed 's/&nbsp;/ /g; s/&amp;/\&/g; s/&lt;/\</g; s/&gt;/\>/g; s/&quot;/\"/g; s/#&#39;/\'"'"'/g; s/&ldquo;/\"/g; s/&rdquo;/\"/g;' \
         | column -t
 }
 
