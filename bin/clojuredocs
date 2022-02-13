@@ -72,7 +72,7 @@ save_each_example() {
         _file_name=/tmp/clojuredocs/examples/$_url_id
         _index=$(expr $_index + 1)
 
-        if [[ ! -f $_file_name && ! -z $url ]]; then
+        if [ ! -f $_file_name ]; then
             # 예제를 저장한 캐시 파일이 없다면, 예제를 다운로드 받아서 /tmp/clojuredocs/examples 에 저장한다.
             printf "캐시를 갱신합니다 [%d / %d] %s\n" $_index $_length $url
 
