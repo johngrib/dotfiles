@@ -37,7 +37,10 @@ show_examples() {
     _keyword="$1"
 
     search_list "$_keyword" \
-        | fzf --preview 'printf {3} | shasum | tr "-" " " | xargs printf "/tmp/clojuredocs/examples/%s" | xargs bat -l clojure -p --theme Dracula --color=always' --preview-window=wrap --multi \
+        | fzf  --preview-window=wrap --multi \
+            --preview "printf {3} | shasum | tr '-' ' ' \
+                | xargs printf '/tmp/clojuredocs/examples/%s' \
+                | xargs bat -l clojure -p --theme Dracula --color=always" \
         | awk '{print $3}' \
         | xargs open
     }
