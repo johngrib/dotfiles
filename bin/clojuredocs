@@ -5,6 +5,19 @@
 # bat - https://github.com/sharkdp/bat
 # fzf - https://github.com/junegunn/fzf
 
+# 사용방법
+# EXAMPLE:
+#   clojuredocs.org 에서 merge 로 검색한 결과를 봅니다.
+#   결과를 보다가 엔터키를 입력하면 clojuredocs.org의 해당 페이지를 웹 브라우저에서 열어줍니다.
+#   (다운로드한 내용은 /tmp/clojuredocs 에 저장됩니다.)
+#       $ clojuredocs merge
+#
+#   기본 옵션과 같습니다. 단 로컬 캐시를 모두 삭제합니다.
+#   $ clojuredocs merge -f
+#
+#   clojuredocs.org 에서 merge 로 검색한 결과를 출력합니다. 결과를 적당히 파싱해 쓰면 됩니다.
+#   $ clojuredocs merge -r
+
 main() {
     _keyword="$1"
     _option="$2"
