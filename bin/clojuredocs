@@ -56,9 +56,8 @@ save_each_example() {
         _file_name=/tmp/clojuredocs/examples/$_url_id
         _index=$(expr $_index + 1)
 
-        if [ ! -f $_file_name ]; then
+        if [[ ! -f $_file_name && ! -z $url ]]; then
             # 예제를 저장한 캐시 파일이 없다면, 예제를 다운로드 받아서 /tmp/clojuredocs/examples 에 저장한다.
-
             printf "캐시를 갱신합니다 [%d / %d] %s\n" $_index $_length $url
 
             bb -i "
@@ -78,6 +77,8 @@ save_each_example() {
                 (doseq [example examples] (println example))
                 " \
                 > $_file_name
+        else
+            printf "캐시를 갱신하지 않습니다 [%d / %d] %s\n" $_index $_length $url
         fi
     done
 }
@@ -96,13 +97,12 @@ search_list() {
         # 파일이 최근에 업데이트 되었고,
         if ! [ $_file_line_count = "0" ]; then
             # 파일이 비어있지 않으면
-            # echo "최근에 저장해둔 $_file_name 내용을 출력합니다."
             cat $_file_name
             return 0
         fi
     fi
 
-    curl_from_clojuredocs "$_keyword" > $_file_name
+    curl_from_clojuredocs "$_keyword" | grep -v '^<' | column -t > $_file_name
 
     # 재귀하고 싶지만 참는다...
     cat $_file_name
@@ -116,8 +116,7 @@ curl_from_clojuredocs() {
         | egrep -o '"search-results".*"search-controls"' \
         | egrep -o "<h2>.*?</h3>" \
         | sed -E 's,^.*href="/([^"]+)/([^/]+)".*$,\1 \2 https://clojuredocs.org/\1/\2,' \
-        | sed 's/&nbsp;/ /g; s/&amp;/\&/g; s/&lt;/\</g; s/&gt;/\>/g; s/&quot;/\"/g; s/#&#39;/\'"'"'/g; s/&ldquo;/\"/g; s/&rdquo;/\"/g;' \
-        | column -t
+        | sed 's/&nbsp;/ /g; s/&amp;/\&/g; s/&lt;/\</g; s/&gt;/\>/g; s/&quot;/\"/g; s/#&#39;/\'"'"'/g; s/&ldquo;/\"/g; s/&rdquo;/\"/g;'
 }
 
 main $@
