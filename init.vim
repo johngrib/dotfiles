@@ -1,6 +1,6 @@
 " Vim-Plug 설정
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
     " VIM POWER
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -64,7 +64,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
 
     " Plug 'koron/nyancat-vim'
-    Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+    Plug 'johngrib/vimwiki', { 'branch': 'dev' }
     Plug 'johngrib/grib-wiki'
 
     Plug 'diepm/vim-rest-console'
