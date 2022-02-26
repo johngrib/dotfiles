@@ -3,10 +3,13 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export SDKROOT=$(xcrun --show-sdk-path)
 
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-PATH="$PATH:~/.local/bin"
+export PATH="$PATH:/opt/homebrew/bin"
+export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
+export PATH="$PATH:/opt/homebrew/sbin"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:~/.local/bin"
 
 if [[ ! "$PATH" == *~/.cargo/bin* ]]; then
     # rust
@@ -19,8 +22,8 @@ elif [ -z "`echo $PATH | grep -o /dotfiles-com/bin/`" -a "`hostname -s`" == "Use
     PATH="$PATH:~/Dropbox/dotfiles-com/bin/"
 fi
 
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:/usr/local/opt/llvm/bin"
+export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 export PATH="$PATH:~/.vim/plugged/vim-iced/bin"
 
