@@ -2,6 +2,7 @@ LANG="en_US.UTF-8"
 # export JAVA_HOME=$(/usr/libexec/java_home)
 export GOBIN=$HOME/go/bin
 export TERM=xterm-256color
+export SDKROOT=$(xcrun --show-sdk-path)
 
 # history setting
 export HISTCONTROL=ignoreboth
@@ -62,6 +63,7 @@ alias bc='bc -l ~/.bcrc -q'
 alias weather='curl v2.wttr.in/Seoul'
 alias myfortune='fortune ~/Dropbox/my-fortune'
 alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
+alias brew="arch -x86_64 /usr/local/bin/brew"
 
 # colors
 GREEN='\e[0;32m\]'

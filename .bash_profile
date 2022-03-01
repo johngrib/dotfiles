@@ -3,10 +3,12 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export SDKROOT=$(xcrun --show-sdk-path)
 
-export PATH="$PATH:/opt/homebrew/bin"
-export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
-export PATH="$PATH:/opt/homebrew/sbin"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(rbenv init - bash)"
 
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:~/.local/bin"
