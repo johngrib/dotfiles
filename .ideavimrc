@@ -86,6 +86,7 @@
   nmap \u <Action>(ShowUsages)
   nmap \s <Action>(ManageRecentProjects)
   nmap \r <Action>(ActivateREPLToolWindow)
+  nmap \d <Action>(ActivateDatabaseToolWindow)
 
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 

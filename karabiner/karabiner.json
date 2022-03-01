@@ -568,6 +568,16 @@
                     "simple_modifications": [
                         {
                             "from": {
+                                "key_code": "right_command"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "f15"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
                                 "key_code": "right_option"
                             },
                             "to": [
@@ -578,11 +588,21 @@
                         },
                         {
                             "from": {
-                                "key_code": "right_command"
+                                "key_code": "caps_lock"
                             },
                             "to": [
                                 {
-                                    "key_code": "f15"
+                                    "key_code": "left_control"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_control"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "f13"
                                 }
                             ]
                         }
