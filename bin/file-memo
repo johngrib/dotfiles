@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 _file_memo_path="$HOME/.file-memo"
+_home_path="$(realpath ~)"
 
 main() {
     # 사용방법1: file-memo book1.jpg
@@ -26,7 +27,12 @@ main() {
     mkdir -p "$_file_memo_path"
 
     if [[ "$1" == "" ]]; then
-        echo "no param"
+        # 모든 메모 목록을 fzf 미리보기로 보여주고, 선택하면 메모가 붙은 원본 파일을 open 으로 열어준다
+        find "$_file_memo_path" -type f \
+            | fzf --preview 'cat {}' \
+            | xargs head -1 \
+            | sed -E "s&^~&"$_home_path"&" \
+            | xargs open
         return 0
     fi
 
@@ -91,7 +97,6 @@ file-abs-path() {
 file-tilde-path() {
     # $1 파일의 경로를 리턴합니다.
         # 절대 경로가 아니라 ~ 로 시작하는 확장 전의 경로입니다.
-    _home_path="$(realpath ~)"
     _tilde_path="~$(realpath -s $1 | sed "s&$_home_path&&")"
     printf "%s" "$_tilde_path"
 }
