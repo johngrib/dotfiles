@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+_file_memo_path="$HOME/.file-memo"
+
+main() {
+    # 사용방법1: file-memo book1.jpg
+        # 이렇게 사용하면 book1.jpg 의 설명을 vim에서 보여줘야 한다. 편집도 되고 읽기도 된다.
+            # book1.jpg 파일의 내용을 읽고 해시값을 계산한다.
+            # 계산한 해시값이 ff123 이라 하자.
+            # ~/.file-memo/ff123 파일이 있다면, vim 에서 보여준다.
+            # 파일이 없다면 ~/.file-memo/ff123 파일을 생성한다.
+                # 생성할 때 첫 번째 줄에 book1.jpg 의 경로를 적어준다. - 파일과 설명 파일을 쌍으로 연결해준다. 필요없을지는 천천히 생각해보자.
+    # 사용방법2: file-memo
+        # 이렇게 사용하면 현재 디렉토리의 모든 파일 목록을 fzf에서 보여주고,
+        # 화면 오른쪽 preview에 설명 파일의 내용을 보여준다.
+        # 파일 하나를 골라 엔터를 치면 vim 으로 설명 파일을 열어준다? 또는 해당 이미지를 열어준다?
+        # 제일 많이 사용하게 될 기능일듯
+    # 사용방법3: file-memo -f 검색어
+        # 검색어를 입력하면 해당 검색어를 포함하는 설명 파일을 fzf에서 보여주고,
+        # 화면 오른쪽 preview에 설명 파일의 내용을 보여준다. (이미지를 보여주면 더 좋겠지만... 터미널에서 이미지를 보여주기가... 나중에 생각하자)
+        # 설명 파일 안쪽에 #unix #javascript 이렇게 해시태그를 넣을 수도 있겠다.
+    # 사용방법4: file-memo --orphan
+        # 대상 파일이 사라진 설명 파일 목록을 보여준다.
+        # 설명 파일 첫 줄에 대상 파일 경로가 있으므로 그걸 활용한다.
+
+    mkdir -p "$_file_memo_path"
+
+    if [[ "$1" == "" ]]; then
+        echo "no param"
+        return 0
+    fi
+
+    case "$1" in
+        "-f"|"--find")
+            echo "option: find"
+            ;;
+        "-o"|"--orphan")
+            echo "option: orphan"
+            ;;
+        "")
+            echo "no option"
+            ;;
+        *)
+            open-file-memo "$1"
+            ;;
+    esac
+}
+
+open-file-memo() {
+    _file_name="$1"
+    _file_path=`file-abs-path $_file_name`
+
+    echo "file path: $_file_path"
+
+    if [[ ! -f "$_file_path" ]]; then
+        # 없는 파일이면 설명 파일을 작성하지 않는다.
+        echo "File not found: $_file_path"
+        return 1
+    fi
+
+    _file_hash=$(file-hash "$_file_name")
+    # echo "file hash: $_file_hash"
+
+    _dir_path="$_file_memo_path/$(cut -c -2 <<< $_file_hash)"
+
+    if [[ ! -f "$_dir_path/$_file_hash" ]]; then
+        # 설명 파일이 없다면 파일을 생성한다.
+        echo "File not found: ~/.file-memo/$_file_hash"
+        echo "Create file memo? [y/n]"
+        read -r _input
+
+        if [[ "$_input" == "y" ]]; then
+            mkdir -p $_dir_path
+            echo "$(file-tilde-path $_file_name)" > $_dir_path/$_file_hash
+            echo "File memo created: $_file_memo_path/$_file_hash"
+        else
+            return 0
+        fi
+    fi
+
+    $EDITOR "$_dir_path/$_file_hash"
+    return 0
+}
+
+
+file-abs-path() {
+    # $1 파일의 절대 경로를 리턴합니다.
+    realpath -s $1
+}
+
+file-tilde-path() {
+    # $1 파일의 경로를 리턴합니다.
+        # 절대 경로가 아니라 ~ 로 시작하는 확장 전의 경로입니다.
+    _home_path="$(realpath ~)"
+    _tilde_path="~$(realpath -s $1 | sed "s&$_home_path&&")"
+    printf "%s" "$_tilde_path"
+}
+
+file-hash() {
+    # $1 파일의 해시를 리턴합니다.
+    sha1sum $1 | awk '{print $1}'
+}
+
+main $@
+
