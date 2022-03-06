@@ -38,13 +38,12 @@ main() {
 
     case "$1" in
         "-f"|"--find")
+            # 미구현
             echo "option: find"
             ;;
         "-o"|"--orphan")
+            # 미구현
             echo "option: orphan"
-            ;;
-        "")
-            echo "no option"
             ;;
         *)
             open-file-memo "$1"
