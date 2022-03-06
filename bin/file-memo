@@ -38,8 +38,12 @@ main() {
 
     case "$1" in
         "-f"|"--find")
-            # 미구현
-            echo "option: find"
+            # 검색어를 입력하면 해당 검색어를 포함하는 설명 파일을 fzf에서 보여주고, 선택하면 원본 파일을 열어준다
+            grep -rl "$2" "$_file_memo_path" \
+                | fzf --preview 'cat {}' \
+                | xargs head -1 \
+                | sed -E "s&^~&"$_home_path"&" \
+                | xargs open
             ;;
         "-o"|"--orphan")
             # 미구현
