@@ -117,7 +117,6 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'Olical/conjure'
     Plug 'guns/vim-sexp',    {'for': 'clojure'}
     Plug 'liquidz/vim-iced', {'for': 'clojure'}
-    " Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
 call plug#end()
 
@@ -363,11 +362,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " map g* <Plug>(incsearch-nohl-g*)
     " map g# <Plug>(incsearch-nohl-g#)
 
-    " Mundo
-    nnoremap \u :MundoToggle<cr>
-
-    " rainbow
+    nnoremap \<BS> :vs ~/Dropbox/localwiki/_wiki/todo.md<CR>
+    nnoremap \u :UltiSnipsEdit<CR>
+    nnoremap \h :UltiSnipsEdit help<CR>
+    nnoremap \z :MundoToggle<CR>
     nnoremap \r :RainbowToggle<CR>
+    nnoremap \d :MacDictWord<CR>
+    nnoremap \\d :MacDictQuery<CR>
 
 
     " Syntastic 설정
@@ -418,8 +419,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <silent>s <S-">
     vnoremap <silent>s <S-">
 
-    nnoremap \d :MacDictWord<CR>
-    nnoremap \\d :MacDictQuery<CR>
 
     nnoremap =e :Autoformat<CR>
 
