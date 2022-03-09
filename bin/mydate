@@ -1,19 +1,61 @@
 #!/usr/bin/env bash
+#
+# 날짜와 설명을 읽어 기준 날짜에서 며칠이나 흘렀는지를 보여줍니다.
+#
+# date.md 파일은 다음과 같이 작성합니다. ( | 기호가 구분자)
+#
+# 1982-10-30|생일
+# 2016-11-27|결혼기념일
 
-getDiff() {
-    ymd="$1"
-    python -c "from datetime import date as d; print(d.today() - d($ymd))" | awk '{print $1+1}'
+set -euo pipefail; IFS=$'\n\t'
+
+main() {
+    if [ $# -ge 1 ]; then
+        base_ymd="$1"
+    else
+        base_ymd=$(date +%Y-%m-%d)
+    fi
+    printAll "$base_ymd" | column -ts: | sort -r
 }
 
+################################################################################
+# 두 날짜 사이의 차이 날짜를 계산합니다.
+# Arguments:
+#   $1: 시작 날짜
+#   $2: 종료 날짜
+# Returns:
+#   차이 날짜
+# Example:
+#  "2022-10-30" "2022-10-31" 이 주어지면 1 을 리턴합니다.
+#  "2022-10-31" "2022-10-30" 이 주어지면 -1 을 리턴합니다.
+################################################################################
+get_diff() {
+    from_date="$1"
+    to_date="$2"
+
+    from_time=$(date -jf %Y-%m-%d "$to_date" +%s)
+    to_time=$(date -jf %Y-%m-%d "$from_date" +%s)
+
+    echo $(((from_time - to_time) / 86400))
+}
+
+################################################################################
+# date.md 파일을 읽어 날짜와 설명을 출력합니다.
+# Arguments:
+#   $1: 날짜 계산 기준 날짜. (일반적으로 오늘)
+################################################################################
 printAll() {
-    for line in `cat ~/my-files/date.md`; do
-        title=`echo $line | cut -d: -f2`
-        fromDate=`echo $line | cut -d: -f1 | tr '-' ','`
-        days=`getDiff $fromDate`
-        years=`echo "$days / 365.0" | bc`
-        remain=`echo "scale=0; $days % 365" | bc`
-        printf "%s: %s 부터 %s 일째 (%s 년 %s 일)\n" $title $fromDate $days $years $remain
-    done
+    to_date="$1"
+
+    while read -r line; do
+        title=$(cut -d"|" -f2 <<< "$line")
+        from_date=$(cut -d"|" -f1 <<< "$line")
+        days_diff=$(get_diff "$from_date" "$to_date")
+        years=$(bc <<< "$days_diff / 365.0")
+        remain=$(bc <<< "scale=0; $days_diff % 365")
+        printf "%s: %s 일째: (%s 년 %s 일): %s \n" "$from_date" "$days_diff" "$years" "$remain" "$title"
+    done < ~/Dropbox/my-files/date.md
 }
 
-printAll | column -ts:
+main "$@"
+
