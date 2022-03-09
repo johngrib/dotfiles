@@ -17,30 +17,30 @@ find /tmp/bropages-* -mtime +30 2> /dev/null | xargs \rm
 
 # -f 옵션을 주면 (다시 다운로드받도록) 캐시 파일을 삭제한다.
 if [ "$2" = "-f" ]; then
-    rm -f $FILE_NAME
+    rm -f "$FILE_NAME"
 fi
 
 # 파일을 편집한다.
 if [ "$2" = "-e" ]; then
-    vim $FILE_NAME
+    vim "$FILE_NAME"
     exit 0
 fi
 
-FILE_RECENTLY_UPDATED=$(find $FILE_NAME -mtime -7 2> /dev/null | wc -l)
-FILE_LINE_COUNT=$(wc -l $FILE_NAME 2> /dev/null | awk '{print $1}')
+FILE_RECENTLY_UPDATED=$(find "$FILE_NAME" -mtime -7 2> /dev/null | wc -l)
+FILE_LINE_COUNT=$(wc -l "$FILE_NAME" 2> /dev/null | awk '{print $1}')
 
-if [ $FILE_RECENTLY_UPDATED = "1" ]; then
+if [ "$FILE_RECENTLY_UPDATED" = "1" ]; then
     # 파일이 최근에 업데이트 되었고,
-    if ! [ $FILE_LINE_COUNT = "0" ]; then
+    if ! [ "$FILE_LINE_COUNT" = "0" ]; then
         # 파일이 비어있지 않으면
         echo "최근에 저장해둔 $FILE_NAME 내용을 출력합니다."
-        bat $FILE_NAME -p --theme Dracula
+        bat "$FILE_NAME" -p --theme Dracula
         exit 0
     fi
 fi
 
 echo "자료를 다운로드합니다."
-echo -n '' > $FILE_NAME
+echo -n '' > "$FILE_NAME"
 
 # curl http://bropages.org/tr.json 을 호출하면 다음과 같은 응답이 돌아온다.
 # [
@@ -69,23 +69,23 @@ echo -n '' > $FILE_NAME
     # \n 을 개행문자로 replace할 때 \\n 도 replace되지 않도록 주의해야 한다.
 
 # https://stackoverflow.com/questions/33950596/iterating-through-json-array-in-shell-script
-readarray -t bro_list < <(curl -s $BRO_URL | jq -c '.[]')
+readarray -t bro_list < <(curl -s "$BRO_URL" | jq -c '.[]')
 
 index=-1
 for item in "${bro_list[@]}"; do
-  index=$(expr $index + 1)
+  index=$((index + 1))
 
   up=$(jq '.up' <<< "$item")
   down=$(jq '.down' <<< "$item")
   updated_time=$(jq '.updated_at' <<< "$item")
-  updated=$(echo $updated_time | perl -pe 's/^"(.*)T.*"$/\1/')
+  updated=$(echo "$updated_time" | perl -pe 's/^"(.*)T.*"$/\1/')
 
   # 코드 조각의 메타 정보를 보여준다.
-  printf "\n# no: %d, up: %s, down: %s, updated: %s\n" $index $up $down $updated >> $FILE_NAME
+  printf "\n# no: %d, up: %s, down: %s, updated: %s\n" "$index" "$up" "$down" "$updated" >> "$FILE_NAME"
 
   msg=$(jq '.msg' <<< "$item" | perl -pe 's/^"(.*)"$/\1/')
   # echo msg \\\n 을 리플레이스
-  msg=$(perl -pe 's/\\\\\\n/'$new_line_string'/g' <<< $msg)
+  msg=$(perl -pe 's/\\\\\\n/'$new_line_string'/g' <<< "$msg")
   # echo msg \\n 을 리플레이스
   msg=$(perl -pe 's/\\\\n/'$new_line_escaped'/g' <<< "$msg")
   # echo msg \n 도 리플레이스
@@ -98,10 +98,10 @@ for item in "${bro_list[@]}"; do
       | perl -pe 's/'$new_line_escaped'/\\n/g' \
       | perl -pe 's/'$new_line'/\n/g' \
       | perl -pe 's/'$new_line_string'/\\\n/g' \
-      >> $FILE_NAME
+      >> "$FILE_NAME"
 done
 
 # 파일에 굳이 저장하지 않아도 되겠지만 코딩 편의상 걍 파일에 저장하고 보여준다.
 # bat $FILE_NAME --theme Dracula --number
-bat $FILE_NAME -p --theme Dracula
+bat "$FILE_NAME" -p --theme Dracula
 
