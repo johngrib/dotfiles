@@ -1,5 +1,12 @@
+# convention
+
+# https://google.github.io/styleguide/shellguide.html
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+
 snippet #! ""
 #!/usr/bin/env bash
+
+set -euo pipefail; IFS=$'\n\t'
 
 ${0}
 endsnippet
