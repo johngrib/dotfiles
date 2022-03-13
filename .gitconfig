@@ -55,9 +55,9 @@
     lh = "!# Show log graph | head \n\
         f() { \
             if [ $# = 0 ]; then \
-                git l -25; \
+                git l | head -25; \
             else \
-                git l -$1; \
+                git l | head -$1; \
             fi; \
             echo ''; \
         }; f"
