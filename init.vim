@@ -76,7 +76,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Plug 'leafgarland/typescript-vim'
     Plug 'milkypostman/vim-togglelist'
-    Plug 'jszakmeister/vim-togglecursor'
+    " Plug 'jszakmeister/vim-togglecursor'
     Plug 'johngrib/vim-git-msg-wheel'
 
     " Plug 'tpope/vim-db'
@@ -114,9 +114,19 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'github/copilot.vim'
 
     " clojure
-    " Plug 'Olical/conjure'
     Plug 'guns/vim-sexp',    {'for': 'clojure'}
+    Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+
+    Plug 'tpope/vim-dispatch'
+    " clojure : vim-iced
     Plug 'liquidz/vim-iced', {'for': 'clojure'}
+    Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+
+    " clojure : conjure
+        " Plug 'Olical/conjure'
+        " Plug 'clojure-vim/vim-jack-in'
+        " " Only in Neovim:
+        " Plug 'radenling/vim-dispatch-neovim'
 
 call plug#end()
 
@@ -226,6 +236,13 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set virtualedit=block   " visual block mode를 쓸 때 문자가 없는 곳도 선택 가능하다
     set autoread
 
+    set cmdheight=2
+    set updatetime=300
+    setglobal timeoutlen=1200
+    setglobal ttimeoutlen=50
+    " Don't pass messages to |ins-completion-menu|.
+    set shortmess+=c
+
     " This enables us to undo files even if you exit Vim.
     if has('persistent_undo')
         let s:vimDir = '$HOME/.vim'
@@ -262,9 +279,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap & :&&<CR>
     xnoremap & :&&<CR>
 
-    nnoremap <F10>r :source ~/.vimrc<CR>
+    " nnoremap <F10>r :source ~/.vimrc<CR>
     "nnoremap gv `[v`]    " highlight last inserted text
-    nnoremap K i<CR><Esc>
+    nnoremap <Space>k i<CR><Esc>
 
     nnoremap <M-/> :echom "[1] Explorer  [2] Tagbar"<CR>
         nmap <A-1> :CocCommand explorer<CR>
@@ -285,17 +302,15 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " 버퍼 관리
     " nnoremap <M-T> :enew<CR>       " 새로운 버퍼를 연다
-    nnoremap <silent> <F8>        :bnext!<CR>
     nnoremap <silent> <PageUp>    :bnext!<CR>
-    nnoremap <silent> <F7><F8>        :bprevious!<CR>
     nnoremap <silent> <PageDown>  :bprevious!<CR>
-    nnoremap <silent> <F9>d      :bd!<CR>
+    nnoremap <silent> <F2><F3>    :bnext!<CR>
+    nnoremap <silent> <F2><F1>    :bprevious!<CR>
+    nnoremap <silent> <F2>d       :bd!<CR>
     " 현재 버퍼를 닫고 이전 버퍼로 이동
-    nnoremap <silent> <F9><F6>      :bp <BAR> bd #<CR>
-    nnoremap <silent> <F9>q      :bp <BAR> bd #<CR>
-    nnoremap <silent> <F9><F9>  :Buffers<CR>
+    nnoremap <silent> <F2>q      :bp <BAR> bd #<CR>
     " 현재 버퍼만 남기고 모두 닫기
-    nnoremap <silent> <F9>o      :%bd <BAR> e # <BAR> bd #<CR>
+    nnoremap <silent> <F2>o      :%bd <BAR> e # <BAR> bd #<CR>
 
     inoremap <C-e> <C-O>$
     inoremap <C-l> <right>
@@ -309,18 +324,14 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
     " 윈도우 관리
-    nnoremap <M-+> <C-w>+
-    nnoremap <M-_> <C-w>-
-    nnoremap <M-<> <C-w><
-    nnoremap <M->> <C-w>>
+    " nnoremap <C-M-+> <C-w>+
+    " nnoremap <C-M-_> <C-w>-
+    " nnoremap <C-M-<> <C-w><
+    " nnoremap <C-M->> <C-w>>
     nnoremap <nowait> <Esc>+ <C-w>+
     nnoremap <nowait> <Esc>_ <C-w>-
     nnoremap <nowait> <Esc>< <C-w><
     nnoremap <nowait> <Esc>> <C-w>>
-    nnoremap <M-h> <C-w>h
-    nnoremap <M-j> <C-w>j
-    nnoremap <M-k> <C-w>k
-    nnoremap <M-l> <C-w>l
 
     " reselect visual block after indent/outdent
     " link: http://tilvim.com/2013/04/24/reindenting.html
@@ -369,6 +380,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap \r :RainbowToggle<CR>
     nnoremap \d :MacDictWord<CR>
     nnoremap \\d :MacDictQuery<CR>
+    nnoremap \m :Files ~/dotfiles/vim-memo<CR>
+    nnoremap \\m :e ~/dotfiles/vim-memo/
 
 
     " Syntastic 설정
