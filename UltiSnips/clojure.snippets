@@ -1,34 +1,6 @@
 # Clojure
 
-# 코드 평가
-
-# <leader>ee - 현재 커서가 위치한 form을 평가한다. (cursive의 command+shift+p와 비슷)
-# <leader>eb - 현재 버퍼를 평가한다. (cursive의 command+shift+n 과 비슷)
-
-# <leader>ef - 현재 파일을 디스크에서 읽어 평가한다.
-# <leader>E - Visual mode로 선택한 영역 평가한다.
-# <leader>em[mark] - mark로 지정해 둔 곳을 평가한다. 계속 평가할 일 있으면 편함.
-
-
-# 평가 결과를 버퍼에 쓰는 방법들
-
-# <leader>e! - 현재 커서가 위치한 form을 평가해서 버퍼에 replace.
-# <leader>ece - 현재 커서 form 평가 결과를 오른쪽에 ; 주석으로 추가해준다.
-
-
-# REPL 로그 버퍼
-
-# <leader>lv - 오른쪽에 로그 버퍼를 열어준다.
-# <leader>lq - 모든 로그 버퍼를 닫는다. 다시 열어도 로그 내용은 그대로 보인다.
-# <leader>lr - 로그 버퍼를 reset(clear) 한다.
-# <leader>lR - 로그 버퍼를 hard reset 한다.
-
-
-# 그 외
-
-# <leader>gd - Goto the definition. <C-]> 로 매핑해둠.
-
-snippet (defn "(defn 함수-정의 [])"
+snippet defn "(defn 함수-정의 [])"
 (defn ${1:함수-이름}
 	"${2:함수에 대한 설명}"
 	[${3:인자1}]
@@ -40,3 +12,12 @@ snippet if "if"
 	true
 	false)
 endsnippet
+
+snippet today
+"Today is `date +%Y.%m.%d`."
+endsnippet
+
+snippet "([^\s].*)\.([^s].*)" "Object.method -> (.method Object)" r
+(`!p snip.rv = "." + match.group(2) + " " + match.group(1)`)$0
+endsnippet
+
