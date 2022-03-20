@@ -21,6 +21,9 @@ augroup vim_clojure_coc
 augroup END
 
 augroup vim_iced
+    " coc-clojure 사용은i :call CocAction 을 사용하고, 파라미터는 다음 파일의 "commands"를 참고할 것.
+    " https://github.com/NoahTheDuke/coc-clojure/blob/main/package.json
+
     " REPL: - "sr"
     autocmd FileType clojure nmap srr <Plug>(iced_stdout_buffer_toggle)
     autocmd FileType clojure nmap srd <Plug>(iced_stdout_buffer_clear)
@@ -40,6 +43,7 @@ augroup vim_iced
     autocmd FileType clojure nmap sef :IcedRequire<CR>:echom "file loaded:" expand("%")<CR>
     autocmd FileType clojure nmap seF :IcedRequireAll<CR>:echom "Require and reload current file."<CR>
     autocmd FileType clojure nmap sea :IcedRefresh<CR>:echom "Reload all changed files on the classpath."<CR>
+    autocmd FileType clojure nmap seA :IcedRefreshAll<CR>:echom "Reload all files on the classpath."<CR>
     autocmd FileType clojure nmap seu <Plug>(iced_undef_all_in_ns)
     autocmd FileType clojure nmap se' <Plug>(iced_eval_at_mark)
     autocmd FileType clojure nmap sem <Plug>(iced_eval_at_mark)
@@ -52,23 +56,59 @@ augroup vim_iced
     autocmd FileType clojure nmap saM <Plug>(iced_macroexpand_outer_list)
     autocmd FileType clojure nmap K <Plug>(iced_document_popup_open)
     autocmd FileType clojure nmap sak <Plug>(iced_document_open)
+    autocmd FileType clojure nmap sas :IcedSourcePopupShow<CR>
+    autocmd FileType clojure nmap saS :IcedSourceShow<CR>
 
     " autocmd FileType clojure nmap sal :make<CR>:copen<CR>
     autocmd FileType clojure nmap sal :Dispatch<CR>
     autocmd FileType clojure setlocal makeprg=clj-kondo\ --lint\ %
     autocmd FileType clojure setlocal errorformat=%f:%l:%c:\ Parse\ %t%*[^:]:\ %m,%f:%l:%c:\ %t%*[^:]:\ %m
 
-    autocmd FileType clojure nmap sns :IcedAddNs<CR>
+    " Clj Kondo: - "sk"
+    " clj kondo를 파일에 대해 실행하고, 경고 목록을 보여줌.
+    autocmd FileType clojure nmap skl :Dispatch<CR>
+    " .clj-kondo/config.edn 에 매크로를 등록해서 인식하게 해준다.
+    autocmd FileType clojure nmap skm :call CocAction('runCommand', 'lsp-clojure-resolve-macro-as')<CR>
+    " .clj-kondo/ignore 에 현재 라인을 추가해서 경고를 끈다.
+    autocmd FileType clojure nmap sks :call CocAction('runCommand', 'lsp-clojure-suppress-diagnostic')<CR>
+
+    " Name Space: - "sn"
+    autocmd FileType clojure nmap sna :IcedAddNs<CR>
+    autocmd FileType clojure nmap snc :IcedCleanNs<CR>
+    " 왜 안되는지 모르겠음.. 그리고 어떻게 쓰는지 모르겠음
+    " autocmd FileType clojure nmap <silent> snA :call CocAction('runCommand', 'lsp-clojure-add-require-suggestion')<CR>
+
+    " Code Typing: - "sc"
+    autocmd FileType clojure nmap scr :IcedRenameSymbol<CR>
+    autocmd FileType clojure nmap scR <Plug>(coc-rename)
+    " 잘되지만 lsp-clojure-change-coll 이 좀 더 편함
+    " autocmd FileType clojure nmap <silent> scc :call CocAction('runCommand', 'lsp-clojure-cycle-coll')<CR>
+    autocmd FileType clojure nmap <silent> scc :call CocAction('runCommand', 'lsp-clojure-change-coll')<CR>
+    autocmd FileType clojure nmap <silent> scf :call CocAction('runCommand', 'lsp-clojure-create-function')<CR>
+    " autocmd FileType clojure nmap <silent> scp :call CocAction('runCommand', 'lsp-clojure-cycle-privacy')<CR>
+
+    " Testing: - "st"
+    autocmd FileType clojure nmap <silent> stc :call CocAction('runCommand', 'lsp-clojure-create-test')<CR>
+    autocmd FileType clojure nmap st' <Plug>(iced_cycle_src_and_test)
+    autocmd FileType clojure nmap stt :IcedTestUnderCursor<CR>
+    " Run tests in current namespace.
+    autocmd FileType clojure nmap stn :IcedTestNs<CR>
+    " Run all tests in current project.
+    autocmd FileType clojure nmap sta :IcedTestAll<CR>
+    " Re run failed tests.
+    autocmd FileType clojure nmap str :IcedTestRedo<CR>
+    " Run last test again.
+    autocmd FileType clojure nmap st. :IcedTestRerunLast<CR>
+    " 아직 필요를 못 느낌
+    " :IcedTestSpecCheck
 
     autocmd FileType clojure nmap <silent> <Tab><Tab>r <Plug>(coc-references)
 
-    autocmd FileType clojure nmap <Tab>s <Plug>(iced_source_popup_show)
     autocmd FileType clojure nmap <Tab>c <Plug>(iced_command_palette)
     " :IcedClojureDocsOpen
     autocmd FileType clojure nmap <Tab>d <Plug>(iced_clojuredocs_open)
     autocmd FileType clojure nmap == <Plug>(iced_format)
     autocmd FileType clojure nmap <Tab>== <Plug>(iced_format_all)
-    autocmd FileType clojure nmap <Tab>t <Plug>(iced_cycle_src_and_test)
 augroup END
 
 let g:iced_default_key_mapping_leader = '<Leader>'
