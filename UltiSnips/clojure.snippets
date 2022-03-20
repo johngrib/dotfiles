@@ -21,3 +21,6 @@ snippet "([^\s].*)\.([^s].*)" "Object.method -> (.method Object)" r
 (`!p snip.rv = "." + match.group(2) + " " + match.group(1)`)$0
 endsnippet
 
+snippet "(\d+)#_" "n번 #_ 반복" r
+`!p snip.rv = "#_" * int(match.group(1))`$0
+endsnippet
