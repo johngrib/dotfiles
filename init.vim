@@ -533,6 +533,10 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" https://stackoverflow.com/questions/1551231/highlight-variable-under-cursor-in-vim-like-in-netbeans
+" :so $VIMRUNTIME/syntax/hitest.vim
+autocmd CursorMoved * exe printf('match CocListBlueBlack /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
 " Autosave: https://github.com/907th/vim-auto-save
 let g:auto_save_silent = 1
 
