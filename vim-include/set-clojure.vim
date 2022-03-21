@@ -69,8 +69,10 @@ augroup vim_iced
     autocmd FileType clojure nmap skl :Dispatch<CR>
     " .clj-kondo/config.edn 에 매크로를 등록해서 인식하게 해준다.
     autocmd FileType clojure nmap skm :call CocAction('runCommand', 'lsp-clojure-resolve-macro-as')<CR>
-    " .clj-kondo/ignore 에 현재 라인을 추가해서 경고를 끈다.
-    autocmd FileType clojure nmap sks :call CocAction('runCommand', 'lsp-clojure-suppress-diagnostic')<CR>
+    " .clj-kondo/ignore 를 추가해서 경고를 끈다.
+    autocmd FileType clojure nmap sks i#_:clj-kondo/ignore<ESC>
+    " ↓ 작동안함. 이유를 모르겠음.
+    " autocmd FileType clojure nmap sks :call CocAction('runCommand', 'lsp-clojure-suppress-diagnostic')<CR>
 
     " Name Space: - "sn"
     autocmd FileType clojure nmap sna :IcedAddNs<CR>
