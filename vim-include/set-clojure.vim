@@ -49,6 +49,9 @@ augroup vim_iced
     autocmd FileType clojure nmap seu <Plug>(iced_undef_all_in_ns)
     autocmd FileType clojure nmap se' <Plug>(iced_eval_at_mark)
     autocmd FileType clojure nmap sem <Plug>(iced_eval_at_mark)
+    autocmd FileType clojure nmap sec <Plug>(iced_eval_and_comment)
+
+
     " Code Analyse: - "sa"
     autocmd FileType clojure nmap sar :IcedBrowseReferences<CR>
     autocmd FileType clojure nmap sad :IcedBrowseDependencies<CR>
