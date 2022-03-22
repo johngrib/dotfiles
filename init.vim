@@ -10,7 +10,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-scripts/taglist.vim'
     Plug 'ludovicchabant/vim-gutentags' " 자동으로 tags 파일을 갱신해 준다.
     Plug 'majutsushi/tagbar'
-    Plug 'jszakmeister/markdown2ctags', {'do' : 'cp ./markdown2ctags.py ~/.local/bin/markdown2ctags.py'}
 
     " version control
     Plug 'tpope/vim-fugitive'           " git 명령어 wrapper
