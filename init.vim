@@ -36,7 +36,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'wellle/targets.vim'           " text object utils
     " Plug 'jiangmiao/auto-pairs'
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
-    " Plug 'junegunn/vim-easy-align'
+    Plug 'junegunn/vim-easy-align'
     Plug 'AndrewRadev/splitjoin.vim'
     Plug 'tommcdo/vim-exchange'
 
@@ -425,8 +425,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " let g:eregex_backward_delim = '?'
     " let g:eregex_force_case = 0
 
-    " nmap ga <Plug>(EasyAlign)
-    " xmap ga <Plug>(EasyAlign)
+    nmap ga <Plug>(EasyAlign)
+    xmap ga <Plug>(EasyAlign)
 
     nnoremap <Space>w :w<CR>
     nnoremap <silent>s <S-">
