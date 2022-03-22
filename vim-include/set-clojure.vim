@@ -12,6 +12,8 @@ let g:loaded_clojure_setting = 1
 let g:clojure_vim_iced_loaded = v:true
 let g:clojure_conjure_loaded = v:false
 
+let g:clj_fmt_config = '{:indentation? true, :remove-surrounding-whitespace? true, :remove-trailing-whitespace? true, :remove-consecutive-blank-lines? false, :insert-missing-whitespace? true, :align-associative? false, :indents {#"^\w" [[:inner 0]], #".*" [[:inner 0]]}}'
+
 augroup vim_clojure_coc
     " autocmd FileType clojure nmap <silent> <C-]> <Plug>(coc-definition)
     autocmd FileType clojure nmap <silent> <C-]> :IcedDefJump<CR>
@@ -21,6 +23,8 @@ augroup vim_clojure_coc
 augroup END
 
 augroup vim_iced
+    " let g:iced_formatter = 'cljstyle'
+
     " coc-clojure 사용은i :call CocAction 을 사용하고, 파라미터는 다음 파일의 "commands"를 참고할 것.
     " https://github.com/NoahTheDuke/coc-clojure/blob/main/package.json
 
@@ -114,8 +118,11 @@ augroup vim_iced
     autocmd FileType clojure nmap <Tab>c <Plug>(iced_command_palette)
     " :IcedClojureDocsOpen
     autocmd FileType clojure nmap <Tab>d <Plug>(iced_clojuredocs_open)
+
     autocmd FileType clojure nmap == <Plug>(iced_format)
-    autocmd FileType clojure nmap <Tab>== <Plug>(iced_format_all)
+    " https://github.com/junegunn/vim-easy-align/issues/115#issuecomment-325899234
+    autocmd FileType clojure nnoremap =[ vi[<c-v>$:EasyAlign\ g/^\S/<cr>gv=
+    autocmd FileType clojure nnoremap ={ vi{<c-v>$:EasyAlign\ g/^\S/<cr>gv=
 augroup END
 
 let g:iced_default_key_mapping_leader = '<Leader>'
