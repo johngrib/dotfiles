@@ -512,3 +512,7 @@ endsnippet
 snippet width "{:style='max-width:350px'}"
 {:style="max-width:350px"}
 endsnippet
+
+snippet "oo(\d+)" "원문자 숫자" r
+`!p snip.rv = ['0', '❶', '❷', '❸', '❹', '❺', '❻', '❼', '❽', '❾', '❿'][int(match.group(1))]`$0
+endsnippet
