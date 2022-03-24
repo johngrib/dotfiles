@@ -85,6 +85,13 @@ augroup vim_iced
 
     " Name Space: - "sn"
     autocmd FileType clojure nmap sna :IcedAddNs<CR>
+    autocmd FileType clojure nmap sns :call Sort_clojure_namspace_require()<CR>
+    function! Sort_clojure_namspace_require()
+        if input("namespace require list를 정렬하시겠습니까? (y/n)") =~ "y"
+            execute "normal! gg/:require ea/))iggvip}10</[vip:sortkkJJ}kJJvip="
+        endif
+    endfunction
+
     autocmd FileType clojure nmap snc :IcedCleanNs<CR>
     " 왜 안되는지 모르겠음.. 그리고 어떻게 쓰는지 모르겠음
     " autocmd FileType clojure nmap <silent> snA :call CocAction('runCommand', 'lsp-clojure-add-require-suggestion')<CR>
