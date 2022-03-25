@@ -428,8 +428,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     xmap ga <Plug>(EasyAlign)
 
     nnoremap <Space>w :w<CR>
-    nnoremap <silent>s <S-">
-    vnoremap <silent>s <S-">
+    nnoremap <silent>s <nop>
+    nnoremap <silent>S <nop>
+    vnoremap <silent>s <nop>
 
 
     nnoremap =e :Autoformat<CR>
