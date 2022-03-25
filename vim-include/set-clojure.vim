@@ -91,6 +91,8 @@ augroup vim_iced
             execute "normal! gg/:require ea/))iggvip}10</[vip:sortkkJJ}kJJvip="
         endif
     endfunction
+    " autocmd FileType clojure nmap snS :call system("clojure-lsp clean-ns --settings '{:clean {:ns-inner-blocks-indentation :next-line :sort {:ns true :require true :import true :refer {:max-line-length 80}}}}' --filenames " . expand("%"))<CR>:e<CR>
+    autocmd FileType clojure nmap snS :call system("clojure-lsp clean-ns --settings '{:clean {:ns-inner-blocks-indentation :same-line :sort {:ns true :require true :import true :refer {:max-line-length 80}}}}' --filenames " . expand("%"))<CR>:e<CR>
 
     autocmd FileType clojure nmap snc :IcedCleanNs<CR>
     " 왜 안되는지 모르겠음.. 그리고 어떻게 쓰는지 모르겠음
