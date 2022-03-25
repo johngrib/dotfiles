@@ -49,5 +49,5 @@ let g:coc_explorer_global_presets = {
 \ }
 
 nmap <F1><F8> :CocCommand explorer --preset floatingLeftside<CR>
-nmap <F1><F1><F8> :CocCommand explorer<CR>
+nmap <F1>e <Cmd>CocCommand explorer --preset buffer<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
