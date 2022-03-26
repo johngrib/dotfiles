@@ -36,6 +36,7 @@ augroup vim_iced
     autocmd FileType clojure nmap srd <Plug>(iced_stdout_buffer_clear)
     autocmd FileType clojure nmap src <Plug>(iced_connect)
     autocmd FileType clojure nmap sri <Plug>(iced_interrupt)
+    autocmd FileType clojure nmap srp <Plug>(iced_print_last)
     " Eval Code: - "se"
     "  (defn greet [] (println "hello world"))
     "                           <--inner-->
@@ -55,10 +56,12 @@ augroup vim_iced
     autocmd FileType clojure nmap se' <Plug>(iced_eval_at_mark)
     autocmd FileType clojure nmap sem <Plug>(iced_eval_at_mark)
     autocmd FileType clojure nmap sec <Plug>(iced_eval_and_comment)
+
+    autocmd FileType clojure nmap se; A ;; =><C-r>1<Esc>``
+    autocmd FileType clojure nmap secc <Plug>(iced_eval_and_comment)<Plug>(sexp_outer_top_list)``
     autocmd FileType clojure nmap secw <Plug>(iced_eval_and_comment)<Plug>(sexp_inner_element)``
     autocmd FileType clojure nmap sece <Plug>(iced_eval_and_comment)<Plug>(sexp_outer_list)``
     autocmd FileType clojure nmap secr <Plug>(iced_eval_and_comment)<Plug>(sexp_outer_top_list)``
-
 
     " Code Analyse: - "sa"
     autocmd FileType clojure nmap sar :IcedBrowseReferences<CR>
@@ -69,6 +72,7 @@ augroup vim_iced
     autocmd FileType clojure nmap saM <Plug>(iced_macroexpand_outer_list)
     autocmd FileType clojure nmap K <Plug>(iced_document_popup_open)
     autocmd FileType clojure nmap sak <Plug>(iced_document_open)
+    autocmd FileType clojure nmap saK <Plug>(iced_clojuredocs_open)
     autocmd FileType clojure nmap sas :IcedSourcePopupShow<CR>
     autocmd FileType clojure nmap saS :IcedSourceShow<CR>
 
@@ -103,8 +107,8 @@ augroup vim_iced
     " autocmd FileType clojure nmap <silent> snA :call CocAction('runCommand', 'lsp-clojure-add-require-suggestion')<CR>
 
     " Code Typing: - "sc"
-    autocmd FileType clojure nmap scr :IcedRenameSymbol<CR>
-    autocmd FileType clojure nmap scR <Plug>(coc-rename)
+    autocmd FileType clojure nmap scR :IcedRenameSymbol<CR>
+    autocmd FileType clojure nmap scr <Plug>(coc-rename)
     " 잘되지만 lsp-clojure-change-coll 이 좀 더 편함
     " autocmd FileType clojure nmap <silent> scc :call CocAction('runCommand', 'lsp-clojure-cycle-coll')<CR>
     autocmd FileType clojure nmap <silent> scc :call CocAction('runCommand', 'lsp-clojure-change-coll')<CR>
@@ -112,6 +116,9 @@ augroup vim_iced
     " autocmd FileType clojure nmap <silent> scp :call CocAction('runCommand', 'lsp-clojure-cycle-privacy')<CR>
     autocmd FileType clojure nmap sc# <Plug>(sexp_move_to_prev_bracket)i#_<Esc>``
     autocmd FileType clojure nmap sc3 <Plug>(sexp_move_to_prev_element_head)i#_<Esc>l
+
+    " 오버로딩 함수 작성
+    autocmd FileType clojure nmap sca <Plug>(iced_add_arity)
 
     " Testing: - "st"
     autocmd FileType clojure nmap <silent> stc :call CocAction('runCommand', 'lsp-clojure-create-test')<CR>
@@ -140,48 +147,74 @@ augroup vim_iced
     autocmd FileType clojure nnoremap ={ vi{<c-v>$:EasyAlign\ g/^\S/<cr>gv=
 augroup END
 
-let g:iced_default_key_mapping_leader = '<Leader>'
-let g:iced_enable_default_key_mappings = v:true
+" let g:iced_default_key_mapping_leader = '<Leader>'
+" let g:iced_enable_default_key_mappings = v:true
 let g:iced_enable_clj_kondo_analysis = v:true
 let g:iced#nrepl#enable_sideloader = v:true
 
 let g:iced#buffer#stdout#mods = 'vertical'
 let g:iced#buffer#stdout#size = v:null
 
-" augroup vim_sexp_setting
-"     " https://github.com/tpope/vim-sexp-mappings-for-regular-people/blob/master/plugin/sexp_mappings_for_regular_people.vim
-"     autocmd FileType clojure nmap B   <Plug>(sexp_move_to_prev_element_head)
-"     autocmd FileType clojure nmap W   <Plug>(sexp_move_to_next_element_head)
-"     autocmd FileType clojure nmap gE  <Plug>(sexp_move_to_prev_element_tail)
-"     autocmd FileType clojure nmap E   <Plug>(sexp_move_to_next_element_tail)
-"     autocmd FileType clojure xmap B   <Plug>(sexp_move_to_prev_element_head)
-"     autocmd FileType clojure xmap W   <Plug>(sexp_move_to_next_element_head)
-"     autocmd FileType clojure xmap gE  <Plug>(sexp_move_to_prev_element_tail)
-"     autocmd FileType clojure xmap E   <Plug>(sexp_move_to_next_element_tail)
-"     autocmd FileType clojure omap B   <Plug>(sexp_move_to_prev_element_head)
-"     autocmd FileType clojure omap W   <Plug>(sexp_move_to_next_element_head)
-"     autocmd FileType clojure omap gE  <Plug>(sexp_move_to_prev_element_tail)
-"     autocmd FileType clojure omap E   <Plug>(sexp_move_to_next_element_tail)
-"     autocmd FileType clojure nmap <i  <Plug>(sexp_insert_at_list_head)
-"     autocmd FileType clojure nmap >a  <Plug>(sexp_insert_at_list_tail)
-"     autocmd FileType clojure nmap <f  <Plug>(sexp_swap_list_backward)
-"     autocmd FileType clojure nmap >f  <Plug>(sexp_swap_list_forward)
-"     autocmd FileType clojure nmap <e  <Plug>(sexp_swap_element_backward)
-"     autocmd FileType clojure nmap >e  <Plug>(sexp_swap_element_forward)
-"     autocmd FileType clojure nmap >(  <Plug>(sexp_emit_head_element)
-"     autocmd FileType clojure nmap <)  <Plug>(sexp_emit_tail_element)
-"     autocmd FileType clojure nmap <(  <Plug>(sexp_capture_prev_element)
-"     autocmd FileType clojure nmap >)  <Plug>(sexp_capture_next_element)
-" augroup END
 
+let g:axring_rings_clojure = [
+            \ [",,", '#_'],
+            \ ]
+
+let g:sexp_mappings = {
+            \ 'sexp_outer_list':                'af',
+            \ 'sexp_inner_list':                'if',
+            \ 'sexp_outer_top_list':            'aF',
+            \ 'sexp_inner_top_list':            'iF',
+                \ 'sexp_outer_string':              '',
+                \ 'sexp_inner_string':              '',
+            \ 'sexp_outer_element':             'ae',
+            \ 'sexp_inner_element':             'ie',
+            \ 'sexp_move_to_prev_bracket':      '(',
+            \ 'sexp_move_to_next_bracket':      ')',
+                \ 'sexp_move_to_prev_element_head': 'B',
+                \ 'sexp_move_to_next_element_head': 'W',
+                \ 'sexp_move_to_prev_element_tail': 'gE',
+                \ 'sexp_move_to_next_element_tail': 'E',
+                \ 'sexp_flow_to_prev_close':        '',
+                \ 'sexp_flow_to_next_open':         '',
+                \ 'sexp_flow_to_prev_open':         '',
+                \ 'sexp_flow_to_next_close':        '',
+                \ 'sexp_flow_to_prev_leaf_head':    '',
+                \ 'sexp_flow_to_next_leaf_head':    '',
+                \ 'sexp_flow_to_prev_leaf_tail':    '',
+                \ 'sexp_flow_to_next_leaf_tail':    '',
+            \ 'sexp_move_to_prev_top_element':  '[[',
+            \ 'sexp_move_to_next_top_element':  ']]',
+                \ 'sexp_select_prev_element':       '[v',
+                \ 'sexp_select_next_element':       ']v',
+            \ 'sexp_indent':                    '==',
+            \ 'sexp_indent_top':                '=-',
+                \ 'sexp_round_head_wrap_list':      'sw(',
+                \ 'sexp_round_tail_wrap_list':      'sw)',
+                \ 'sexp_square_head_wrap_list':     'sw[',
+                \ 'sexp_square_tail_wrap_list':     'sw]',
+                \ 'sexp_curly_head_wrap_list':      'sw{',
+                \ 'sexp_curly_tail_wrap_list':      'sw}',
+                \ 'sexp_round_head_wrap_element':   'swe(',
+                \ 'sexp_round_tail_wrap_element':   'swe)',
+                \ 'sexp_square_head_wrap_element':  'swe[',
+                \ 'sexp_square_tail_wrap_element':  'swe]',
+                \ 'sexp_curly_head_wrap_element':   'swe{',
+                \ 'sexp_curly_tail_wrap_element':   'swe}',
+            \ 'sexp_splice_list':               '<LocalLeader>@',
+            \ 'sexp_convolute':                 '<LocalLeader>?',
+            \ 'sexp_raise_list':                '<LocalLeader>o',
+            \ 'sexp_raise_element':             '<LocalLeader>O',
+            \ }
+" Conjure
 " https://github.com/Olical/conjure/issues/244
 
-if exists('g:clojure_conjure_loaded')
-    let g:conjure#mapping#doc_word = ["\<Tab>d"]
-    let g:conjure#mapping#prefix = "<leader>"
+" if exists('g:clojure_conjure_loaded')
+"     let g:conjure#mapping#doc_word = ["\<Tab>d"]
+"     let g:conjure#mapping#prefix = "<leader>"
 
-    autocmd FileType clojure set sessionoptions=blank,curdir,folds,help,tabpages,winsize
-    autocmd VimEnter * call system("~/.config/nvim/vim-include/fix-conjure-session.sh")
-endif
+"     autocmd FileType clojure set sessionoptions=blank,curdir,folds,help,tabpages,winsize
+"     autocmd VimEnter * call system("~/.config/nvim/vim-include/fix-conjure-session.sh")
+" endif
 
 
