@@ -23,6 +23,7 @@ augroup vim_clojure_coc
 augroup END
 
 augroup vim_iced
+    let g:iced_enable_default_key_mappings = v:false
     " let g:iced_formatter = 'cljstyle'
 
     " coc-clojure 사용은i :call CocAction 을 사용하고, 파라미터는 다음 파일의 "commands"를 참고할 것.
@@ -54,6 +55,9 @@ augroup vim_iced
     autocmd FileType clojure nmap se' <Plug>(iced_eval_at_mark)
     autocmd FileType clojure nmap sem <Plug>(iced_eval_at_mark)
     autocmd FileType clojure nmap sec <Plug>(iced_eval_and_comment)
+    autocmd FileType clojure nmap secw <Plug>(iced_eval_and_comment)<Plug>(sexp_inner_element)``
+    autocmd FileType clojure nmap sece <Plug>(iced_eval_and_comment)<Plug>(sexp_outer_list)``
+    autocmd FileType clojure nmap secr <Plug>(iced_eval_and_comment)<Plug>(sexp_outer_top_list)``
 
 
     " Code Analyse: - "sa"
