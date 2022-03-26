@@ -372,16 +372,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " map g* <Plug>(incsearch-nohl-g*)
     " map g# <Plug>(incsearch-nohl-g#)
 
-    nnoremap \<BS> :vs ~/Dropbox/localwiki/_wiki/todo.md<CR>
-    nnoremap \u :UltiSnipsEdit<CR>
-    nnoremap \h :UltiSnipsEdit help<CR>
-    nnoremap \z :MundoToggle<CR>
-    nnoremap \r :RainbowToggle<CR>
-    nnoremap \d :MacDictWord<CR>
-    nnoremap \\d :MacDictQuery<CR>
-    nnoremap \m :Files ~/dotfiles/vim-memo<CR>
-    nnoremap \\m :e ~/dotfiles/vim-memo/
-
 
     " Syntastic 설정
     " https://thechefprogrammer.blogspot.kr/2014/05/syntax-check-for-php-and-javascript.html
