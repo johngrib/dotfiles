@@ -300,12 +300,12 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
     " 버퍼 관리
-    " nnoremap <M-T> :enew<CR>       " 새로운 버퍼를 연다
-    nnoremap <silent> <PageUp>    :bnext!<CR>
-    nnoremap <silent> <PageDown>  :bprevious!<CR>
-    nnoremap <silent> <F2><F3>    :bnext!<CR>
-    nnoremap <silent> <F2><F1>    :bprevious!<CR>
-    nnoremap <silent> <F2>d       :bd!<CR>
+    nnoremap <silent> <F2><F2>   :b#<CR>
+    nnoremap <silent> <PageUp>   :bnext!<CR>
+    nnoremap <silent> <PageDown> :bprevious!<CR>
+    nnoremap <silent> <F2><F3>   :bnext!<CR>
+    nnoremap <silent> <F2><F1>   :bprevious!<CR>
+    nnoremap <silent> <F2>d      :bd!<CR>
     " 현재 버퍼를 닫고 이전 버퍼로 이동
     nnoremap <silent> <F2>q      :bp <BAR> bd #<CR>
     " 현재 버퍼만 남기고 모두 닫기
@@ -425,25 +425,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     nnoremap =e :Autoformat<CR>
 
-    " srcexpl
-    " nmap <LocalLeader>e :SrcExplToggle<CR>
-    " let g:SrcExpl_winHeight = 8
-    " let g:SrcExpl_refreshTime = 300
-    " let g:SrcExpl_jumpKey = "<f2>"
-    " let g:SrcExpl_gobackKey = "<SPACE>"
-
-    " " // In order to avoid conflicts, the Source Explorer should know what plugins
-    " " // except itself are using buffers. And you need add their buffer names into
-    " " // below listaccording to the command ":buffers!"
-    " let g:SrcExpl_pluginList = [
-    "         \ "__Tag_List__",
-    "         \ "_NERD_tree_"
-    "     \ ]
-    " let g:SrcExpl_searchLocalDef = 1
-    " let g:SrcExpl_isUpdateTags = 0
-    " let g:SrcExpl_prevDefKey = "<PAGEUP>"
-    " let g:SrcExpl_nextDefKey = "<PAGEDOWN>"
-
     " multiple_cursors
     let g:multi_cursor_next_key='<C-n>'
     let g:multi_cursor_prev_key='<C-p>'
@@ -479,6 +460,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:axring_rings_vimwiki = [
                 \ ['##', '###'],
                 \ ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                \ ]
+
+    let g:axring_rings_clojure = [
+                \ ["{", '#{'],
                 \ ]
 
     " let g:ale_fixers = {'php': ['php_cs_fixer']}
