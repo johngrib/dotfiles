@@ -1,20 +1,45 @@
 # Clojure
 
-snippet defn "(defn 함수-정의 [])"
-(defn ${1:함수-이름}
-	"${2:함수에 대한 설명}"
-	[${3:인자1}]
-	${4:함수본문})
+snippet ",([^\s].+)" "(" r
+(`!p snip.rv = match.group(1)`${0})
 endsnippet
 
-snippet if "if"
-(if ${1:true}
-	true
-	false)
+snippet "\((defn?)" "" r
+(`!p snip.rv = match.group(1)` ${1:name}
 endsnippet
 
-snippet today
-"Today is `date +%Y.%m.%d`."
+snippet "(\(defn [^\s]+)" "(defn name.." r
+`!p snip.rv = match.group(1)`
+	[${1:arg}]
+	${2:body}
+endsnippet
+
+snippet "(\(defn [^\s]+) ;([^\"]+)" "(defn name.." r
+`!p snip.rv = match.group(1)`
+	"`!p snip.rv = match.group(2)`"
+	[${1:arg}]
+	${2:body}
+endsnippet
+
+snippet (comment "comment"
+(comment
+	${0}
+endsnippet
+
+snippet "\((fn|let|if-let)" "fn|let" r
+(`!p snip.rv = match.group(1)` [${0}]
+endsnippet
+
+snippet ,3 "#("
+#(${0})
+endsnippet
+
+snippet ",([\/\*\+\-])" "" r
+(`!p snip.rv = match.group(1)` ${0})
+endsnippet
+
+snippet (get-in "get-in"
+(get-in ${1:coll} [${2}]${3: #_:not-found})
 endsnippet
 
 snippet "([^\s].*)\.([^s].*)" "Object.method -> (.method Object)" r
@@ -24,3 +49,7 @@ endsnippet
 snippet "(\d+)#_" "n번 #_ 반복" r
 `!p snip.rv = "#_" * int(match.group(1))`$0
 endsnippet
+snippet "#_(\d+)" "n번 #_ 반복" r
+`!p snip.rv = "#_" * int(match.group(1))`$0
+endsnippet
+

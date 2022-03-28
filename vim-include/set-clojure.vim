@@ -155,11 +155,6 @@ let g:iced#nrepl#enable_sideloader = v:true
 let g:iced#buffer#stdout#mods = 'vertical'
 let g:iced#buffer#stdout#size = v:null
 
-
-let g:axring_rings_clojure = [
-            \ [",,", '#_'],
-            \ ]
-
 let g:sexp_mappings = {
             \ 'sexp_outer_list':                'af',
             \ 'sexp_inner_list':                'if',
@@ -201,11 +196,27 @@ let g:sexp_mappings = {
                 \ 'sexp_square_tail_wrap_element':  'swe]',
                 \ 'sexp_curly_head_wrap_element':   'swe{',
                 \ 'sexp_curly_tail_wrap_element':   'swe}',
-            \ 'sexp_splice_list':               '<LocalLeader>@',
-            \ 'sexp_convolute':                 '<LocalLeader>?',
-            \ 'sexp_raise_list':                '<LocalLeader>o',
-            \ 'sexp_raise_element':             '<LocalLeader>O',
             \ }
+
+" ds( 랑 똑같아서 필요없다.
+let g:sexp_mappings.sexp_splice_list = ''
+
+" convolute - https://stackoverflow.com/a/18192105
+"                             v
+" from: (let [foo bar] (if a b c)) 
+" to  : (if a b (let [foo bar] c))
+let g:sexp_mappings.sexp_convolute = 'swc'
+" 부모 form 삭제
+"                            v
+" from: (let [foo bar] (if a b c)) 
+" to  : (if a b c) 
+let g:sexp_mappings.sexp_raise_list = 'sdp'
+" 형제 element 모두 삭제하고 혼자 남게 됨
+"                            v
+" from: (let [foo bar] (if a b c)) 
+" to  : (let [foo bar] b) 
+let g:sexp_mappings.sexp_raise_element = 'sdo'
+
 " Conjure
 " https://github.com/Olical/conjure/issues/244
 
