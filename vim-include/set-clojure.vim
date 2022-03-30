@@ -145,6 +145,9 @@ augroup vim_iced
     " https://github.com/junegunn/vim-easy-align/issues/115#issuecomment-325899234
     autocmd FileType clojure nnoremap =[ vi[<c-v>$:EasyAlign\ g/^\S/<cr>gv=
     autocmd FileType clojure nnoremap ={ vi{<c-v>$:EasyAlign\ g/^\S/<cr>gv=
+
+    autocmd FileType clojure imap <C-f> <Esc><Plug>(sexp_move_to_next_bracket)a
+    autocmd FileType clojure imap <C-b> <Esc><Plug>(sexp_move_to_prev_bracket)i
 augroup END
 
 " let g:iced_default_key_mapping_leader = '<Leader>'
