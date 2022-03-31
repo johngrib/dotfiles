@@ -18,7 +18,6 @@ augroup vim_clojure_coc
     " autocmd FileType clojure nmap <silent> <C-]> <Plug>(coc-definition)
     autocmd FileType clojure nmap <silent> <C-]> :IcedDefJump<CR>
     autocmd FileType clojure nmap <silent> gy <Plug>(coc-type-definition)
-    autocmd FileType clojure nmap <silent> gi <Plug>(coc-implementation)
     autocmd FileType clojure nmap <silent> gr <Plug>(coc-references)
 augroup END
 
@@ -75,6 +74,7 @@ augroup vim_iced
     autocmd FileType clojure nmap saK <Plug>(iced_clojuredocs_open)
     autocmd FileType clojure nmap sas :IcedSourcePopupShow<CR>
     autocmd FileType clojure nmap saS :IcedSourceShow<CR>
+    autocmd FileType clojure nmap <silent> sai <Plug>(coc-implementation)
 
     " autocmd FileType clojure nmap sal :make<CR>:copen<CR>
     autocmd FileType clojure nmap sal :Dispatch<CR>
@@ -116,6 +116,8 @@ augroup vim_iced
     " autocmd FileType clojure nmap <silent> scp :call CocAction('runCommand', 'lsp-clojure-cycle-privacy')<CR>
     autocmd FileType clojure nmap sc# <Plug>(sexp_move_to_prev_bracket)i#_<Esc>``
     autocmd FileType clojure nmap sc3 <Plug>(sexp_move_to_prev_element_head)i#_<Esc>l
+    autocmd FileType clojure nmap scl :IcedMoveToLet<CR>
+    autocmd FileType clojure nmap sc> :IcedThread
 
     " 오버로딩 함수 작성
     autocmd FileType clojure nmap sca <Plug>(iced_add_arity)
@@ -137,15 +139,12 @@ augroup vim_iced
 
     autocmd FileType clojure nmap <silent> <Tab><Tab>r <Plug>(coc-references)
 
-    autocmd FileType clojure nmap <Tab>c <Plug>(iced_command_palette)
-    " :IcedClojureDocsOpen
-    autocmd FileType clojure nmap <Tab>d <Plug>(iced_clojuredocs_open)
-
     autocmd FileType clojure nmap == <Plug>(iced_format)
     " https://github.com/junegunn/vim-easy-align/issues/115#issuecomment-325899234
     autocmd FileType clojure nnoremap =[ vi[<c-v>$:EasyAlign\ g/^\S/<cr>gv=
     autocmd FileType clojure nnoremap ={ vi{<c-v>$:EasyAlign\ g/^\S/<cr>gv=
 
+    " Insert Mode:
     autocmd FileType clojure imap <C-f> <Esc><Plug>(sexp_move_to_next_bracket)a
     autocmd FileType clojure imap <C-b> <Esc><Plug>(sexp_move_to_prev_bracket)i
 augroup END
