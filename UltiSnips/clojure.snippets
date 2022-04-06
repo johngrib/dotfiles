@@ -4,29 +4,26 @@ snippet ",([^\s].+)" "(" r
 (`!p snip.rv = match.group(1)`${0})
 endsnippet
 
-snippet "\((defn?)" "" r
+snippet (def ""
+(def ${1:name}
+endsnippet
+
+snippet "\((defn|defmacro)" "(foo name [args]" r
 (`!p snip.rv = match.group(1)` ${1:name}
+	[${2:args}]
+	${3}
 endsnippet
 
-snippet "(\(defn [^\s]+)" "(defn name.." r
-`!p snip.rv = match.group(1)`
-	[${1:arg}]
-	${2:body}
+snippet "\((re-seq)" "(keyword #" r
+(`!p snip.rv = match.group(1)` #"${1}" ${2}
 endsnippet
 
-snippet "(\(defn [^\s]+) ;([^\"]+)" "(defn name.." r
-`!p snip.rv = match.group(1)`
-	"`!p snip.rv = match.group(2)`"
-	[${1:arg}]
-	${2:body}
-endsnippet
-
-snippet (comment "comment"
-(comment
+snippet "\((comment|do)" "comment" r
+(`!p snip.rv = match.group(1)`
 	${0}
 endsnippet
 
-snippet "\((fn|let|if-let)" "fn|let" r
+snippet "\((fn|let|if-let|doseq|binding)" "keyword []" r
 (`!p snip.rv = match.group(1)` [${0}]
 endsnippet
 
@@ -34,7 +31,7 @@ snippet ,3 "#("
 #(${0})
 endsnippet
 
-snippet ",([\/\*\+\-])" "" r
+snippet ",([\/\*\+\-=><])" "" r
 (`!p snip.rv = match.group(1)` ${0})
 endsnippet
 
@@ -42,7 +39,7 @@ snippet (get-in "get-in"
 (get-in ${1:coll} [${2}]${3: #_:not-found})
 endsnippet
 
-snippet "([^\s].*)\.([^s].*)" "Object.method -> (.method Object)" r
+snippet "([^\s].*)\.([^s].*);" "Object.method -> (.method Object)" r
 (`!p snip.rv = "." + match.group(2) + " " + match.group(1)`)$0
 endsnippet
 

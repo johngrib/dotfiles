@@ -35,15 +35,13 @@ snip.rv = formatVariableName(t[1])
 ` from '${1}';$0
 endsnippet
 
-# kebab-case to snake_case
-snippet "([\S]+(\-[\S]+)+)" "kebab-case to snake_case" r
-`!p snip.rv = re.sub('-','_', match.group(1))`$0
-endsnippet
+# # kebab-case to snake_case
+# snippet "([\S]+(\-[\S]+)+)" "kebab-case to snake_case" r
+# `!p snip.rv = re.sub('-','_', match.group(1))`$0
+# endsnippet
 
-snippet func "function name(arg1...)"
-function ${1:name}(${2:arg1}) {
-	${2};
-}${0}
+snippet "([^\s]+);(\d+)" "" r
+`!p snip.rv = match.group(1)*int(match.group(2))`
 endsnippet
 
 
