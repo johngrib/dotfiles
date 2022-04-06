@@ -29,7 +29,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'easymotion/vim-easymotion'
     Plug 'tpope/vim-commentary'
     Plug 'kana/vim-textobj-user'
-        " Plug 'kana/vim-textobj-entire'
         Plug 'kana/vim-textobj-indent'
         Plug 'thinca/vim-textobj-between'
     Plug 'wellle/targets.vim'           " text object utils
@@ -49,7 +48,6 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
     " https://github.com/dense-analysis/ale
-    " Plug 'junegunn/vim-xmark', { 'do': 'make' }
     " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
     " Plug 'wesleyche/srcexpl'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -79,12 +77,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'johngrib/vim-git-msg-wheel'
 
     " Plug 'tpope/vim-db'
-    " Plug 'bartmalanczuk/vim-trex-runner'
     Plug 'johngrib/vim-game-code-break'
     Plug 'johngrib/vim-game-snake'
     Plug 'johngrib/vim-mac-dictionary'
     Plug 'tenfyzhong/axring.vim'
-    " Plug 'Chiel92/vim-autoformat'
 
     Plug 'ternjs/tern_for_vim'
     " Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
@@ -106,7 +102,6 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'rust-lang/rust.vim'
     " Plug 'neoclide/coc-rls', { 'do': ':CocInstall coc-rls' }
     " Plug 'neoclide/coc-tsserver', { 'do': ':CocInstall coc-tsserver' }
-    " Plug 'marlonfan/coc-phpls', { 'do': ':CocInstall coc-phpls' }
     " Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
     Plug 'stephpy/vim-yaml'
     Plug 'tpope/vim-speeddating'
@@ -121,12 +116,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'liquidz/vim-iced', {'for': 'clojure'}
     Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
 
-    " clojure : conjure
-        " Plug 'Olical/conjure'
-        " Plug 'clojure-vim/vim-jack-in'
-        " " Only in Neovim:
-        " Plug 'radenling/vim-dispatch-neovim'
-
 call plug#end()
 
 function! InstallCocPlugins()
@@ -140,7 +129,7 @@ endfunction
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 if has('termguicolors')
-    if $TERM_PROGRAM == 'iTerm.app' || $TERM_PROGRAM == 'Alacritty.app'
+    if $TERM_PROGRAM !~ "Apple_Terminal"
         set termguicolors
     endif
 endif
