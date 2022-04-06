@@ -157,6 +157,7 @@ let g:iced#nrepl#enable_sideloader = v:true
 let g:iced#buffer#stdout#mods = 'vertical'
 let g:iced#buffer#stdout#size = v:null
 
+" 편집한 값들은 한 단계 인덴트를 오른쪽으로 당겼음
 let g:sexp_mappings = {
             \ 'sexp_outer_list':                'af',
             \ 'sexp_inner_list':                'if',
