@@ -34,7 +34,7 @@ let g:coc_explorer_global_presets = {
 \   'floatingLeftside': {
 \     'position': 'floating',
 \     'floating-position': 'left-center',
-\     'floating-width': 100,
+\     'floating-width': 50,
 \     'open-action-strategy': 'sourceWindow',
 \   },
 \   'floatingRightside': {
@@ -45,9 +45,16 @@ let g:coc_explorer_global_presets = {
 \   },
 \   'simplify': {
 \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-\   }
+\   },
+\   'buffer': {
+\     'sources': [{'name': 'buffer', 'expand': v:true}]
+\   },
+\   'file': {
+\     'open-action-strategy': 'sourceWindow',
+\   },
 \ }
 
 nmap <F1><F8> :CocCommand explorer --preset floatingLeftside<CR>
-nmap <F1>e <Cmd>CocCommand explorer --preset buffer<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+nmap <F1>e <Cmd>CocCommand explorer --preset file<CR>
+
+
