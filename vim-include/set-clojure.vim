@@ -19,6 +19,7 @@ augroup vim_clojure_coc
     autocmd FileType clojure nmap <silent> <C-]> :IcedDefJump<CR>
     autocmd FileType clojure nmap <silent> gy <Plug>(coc-type-definition)
     autocmd FileType clojure nmap <silent> gr <Plug>(coc-references)
+    autocmd VimLeavePre clojure TagbarClose
 augroup END
 
 augroup vim_iced
