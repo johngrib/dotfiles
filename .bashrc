@@ -167,6 +167,12 @@ function google() {
 }
 
 
+# iTerm2 tab and window title
+if [ $ITERM_SESSION_ID ]; then
+    # iTerm의 탭 타이틀에 현재 디렉토리 이름을 넣어준다
+    export PROMPT_COMMAND='echo -ne "\033]1;${PWD##*/}\007"; '
+fi
+
 ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
 
 myfortune && echo ''
