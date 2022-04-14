@@ -270,14 +270,16 @@
     autocrlf = input
     precomposeunicode = true
     quotepath = false
+    pager = bat
+[merge]
+    conflictstyle = diff3
+    trustExitCode = true
 [diff]
+    colorMoved = default
     tool = vimdiff
     wsErrorHighlight = all
 [difftool "vimdiff"]
     path = /usr/local/bin/vim
-[merge]
-    tool = meld
-    trustExitCode = true
 [mergetool "vimdiff"]
     path = /usr/local/bin/vim
     trustExitCode = true
