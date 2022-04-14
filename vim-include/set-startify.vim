@@ -10,10 +10,10 @@ let g:startify_session_persistence = 1
 let g:startify_fortune_use_unicode = 1
 let g:startify_commands = [
             \ ':help startify',
-            \ "!curl 'https://haksa.knou.ac.kr/haksa/abc/abcp/retrieveAtndLesnPlc.data?yosa=2021&seme=1&lcuvCd=032&shgr=3&deptMajrCd=34' | jq '.rows'",
             \ "!ls -alh"
             \ ]
 
+" !curl 'https://haksa.knou.ac.kr/haksa/abc/abcp/retrieveAtndLesnPlc.data?yosa=2021&seme=1&lcuvCd=032&shgr=3&deptMajrCd=34' | jq '.rows'",
 let g:startify_list_order = [
             \ ['    Sessions'],
             \'sessions',
@@ -24,8 +24,11 @@ let g:startify_list_order = [
             \'commands'
             \]
 let g:startify_custom_header =
-            \ map(split(system('fortune ~/my-fortune'), '\n'), '"   ". v:val')
+            \ map(split(system('fortune ~/Dropbox/my-fortune'), '\n'), '"   ". v:val')
+" let g:startify_custom_header =
+"             \ startify#pad(split(system('fortune | cowsay'), '\n'))
 
+let g:startify_fortune_use_unicode = 1
 augroup vimstartify
     autocmd User Startified setlocal cursorline
 augroup END
