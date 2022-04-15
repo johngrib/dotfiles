@@ -13,19 +13,14 @@ call plug#begin('~/.config/nvim/plugged')
 
     " version control
     Plug 'tpope/vim-fugitive'           " git 명령어 wrapper
-    Plug 'simnalamburt/vim-mundo'
 
     " file browser
-    " Plug 'preservim/nerdtree'
-    Plug 'ryanoasis/vim-devicons'
-        " Plug 'jistr/vim-nerdtree-tabs'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
 
     " editing
     Plug 'tpope/vim-surround'
     Plug 'bling/vim-airline'           " BUFFER navigator, status line 을 제공한다.
-    Plug 'kazhala/close-buffers.nvim'
     Plug 'easymotion/vim-easymotion'
     Plug 'tpope/vim-commentary'
     Plug 'kana/vim-textobj-user'
@@ -115,6 +110,10 @@ call plug#begin('~/.config/nvim/plugged')
     " clojure : vim-iced
     Plug 'liquidz/vim-iced', {'for': 'clojure'}
     Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+
+    Plug 'junegunn/vim-peekaboo'
+    " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+    Plug 'wfxr/minimap.vim'
 
 call plug#end()
 
@@ -271,7 +270,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     "nnoremap gv `[v`]    " highlight last inserted text
     nnoremap <Space>k i<CR><Esc>
 
-    nnoremap <M-/> :echom "[1] Explorer  [2] Tagbar"<CR>
+    nnoremap <M-/> :echom "[1]Explorer [2]Tagbar [3]Startify"<CR>
         nmap <A-1> :CocCommand explorer<CR>
         nmap <A-2> :TagbarToggle<CR>:e<CR>
         nmap <A-3> :Startify<CR>
@@ -289,17 +288,36 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
     " 버퍼 관리
-    nnoremap <silent> <F2><F2>   :b#<CR>
+    " nnoremap <silent> <F2><F2>   :b#<CR>
+    nnoremap <silent> <F2><F2>   :BuffersDelete<CR>
     nnoremap <silent> <PageUp>   :bnext!<CR>
     nnoremap <silent> <PageDown> :bprevious!<CR>
-    nnoremap <silent> <F2><F3>   :bnext!<CR>
-    nnoremap <silent> <F2><F1>   :bprevious!<CR>
+    " nnoremap <silent> <F2><F3>   :bnext!<CR>
+    " nnoremap <silent> <F2><F1>   :bprevious!<CR>
     nnoremap <silent> <F2>d      :bd!<CR>
     " 현재 버퍼를 닫고 이전 버퍼로 이동
     nnoremap <silent> <F2>q      :bp <BAR> bd #<CR>
     nnoremap <silent> <F2><F6>   :bd<CR>
     " 현재 버퍼만 남기고 모두 닫기
     nnoremap <silent> <F2>o      :%bd <BAR> e # <BAR> bd #<CR>
+    nnoremap <silent> <F2><F1> :buffers<CR>:buffer<Space>
+
+    " https://www.reddit.com/r/neovim/comments/mlqyca/fzf_buffer_delete/
+    function! s:list_buffers()
+      redir => list
+      silent ls
+      redir END
+      return split(list, "\n")
+    endfunction
+
+    function! s:delete_buffers(lines)
+      execute 'bd! ' join(map(a:lines, {_, line -> split(line)[0]}))
+    endfunction
+
+    command! BuffersDelete call fzf#run(fzf#wrap({
+      \ 'source': s:list_buffers(),
+      \ 'sink*': { lines -> s:delete_buffers(lines) },
+      \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept' }))
 
     inoremap <C-e> <C-O>$
     inoremap <C-l> <right>
@@ -527,6 +545,17 @@ iabbr <expr> __uuid system("uuidgen")
 iabbr ㅇ. 있다.
 iabbr ㅇ.. 입니다.
 iabbr ㄱ.. 그리고
+
+let g:minimap_width = 10
+let g:minimap_auto_start = 0
+let g:minimap_auto_start_win_enter = 1
+let g:minimap_highlight_range = 1
+let g:minimap_highlight_search = 1
+let g:minimap_git_colors = 1
+
+augroup minimap_auto_close
+    autocmd VimLeavePre * MinimapClose
+augroup END
 
 set fileencodings=utf-8,euc-kr
 
