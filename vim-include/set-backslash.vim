@@ -22,5 +22,5 @@ nnoremap \\c :Copilot enable
 " :vimgrep pattern **   하위의 모든 경로에서 찾기
 " :vimgrep pattern %    현재 파일 내에서만 찾기
 " :vimgrep pattern **/*.txt   하위의 모든 txt 파일에 찾기
-nnoremap \/ :vimgrep // **<left><left><left><left>
-nnoremap \\/ :vimgrep // **<left><left><left><left>
+nnoremap \/ :vimgrep //j **<left><left><left><left>
+nnoremap \\/ :vimgrep //j **<left><left><left><left>
