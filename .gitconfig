@@ -270,7 +270,7 @@
     autocrlf = input
     precomposeunicode = true
     quotepath = false
-    pager = bat
+    ; pager = bat
 [merge]
     conflictstyle = diff3
     trustExitCode = true
