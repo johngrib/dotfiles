@@ -117,12 +117,13 @@ call plug#begin('~/.config/nvim/plugged')
 
 call plug#end()
 
-function! InstallCocPlugins()
-    CocInstall coc-rls
-    CocInstall coc-tsserver
-    CocInstall coc-calc
-    CocInstall coc-phpls
-endfunction
+" https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
+let g:coc_global_extensions = [
+            \ 'coc-ultisnips',
+            \ 'coc-explorer',
+            \ 'coc-clojure',
+            \ 'coc-pyright',
+            \ ]
 
 " For Neovim 0.1.3 and 0.1.4
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
