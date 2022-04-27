@@ -27,7 +27,7 @@
                             },
                             {
                                 "conditions": [ { "name": "multitouch_extension_finger_count_total", "type": "variable_unless", "value": 0 } ],
-                                "from": { "key_code": "c", "modifiers": { "optional": [ "any" ] } },
+                                "from": { "key_code": "b", "modifiers": { "optional": [ "any" ] } },
                                 "to": [ { "pointing_button": "button2" } ],
                                 "type": "basic"
                             },
@@ -45,37 +45,37 @@
                             },
                             {
                                 "conditions": [ { "name": "multitouch_extension_finger_count_total", "type": "variable_if", "value": 1 } ],
-                                "from": { "key_code": "5" },
+                                "from": { "key_code": "s" },
                                 "to": [ { "shell_command": "open -g hammerspoon://mouse-move-center" } ],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [ { "name": "multitouch_extension_finger_count_total", "type": "variable_if", "value": 1 } ],
-                                "from": { "key_code": "9" },
+                                "from": { "key_code": "e" },
                                 "to": [ { "shell_command": "open -g hammerspoon://mouse-move-e" } ],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [ { "name": "multitouch_extension_finger_count_total", "type": "variable_if", "value": 1 } ],
-                                "from": { "key_code": "7" },
+                                "from": { "key_code": "q" },
                                 "to": [ { "shell_command": "open -g hammerspoon://mouse-move-q" } ],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [ { "name": "multitouch_extension_finger_count_total", "type": "variable_if", "value": 1 } ],
-                                "from": { "key_code": "8" },
+                                "from": { "key_code": "w" },
                                 "to": [ { "shell_command": "open -g hammerspoon://mouse-move-w" } ],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [ { "name": "multitouch_extension_finger_count_total", "type": "variable_if", "value": 1 } ],
-                                "from": { "key_code": "3" },
+                                "from": { "key_code": "c" },
                                 "to": [ { "shell_command": "open -g hammerspoon://mouse-move-c" } ],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [ { "name": "multitouch_extension_finger_count_total", "type": "variable_if", "value": 1 } ],
-                                "from": { "key_code": "1" },
+                                "from": { "key_code": "z" },
                                 "to": [ { "shell_command": "open -g hammerspoon://mouse-move-z" } ],
                                 "type": "basic"
                             }
@@ -84,26 +84,106 @@
                     {
                         "description": "Mouse keys (simple) (rev 1)",
                         "manipulators": [
-                            { "from": { "key_code": "up_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "y": -4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "left_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "x": -4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "down_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "y": 4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "right_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "x": 4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "up_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "y": -400 } } ], "type": "basic" },
-                            { "from": { "key_code": "left_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "x": -4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "down_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "y": 4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "right_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "x": 4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "e", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "y": -4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "s", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "x": -4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "d", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "y": 4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "f", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "x": 4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "k", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "y": -4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "h", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "x": -4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "j", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "y": 4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "l", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "x": 4000 } } ], "type": "basic" },
-                            { "from": { "key_code": "i", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "vertical_wheel": -32 } } ], "type": "basic" },
-                            { "from": { "key_code": "u", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "mouse_key": { "vertical_wheel": 32 } } ], "type": "basic" },
-                            { "from": { "key_code": "v", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "pointing_button": "button1" } ], "type": "basic" },
-                            { "from": { "key_code": "c", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } }, "to": [ { "pointing_button": "button2" } ], "type": "basic" }
+                            {
+                                "from": { "key_code": "up_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "y": -4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "left_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "x": -4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "down_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "y": 4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "right_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "x": 4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "up_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "y": -400 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "left_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "x": -4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "down_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "y": 4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "right_arrow", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "x": 4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "e", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "y": -4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "s", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "x": -4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "d", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "y": 4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "f", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "x": 4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "k", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "y": -4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "h", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "x": -4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "j", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "y": 4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "l", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "x": 4000 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "i", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "vertical_wheel": -32 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "u", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "mouse_key": { "vertical_wheel": 32 } } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "v", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "pointing_button": "button1" } ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "b", "modifiers": { "mandatory": [ "fn" ], "optional": [ "any" ] } },
+                                "to": [ { "pointing_button": "button2" } ],
+                                "type": "basic"
+                            }
                         ]
                     }
                 ]
@@ -268,8 +348,8 @@
             },
             "selected": true,
             "simple_modifications": [
-                { "from": { "key_code": "f16" }, "to": [ { "apple_vendor_top_case_key_code": "keyboard_fn" } ] },
-                { "from": { "key_code": "f14" }, "to": [ { "apple_vendor_top_case_key_code": "keyboard_fn" } ] }
+                { "from": { "key_code": "f14" }, "to": [ { "apple_vendor_top_case_key_code": "keyboard_fn" } ] },
+                { "from": { "key_code": "f16" }, "to": [ { "apple_vendor_top_case_key_code": "keyboard_fn" } ] }
             ],
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
