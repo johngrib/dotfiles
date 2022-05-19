@@ -34,6 +34,8 @@ export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 export PATH="$PATH:~/.vim/plugged/vim-iced/bin"
 
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
 # git-flow-completion
 # https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion#homebrew
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
