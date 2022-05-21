@@ -1,3 +1,53 @@
+snippet ; ":="
+:= ${0}
+endsnippet
+
+snippet type "type ... struct { ... }"
+type ${1} struct {
+	${2}
+}
+endsnippet
+
+snippet f "func name( ... ) error { ... }"
+func ${1:funcName}(${2}) ${3:error} {
+	${4}
+}
+endsnippet
+
+snippet f8 "func (l *Lexer) readchar() token.Token { ... }"
+func (${1:l *Lexer}) ${2:readChar}(${3}) ${4}{
+	${0}
+}
+endsnippet
+
+snippet "([^,])," "()" r
+`!p snip.rv = match.group(1)`(${0})
+endsnippet
+
+snippet ",," "()" r
+()${0}
+endsnippet
+
+snippet else "else { ... }"
+else {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet ve "name, err := value"
+${1}, err := ${2}
+endsnippet
+
+snippet var "var name type = value"
+var ${1} ${2} = ${3}
+endsnippet
+
+snippet vars "var ( name type = value )"
+var (
+	${1} = ${2}
+)
+endsnippet
+
 snippet bef "BeforeEach [ginkgo]"
 BeforeEach(func() {
 	${1}
@@ -66,24 +116,6 @@ snippet re "return"
 return ${1}
 endsnippet
 
-snippet v "name := value"
-${1} := ${2}
-endsnippet
-
-snippet ve "name, err := value"
-${1}, err := ${2}
-endsnippet
-
-snippet var "var name type = value"
-var ${1} ${2} = ${3}
-endsnippet
-
-snippet vars "var ( name type = value )"
-var (
-	${1} = ${2}
-)
-endsnippet
-
 snippet ap "append(slice, value)"
 append(${1:slice}, ${0:value})
 endsnippet
@@ -147,12 +179,6 @@ if ${1:/* condition */} {
 }
 endsnippet
 
-# else snippet
-snippet el "else { ... }"
-else {
-	${0:${VISUAL}}
-}
-endsnippet
 # error snippet
 snippet ife "if err != nil { return err }"
 if err != nil {
@@ -203,12 +229,7 @@ for ${1:e} := range ${2:collection} {
 	${0:${VISUAL}}
 }
 endsnippet
-# function simple
-snippet fun "func name( ... ) error { ... }"
-func ${1:funcName}(${2}) ${3:error} {
-	${4}
-}
-endsnippet
+
 # function on receiver
 snippet fum "func (rec type) name( ... ) error { ... }"
 func (${1:receiver} ${2:type}) ${3:funcName}(${4}) ${5:error} {
