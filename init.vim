@@ -111,7 +111,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'liquidz/vim-iced', {'for': 'clojure'}
     Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
 
-    Plug 'junegunn/vim-peekaboo'
+    " Plug 'junegunn/vim-peekaboo'
     " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
     Plug 'wfxr/minimap.vim'
 
