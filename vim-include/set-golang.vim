@@ -21,9 +21,9 @@ let g:go_template_autocreate = 0
 
 let g:go_info_mode='guru'
 
-let g:go_term_enabled = 1
+let g:go_term_enabled = 0
 let g:go_term_mode = "10split"
-let g:go_term_reuse = 1
+let g:go_term_reuse = 0
 
 " vim-go 의 snippets가 작동하지 않도록 한다. 나는 내 ultisnips 설정을 쓴다.
 let g:go_loaded_gosnippets = 1
