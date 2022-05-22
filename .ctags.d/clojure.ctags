@@ -2,18 +2,30 @@
 
 --kinddef-clojure=e,expressionAndFunction,expressions_and_functions
 
+--_fielddef-clojure=access,accessScope
+--fields-clojure=+{access}
+
 --regex-clojure=/\([ \t]*create-ns[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/n,namespace/
 --regex-clojure=/\([ \t]*ns[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/n,namespace/
 
 # +, - 기호를 넣어서 접근제어를 쉽게 알 수 있게 한다
---regex-clojure=/\([ \t]*def[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/+D·\1/e/
---regex-clojure=/\([ \t]*def[ \t]+\^:[a-zA-Z0-9]+[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/+D·\1/e/
---regex-clojure=/\([ \t]*defn[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/+F·\1/e/
---regex-clojure=/\([ \t]*defn-[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/-F·\1/e/
---regex-clojure=/\([ \t]*defmacro[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/+M·\1/e/
---regex-clojure=/\(comment[ \t]?/-·comment/e/
+--regex-clojure=/^\(def[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/D·\1/e/{_field=access:public}
+--regex-clojure=/^\(def[ \t]+\^:[a-zA-Z0-9]+[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/D·\1/e/{_field=access:public}
+--regex-clojure=/^\(defn[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/F·\1/e/{_field=access:public}
+--regex-clojure=/^\(defn-[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/F·\1/e/{_field=access:private}
+--regex-clojure=/^\(defmacro[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/M·\1/e/{_field=access:public}
 
+# comment
+--regex-clojure=/^\(comment[ \t]?/comment/e/{_field=access:private}
+
+# 인덴팅 있는 def 와 defn 등. 보통 이렇게 안쪽에 있으면 comment 에 포함된 것들.
+--regex-clojure=/^[ \t]+\([ \t]*def[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/·D·\1/e/
+--regex-clojure=/^[ \t]+\([ \t]*def[ \t]+\^:[a-zA-Z0-9]+[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/·D·\1/e/
+--regex-clojure=/^[ \t]+\([ \t]*defn[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/·F·\1/e/
+--regex-clojure=/^[ \t]+\([ \t]*defn-[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/·F·\1/e/
+--regex-clojure=/^[ \t]+\([ \t]*defmacro[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/·M·\1/e/
+
+# edn 용
 --regex-clojure=/^[\{ \t](:[a-zA-Z0-9\/\-]+)/+\1/e/
 --regex-clojure=/^[\{ \t]{2}(:[a-zA-Z0-9\/\-]+)/-·\1/e/
-
 
