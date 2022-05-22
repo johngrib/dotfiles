@@ -14,12 +14,21 @@ let g:clojure_conjure_loaded = v:false
 
 let g:clj_fmt_config = '{:indentation? true, :remove-surrounding-whitespace? true, :remove-trailing-whitespace? true, :remove-consecutive-blank-lines? false, :insert-missing-whitespace? true, :align-associative? false, :indents {#"^\w" [[:inner 0]], #".*" [[:inner 0]]}}'
 
+let g:tagbar_type_clojure = {
+    \ 'ctagstype' : 'Clojure',
+    \ 'sort': 0,
+    \ 'kinds' : [
+        \ 'n:ns',
+        \ 'e:form',
+        \ ],
+    \}
+
 augroup vim_clojure_coc
     " autocmd FileType clojure nmap <silent> <C-]> <Plug>(coc-definition)
     autocmd FileType clojure nmap <silent> <C-]> :IcedDefJump<CR>
     autocmd FileType clojure nmap <silent> gy <Plug>(coc-type-definition)
     autocmd FileType clojure nmap <silent> gr <Plug>(coc-references)
-    autocmd VimLeavePre clojure TagbarClose
+    " autocmd VimLeavePre clojure TagbarClose
 augroup END
 
 augroup vim_iced
