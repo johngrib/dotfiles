@@ -8,7 +8,7 @@
 --regex-clojure=/\([ \t]*create-ns[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/n,namespace/
 --regex-clojure=/\([ \t]*ns[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/n,namespace/
 
-# +, - 기호를 넣어서 접근제어를 쉽게 알 수 있게 한다
+# access 필드를 넣어서 접근제어를 쉽게 알 수 있게 한다
 --regex-clojure=/^\(def[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/D·\1/e/{_field=access:public}
 --regex-clojure=/^\(def[ \t]+\^:[a-zA-Z0-9]+[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/D·\1/e/{_field=access:public}
 --regex-clojure=/^\(defn[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/F·\1/e/{_field=access:public}
