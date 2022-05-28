@@ -17,6 +17,8 @@ call plug#begin('~/.config/nvim/plugged')
     " file browser
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
+    Plug 'preservim/nerdtree'
+        Plug 'ryanoasis/vim-devicons'
 
     " editing
     Plug 'tpope/vim-surround'
@@ -323,6 +325,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     inoremap <C-e> <C-O>$
     inoremap <C-l> <right>
 
+    " visual 모드에서 # 을 누르면 선택한 문자열로 검색한다.
+    " https://vim.fandom.com/wiki/Search_for_visually_selected_text
+    vnoremap # y/\V<C-R>=escape(@",'/\')<CR><CR>
 
     "Bubble lines
     " nnoremap <M-K> ddkP
