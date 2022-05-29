@@ -11,6 +11,7 @@ let g:loaded_clojure_setting = 1
 
 let g:clojure_vim_iced_loaded = v:true
 let g:clojure_conjure_loaded = v:false
+let g:iced#debug#debugger = 'fern'
 
 let g:clj_fmt_config = '{:indentation? true, :remove-surrounding-whitespace? true, :remove-trailing-whitespace? true, :remove-consecutive-blank-lines? false, :insert-missing-whitespace? true, :align-associative? false, :indents {#"^\w" [[:inner 0]], #".*" [[:inner 0]]}}'
 
@@ -146,6 +147,12 @@ augroup vim_iced
     autocmd FileType clojure nmap st. :IcedTestRerunLast<CR>
     " 아직 필요를 못 느낌
     " :IcedTestSpecCheck
+
+    " Debug: - "sd"
+    autocmd FileType clojure nmap sdd :IcedToggleTraceVar<CR>
+    autocmd FileType clojure nmap sdv :IcedToggleTraceVar<Space>
+    autocmd FileType clojure nmap sdn :IcedToggleTraceNs<Space>
+    autocmd FileType clojure nmap sdb :IcedBrowseTapped<CR>
 
     autocmd FileType clojure nmap <silent> <Tab><Tab>r <Plug>(coc-references)
 
