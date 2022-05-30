@@ -1,8 +1,5 @@
 nnoremap \t :TagbarToggle<CR>:e<CR>
 
-nnoremap \\tl :let g:tagbar_position = "leftabove vertical"<CR>
-nnoremap \\tr :let g:tagbar_position = "rightbelow vertical"<CR>
-
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
 " let g:tagbar_show_data_type = 1
@@ -20,6 +17,8 @@ augroup tagbar_custom_config
     autocmd FileType tagbar hi def link tagbar_ignore_char Comment
     autocmd FileType tagbar nmap <c-j> jP
     autocmd FileType tagbar nmap <c-k> kP
+    autocmd FileType tagbar nmap > :let g:tagbar_position = "rightbelow vertical"<CR>:TagbarClose<CR>:TagbarOpen<CR>
+    autocmd FileType tagbar nmap < :let g:tagbar_position = "leftabove vertical"<CR>:TagbarClose<CR>:TagbarOpen<CR>
 augroup END
 
 let g:tagbar_type_asciidoc = {
