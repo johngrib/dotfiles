@@ -11,6 +11,7 @@ let g:tagbar_position = "leftabove vertical"
 " let g:tagbar_position = "rightbelow vertical"
 let g:tagbar_map_showproto = ""
 let g:tagbar_map_previewwin = "<Space>"
+" let g:tagbar_width = 30
 
 augroup tagbar_custom_config
     autocmd FileType tagbar syntax match tagbar_ignore_char /·/
