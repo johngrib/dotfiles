@@ -33,19 +33,21 @@ augroup clojure_custom_syntax_color
     " https://vim.fandom.com/wiki/Regex_lookahead_and_lookbehind
     " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbolHeadChar /\([a-z] \)\@<=[a-zA-Z]/'
 
-    " let s:chars = '[a-zA-Z][a-zA-Z/\-]* '
-    " let s:lookbehind = '/\([(\[{]' .. s:chars .. '\)\@<='
-    " let s:lookahead = ' \@='
-    " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol2 '
-    "             \ .. s:lookbehind .. '[a-zA-Z\-][a-zA-Z\-]*'
-    "             \ .. s:lookahead
-    "             \ .. '/'
+    let s:chars = '[a-zA-Z][a-zA-Z/\-]* '
+    let s:lookbehind = '/\([(\[{]' .. s:chars .. '\)\@<='
+    let s:lookahead = ' \@='
+    autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol2 '
+                \ .. s:lookbehind .. '[a-zA-Z\-][a-zA-Z\-]*'
+                \ .. s:lookahead
+                \ .. '/'
+    autocmd FileType clojure highlight ClojureMiddleSymbol2 guifg=#cbe3e7 ctermfg=253 gui=bold
 
     " let s:lookbehind2 = '/\([(\[{]' .. s:chars .. s:chars .. s:chars .. '\)\@<='
     " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol4 '
     "             \ .. s:lookbehind2 .. '[a-zA-Z\-][a-zA-Z\-]*'
     "             \ .. s:lookahead
     "             \ .. '/'
+    " autocmd FileType clojure highlight ClojureMiddleSymbol4 guifg=#cbe3e7 ctermfg=253 gui=bold
 
     " let s:lookbehind3 = '/\([(\[{]' .. s:chars .. s:chars .. s:chars .. s:chars .. s:chars .. '\)\@<='
     " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol6 '
@@ -58,8 +60,6 @@ augroup clojure_custom_syntax_color
     " let s:clouds_subtle = { "gui": "#cbe3e7", "cterm": "253", "cterm16": "7"}
     " autocmd FileType clojure highlight default link ClojureMiddleSymbol2 markdownIdDeclaration
     " autocmd FileType clojure highlight default link ClojureMiddleSymbol4 markdownIdDeclaration
-    autocmd FileType clojure highlight ClojureMiddleSymbol2 guifg=#cbe3e7 ctermfg=253 gui=bold
-    autocmd FileType clojure highlight ClojureMiddleSymbol4 guifg=#cbe3e7 ctermfg=253 gui=bold
     " autocmd FileType clojure highlight default link ClojureMiddleSymbol6 markdownIdDeclaration
 augroup END
 
