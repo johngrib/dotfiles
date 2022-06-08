@@ -4,8 +4,8 @@ snippet ",([^\s].+)" "(" r
 (`!p snip.rv = match.group(1)`${0})
 endsnippet
 
-snippet (def ""
-(def ${1:name}
+snippet ,3 "#("
+#(${0})
 endsnippet
 
 snippet "\((defn|defmacro)" "(foo name [args]" r
@@ -14,29 +14,8 @@ snippet "\((defn|defmacro)" "(foo name [args]" r
 	${3}
 endsnippet
 
-snippet "\((re-seq)" "(keyword #" r
-(`!p snip.rv = match.group(1)` #"${1}" ${2}
-endsnippet
-
-snippet "\((comment|do)" "comment" r
-(`!p snip.rv = match.group(1)`
-	${0}
-endsnippet
-
 snippet "\((fn|let|if-let|doseq|binding)" "keyword []" r
 (`!p snip.rv = match.group(1)` [${0}]
-endsnippet
-
-snippet ,3 "#("
-#(${0})
-endsnippet
-
-snippet ",([\/\*\+\-=><])" "" r
-(`!p snip.rv = match.group(1)` ${0})
-endsnippet
-
-snippet (get-in "get-in"
-(get-in ${1:coll} [${2}]${3: #_:not-found})
 endsnippet
 
 snippet "([^\s].*)\.([^s].*);" "Object.method -> (.method Object)" r
@@ -48,5 +27,26 @@ snippet "(\d+)#_" "n번 #_ 반복" r
 endsnippet
 snippet "#_(\d+)" "n번 #_ 반복" r
 `!p snip.rv = "#_" * int(match.group(1))`$0
+endsnippet
+
+
+
+snippet (def ""
+(def ${1:name}
+endsnippet
+
+
+snippet "\((re-seq)" "(keyword #" r
+(`!p snip.rv = match.group(1)` #"${1}" ${2}
+endsnippet
+
+snippet "\((comment|do)" "comment" r
+(`!p snip.rv = match.group(1)`
+	${0}
+endsnippet
+
+
+snippet (get-in "get-in"
+(get-in ${1:coll} [${2}]${3: #_:not-found})
 endsnippet
 

@@ -11,7 +11,8 @@ let g:loaded_clojure_setting = 1
 
 let g:clojure_vim_iced_loaded = v:true
 let g:clojure_conjure_loaded = v:false
-let g:iced#debug#debugger = 'fern'
+" let g:iced#debug#debugger = 'fern'
+let g:iced#debug#debugger = 'default'
 
 let g:clj_fmt_config = '{:indentation? true, :remove-surrounding-whitespace? true, :remove-trailing-whitespace? true, :remove-consecutive-blank-lines? false, :insert-missing-whitespace? true, :align-associative? false, :indents {#"^\w" [[:inner 0]], #".*" [[:inner 0]]}}'
 
@@ -23,6 +24,44 @@ let g:tagbar_type_clojure = {
         \ 'e:form',
         \ ],
     \}
+
+augroup clojure_custom_syntax_color
+    " jdbc/with-transaction 같은 문자열의 jdbc/ 부분을 색칠한다.
+    autocmd FileType clojure syntax match ClojureRefNs /\v[\-a-zA-Z]+\//
+    autocmd FileType clojure highlight ClojureRefNs ctermfg=Green guifg=#e0c9b7
+
+    " https://vim.fandom.com/wiki/Regex_lookahead_and_lookbehind
+    " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbolHeadChar /\([a-z] \)\@<=[a-zA-Z]/'
+
+    " let s:chars = '[a-zA-Z][a-zA-Z/\-]* '
+    " let s:lookbehind = '/\([(\[{]' .. s:chars .. '\)\@<='
+    " let s:lookahead = ' \@='
+    " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol2 '
+    "             \ .. s:lookbehind .. '[a-zA-Z\-][a-zA-Z\-]*'
+    "             \ .. s:lookahead
+    "             \ .. '/'
+
+    " let s:lookbehind2 = '/\([(\[{]' .. s:chars .. s:chars .. s:chars .. '\)\@<='
+    " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol4 '
+    "             \ .. s:lookbehind2 .. '[a-zA-Z\-][a-zA-Z\-]*'
+    "             \ .. s:lookahead
+    "             \ .. '/'
+
+    " let s:lookbehind3 = '/\([(\[{]' .. s:chars .. s:chars .. s:chars .. s:chars .. s:chars .. '\)\@<='
+    " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol6 '
+    "             \ .. s:lookbehind3 .. '[a-zA-Z\-][a-zA-Z\-]*'
+    "             \ .. s:lookahead
+    "             \ .. '/'
+
+    " let g:lookahead4 = s:lookbehind3
+
+    " let s:clouds_subtle = { "gui": "#cbe3e7", "cterm": "253", "cterm16": "7"}
+    " autocmd FileType clojure highlight default link ClojureMiddleSymbol2 markdownIdDeclaration
+    " autocmd FileType clojure highlight default link ClojureMiddleSymbol4 markdownIdDeclaration
+    autocmd FileType clojure highlight ClojureMiddleSymbol2 guifg=#cbe3e7 ctermfg=253 gui=bold
+    autocmd FileType clojure highlight ClojureMiddleSymbol4 guifg=#cbe3e7 ctermfg=253 gui=bold
+    " autocmd FileType clojure highlight default link ClojureMiddleSymbol6 markdownIdDeclaration
+augroup END
 
 augroup vim_clojure_coc
     " autocmd FileType clojure nmap <silent> <C-]> <Plug>(coc-definition)
@@ -39,10 +78,13 @@ augroup vim_iced
     " coc-clojure 사용은i :call CocAction 을 사용하고, 파라미터는 다음 파일의 "commands"를 참고할 것.
     " https://github.com/NoahTheDuke/coc-clojure/blob/main/package.json
 
+    " autocmd FileType clojure set list listchars=tab:⇥\ ,trail:·,extends:>,precedes:<,space:·,multispace:\ ·
+    autocmd FileType clojure set list listchars=tab:⇥\ ,trail:·,extends:>,precedes:<,space:·
     autocmd FileType clojure nmap sss :IcedCommandPalette<CR>
 
     " REPL: - "sr"
     autocmd FileType clojure nmap srr <Plug>(iced_stdout_buffer_toggle)
+    autocmd FileType clojure nmap srb <C-w>J10<C-w>-
     autocmd FileType clojure nmap srd <Plug>(iced_stdout_buffer_clear)
     autocmd FileType clojure nmap src <Plug>(iced_connect)
     autocmd FileType clojure nmap sri <Plug>(iced_interrupt)
