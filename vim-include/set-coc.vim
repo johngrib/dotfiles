@@ -3,10 +3,18 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<CR>"
 " inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : copilot#Accept("\<CR>")
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+function! Check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" 팝업 메뉴가 보인다면 coc 자동완성
+" 커서 왼쪽에 공백 문자가 있다면 그냥 탭 키 입력
+" 그 외의 경우에는 UltiSnips 자동완성
+inoremap <silent><script><expr> <Tab>
+            \ pumvisible() ? "\<C-y>"
+            \ : Check_back_space() ? "\<Tab>"
+            \ : "\<C-R>=UltiSnips#ExpandSnippet()<CR>"
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)

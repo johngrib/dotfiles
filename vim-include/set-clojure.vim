@@ -33,14 +33,14 @@ augroup clojure_custom_syntax_color
     " https://vim.fandom.com/wiki/Regex_lookahead_and_lookbehind
     " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbolHeadChar /\([a-z] \)\@<=[a-zA-Z]/'
 
-    let s:chars = '[a-zA-Z][a-zA-Z/\-]* '
-    let s:lookbehind = '/\([(\[{]' .. s:chars .. '\)\@<='
-    let s:lookahead = ' \@='
-    autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol2 '
-                \ .. s:lookbehind .. '[a-zA-Z\-][a-zA-Z\-]*'
-                \ .. s:lookahead
-                \ .. '/'
-    autocmd FileType clojure highlight ClojureMiddleSymbol2 guifg=#cbe3e7 ctermfg=253 gui=bold
+    " let s:chars = '[a-zA-Z][a-zA-Z/\-]* '
+    " let s:lookbehind = '/\([(\[{]' .. s:chars .. '\)\@<='
+    " let s:lookahead = ' \@='
+    " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol2 '
+    "             \ .. s:lookbehind .. '[a-zA-Z\-][a-zA-Z\-]*'
+    "             \ .. s:lookahead
+    "             \ .. '/'
+    " autocmd FileType clojure highlight ClojureMiddleSymbol2 guifg=#cbe3e7 ctermfg=253 gui=bold
 
     " let s:lookbehind2 = '/\([(\[{]' .. s:chars .. s:chars .. s:chars .. '\)\@<='
     " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol4 '
