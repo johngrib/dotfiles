@@ -83,6 +83,10 @@ augroup vim_vim_go
     autocmd FileType go nnoremap sff :GoDecls<SPACE>
     autocmd FileType go nnoremap sf/ :GoDeclsDir<SPACE>
 
+    " Insert Mode:
+    autocmd FileType go inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}]<CR>:let @/=@z<CR>a
+    autocmd FileType go inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{]<CR>:let @/=@z<CR>i
+
     " Etc:
     autocmd FileType go setlocal nolist
     autocmd FileType go setlocal colorcolumn=81
