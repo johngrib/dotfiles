@@ -438,6 +438,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <silent>S <nop>
     vnoremap <silent>s <nop>
 
+    nnoremap <Space><f> <Esc>:let @z=@/<CR>/\v[)"}]<CR>:let @/=@z<CR>
+    nnoremap <Space><b> <Esc>:let @z=@/<CR>?\v[("{]<CR>:let @/=@z<CR>
 
     nnoremap =e :Autoformat<CR>
 
