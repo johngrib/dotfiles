@@ -78,8 +78,8 @@ augroup vim_iced
     " coc-clojure 사용은i :call CocAction 을 사용하고, 파라미터는 다음 파일의 "commands"를 참고할 것.
     " https://github.com/NoahTheDuke/coc-clojure/blob/main/package.json
 
-    " autocmd FileType clojure set list listchars=tab:⇥\ ,trail:·,extends:>,precedes:<,space:·,multispace:\ ·
-    autocmd FileType clojure set list listchars=tab:⇥\ ,trail:·,extends:>,precedes:<,space:·
+    autocmd FileType clojure set list listchars=tab:⇥\ ,trail:·,extends:>,precedes:<,space:·,multispace:\ ·
+    " autocmd FileType clojure set list listchars=tab:⇥\ ,trail:·,extends:>,precedes:<,space:·
     autocmd FileType clojure nmap sss :IcedCommandPalette<CR>
 
     " REPL: - "sr"
