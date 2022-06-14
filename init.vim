@@ -294,18 +294,18 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     " 버퍼 관리
     " nnoremap <silent> <F2><F2>   :b#<CR>
-    nnoremap <silent> <F2><F2>   :BuffersDelete<CR>
+    nnoremap <silent> <F2>d   :BuffersDelete<CR>
     nnoremap <silent> <PageUp>   :bnext!<CR>
     nnoremap <silent> <PageDown> :bprevious!<CR>
     " nnoremap <silent> <F2><F3>   :bnext!<CR>
     " nnoremap <silent> <F2><F1>   :bprevious!<CR>
-    nnoremap <silent> <F2>d      :bd!<CR>
+    " nnoremap <silent> <F2>d      :bd!<CR>
     " 현재 버퍼를 닫고 이전 버퍼로 이동
-    nnoremap <silent> <F2>q      :bp <BAR> bd #<CR>
-    nnoremap <silent> <F2><F6>   :bd<CR>
+    nnoremap <silent> <F2><F6> :bp <BAR> bd #<CR>
+    nnoremap <silent> <F2>q    :bd<CR>
     " 현재 버퍼만 남기고 모두 닫기
     nnoremap <silent> <F2>o      :%bd <BAR> e # <BAR> bd #<CR>
-    nnoremap <silent> <F2><F1> :buffers<CR>:buffer<Space>
+    nnoremap <silent> <F2><F2> :buffers<CR>:buffer<Space>
 
     " https://www.reddit.com/r/neovim/comments/mlqyca/fzf_buffer_delete/
     function! s:list_buffers()
