@@ -108,6 +108,13 @@ augroup vimwikiauto
     autocmd BufRead,BufNewFile *.md call NewTemplate()
     autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
     autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
+
+    autocmd FileType vimwiki nnoremap scl vf)"zymz}oz0f(r:a $x`zf(df)hviW"zyPE:delm z
+
+    " Insert Mode:
+    autocmd FileType vimwiki inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}\.]<CR>:let @/=@z<CR>a
+    autocmd FileType vimwiki inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{\.]<CR>:let @/=@z<CR>i
+
 augroup END
 
 let g:tagbar_type_vimwiki = {
