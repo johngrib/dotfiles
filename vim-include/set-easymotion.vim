@@ -7,13 +7,11 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 let g:EasyMotion_use_upper = 1
 
-vmap <c-s> <Plug>(easymotion-s)
-nmap <c-s> <Plug>(easymotion-s)
+nmap <c-s><c-s> <Plug>(easymotion-overwin-line)
 
 " INSERT 모드에서 입력하면 해당 라인 내에서 좌우로 이동 가능
 imap <c-s> <c-o><Plug>(easymotion-lineanywhere)
 
-nmap <c-s> <Plug>(easymotion-s)
 nmap <c-s>2 <Plug>(easymotion-overwin-f2)
 
 nmap <c-s>l <Plug>(easymotion-lineforward)
@@ -27,8 +25,6 @@ vmap <c-s>h <Plug>(easymotion-linebackward)
 
 nmap <c-s>a <Plug>(easymotion-jumptoanywhere)
 vmap <c-s>a <Plug>(easymotion-jumptoanywhere)
-nmap <c-s><Space> <Plug>(easymotion-overwin-f)
-nmap <c-s><c-s> <Plug>(easymotion-overwin-line)
 
 nmap <c-s>w <Plug>(easymotion-overwin-w)
 nmap <c-s>f <Plug>(easymotion-overwin-f)
