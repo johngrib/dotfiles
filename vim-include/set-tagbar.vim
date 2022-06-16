@@ -7,8 +7,9 @@ let g:tagbar_show_linenumbers = 1
 let g:tagbar_autopreview = 0
 let g:tagbar_previewwin_pos = "bottomleft"
 
-let g:tagbar_position = "leftabove vertical"
+" let g:tagbar_position = "leftabove vertical"
 " let g:tagbar_position = "rightbelow vertical"
+let g:tagbar_position = "botright vertical"
 let g:tagbar_map_showproto = ""
 let g:tagbar_map_previewwin = "<Space>"
 " let g:tagbar_width = 30
