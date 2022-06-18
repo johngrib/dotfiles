@@ -8,6 +8,8 @@ let g:loaded_clojure_setting = 1
 " https://liquidz.github.io/vim-iced/#cheatsheet
 " REPL 띄우고 vim에서 접속하려면
 " $ iced repl -A:dev
+" $ iced repl -A:dev:test:itest
+" $ iced repl -A:migration
 
 let g:clojure_vim_iced_loaded = v:true
 let g:clojure_conjure_loaded = v:false
@@ -64,8 +66,8 @@ augroup clojure_custom_syntax_color
 augroup END
 
 augroup vim_clojure_coc
-    " autocmd FileType clojure nmap <silent> <C-]> <Plug>(coc-definition)
-    autocmd FileType clojure nmap <silent> <C-]> :IcedDefJump<CR>
+    autocmd FileType clojure nmap <silent> <C-]> <Plug>(coc-definition)
+    autocmd FileType clojure nmap <silent> s<C-]> :IcedDefJump<CR>
     autocmd FileType clojure nmap <silent> gy <Plug>(coc-type-definition)
     autocmd FileType clojure nmap <silent> gr <Plug>(coc-references)
     " autocmd VimLeavePre clojure TagbarClose

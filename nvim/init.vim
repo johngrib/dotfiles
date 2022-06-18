@@ -24,6 +24,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'bling/vim-airline'           " BUFFER navigator, status line 을 제공한다.
     Plug 'easymotion/vim-easymotion'
+    Plug 't9md/vim-choosewin'
+
     Plug 'tpope/vim-commentary'
     Plug 'kana/vim-textobj-user'
         Plug 'kana/vim-textobj-indent'
@@ -306,6 +308,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " 현재 버퍼만 남기고 모두 닫기
     nnoremap <silent> <F2>o      :%bd <BAR> e # <BAR> bd #<CR>
     nnoremap <silent> <F2><F2> :buffers<CR>:buffer<Space>
+    nnoremap <silent> <F2><F3> :q<CR>
 
     " https://www.reddit.com/r/neovim/comments/mlqyca/fzf_buffer_delete/
     function! s:list_buffers()
@@ -443,6 +446,10 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     nnoremap =e :Autoformat<CR>
 
+    nmap -- <Plug>(choosewin)
+    let g:choosewin_overlay_enable = 1
+    let g:choosewin_label = 'ASDFQWERZXCV'
+
     " multiple_cursors
     let g:multi_cursor_next_key='<C-n>'
     let g:multi_cursor_prev_key='<C-p>'
@@ -568,4 +575,5 @@ augroup minimap_auto_close
 augroup END
 
 set fileencodings=utf-8,euc-kr
+
 

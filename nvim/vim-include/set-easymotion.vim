@@ -4,7 +4,7 @@ let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 let g:EasyMotion_smartcase = 1
 
 " 화면에 힌트키가 대문자로 표시되게 한다.
-let g:EasyMotion_keys = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+let g:EasyMotion_keys = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890;'
 let g:EasyMotion_use_upper = 1
 
 nmap <c-s><c-s> <Plug>(easymotion-overwin-line)
