@@ -59,7 +59,6 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
     Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
 
-    " Plug 'koron/nyancat-vim'
     Plug 'johngrib/vimwiki', { 'branch': 'dev' }
     Plug 'johngrib/grib-wiki'
 
