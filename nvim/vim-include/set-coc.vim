@@ -27,6 +27,16 @@ nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <silent> sK :call <SID>show_documentation()<CR>
 
+let g:coc_global_extensions = [
+      \ 'coc-clojure',
+      \ 'coc-go',
+      \ 'coc-pyright',
+      \ 'coc-ultisnips',
+      \]
+
+" https://github.com/iamcco/coc-vimlsp
+call add(g:coc_global_extensions, 'coc-vimlsp')
+
 " Explorer
 " :CocInstall coc-explorer
 " let g:coc_explorer_global_presets = {
