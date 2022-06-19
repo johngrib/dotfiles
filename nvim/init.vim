@@ -446,10 +446,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
 
     nnoremap =e :Autoformat<CR>
 
-    nmap -- <Plug>(choosewin)
-    let g:choosewin_overlay_enable = 1
-    let g:choosewin_label = 'ASDFQWERZXCV'
-
     " multiple_cursors
     let g:multi_cursor_next_key='<C-n>'
     let g:multi_cursor_prev_key='<C-p>'

@@ -34,3 +34,10 @@ nmap <c-s>/ <Plug>(easymotion-sn)
 " Smartsign (type `3` and match `3`&`#`)
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
+
+" vim-choosewin 설정
+
+nmap <C-s>- <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+let g:choosewin_label = 'ASDFQWERZXCV'
+
