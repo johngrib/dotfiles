@@ -119,6 +119,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'junegunn/vim-peekaboo'
     " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
     Plug 'wfxr/minimap.vim'
+    Plug 'vim-scripts/YankRing.vim'
 
 call plug#end()
 
@@ -568,6 +569,8 @@ let g:minimap_git_colors = 1
 augroup minimap_auto_close
     autocmd VimLeavePre * MinimapClose
 augroup END
+
+nnoremap <silent> <F9> :YRShow<CR>
 
 set fileencodings=utf-8,euc-kr
 
