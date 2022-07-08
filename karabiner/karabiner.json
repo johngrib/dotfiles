@@ -51,7 +51,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "m",
+                                    "key_code": "1",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -97,7 +97,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "b",
+                                    "key_code": "2",
                                     "modifiers": {
                                         "optional": [
                                             "any"
