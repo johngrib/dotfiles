@@ -119,7 +119,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'junegunn/vim-peekaboo'
     " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
     Plug 'wfxr/minimap.vim'
-    Plug 'vim-scripts/YankRing.vim'
+    " Plug 'vim-scripts/YankRing.vim'
 
 call plug#end()
 
