@@ -266,7 +266,7 @@
     }; f"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
-    editor = /usr/local/bin/nvim
+    editor = /usr/local/bin/vi
     autocrlf = input
     precomposeunicode = true
     quotepath = false
