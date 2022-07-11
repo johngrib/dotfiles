@@ -98,7 +98,7 @@ augroup vim_iced
     "  <-----------outer_top_list------------>
     autocmd FileType clojure vmap se <Plug>(iced_eval_visual)
 
-    autocmd FileType clojure nmap s? :vs ~/dotfiles/vim-include/set-clojure.vim<CR>
+    autocmd FileType clojure nmap s? :vs ~/dotfiles/nvim/vim-include/set-clojure.vim<CR>
     autocmd FileType clojure nmap see <Plug>(iced_eval_and_print)<Plug>(sexp_outer_list)``
     autocmd FileType clojure nmap sew <Plug>(iced_eval_and_print)<Plug>(sexp_inner_element)``
     autocmd FileType clojure nmap ser <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)``

@@ -54,7 +54,7 @@ augroup vim_golang_coc
 augroup END
 
 augroup vim_vim_go
-    autocmd FileType go nmap s? :vs ~/dotfiles/vim-include/set-golang.vim<CR>
+    autocmd FileType go nmap s? :vs ~/dotfiles/nvim/vim-include/set-golang.vim<CR>
 
     " Eval And Execute Code: - "se"
     autocmd FileType go nnoremap seb :GoBuild<CR>
