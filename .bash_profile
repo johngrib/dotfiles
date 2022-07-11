@@ -8,9 +8,9 @@ if which pyenv > /dev/null; then
     eval "$(pyenv init -)"
 fi
 
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="$PATH:/opt/homebrew/bin"
+export PATH="$PATH:/usr/local/opt/ruby/bin"
+export PATH="$PATH:/opt/homebrew/sbin"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(rbenv init - bash)"
@@ -31,6 +31,8 @@ fi
 
 export PATH="$PATH:/usr/local/opt/llvm/bin"
 export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+# export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 export PATH="$PATH:~/.vim/plugged/vim-iced/bin"
 
