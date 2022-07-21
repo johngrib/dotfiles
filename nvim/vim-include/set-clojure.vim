@@ -66,8 +66,8 @@ augroup clojure_custom_syntax_color
 augroup END
 
 augroup vim_clojure_coc
-    autocmd FileType clojure nmap <silent> <C-]> <Plug>(coc-definition)
-    autocmd FileType clojure nmap <silent> s<C-]> :IcedDefJump<CR>
+    autocmd FileType clojure nmap <silent> s<C-]> <Plug>(coc-definition)
+    autocmd FileType clojure nmap <silent> <C-]> :IcedDefJump<CR>
     autocmd FileType clojure nmap <silent> gy <Plug>(coc-type-definition)
     autocmd FileType clojure nmap <silent> gr <Plug>(coc-references)
     " autocmd VimLeavePre clojure TagbarClose
