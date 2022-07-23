@@ -1,5 +1,5 @@
 
-function! _numbered_register_shift_comment()
+function! s:_memo()
     / 복사할 때:
     /   "" 과 "0 레지스터가 갱신된다.
     /   그리고 1 ~ 9 숫자 레지스터는 변경되지 않는다.
@@ -19,56 +19,63 @@ function! _numbered_register_shift_comment()
     /       cache_1 과 "1 을 비교한다. 둘이 다르다면 삭제를 한 것이다.
     /           삭제를 했다면 숫자 레지스터가 알아서 쉬프트되므로 신경쓰지 않아도 된다.
     /           cache_0 에 "0 을 저장하고, cache_1 에 "1 을 저장한다.
-
 endfunction
 
 augroup numbered_resister_shift_autocmd
-    let g:global_yank_cache_0 = @0
-    let g:global_yank_cache_1 = @1
-
-    " abcdefghijklmnopqrstuvwyz
 
     autocmd TextYankPost * :call s:numbered_register_shift()
+    nnoremap <F9><F9> :registers<CR>
+    nnoremap <F9>t :call <SID>toggle()<CR>
+
+    function! s:toggle()
+        let g:numbered_register_shift_enable = ! g:numbered_register_shift_enable
+        echom "숫자 레지스터 쉬프트 활성화 상태: " . g:numbered_register_shift_enable
+    endfunction
+
+    " 초기화
+    let s:global_yank_cache_0 = @0
+    let s:global_yank_cache_1 = @1
+    let g:numbered_register_shift_enable = 1
 
     function! s:save_cache()
-        let g:global_yank_cache_0 = @0
-        let g:global_yank_cache_1 = @1
+        let s:global_yank_cache_0 = @0
+        let s:global_yank_cache_1 = @1
+    endfunction
+
+    function! s:enqueue()
+        let @9 = @8
+        let @8 = @7
+        let @7 = @6
+        let @6 = @5
+        let @5 = @4
+        let @4 = @3
+        let @3 = @2
+        let @2 = @1
     endfunction
 
     function! s:numbered_register_shift()
+        if ! v:true == g:numbered_register_shift_enable
+            return
+        endif
+
         if @- ==# @"
-            " inline 삭제 이벤트가 발생하면 @- 를 @1 넣고 돌려준다
-            let @9 = @8
-            let @8 = @7
-            let @7 = @6
-            let @6 = @5
-            let @5 = @4
-            let @4 = @3
-            let @3 = @2
-            let @2 = @1
+            " inline 삭제 이벤트가 발생하면
+            call s:enqueue()
             let @1 = @-
             call s:save_cache()
             return
         endif
 
-        if g:global_yank_cache_1 !=# @1
+        if s:global_yank_cache_1 !=# @1
             " line 단위 삭제 이벤트가 발생하면 cache 를 갱신한다
             call s:save_cache()
             return
         endif
 
-        if g:global_yank_cache_0 !=# @0
+        if s:global_yank_cache_0 !=# @0
             " 복사 이벤트가 발생하면 @1 에 cache_0 을 넣고 돌려준다.
-            let @9 = @8
-            let @8 = @7
-            let @7 = @6
-            let @6 = @5
-            let @5 = @4
-            let @4 = @3
-            let @3 = @2
-            let @2 = @1
-            let @1 = g:global_yank_cache_0
-
+            call s:enqueue()
+            let @1 = s:global_yank_cache_0
             call s:save_cache()
             return
         endif
