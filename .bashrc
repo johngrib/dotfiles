@@ -36,11 +36,11 @@ if ls --version > /dev/null 2>&1; then
 else
     # alias ls='ls -G'; #osx
     # alias ls='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S"'; #osx
-    alias ls='exa --icons --time-style="long-iso"'; #osx
+    alias ls='exa --time-style="long-iso"'; #osx
     alias l.='ls -dG .*'
 fi
-alias ll='ls -alh'
-# alias ll='exa --icons --time-style="long-iso" -alh'
+# alias ll='ls -alh'
+alias ll='exa --time-style="long-iso" -alh'
 # alias vi='mvim -v'
 alias vi='nvim'
 alias vim='nvim'
@@ -63,7 +63,7 @@ alias bc='bc -l ~/.bcrc -q'
 alias weather='curl v2.wttr.in/Seoul'
 alias myfortune='fortune ~/Dropbox/my-fortune'
 alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
-alias brew="arch -x86_64 /usr/local/bin/brew"
+# alias brew="arch -x86_64 /usr/local/bin/brew"
 
 # colors
 GREEN='\e[0;32m\]'
@@ -123,7 +123,7 @@ source $(which fav.sh)
 bind '"\ev": "\C-ufav\C-m"'
 bind '"\ed": "droller \"`pbpaste`\"\C-m"'
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 function bgcolors {
     for((i=16; i<256; i++)); do
@@ -173,7 +173,7 @@ if [ $ITERM_SESSION_ID ]; then
     export PROMPT_COMMAND='echo -ne "\033]1;${PWD##*/}\007"; '
 fi
 
-ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
+# ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
 
 myfortune && echo ''
 ioreg -r -d 1 -k BatteryPercent | grep BatteryPercent | tr -d ' '
