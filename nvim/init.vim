@@ -480,13 +480,15 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
                 \ ]
 
     let g:axring_rings_vimwiki = [
-                \ ['##', '###'],
+                \ ['##', '###', '####'],
                 \ ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                 \ ]
 
     let g:axring_rings_clojure = [
                 \ ["{", '#{'],
                 \ ]
+
+    let g:axring_rings_gitrebase = ['pick', 'reword', 'edit', 'squash', 'fixup']
 
     " let g:ale_fixers = {'php': ['php_cs_fixer']}
     let g:ale_fixers = {}
@@ -571,7 +573,6 @@ augroup minimap_auto_close
     autocmd VimLeavePre * MinimapClose
 augroup END
 
-nnoremap <silent> <F9> :YRShow<CR>
 
 set fileencodings=utf-8,euc-kr
 
