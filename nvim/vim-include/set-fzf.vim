@@ -3,16 +3,16 @@ imap <C-x><C-l> <plug>(fzf-complete-line)
 
 nnoremap <f1> <nop>
 " nnoremap <nowait> <f1><f1> :call FzfOmniFiles()<CR>
-nnoremap <nowait> <f1><f1> :Files<CR>
-nnoremap <nowait> <f1><f2> :Buffers<CR>
-nnoremap <nowait> <f1><f3> :History<CR>
+" nnoremap <nowait> <f1><f1> :Files<CR>
+" nnoremap <nowait> <f1><f2> :Buffers<CR>
+" nnoremap <nowait> <f1><f3> :History<CR>
 nnoremap <nowait> <f1><F7> :execute ":Tags " . expand('<cword>')<CR>
 nnoremap <nowait> <F1><F12> :Snippets<CR>
-nnoremap <nowait> <f1><CR> :Marks<CR>
+" nnoremap <nowait> <f1><CR> :Marks<CR>
 nnoremap <f1>a :Ag<CR>
 nnoremap <f1>l :Lines<CR>
 nnoremap <f1>; :History:<CR>
-nnoremap <f1>/ :History/<CR>
+" nnoremap <f1>/ :History/<CR>
 nnoremap <f1>t :Tags ^<CR>
 " nnoremap <f3> :execute ":Tags " . expand('<cword>')<CR>
 nnoremap <f1><PageDown> :UltiSnipsEdit<CR>
@@ -34,3 +34,20 @@ function! FzfOmniFiles()
     endif
 endfunc
 
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
+endfunction
+
+let g:fzf_action = {
+            \ 'ctrl-s': 'split',
+            \ 'ctrl-v': 'vsplit',
+            \ 'ctrl-q': function('s:build_quickfix_list'),
+            \ }
+
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
