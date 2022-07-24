@@ -9,13 +9,13 @@ if which pyenv > /dev/null; then
 fi
 
 export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+# export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(rbenv init - bash)"
 
-export PATH="$PATH:/usr/local/sbin"
+# export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:~/.local/bin"
 
 if [[ ! "$PATH" == *~/.cargo/bin* ]]; then
@@ -29,7 +29,7 @@ elif [ -z "`echo $PATH | grep -o /dotfiles-com/bin/`" -a "`hostname -s`" == "Use
     PATH="$PATH:~/Dropbox/dotfiles-com/bin/"
 fi
 
-export PATH="$PATH:/usr/local/opt/llvm/bin"
+# export PATH="$PATH:/usr/local/opt/llvm/bin"
 export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 export PATH="$PATH:~/.vim/plugged/vim-iced/bin"
