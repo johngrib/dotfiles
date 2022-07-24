@@ -3,8 +3,8 @@
 augroup numbered_resister_shift_autocmd
 
     autocmd TextYankPost * :call s:numbered_register_shift()
-    nnoremap <F9><F9> :registers<CR>
-    nnoremap <F9>t :call <SID>toggle()<CR>
+    " nnoremap <F9>t :call <SID>toggle()<CR>
+
 
     function! s:toggle()
         let g:numbered_register_shift_enable = ! g:numbered_register_shift_enable
