@@ -266,21 +266,21 @@
     }; f"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
-    editor = /usr/local/bin/vi
+    editor = /opt/homebrew/bin/nvim
     autocrlf = input
     precomposeunicode = true
     quotepath = false
     ; pager = bat
 [merge]
-    conflictstyle = diff3
+    ; conflictstyle = diff3
     trustExitCode = true
 [diff]
-    colorMoved = default
+    ; colorMoved = default
     tool = vimdiff
     wsErrorHighlight = all
 [difftool "vimdiff"]
-    path = /usr/local/bin/vim
+    path = /opt/homebrew/bin/nvim
 [mergetool "vimdiff"]
-    path = /usr/local/bin/vim
+    path = /opt/homebrew/bin/nvim
     trustExitCode = true
 
