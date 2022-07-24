@@ -119,6 +119,9 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
     Plug 'wfxr/minimap.vim'
 
+    Plug 'nvim-lua/plenary.nvim'
+        Plug 'nvim-telescope/telescope.nvim'
+
 call plug#end()
 
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
