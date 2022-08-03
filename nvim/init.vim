@@ -122,12 +122,14 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-telescope/telescope.nvim'
 
+    Plug 'weirongxu/coc-explorer', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-lists', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+
 call plug#end()
 
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
 let g:coc_global_extensions = [
             \ 'coc-ultisnips',
-            \ 'coc-explorer',
             \ 'coc-clojure',
             \ 'coc-pyright',
             \ ]
