@@ -8,11 +8,18 @@ if which pyenv > /dev/null; then
     eval "$(pyenv init -)"
 fi
 
-export PATH="/opt/homebrew/bin:$PATH"
-# export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
+if [[ $(uname -p) == 'arm' ]]; then
+    # M1 이라면
+    export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="/opt/homebrew/sbin:$PATH"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    # M1 이 아니라면
+    export PATH="/usr/local/bin:$PATH"
+    export PATH="/usr/local/sbin:$PATH"
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(rbenv init - bash)"
 
 # export PATH="$PATH:/usr/local/sbin"
