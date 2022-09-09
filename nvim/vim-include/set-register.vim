@@ -3,8 +3,10 @@
 augroup numbered_resister_shift_autocmd
 
     autocmd TextYankPost * :call s:numbered_register_shift()
-    " nnoremap <F9>t :call <SID>toggle()<CR>
 
+    " https://jdhao.github.io/2020/05/22/highlight_yank_region_nvim/#neovim-only
+    " autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
+    " nnoremap <F9>t :call <SID>toggle()<CR>
 
     function! s:toggle()
         let g:numbered_register_shift_enable = ! g:numbered_register_shift_enable

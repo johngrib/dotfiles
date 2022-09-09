@@ -31,7 +31,7 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'kana/vim-textobj-indent'
         Plug 'thinca/vim-textobj-between'
     Plug 'wellle/targets.vim'           " text object utils
-    Plug 'jiangmiao/auto-pairs', {'for': ['go']}
+    Plug 'jiangmiao/auto-pairs', {'for': ['go', 'javascript']}
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
     Plug 'junegunn/vim-easy-align'
     Plug 'AndrewRadev/splitjoin.vim'
@@ -103,7 +103,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
     Plug 'stephpy/vim-yaml'
     Plug 'tpope/vim-speeddating'
-    Plug 'github/copilot.vim'
+    " Plug 'github/copilot.vim'
 
     " clojure
     Plug 'guns/vim-sexp',    {'for': 'clojure'}
@@ -124,6 +124,9 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'weirongxu/coc-explorer', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc-lists', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+
+    Plug 'neoclide/coc-tsserver', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
 
 call plug#end()
 

@@ -222,6 +222,7 @@ augroup END
 let g:iced_enable_clj_kondo_analysis = v:true
 let g:iced#nrepl#enable_sideloader = v:true
 
+" REPL을 오른쪽에 열어준다
 let g:iced#buffer#stdout#mods = 'vertical'
 let g:iced#buffer#stdout#size = v:null
 

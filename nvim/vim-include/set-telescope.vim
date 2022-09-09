@@ -1,8 +1,8 @@
 
 nmap <F1> [telescope-p]
 
-nnoremap <nowait> [telescope-p]<F1> <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <nowait> [telescope-p]<F2> <cmd>lua require('telescope.builtin').buffers()<cr>
+" nnoremap <nowait> [telescope-p]<F1> <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <nowait> [telescope-p]<F2> <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <nowait> [telescope-p]<F3> <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <nowait> [telescope-p]`    <cmd>lua require('telescope.builtin').marks()<cr>
 

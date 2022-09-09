@@ -1,3 +1,4 @@
+" let g:UltiSnipsExpandTrigger="<C-k>"
 let g:UltiSnipsExpandTrigger="<C-k>"
 let g:UltiSnipsJumpForwardTrigger="<Right>"
 let g:UltiSnipsJumpBackwardTrigger="<Left>"
