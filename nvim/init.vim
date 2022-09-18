@@ -103,7 +103,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
     Plug 'stephpy/vim-yaml'
     Plug 'tpope/vim-speeddating'
-    " Plug 'github/copilot.vim'
+    Plug 'github/copilot.vim'
 
     " clojure
     Plug 'guns/vim-sexp',    {'for': 'clojure'}
