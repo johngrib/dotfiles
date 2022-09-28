@@ -124,7 +124,7 @@ augroup vim_iced
     autocmd FileType clojure nmap sa/ <Plug>(iced_grep)
     autocmd FileType clojure nmap sam <Plug>(iced_macroexpand_1_outer_list)
     autocmd FileType clojure nmap saM <Plug>(iced_macroexpand_outer_list)
-    autocmd FileType clojure nmap K <Plug>(iced_document_popup_open)
+    autocmd FileType clojure nmap sap <Plug>(iced_document_popup_open)
     autocmd FileType clojure nmap sak <Plug>(iced_document_open)
     autocmd FileType clojure nmap saK <Plug>(iced_clojuredocs_open)
     autocmd FileType clojure nmap sas :IcedSourcePopupShow<CR>
