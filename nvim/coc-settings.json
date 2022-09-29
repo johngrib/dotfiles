@@ -1,4 +1,7 @@
 {
+    "suggest": {
+        "noselect": true
+    },
     "languageserver": {
     }
 }
