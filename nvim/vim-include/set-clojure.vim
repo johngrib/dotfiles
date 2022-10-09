@@ -85,6 +85,7 @@ augroup vim_iced
     autocmd FileType clojure nmap sss :IcedCommandPalette<CR>
 
     " REPL: - "sr"
+    autocmd FileType clojure nmap sr <nop>
     autocmd FileType clojure nmap srr <Plug>(iced_stdout_buffer_toggle)
     autocmd FileType clojure nmap srb <C-w>J10<C-w>-
     autocmd FileType clojure nmap srd <Plug>(iced_stdout_buffer_clear)
@@ -96,6 +97,7 @@ augroup vim_iced
     "                           <--inner-->
     "                 <-----outer_list------>
     "  <-----------outer_top_list------------>
+    autocmd FileType clojure nmap se <nop>
     autocmd FileType clojure vmap se <Plug>(iced_eval_visual)
 
     autocmd FileType clojure nmap s? :vs ~/dotfiles/nvim/vim-include/set-clojure.vim<CR>
@@ -118,6 +120,7 @@ augroup vim_iced
     autocmd FileType clojure nmap secr <Plug>(iced_eval_and_comment)<Plug>(sexp_outer_top_list)``
 
     " Code Analyse: - "sa"
+    autocmd FileType clojure nmap sa <nop>
     autocmd FileType clojure nmap sar :IcedBrowseReferences<CR>
     autocmd FileType clojure nmap sad :IcedBrowseDependencies<CR>
     autocmd FileType clojure nmap sau :IcedUseCaseOpen<CR>:echom "list use case: gF to open file"<CR>
@@ -162,6 +165,7 @@ augroup vim_iced
     " autocmd FileType clojure nmap <silent> snA :call CocAction('runCommand', 'lsp-clojure-add-require-suggestion')<CR>
 
     " Code Typing: - "sc"
+    autocmd FileType clojure nmap sc <nop>
     autocmd FileType clojure nmap scR :IcedRenameSymbol<CR>
     autocmd FileType clojure nmap scr <Plug>(coc-rename)
     " 잘되지만 lsp-clojure-change-coll 이 좀 더 편함
@@ -194,6 +198,7 @@ augroup vim_iced
     " :IcedTestSpecCheck
 
     " Debug: - "sd"
+    autocmd FileType clojure nmap sd <nop>
     autocmd FileType clojure nmap sdd :IcedToggleTraceVar<CR>
     autocmd FileType clojure nmap sdv :IcedToggleTraceVar<Space>
     autocmd FileType clojure nmap sdn :IcedToggleTraceNs<Space>
