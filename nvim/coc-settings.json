@@ -3,5 +3,9 @@
         "noselect": true
     },
     "languageserver": {
+        "kotlin": {
+            "command": "/opt/homebrew/bin/kotlin-language-server",
+            "filetypes": ["kotlin"]
+        }
     }
 }

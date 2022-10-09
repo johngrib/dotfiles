@@ -128,6 +128,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'neoclide/coc-tsserver', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
 
+    " Kotlin
+    Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
+    Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+
 call plug#end()
 
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
