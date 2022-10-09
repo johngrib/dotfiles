@@ -55,6 +55,9 @@
   nnoremap <Esc> <Esc>:w<CR>
   inoremap <Esc> <Esc>:w<CR>
 
+  " Insert Mode:
+  inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}]<CR>:let @/=@z<CR>a
+  inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{]<CR>:let @/=@z<CR>i
 
   nnoremap Y y$
   nnoremap <SPACE>y "+y
