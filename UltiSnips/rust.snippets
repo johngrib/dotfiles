@@ -1,3 +1,7 @@
+snippet "(\slet [^\s]+)" "" r
+`!p snip.rv = match.group(1)` = ${0}
+endsnippet
+
 # 함수
 snippet fn "fn"
 fn ${1:name}(${2}) {
@@ -25,10 +29,12 @@ endsnippet
 snippet ex "extern crate"
 extern crate ${1};
 endsnippet
+
 snippet l "let"
 let ${1:name} = ${2};
 ${3}
 endsnippet
+
 snippet lm "let"
 let mut ${1:name} = ${2};
 ${3}

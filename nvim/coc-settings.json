@@ -1,6 +1,11 @@
 {
     "suggest": {
-        "noselect": true
+        "noselect": false
+    },
+    "coc": {
+        "preferences": {
+            "formatOnSaveFileTypes": ["rust"]
+        }
     },
     "languageserver": {
         "kotlin": {

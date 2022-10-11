@@ -31,7 +31,7 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'kana/vim-textobj-indent'
         Plug 'thinca/vim-textobj-between'
     Plug 'wellle/targets.vim'           " text object utils
-    Plug 'jiangmiao/auto-pairs', {'for': ['go', 'javascript']}
+    Plug 'jiangmiao/auto-pairs', {'for': ['go', 'javascript', 'rust']}
     Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
     Plug 'junegunn/vim-easy-align'
     Plug 'AndrewRadev/splitjoin.vim'
@@ -97,7 +97,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'SirVer/ultisnips'
     " Plug 'neoclide/coc-sources', { 'do': ':CocInstall coc-ultisnips' }
 
-    " Plug 'rust-lang/rust.vim'
+    Plug 'rust-lang/rust.vim', {'for': 'rust'}
     " Plug 'neoclide/coc-rls', { 'do': ':CocInstall coc-rls' }
     " Plug 'neoclide/coc-tsserver', { 'do': ':CocInstall coc-tsserver' }
     " Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
@@ -139,6 +139,7 @@ let g:coc_global_extensions = [
             \ 'coc-ultisnips',
             \ 'coc-clojure',
             \ 'coc-pyright',
+            \ 'coc-rust-analyzer',
             \ ]
 
 " For Neovim 0.1.3 and 0.1.4
