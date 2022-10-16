@@ -76,6 +76,12 @@ nmap <F1><F8> :CocCommand explorer --preset floatingLeftside<CR>
 nmap <F1>e <Cmd>CocCommand explorer --preset file<CR>
 
 " https://www.ditig.com/256-colors-cheat-sheet
-" highlight CocMenuSel ctermbg=124 guibg=#af0000
+" coc 자동완성메뉴에서 현재 선택된 아이템
 highlight CocMenuSel ctermbg=88 guibg=#870000
+
+" coc 자동완성메뉴에서 매치된 글자
+highlight CocSearch ctermfg=10 guifg=#00ff00
+
+" coc 자동완성메뉴에서 선택되지 않은 아이템들
+highlight CocFloating ctermbg=237 guibg=#3a3a3a
 

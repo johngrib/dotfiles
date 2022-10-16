@@ -1,6 +1,6 @@
 {
     "suggest": {
-        "noselect": true
+        "noselect": false
     },
     "coc": {
         "preferences": {
