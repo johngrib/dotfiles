@@ -75,4 +75,7 @@ let g:coc_explorer_global_presets = {
 nmap <F1><F8> :CocCommand explorer --preset floatingLeftside<CR>
 nmap <F1>e <Cmd>CocCommand explorer --preset file<CR>
 
+" https://www.ditig.com/256-colors-cheat-sheet
+" highlight CocMenuSel ctermbg=124 guibg=#af0000
+highlight CocMenuSel ctermbg=88 guibg=#870000
 
