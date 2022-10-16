@@ -1,4 +1,4 @@
-" Clojure
+"* Clojure 설정
 
 if exists("g:loaded_clojure_setting") || &cp
   finish

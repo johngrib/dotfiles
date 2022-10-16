@@ -1,137 +1,131 @@
-" Vim-Plug 설정
+"* Vim-Plug 목록
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
 call plug#begin('~/.config/nvim/plugged')
 
-    " VIM POWER
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-    Plug 'tpope/vim-repeat'
 
-    " tags
-    Plug 'vim-scripts/taglist.vim'
-    Plug 'ludovicchabant/vim-gutentags' " 자동으로 tags 파일을 갱신해 준다.
-    Plug 'majutsushi/tagbar'
+    "* Vim 기본 기능 확장
+        "* session
+        Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
 
-    " version control
-    Plug 'tpope/vim-fugitive'           " git 명령어 wrapper
+        "* HUD(Head Up Display)
+        Plug 'bling/vim-airline'        " BUFFER navigator, status line 을 제공한다.
+        Plug 'luochen1990/rainbow'      " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
+        Plug 'kshenoy/vim-signature'    " m mark 위치를 표시해준다.
+        " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
+        Plug 'wfxr/minimap.vim'
 
-    " file browser
+        "* text object
+        Plug 'kana/vim-textobj-user'
+            Plug 'kana/vim-textobj-indent'
+            Plug 'thinca/vim-textobj-between'
+        Plug 'wellle/targets.vim'
+
+        "* 편집 기능 확장
+        Plug 'tpope/vim-repeat'
+        Plug 'tpope/vim-surround'
+        Plug 'tpope/vim-commentary'
+        Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
+        Plug 'jiangmiao/auto-pairs', {'for': ['go', 'javascript', 'rust']}
+        Plug 'junegunn/vim-easy-align'
+        Plug 'AndrewRadev/splitjoin.vim'
+        Plug 'tommcdo/vim-exchange'
+
+        "* 커서 점프
+        Plug 'easymotion/vim-easymotion'
+        Plug 't9md/vim-choosewin'
+        Plug 'vim-scripts/matchit.zip'
+        Plug 'johngrib/vim-f-hangul'
+
+        "* 검색
+        Plug 'google/vim-searchindex'
+        " Plug 'othree/eregex.vim'
+        " Plug 'haya14busa/incsearch.vim'
+
+        "* Color Theme
+        Plug 'johngrib/FlatColor-johngrib'
+        Plug 'tomasr/molokai'
+        Plug 'johngrib/hosu'
+        Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+
+        "* Quickfix
+        Plug 'milkypostman/vim-togglelist'
+
+    "* 자동완성
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'SirVer/ultisnips'
+    Plug 'github/copilot.vim'
+    Plug 'tpope/vim-speeddating'
+    Plug 'tenfyzhong/axring.vim'
+
+    "* 외부 기능 지원
+        "* ctags
+        Plug 'vim-scripts/taglist.vim'
+        Plug 'ludovicchabant/vim-gutentags' " 자동으로 tags 파일을 갱신해 준다.
+        Plug 'majutsushi/tagbar'
+
+        "* git
+        Plug 'tpope/vim-fugitive'       " git 명령어 wrapper
+        Plug 'airblade/vim-gitgutter'   " git diff 를 라인 넘버 옆에 표시.
+        Plug 'johngrib/vim-git-msg-wheel'
+
+        "* ETC
+        Plug 'diepm/vim-rest-console'
+        Plug 'johngrib/vim-mac-dictionary'
+        Plug 'tridactyl/vim-tridactyl'
+
+    "* File 탐색, 브라우징
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
+    Plug 'weirongxu/coc-explorer', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     Plug 'preservim/nerdtree'
         Plug 'ryanoasis/vim-devicons'
+    " Plug 'wesleyche/srcexpl'
+    Plug 'nvim-lua/plenary.nvim'
+        Plug 'nvim-telescope/telescope.nvim'
 
-    " editing
-    Plug 'tpope/vim-surround'
-    Plug 'bling/vim-airline'           " BUFFER navigator, status line 을 제공한다.
-    Plug 'easymotion/vim-easymotion'
-    Plug 't9md/vim-choosewin'
-
-    Plug 'tpope/vim-commentary'
-    Plug 'kana/vim-textobj-user'
-        Plug 'kana/vim-textobj-indent'
-        Plug 'thinca/vim-textobj-between'
-    Plug 'wellle/targets.vim'           " text object utils
-    Plug 'jiangmiao/auto-pairs', {'for': ['go', 'javascript', 'rust']}
-    Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
-    Plug 'junegunn/vim-easy-align'
-    Plug 'AndrewRadev/splitjoin.vim'
-    Plug 'tommcdo/vim-exchange'
-
-    " searching
-    Plug 'vim-scripts/matchit.zip'
-    Plug 'google/vim-searchindex'
-    " Plug 'othree/eregex.vim'
-    " Plug 'haya14busa/incsearch.vim'
-
-    " language support
+    "* language 확장
     " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
     " https://github.com/dense-analysis/ale
     " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
-    " Plug 'wesleyche/srcexpl'
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'tridactyl/vim-tridactyl'
+    " Plug 'jszakmeister/vim-togglecursor'
 
-    " screen view
-    Plug 'luochen1990/rainbow'          " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
-    Plug 'kshenoy/vim-signature'        " m mark 위치를 표시해준다.
-    Plug 'airblade/vim-gitgutter'       " git diff 를 라인 넘버 옆에 표시.
-    " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
-    Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
+        "* JavaScript
+        Plug 'neoclide/coc-tsserver', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+        Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
 
+        "* Clojure
+        Plug 'guns/vim-sexp',    {'for': 'clojure'}
+        Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+        Plug 'tpope/vim-dispatch'
+        Plug 'liquidz/vim-iced', {'for': 'clojure'}
+        Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+        " Plug 'lambdalisue/fern.vim'
+        " Plug 'liquidz/vim-iced-fern-debugger', {'for': 'clojure'}
+
+        "* Golang
+        Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+        "* Kotlin
+        Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
+        Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+
+        "* Rust
+        Plug 'rust-lang/rust.vim', {'for': 'rust'}
+
+        "* yaml
+        Plug 'stephpy/vim-yaml'
+
+    "* Vim 기반 애플리케이션
+    Plug 'johngrib/vim-game-code-break'
+    Plug 'johngrib/vim-game-snake'
+    " Plug 'tpope/vim-db'
     Plug 'johngrib/vimwiki', { 'branch': 'dev' }
     Plug 'johngrib/grib-wiki'
 
-    Plug 'diepm/vim-rest-console'
-    Plug 'johngrib/vim-f-hangul'
-    Plug 'johngrib/FlatColor-johngrib'
-    Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-    Plug 'tomasr/molokai'
-    Plug 'johngrib/hosu'
-
-    " Plug 'leafgarland/typescript-vim'
-    Plug 'milkypostman/vim-togglelist'
-    " Plug 'jszakmeister/vim-togglecursor'
-    Plug 'johngrib/vim-git-msg-wheel'
-
-    " Plug 'tpope/vim-db'
-    Plug 'johngrib/vim-game-code-break'
-    Plug 'johngrib/vim-game-snake'
-    Plug 'johngrib/vim-mac-dictionary'
-    Plug 'tenfyzhong/axring.vim'
-
-    Plug 'ternjs/tern_for_vim'
-    " Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
-
-    Plug 'neoclide/coc.nvim', {
-        \'branch': 'release',
-        \}
-        " \'do': [
-        "     \':CocInstall coc-rls'
-        "     \,':CocInstall coc-tsserver'
-        "     \,':CocInstall coc-phpls'
-        "     \,':CocInstall coc-calc'
-        "     \,':CocInstall coc-ultisnips'
-        "     \,':CocInstall coc-java'
-
-    Plug 'SirVer/ultisnips'
-    " Plug 'neoclide/coc-sources', { 'do': ':CocInstall coc-ultisnips' }
-
-    Plug 'rust-lang/rust.vim', {'for': 'rust'}
-    " Plug 'neoclide/coc-rls', { 'do': ':CocInstall coc-rls' }
-    " Plug 'neoclide/coc-tsserver', { 'do': ':CocInstall coc-tsserver' }
-    " Plug 'weirongxu/coc-calc', { 'do': ':CocInstall coc-calc' }
-    Plug 'stephpy/vim-yaml'
-    Plug 'tpope/vim-speeddating'
-    Plug 'github/copilot.vim'
-
-    " clojure
-    Plug 'guns/vim-sexp',    {'for': 'clojure'}
-    Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
-
-    Plug 'tpope/vim-dispatch'
-    " clojure : vim-iced
-    Plug 'liquidz/vim-iced', {'for': 'clojure'}
-    Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
-    " Plug 'lambdalisue/fern.vim'
-    " Plug 'liquidz/vim-iced-fern-debugger', {'for': 'clojure'}
-
-    " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
-    Plug 'wfxr/minimap.vim'
-
-    Plug 'nvim-lua/plenary.nvim'
-        Plug 'nvim-telescope/telescope.nvim'
-
-    Plug 'weirongxu/coc-explorer', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    "* 미분류
     Plug 'neoclide/coc-lists', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-
-    Plug 'neoclide/coc-tsserver', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-    Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
-
-    " Kotlin
-    Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
-    Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-
 call plug#end()
 
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
@@ -140,7 +134,8 @@ let g:coc_global_extensions = [
             \ 'coc-clojure',
             \ 'coc-pyright',
             \ 'coc-rust-analyzer',
-            \ ]
+            \ 'coc-go',
+            \]
 
 " For Neovim 0.1.3 and 0.1.4
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -602,6 +597,6 @@ let g:tagbar_type_vim = {
     \}
 augroup vimscript_syntax_color_jg
     " autocmd FileType vim exe 'syntax match VimScriptCustomTitleText /"\* (.*)$/'
-    autocmd FileType vim syntax match VimScriptCustomTitleText /\v"\*+ .*$/
+    autocmd FileType vim syntax match VimScriptCustomTitleText /\v^ *"\* .*$/
     autocmd FileType vim highlight VimScriptCustomTitleText ctermfg=Green guifg=#e0c9b7 gui=bold
 augroup END
