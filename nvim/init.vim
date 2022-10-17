@@ -55,8 +55,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'SirVer/ultisnips'
     Plug 'github/copilot.vim'
-    Plug 'tpope/vim-speeddating'
     Plug 'tenfyzhong/axring.vim'
+    Plug 'tpope/vim-speeddating'
 
     "* 외부 기능 지원
         "* ctags
@@ -600,3 +600,4 @@ augroup vimscript_syntax_color_jg
     autocmd FileType vim syntax match VimScriptCustomTitleText /\v^ *"\* .*$/
     autocmd FileType vim highlight VimScriptCustomTitleText ctermfg=Green guifg=#e0c9b7 gui=bold
 augroup END
+
