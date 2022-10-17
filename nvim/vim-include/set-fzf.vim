@@ -3,8 +3,9 @@ imap <C-x><C-l> <plug>(fzf-complete-line)
 
 nnoremap <f1> <nop>
 " nnoremap <nowait> <f1><f1> :call FzfOmniFiles()<CR>
-nnoremap <nowait> <f1><f1> :Files<CR>
-" nnoremap <nowait> <f1><f2> :Buffers<CR>
+nnoremap <nowait> <f1><1> :Files<CR>
+nnoremap <nowait> <f1><f1> :GitFiles<CR>
+nnoremap <nowait> <f1><f2> :Buffers<CR>
 " nnoremap <nowait> <f1><f3> :History<CR>
 nnoremap <nowait> <f1><F7> :execute ":Tags " . expand('<cword>')<CR>
 nnoremap <nowait> <F1><F12> :Snippets<CR>
