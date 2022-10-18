@@ -1,9 +1,4 @@
-"* Clojure 설정
-
-if exists("g:loaded_clojure_setting") || &cp
-  finish
-endif
-let g:loaded_clojure_setting = 1
+"* Clojure 설정파일
 
 " https://liquidz.github.io/vim-iced/#cheatsheet
 " REPL 띄우고 vim에서 접속하려면
@@ -11,26 +6,46 @@ let g:loaded_clojure_setting = 1
 " $ iced repl -A:dev:test:itest
 " $ iced repl -A:migration
 
-let g:clojure_vim_iced_loaded = v:true
-let g:clojure_conjure_loaded = v:false
-" let g:iced#debug#debugger = 'fern'
-let g:iced#debug#debugger = 'default'
+if exists("g:loaded_clojure_setting") || &cp
+  finish
+endif
+let g:loaded_clojure_setting = 1
 
-let g:clj_fmt_config = '{:indentation? true, :remove-surrounding-whitespace? true, :remove-trailing-whitespace? true, :remove-consecutive-blank-lines? false, :insert-missing-whitespace? true, :align-associative? false, :indents {#"^\w" [[:inner 0]], #".*" [[:inner 0]]}}'
-
+"* tagbar 설정
 let g:tagbar_type_clojure = {
     \ 'ctagstype' : 'Clojure',
     \ 'sort': 0,
-    \ 'kinds' : [
-        \ 'n:ns',
-        \ 'e:form',
-        \ ],
+    \ 'kinds' : ['n:ns', 'e:form'],
     \}
 
-augroup clojure_custom_syntax_color
+"* vim-iced 설정
+" let g:iced#debug#debugger = 'fern'
+let g:iced#debug#debugger = 'default'
+
+let g:iced_enable_default_key_mappings = v:false
+
+
+" let g:iced_default_key_mapping_leader = '<Leader>'
+" let g:iced_enable_default_key_mappings = v:true
+let g:iced_enable_clj_kondo_analysis = v:true
+let g:iced#nrepl#enable_sideloader = v:true
+
+" REPL을 오른쪽에 열어준다
+let g:iced#buffer#stdout#mods = 'vertical'
+let g:iced#buffer#stdout#size = v:null
+
+
+"* clj-kondo 설정
+let g:clj_fmt_config = '{:indentation? true, :remove-surrounding-whitespace? true, :remove-trailing-whitespace? true, :remove-consecutive-blank-lines? false, :insert-missing-whitespace? true, :align-associative? false, :indents {#"^\w" [[:inner 0]], #".*" [[:inner 0]]}}'
+
+"* 화면 설정
+augroup clojure_custom_screen_view
+    autocmd FileType clojure set list listchars=tab:⇥\ ,trail:·,extends:>,precedes:<,space:·,multispace:\ ·
+
     " jdbc/with-transaction 같은 문자열의 jdbc/ 부분을 색칠한다.
     autocmd FileType clojure syntax match ClojureRefNs /\v[\-a-zA-Z]+\//
     autocmd FileType clojure highlight ClojureRefNs ctermfg=Green guifg=#e0c9b7
+    autocmd FileType clojure set wrap
 
     " https://vim.fandom.com/wiki/Regex_lookahead_and_lookbehind
     " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbolHeadChar /\([a-z] \)\@<=[a-zA-Z]/'
@@ -43,28 +58,9 @@ augroup clojure_custom_syntax_color
     "             \ .. s:lookahead
     "             \ .. '/'
     " autocmd FileType clojure highlight ClojureMiddleSymbol2 guifg=#cbe3e7 ctermfg=253 gui=bold
-
-    " let s:lookbehind2 = '/\([(\[{]' .. s:chars .. s:chars .. s:chars .. '\)\@<='
-    " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol4 '
-    "             \ .. s:lookbehind2 .. '[a-zA-Z\-][a-zA-Z\-]*'
-    "             \ .. s:lookahead
-    "             \ .. '/'
-    " autocmd FileType clojure highlight ClojureMiddleSymbol4 guifg=#cbe3e7 ctermfg=253 gui=bold
-
-    " let s:lookbehind3 = '/\([(\[{]' .. s:chars .. s:chars .. s:chars .. s:chars .. s:chars .. '\)\@<='
-    " autocmd FileType clojure exe 'syntax match ClojureMiddleSymbol6 '
-    "             \ .. s:lookbehind3 .. '[a-zA-Z\-][a-zA-Z\-]*'
-    "             \ .. s:lookahead
-    "             \ .. '/'
-
-    " let g:lookahead4 = s:lookbehind3
-
-    " let s:clouds_subtle = { "gui": "#cbe3e7", "cterm": "253", "cterm16": "7"}
-    " autocmd FileType clojure highlight default link ClojureMiddleSymbol2 markdownIdDeclaration
-    " autocmd FileType clojure highlight default link ClojureMiddleSymbol4 markdownIdDeclaration
-    " autocmd FileType clojure highlight default link ClojureMiddleSymbol6 markdownIdDeclaration
 augroup END
 
+"* coc 설정
 augroup vim_clojure_coc
     autocmd FileType clojure nmap <silent> s<C-]> <Plug>(coc-definition)
     autocmd FileType clojure nmap <silent> <C-]> :IcedDefJump<CR>
@@ -73,15 +69,16 @@ augroup vim_clojure_coc
     " autocmd VimLeavePre clojure TagbarClose
 augroup END
 
+"* iced 키 조합 설정
 augroup vim_iced
-    let g:iced_enable_default_key_mappings = v:false
-    " let g:iced_formatter = 'cljstyle'
+    if g:iced_enable_default_key_mappings == v:true
+        echoerr "[경고] g:iced_enable_default_key_mappings 가 true 입니다."
+    endif
 
     " coc-clojure 사용은i :call CocAction 을 사용하고, 파라미터는 다음 파일의 "commands"를 참고할 것.
     " https://github.com/NoahTheDuke/coc-clojure/blob/main/package.json
 
-    autocmd FileType clojure set list listchars=tab:⇥\ ,trail:·,extends:>,precedes:<,space:·,multispace:\ ·
-    " autocmd FileType clojure set list listchars=tab:⇥\ ,trail:·,extends:>,precedes:<,space:·
+    autocmd FileType clojure nmap s <nop>
     autocmd FileType clojure nmap sss :IcedCommandPalette<CR>
 
     " REPL: - "sr"
@@ -151,13 +148,12 @@ augroup vim_iced
 
     " Name Space: - "sn"
     autocmd FileType clojure nmap sna :IcedAddNs<CR>
-    autocmd FileType clojure nmap sns :call Sort_clojure_namspace_require()<CR>
-    function! Sort_clojure_namspace_require()
+    autocmd FileType clojure nmap sns :call <SID>sort_clojure_namspace_require()<CR>
+    function! s:sort_clojure_namspace_require()
         if input("namespace require list를 정렬하시겠습니까? (y/n)") =~ "y"
             execute "normal! gg/:require ea/))iggvip}10</[vip:sortkkJJ}kJJvip="
         endif
     endfunction
-    " autocmd FileType clojure nmap snS :call system("clojure-lsp clean-ns --settings '{:clean {:ns-inner-blocks-indentation :next-line :sort {:ns true :require true :import true :refer {:max-line-length 80}}}}' --filenames " . expand("%"))<CR>:e<CR>
     autocmd FileType clojure nmap snS :call system("clojure-lsp clean-ns --settings '{:clean {:ns-inner-blocks-indentation :same-line :sort {:ns true :require true :import true :refer {:max-line-length 80}}}}' --filenames " . expand("%"))<CR>:e<CR>
 
     autocmd FileType clojure nmap snc :IcedCleanNs<CR>
@@ -222,15 +218,7 @@ augroup vim_iced
     autocmd FileType clojure imap <C-b> <Esc><Plug>(sexp_move_to_prev_bracket)i
 augroup END
 
-" let g:iced_default_key_mapping_leader = '<Leader>'
-" let g:iced_enable_default_key_mappings = v:true
-let g:iced_enable_clj_kondo_analysis = v:true
-let g:iced#nrepl#enable_sideloader = v:true
-
-" REPL을 오른쪽에 열어준다
-let g:iced#buffer#stdout#mods = 'vertical'
-let g:iced#buffer#stdout#size = v:null
-
+"* SEXP 설정
 " 편집한 값들은 한 단계 인덴트를 오른쪽으로 당겼음
 let g:sexp_mappings = {
             \ 'sexp_outer_list':                'af',
