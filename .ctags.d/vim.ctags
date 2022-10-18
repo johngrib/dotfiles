@@ -8,3 +8,9 @@
 
 --regex-vim=/^ *"\*\* (.+)$/·\1/t,textTitle/
 --regex-vim=/^ *"\*\*\* (.+)$/··\1/t,textTitle/
+
+# " FOO: -
+--regex-vim=/^" ([^:]+: - .*?)\s*$/\1/t,textTitle/
+--regex-vim=/^ {4}" ([^:]+: - .*?)\s*$/·\1/t,textTitle/
+--regex-vim=/^ {8}" ([^:]+: - .*?)\s*$/··\1/t,textTitle/
+
