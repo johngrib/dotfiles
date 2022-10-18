@@ -85,7 +85,6 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'nvim-telescope/telescope.nvim'
 
     "* language 확장
-    " Plug 'scrooloose/syntastic'        " 파일을 저장할 때 자동으로 문법 검사(ale과 중복되는 기능)
     " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
     " https://github.com/dense-analysis/ale
     " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
@@ -125,15 +124,15 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'johngrib/grib-wiki'
 
     "* 미분류
-    Plug 'neoclide/coc-lists', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
 let g:coc_global_extensions = [
             \ 'coc-ultisnips',
             \ 'coc-clojure',
-            \ 'coc-pyright',
             \ 'coc-rust-analyzer',
+            \ 'coc-vimlsp',
             \ 'coc-go',
             \]
 
@@ -193,11 +192,14 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     set hidden  " Buffer should still exist if window is closed
     set nopaste
 
-    set smartcase ignorecase hlsearch incsearch
+    set smartcase hlsearch incsearch
+
+    " command line에서 소문자 입력 후 탭을 누르면 대소문자 구분 없이 자동완성
+    set ignorecase
     "set tildeop    "~ 를 다른 오퍼레이터와 함께 사용한다.
 
     " 화면 표시
-    set nu               " 라인 넘버 출력
+    set number           " 라인 넘버 출력
     " set relativenumber
     set ruler            " 현재 커서 위치 (row, col) 좌표 출력
     set noerrorbells     " 에러 알림음 끄기
@@ -301,38 +303,9 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <Space>P "+P
     " nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
-    " 버퍼 관리
-    " nnoremap <silent> <F2><F2>   :b#<CR>
-    nnoremap <silent> <F2>d   :BuffersDelete<CR>
+    " 참고 - ./vim-include/set-f1-f20.vim
     nnoremap <silent> <PageUp>   :bnext!<CR>
     nnoremap <silent> <PageDown> :bprevious!<CR>
-    " nnoremap <silent> <F2><F3>   :bnext!<CR>
-    " nnoremap <silent> <F2><F1>   :bprevious!<CR>
-    " nnoremap <silent> <F2>d      :bd!<CR>
-    " 현재 버퍼를 닫고 이전 버퍼로 이동
-    nnoremap <silent> <F2><F6> :bp <BAR> bd #<CR>
-    nnoremap <silent> <F2>q    :bd<CR>
-    " 현재 버퍼만 남기고 모두 닫기
-    nnoremap <silent> <F2>o      :%bd <BAR> e # <BAR> bd #<CR>
-    nnoremap <silent> <F2><F2> :buffers<CR>:buffer<Space>
-    nnoremap <silent> <F2><F3> :q<CR>
-
-    " https://www.reddit.com/r/neovim/comments/mlqyca/fzf_buffer_delete/
-    function! s:list_buffers()
-      redir => list
-      silent ls
-      redir END
-      return split(list, "\n")
-    endfunction
-
-    function! s:delete_buffers(lines)
-      execute 'bd! ' join(map(a:lines, {_, line -> split(line)[0]}))
-    endfunction
-
-    command! BuffersDelete call fzf#run(fzf#wrap({
-      \ 'source': s:list_buffers(),
-      \ 'sink*': { lines -> s:delete_buffers(lines) },
-      \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept' }))
 
     inoremap <C-e> <C-O>$
     inoremap <C-l> <right>
@@ -386,33 +359,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     let g:AutoPairsShortcutJump = ''
     let g:AutoPairsShortcutBackInsert = ''
 
-    " " incsearch
-    " let g:incsearch#auto_nohlsearch = 0
-    " map /  <Plug>(incsearch-forward)
-    " map ?  <Plug>(incsearch-backward)
-    " map g/ <Plug>(incsearch-stay)
-    " map n  <Plug>(incsearch-nohl-n)
-    " map N  <Plug>(incsearch-nohl-N)
-    " map *  <Plug>(incsearch-nohl-*)
-    " map #  <Plug>(incsearch-nohl-#)
-    " map g* <Plug>(incsearch-nohl-g*)
-    " map g# <Plug>(incsearch-nohl-g#)
-
-
-    " Syntastic 설정
-    " https://thechefprogrammer.blogspot.kr/2014/05/syntax-check-for-php-and-javascript.html
-    " set statusline+=%#warningmsg#
-    " set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_php_checkers = ['php']
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_mode_map = { 'mode': 'passive' }
-    let g:syntastic_auto_loc_list = 0
-    " nnoremap <silent> <F2> :SyntasticCheck<CR>
 
     " let g:ale_fixers = { 'javascript': ['eslint'] }
     " let g:ale_javascript_eslint_use_global = 1
@@ -430,9 +377,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " tabular
     vnoremap <C-t> :Tabularize /
 
-    "eclim
-    " let g:EclimCompletionMethod = 'omnifunc'
-
     " eregex
     " nnoremap <Space>/ :call eregex#toggle()<CR>
     " let g:eregex_default_enable = 0
@@ -448,10 +392,8 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     nnoremap <silent>S <nop>
     vnoremap <silent>s <nop>
 
-    nnoremap <Space><f> <Esc>:let @z=@/<CR>/\v[)"}]<CR>:let @/=@z<CR>
-    nnoremap <Space><b> <Esc>:let @z=@/<CR>?\v[("{]<CR>:let @/=@z<CR>
-
-    nnoremap =e :Autoformat<CR>
+    nnoremap <Space>f <Esc>:let @z=@/<CR>/\v[)"}]<CR>:let @/=@z<CR>
+    nnoremap <Space>b <Esc>:let @z=@/<CR>?\v[("{]<CR>:let @/=@z<CR>
 
     " multiple_cursors
     let g:multi_cursor_next_key='<C-n>'
@@ -555,19 +497,6 @@ for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
-iabbr __email johngrib82@gmail.com
-iabbr <expr> __time strftime("%Y-%m-%d %H:%M:%S")
-iabbr <expr> __date strftime("%Y-%m-%d")
-iabbr <expr> __file expand('%:p')
-iabbr <expr> __name expand('%')
-iabbr <expr> __pwd expand('%:p:h')
-iabbr <expr> __branch system("git rev-parse --abbrev-ref HEAD")
-iabbr <expr> __uuid system("uuidgen")
-
-iabbr ㅇ. 있다.
-iabbr ㅇ.. 입니다.
-iabbr ㄱ.. 그리고
-
 let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 1
@@ -582,22 +511,23 @@ augroup END
 
 set fileencodings=utf-8,euc-kr
 
-"* Tagbar Vim
-let g:tagbar_type_vim = {
-    \ 'ctagstype' : 'vim',
-    \ 'sort': 0,
-    \ 'kinds' : [
-        \ 'v:variables:1:0',
-        \ 'f:functions:1:0',
-        \ 'a:autocommand groups:1:0',
-        \ 'c:commands:1:0',
-        \ 'm:maps:1:0',
-        \ 't:titles',
-        \ ],
-    \}
 augroup vimscript_syntax_color_jg
     " autocmd FileType vim exe 'syntax match VimScriptCustomTitleText /"\* (.*)$/'
-    autocmd FileType vim syntax match VimScriptCustomTitleText /\v^ *"\* .*$/
+    autocmd FileType vim syntax match VimScriptCustomTitleText /\v^ *"\*+ .*$/
     autocmd FileType vim highlight VimScriptCustomTitleText ctermfg=Green guifg=#e0c9b7 gui=bold
 augroup END
+
+"* iabbr 설정
+iabbr __email johngrib82@gmail.com
+iabbr <expr> __time strftime("%Y-%m-%d %H:%M:%S")
+iabbr <expr> __date strftime("%Y-%m-%d")
+iabbr <expr> __file expand('%:p')
+iabbr <expr> __name expand('%')
+iabbr <expr> __pwd expand('%:p:h')
+iabbr <expr> __branch system("git rev-parse --abbrev-ref HEAD")
+iabbr <expr> __uuid system("uuidgen")
+
+iabbr ㅇ. 있다.
+iabbr ㅇ.. 입니다.
+iabbr ㄱ.. 그리고
 
