@@ -1,33 +1,32 @@
 "* set-coc.vim
 inoremap <silent><expr> <c-space> coc#refresh()
 
-"* 자동완성 메뉴
-" inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<CR>"
-" inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : copilot#Accept("\<CR>")
-
-function! Check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+"* 자동완성 메뉴(pmenu)
 
 " 팝업 메뉴가 보인다면 coc 자동완성
 " 커서 왼쪽에 공백 문자가 있다면 그냥 탭 키 입력
 " 그 외의 경우에는 UltiSnips 자동완성
-" inoremap <silent><script><expr> <Tab>
-"             \ pumvisible() ? "\<C-y>"
-"             \ : Check_back_space() ? "\<Tab>"
-"             \ : "\<C-R>=UltiSnips#ExpandSnippet()<CR>"
+inoremap <silent><script><expr> <TAB>
+      \ coc#pum#visible()
+      \ ? coc#pum#confirm()
+      \ : <SID>check_back_space() ? "\<TAB>"
+      \ : "\<C-R>=UltiSnips#ExpandSnippet()<CR>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 "** 메뉴 Color
 " https://github.com/neoclide/coc.nvim/pull/3862
 " https://www.ditig.com/256-colors-cheat-sheet
-" coc 자동완성메뉴에서 현재 선택된 아이템
+" 자동완성메뉴에서 현재 선택된 아이템
 highlight CocMenuSel ctermbg=88 guibg=#870000
 
-" coc 자동완성메뉴에서 매치된 글자
+" 자동완성메뉴에서 매치된 글자
 highlight CocSearch ctermfg=10 guifg=#00ff00
 
-" coc 자동완성메뉴에서 선택되지 않은 아이템들
+" 자동완성메뉴에서 선택되지 않은 아이템들
 highlight CocFloating ctermbg=237 guibg=#3a3a3a
 
 "* coc 공통 map 설정
@@ -42,12 +41,9 @@ nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <silent> sK :call <SID>show_documentation()<CR>
 
-
-" https://github.com/iamcco/coc-vimlsp
-call add(g:coc_global_extensions, 'coc-vimlsp')
-
-"* coc explorer
-" Explorer
+"* coc 플러그인들
+"** coc-explorer
+" https://github.com/weirongxu/coc-explorer
 " :CocInstall coc-explorer
 let g:coc_explorer_global_presets = {
 \   'floating': {
@@ -82,7 +78,6 @@ let g:coc_explorer_global_presets = {
 \   },
 \ }
 
-"** coc explorer map
 nmap <F1><F8> :CocCommand explorer --preset floatingLeftside<CR>
 nmap <F1>e <Cmd>CocCommand explorer --preset file<CR>
 
