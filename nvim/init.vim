@@ -77,7 +77,6 @@ call plug#begin('~/.config/nvim/plugged')
     "* File 탐색, 브라우징
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
-    Plug 'weirongxu/coc-explorer', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     Plug 'preservim/nerdtree'
         Plug 'ryanoasis/vim-devicons'
     " Plug 'wesleyche/srcexpl'
@@ -107,8 +106,8 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
         "* Kotlin
-        Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
-        Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+        " Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
+        " Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
         "* Rust
         Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -124,16 +123,19 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'johngrib/grib-wiki'
 
     "* 미분류
-    Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
+"* COC plugin 목록
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
+" :CocUpdate
 let g:coc_global_extensions = [
             \ 'coc-ultisnips',
-            \ 'coc-clojure',
-            \ 'coc-rust-analyzer',
             \ 'coc-vimlsp',
             \ 'coc-go',
+            \ 'coc-lists',
+            \ 'coc-explorer',
+            \ 'coc-clojure',
+            \ 'coc-rust-analyzer',
             \]
 
 " For Neovim 0.1.3 and 0.1.4
@@ -377,13 +379,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " tabular
     vnoremap <C-t> :Tabularize /
 
-    " eregex
-    " nnoremap <Space>/ :call eregex#toggle()<CR>
-    " let g:eregex_default_enable = 0
-    " let g:eregex_forward_delim = '/'
-    " let g:eregex_backward_delim = '?'
-    " let g:eregex_force_case = 0
-
     nmap ga <Plug>(EasyAlign)
     xmap ga <Plug>(EasyAlign)
 
@@ -403,40 +398,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
     " nnoremap <C-c> :call multiple_cursors#quit()<CR>
 
     let g:vim_game_code_break_item_limit = 8
-
-    let g:axring_rings = [
-                \ ['&&', '||'],
-                \ ['&', '|', '^'],
-                \ ['&=', '|=', '^='],
-                \ ['>>', '<<'],
-                \ ['>>=', '<<='],
-                \ ['==', '!='],
-                \ ['>', '<', '>=', '<='],
-                \ ['++', '--'],
-                \ ['true', 'false'],
-                \ ['verbose', 'debug', 'info', 'warn', 'error', 'fatal'],
-                \ ]
-
-    let g:axring_rings_go = [
-                \ [':=', '='],
-                \ ['byte', 'rune'],
-                \ ['complex64', 'complex128'],
-                \ ['int', 'int8', 'int16', 'int32', 'int64'],
-                \ ['uint', 'uint8', 'uint16', 'uint32', 'uint64'],
-                \ ['float32', 'float64'],
-                \ ['interface', 'struct'],
-                \ ]
-
-    let g:axring_rings_vimwiki = [
-                \ ['##', '###', '####'],
-                \ ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                \ ]
-
-    let g:axring_rings_clojure = [
-                \ ["{", '#{'],
-                \ ]
-
-    let g:axring_rings_gitrebase = ['pick', 'reword', 'edit', 'squash', 'fixup']
 
     " let g:ale_fixers = {'php': ['php_cs_fixer']}
     let g:ale_fixers = {}
@@ -490,12 +451,6 @@ augroup cursor_move
     autocmd CursorMoved * exe printf('match CocListBlueBlack /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 augroup END
 
-" Autosave: https://github.com/907th/vim-auto-save
-let g:auto_save_silent = 1
-
-for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
-    execute "source " . include_file
-endfor
 
 let g:minimap_width = 10
 let g:minimap_auto_start = 0
@@ -530,4 +485,9 @@ iabbr <expr> __uuid system("uuidgen")
 iabbr ㅇ. 있다.
 iabbr ㅇ.. 입니다.
 iabbr ㄱ.. 그리고
+
+"* 설정 파일 include
+for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
+    execute "source " . include_file
+endfor
 
