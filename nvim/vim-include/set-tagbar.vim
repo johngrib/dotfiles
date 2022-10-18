@@ -1,3 +1,5 @@
+"* Tagbar 설정
+
 nnoremap \t :TagbarToggle<CR>:e<CR>
 
 let g:tagbar_sort = 0
@@ -23,6 +25,8 @@ augroup tagbar_custom_config
     autocmd FileType tagbar nmap \\t< :let g:tagbar_position = "leftabove vertical"<CR>:TagbarClose<CR>:TagbarOpen<CR>
 augroup END
 
+"* 잡다한 Language별 설정
+"** asciidoc
 let g:tagbar_type_asciidoc = {
     \ 'ctagstype' : 'asciidoc',
     \ 'sort': 0,
@@ -30,6 +34,20 @@ let g:tagbar_type_asciidoc = {
         \ 'h:Heading'
     \ ]
 \ }
+
+"** vim
+let g:tagbar_type_vim = {
+    \ 'ctagstype' : 'vim',
+    \ 'sort': 0,
+    \ 'kinds' : [
+        \ 'v:variables:1:0',
+        \ 'f:functions:1:0',
+        \ 'a:autocommand groups:1:0',
+        \ 'c:commands:1:0',
+        \ 'm:maps:1:0',
+        \ 't:titles',
+        \ ],
+    \}
 
 augroup tagbar_global_config
     autocmd VimLeavePre * TagbarClose
