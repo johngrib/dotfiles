@@ -431,27 +431,6 @@ command! Ncd :cd %:p:h
 
 " command! Time :put =strftime('%Y-%m-%d %H:%M:%S +0900')
 
-" Change cursor shape between insert and normal mode in iTerm2.app + tmux + vim
-" https://gist.github.com/andyfowler/1195581
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  " insert 모드: | 모양 커서
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  " normal 모드: █ 모양 커서
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  " replace 모드: _ 모양 커서
-  let &t_SR = "\<esc>]50;CursorShape=2\x7"
-endif
-
-augroup cursor_move
-    " https://stackoverflow.com/questions/1551231/highlight-variable-under-cursor-in-vim-like-in-netbeans
-    " :so $VIMRUNTIME/syntax/hitest.vim
-    autocmd CursorMoved * exe printf('match CocListBlueBlack /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-augroup END
-
-
 let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 1
@@ -485,6 +464,30 @@ iabbr <expr> __uuid system("uuidgen")
 iabbr ㅇ. 있다.
 iabbr ㅇ.. 입니다.
 iabbr ㄱ.. 그리고
+
+"* 화면 구성/색깔/커서
+highlight MatchParen ctermbg=red guibg=#ff0000
+
+augroup cursor_move_selected_word
+    " :so $VIMRUNTIME/syntax/hitest.vim
+    autocmd CursorMoved * exe printf('match CursorSelected001 /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+    highlight CursorSelected001 ctermfg=14 ctermbg=23 guifg=#00ffff guibg=#005f5f
+augroup END
+
+" Change cursor shape between insert and normal mode in iTerm2.app + tmux + vim
+" https://gist.github.com/andyfowler/1195581
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  " insert 모드: | 모양 커서
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  " normal 모드: █ 모양 커서
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  " replace 모드: _ 모양 커서
+  let &t_SR = "\<esc>]50;CursorShape=2\x7"
+endif
+
 
 "* 설정 파일 include
 for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
