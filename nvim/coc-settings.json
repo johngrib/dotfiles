@@ -5,6 +5,9 @@
     "coc": {
         "preferences": {
             "formatOnSaveFileTypes": ["rust"]
+        },
+        "source": {
+            "iced.enable": true
         }
     },
     "languageserver": {
