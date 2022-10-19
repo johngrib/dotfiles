@@ -78,6 +78,3 @@ let g:coc_explorer_global_presets = {
 \   },
 \ }
 
-nmap <F1><F8> :CocCommand explorer --preset floatingLeftside<CR>
-nmap <F1>e <Cmd>CocCommand explorer --preset file<CR>
-

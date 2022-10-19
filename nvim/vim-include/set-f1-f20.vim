@@ -2,6 +2,7 @@
 
 "** F1: 탐색
 nnoremap <f1> <nop>
+nnoremap <nowait> <f1>? :vs ~/dotfiles/nvim/vim-include/set-f1-f20.vim<CR>
 
 " nnoremap <nowait> <f1><CR> :Marks<CR>
 " nnoremap <nowait> <f1><f1> :call FzfOmniFiles()<CR>
@@ -11,9 +12,11 @@ nnoremap <f1> <nop>
 " nnoremap <nowait> <f1>u call fzf#vim#ag('', {'options': '--select-2'})
 
 nnoremap <nowait> <f1>/ :History/<CR>
-nnoremap <nowait> <f1>1 :Files<CR>
 nnoremap <nowait> <f1>: :History:<CR>
+
 nnoremap <nowait> <f1><f1> :GitFiles<CR>
+nnoremap <nowait> <f1>1 :Files<CR>
+
 nnoremap <nowait> <f1><f2> :Buffers<CR>
 nnoremap <nowait> <f1><f3> <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <nowait> <f1><f7> :execute ":Tags " . expand('<cword>')<CR>
@@ -23,10 +26,14 @@ nnoremap <nowait> <f1>j <cmd>lua require('telescope.builtin').jumplist()<cr>
 nnoremap <nowait> <f1>l :Lines<CR>
 nnoremap <nowait> <f1>t :Tags ^<CR>
 
+nnoremap <nowait> <f1><f8> :CocCommand explorer --preset floatingLeftside<CR>
+nnoremap <nowait> <f1>e <cmd>CocCommand explorer --preset file<CR>
 
 " nnoremap <f3> :execute ":Tags " . expand('<cword>')<CR>
 
 "** F2: 버퍼 관리
+nnoremap <nowait> <f2>? :vs ~/dotfiles/nvim/vim-include/set-f1-f20.vim<CR>
+
 nnoremap <silent> <F2><F2> :Buffers<CR>
 nnoremap <silent> <F2>2 :buffers<CR>:buffer<Space>
 " nnoremap <silent> <F2><F2>   :b#<CR>
