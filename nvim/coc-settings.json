@@ -7,7 +7,7 @@
             "formatOnSaveFileTypes": ["rust"]
         },
         "source": {
-            "iced.enable": true
+            "iced.enable": false
         }
     },
     "languageserver": {
