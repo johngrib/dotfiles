@@ -29,13 +29,6 @@ snippet "#_(\d+)" "n번 #_ 반복" r
 `!p snip.rv = "#_" * int(match.group(1))`$0
 endsnippet
 
-
-
-snippet (def ""
-(def ${1:name}
-endsnippet
-
-
 snippet "\((re-seq)" "(keyword #" r
 (`!p snip.rv = match.group(1)` #"${1}" ${2}
 endsnippet
