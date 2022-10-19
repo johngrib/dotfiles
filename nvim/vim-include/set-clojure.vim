@@ -65,7 +65,6 @@ augroup vim_clojure_coc
     autocmd FileType clojure nmap <silent> s<C-]> <Plug>(coc-definition)
     autocmd FileType clojure nmap <silent> <C-]> :IcedDefJump<CR>
     autocmd FileType clojure nmap <silent> gy <Plug>(coc-type-definition)
-    autocmd FileType clojure nmap <silent> gr <Plug>(coc-references)
     " autocmd VimLeavePre clojure TagbarClose
 augroup END
 
@@ -119,6 +118,7 @@ augroup vim_iced
     " Code Analyse: - "sa"
     autocmd FileType clojure nmap sa <nop>
     autocmd FileType clojure nmap sar :IcedBrowseReferences<CR>
+    autocmd FileType clojure nmap saR <Plug>(coc-references)
     autocmd FileType clojure nmap sad :IcedBrowseDependencies<CR>
     autocmd FileType clojure nmap sau :IcedUseCaseOpen<CR>:echom "list use case: gF to open file"<CR>
     autocmd FileType clojure nmap sa/ <Plug>(iced_grep)
@@ -282,6 +282,7 @@ let g:sexp_mappings.sexp_raise_list = 'sdp'
 " to  : (let [foo bar] b) 
 let g:sexp_mappings.sexp_raise_element = 'sdo'
 
+"* Conjure 설정 (deprecated)
 " Conjure
 " https://github.com/Olical/conjure/issues/244
 
