@@ -445,12 +445,6 @@ augroup END
 
 set fileencodings=utf-8,euc-kr
 
-augroup vimscript_syntax_color_jg
-    " autocmd FileType vim exe 'syntax match VimScriptCustomTitleText /"\* (.*)$/'
-    autocmd FileType vim syntax match VimScriptCustomTitleText /\v^ *"\*+ .*$/
-    autocmd FileType vim highlight VimScriptCustomTitleText ctermfg=Green guifg=#e0c9b7 gui=bold
-augroup END
-
 "* iabbr 설정
 iabbr __email johngrib82@gmail.com
 iabbr <expr> __time strftime("%Y-%m-%d %H:%M:%S")
