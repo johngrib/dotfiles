@@ -165,18 +165,21 @@ augroup vim_iced
     autocmd FileType clojure nmap scR :IcedRenameSymbol<CR>
     autocmd FileType clojure nmap scr <Plug>(coc-rename)
     " 잘되지만 lsp-clojure-change-coll 이 좀 더 편함
-    " autocmd FileType clojure nmap <silent> scc :call CocAction('runCommand', 'lsp-clojure-cycle-coll')<CR>
-    autocmd FileType clojure nmap <silent> scc :call CocAction('runCommand', 'lsp-clojure-change-coll')<CR>
+    autocmd FileType clojure nmap <silent> scc :call CocActionAsync('runCommand', 'lsp-clojure-cycle-coll')<CR>
+    autocmd FileType clojure nmap <silent> scC :call CocActionAsync('runCommand', 'lsp-clojure-change-coll')<CR>
     autocmd FileType clojure nmap <silent> scf :call CocAction('runCommand', 'lsp-clojure-create-function')<CR>
     " 커서가 위치한 단어를 복사해서 아랫줄에 _ (println 단어)를 만들어 준다. let 구문에서 사용할 것.
     autocmd FileType clojure nmap scp yiwo_<Space>(println "<C-r>":" <C-r>")<Esc>
     autocmd FileType clojure nmap sc# <Plug>(sexp_move_to_prev_bracket)i#_<Esc>``
     autocmd FileType clojure nmap sc3 <Plug>(sexp_move_to_prev_element_head)i#_<Esc>l
     autocmd FileType clojure nmap scl :IcedMoveToLet<CR>
+    autocmd FileType clojure nmap scL :call CocAction('runCommand', 'lsp-clojure-move-to-let')<CR>
     autocmd FileType clojure nmap sc> :IcedThread
+    " autocmd FileType clojure nmap sctl :call CocActionAsync('runCommand', 'lsp-clojure-thread-last-all')<CR>
 
     " 오버로딩 함수 작성
     autocmd FileType clojure nmap sca <Plug>(iced_add_arity)
+    autocmd FileType clojure nmap scm :call CocAction('codeAction', 'cursor')<CR>
 
     " Testing: - "st"
     autocmd FileType clojure nmap <silent> stc :call CocAction('runCommand', 'lsp-clojure-create-test')<CR>
