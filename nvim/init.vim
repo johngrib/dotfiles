@@ -138,21 +138,10 @@ let g:coc_global_extensions = [
             \ 'coc-rust-analyzer',
             \]
 
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-if has('termguicolors')
-    if $TERM_PROGRAM !~ "Apple_Terminal"
-        set termguicolors
-    endif
-endif
-
-" Theme
 syntax enable
-colorscheme flatcolor-johngrib
-filetype plugin indent on " Put your non-Plugin stuff after this line
+filetype plugin indent on
 
-" set ----------------------------------------------------------------------
+"* vim set 설정
 
     set path+=**
     set nofixeol
@@ -167,22 +156,7 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
         set grepformat=%f:%l:%c:%m
     endif
 
-    if has("nvim")
-        " set termguicolors
-    endif
 
-    if has("gui_macvim")
-        set macmeta
-        set guifont=Meslo\ LG\ S\ DZ\ Regular\ Nerd\ Font\ Complete:h14
-
-        " macVim 에서 esc 로 영문변환, imi 는 1 또는 2 로 설정해준다
-        set noimd
-        set imi=1
-    else
-        " tmux에서 배경색이 이상하게 나오는 문제를 해결한다.
-        " link : http://stackoverflow.com/a/15095377
-        set t_ut=
-    endif
 
     set nocompatible                  " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
     " set linebreak                     " break at word boundary
@@ -259,7 +233,6 @@ filetype plugin indent on " Put your non-Plugin stuff after this line
         let &undodir = s:undoDir
         set undofile
     endif
-
 
 " initialize 설정 ---------------------------------------------------------------
 
@@ -460,13 +433,30 @@ iabbr ㅇ.. 입니다.
 iabbr ㄱ.. 그리고
 
 "* 화면 구성/색깔/커서
-highlight MatchParen ctermbg=red guibg=#ff0000
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-augroup cursor_move_selected_word
-    " :so $VIMRUNTIME/syntax/hitest.vim
-    autocmd CursorMoved * exe printf('match CursorSelected001 /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-    highlight CursorSelected001 ctermfg=14 ctermbg=23 guifg=#00ffff guibg=#005f5f
-augroup END
+if has('termguicolors') && ($TERM_PROGRAM !~ "Apple_Terminal")
+    set termguicolors
+endif
+
+colorscheme flatcolor-johngrib
+
+if has("gui_macvim")
+    set macmeta
+    set guifont=Meslo\ LG\ S\ DZ\ Regular\ Nerd\ Font\ Complete:h14
+
+    " macVim 에서 esc 로 영문변환, imi 는 1 또는 2 로 설정해준다
+    set noimd
+    set imi=1
+else
+    " tmux에서 배경색이 이상하게 나오는 문제를 해결한다.
+    " link : http://stackoverflow.com/a/15095377
+    set t_ut=
+endif
+
+" 커서가 지시하는 괄호의 짝 괄호 색 지정
+highlight MatchParen ctermbg=red guibg=#ff0000
 
 " Change cursor shape between insert and normal mode in iTerm2.app + tmux + vim
 " https://gist.github.com/andyfowler/1195581

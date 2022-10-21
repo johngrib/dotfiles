@@ -63,6 +63,25 @@ command! BuffersDelete call fzf#run(fzf#wrap({
             \ 'sink*': { lines -> s:delete_buffers(lines) },
             \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept' }))
 
+"** F3: 하이라이트 색깔 관리
+nnoremap <f3> <nop>
+nnoremap <f3><f3> :nohlsearch<CR>
+
+nnoremap <f3>m :let g:cursor_move_selected_word_highlight = ! g:cursor_move_selected_word_highlight<CR>
+augroup cursor_move_selected_word
+    let g:cursor_move_selected_word_highlight = v:true
+
+    function! s:highlight_selected()
+        if g:cursor_move_selected_word_highlight
+            exe printf('match CursorSelected001 /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+        endif
+    endfunction
+
+    " :so $VIMRUNTIME/syntax/hitest.vim
+    autocmd CursorMoved * call <SID>highlight_selected()
+    highlight CursorSelected001 ctermfg=14 ctermbg=23 guifg=#00ffff guibg=#005f5f
+augroup END
+
 
 "** F9: register 목록
 nnoremap <nowait> <F9> <cmd>lua require('telescope.builtin').registers()<cr>
