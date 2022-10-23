@@ -79,6 +79,7 @@ augroup END
 augroup vim_iced
     if g:iced_enable_default_key_mappings == v:true
         echoerr "[경고] g:iced_enable_default_key_mappings 가 true 입니다."
+        " lua vim.notify("[경고] g:iced_enable_default_key_mappings 가 true 입니다.")
     endif
 
     " coc-clojure 사용은i :call CocAction 을 사용하고, 파라미터는 다음 파일의 "commands"를 참고할 것.
@@ -120,7 +121,8 @@ augroup vim_iced
     autocmd FileType clojure nmap ser <Plug>(iced_eval_and_print)<Plug>(sexp_outer_top_list)``
     autocmd FileType clojure nmap sef :IcedRequire<CR>:echom "file loaded:" expand("%")<CR>
     autocmd FileType clojure nmap seF :IcedRequireAll<CR>:echom "Require and reload current file."<CR>
-    autocmd FileType clojure nmap sea :IcedRefresh<CR>:echom "Reload all changed files on the classpath."<CR>
+    " autocmd FileType clojure nmap sea :IcedRefresh<CR>:echom "Reload all changed files on the classpath."<CR>
+    autocmd FileType clojure nmap <silent> sea :IcedRefresh<CR>:lua vim.notify("Reload all changed files on the classpath.")<CR>
     autocmd FileType clojure nmap seA :IcedRefreshAll<CR>:echom "Reload all files on the classpath."<CR>
     autocmd FileType clojure nmap seu <Plug>(iced_undef_all_in_ns)
     autocmd FileType clojure nmap se' <Plug>(iced_eval_at_mark)
