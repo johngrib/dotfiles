@@ -26,6 +26,8 @@ let iced#nrepl#connect#jack_in_command = g:iced#nrepl#connect#iced_command . ' r
 let g:iced#debug#debugger = 'default'
 
 let g:iced_enable_default_key_mappings = v:false
+let g:iced#buffer#stdout#file = $HOME . '/iced-stdout.log'
+let g:iced#buffer#stdout#file_buffer_size = 20000
 
 
 " let g:iced_default_key_mapping_leader = '<Leader>'
@@ -35,7 +37,9 @@ let g:iced#nrepl#enable_sideloader = v:true
 
 " REPL을 오른쪽에 열어준다
 let g:iced#buffer#stdout#mods = 'vertical'
+" REPL 버퍼 사이즈(vertical이면 너비)
 let g:iced#buffer#stdout#size = v:null
+" let g:iced#buffer#stdout#size = 100
 
 
 "* clj-kondo 설정
