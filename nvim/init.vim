@@ -5,6 +5,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
     "* Vim 기본 기능 확장
+        Plug 'rcarriga/nvim-notify'
+        Plug 'kamykn/popup-menu.nvim'
+
         "* session
         Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
 
@@ -458,6 +461,10 @@ endif
 " 커서가 지시하는 괄호의 짝 괄호 색 지정
 highlight MatchParen ctermbg=red guibg=#ff0000
 
+" 선택 메뉴 색깔
+highlight Pmenu ctermfg=254 ctermbg=237 cterm=NONE
+highlight PmenuSel ctermfg=10 ctermbg=239 cterm=NONE
+
 " Change cursor shape between insert and normal mode in iTerm2.app + tmux + vim
 " https://gist.github.com/andyfowler/1195581
 if exists('$TMUX')
@@ -477,4 +484,9 @@ endif
 for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
+
+"* lua 플러그인 초기화
+lua << EOF
+    vim.notify = require("notify")
+EOF
 
