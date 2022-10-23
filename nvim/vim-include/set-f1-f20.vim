@@ -65,7 +65,15 @@ command! BuffersDelete call fzf#run(fzf#wrap({
 
 "** F3: 하이라이트 색깔 관리
 nnoremap <f3> <nop>
-nnoremap <f3><f3> :nohlsearch<CR>
+nnoremap <silent> <f3><f3> :noh<CR>:set cmdheight=2<CR>
+nnoremap <f3>c :call <SID>toggle_curcor_column()<CR>
+function! s:toggle_curcor_column()
+    if &cursorcolumn
+        set nocursorcolumn
+    else
+        set cursorcolumn
+    endif
+endfunction
 
 nnoremap <f3>m :let g:cursor_move_selected_word_highlight = ! g:cursor_move_selected_word_highlight<CR>
 augroup cursor_move_selected_word

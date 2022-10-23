@@ -217,6 +217,7 @@ filetype plugin indent on
     set virtualedit=block   " visual block mode를 쓸 때 문자가 없는 곳도 선택 가능하다
     set autoread
 
+    set cursorcolumn
     set cmdheight=2
     set updatetime=300
     setglobal timeoutlen=1200
@@ -458,12 +459,16 @@ else
     set t_ut=
 endif
 
+" https://www.ditig.com/256-colors-cheat-sheet
 " 커서가 지시하는 괄호의 짝 괄호 색 지정
-highlight MatchParen ctermbg=red guibg=#ff0000
+highlight MatchParen ctermbg=13 guibg=#ff00ff
 
 " 선택 메뉴 색깔
 highlight Pmenu ctermfg=254 ctermbg=237 cterm=NONE
 highlight PmenuSel ctermfg=10 ctermbg=239 cterm=NONE
+
+" 커서 위치 수직 하이라이트
+highlight CursorColumn ctermbg=237 guibg=#3a3a3a
 
 " Change cursor shape between insert and normal mode in iTerm2.app + tmux + vim
 " https://gist.github.com/andyfowler/1195581
