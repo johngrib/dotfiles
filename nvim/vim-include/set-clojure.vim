@@ -19,6 +19,9 @@ let g:tagbar_type_clojure = {
     \}
 
 "* vim-iced 설정
+" jack in(vim 내에서 repl을 띄워 붙기)을 쓰려면 이걸 설정해 둬야 함.
+let g:iced#nrepl#connect#iced_command = $HOME . '/.config/nvim/plugged/vim-iced/bin/iced'
+let iced#nrepl#connect#jack_in_command = g:iced#nrepl#connect#iced_command . ' repl -A:dev:test:itest'
 " let g:iced#debug#debugger = 'fern'
 let g:iced#debug#debugger = 'default'
 
@@ -88,6 +91,17 @@ augroup vim_iced
     autocmd FileType clojure nmap src <Plug>(iced_connect)
     autocmd FileType clojure nmap sri <Plug>(iced_interrupt)
     autocmd FileType clojure nmap srp <Plug>(iced_print_last)
+    autocmd FileType clojure nmap srl :call CocAction('runCommand', 'lsp-clojure-server-info')<CR>
+    autocmd FileType clojure nmap srj :call <SID>jack_in()<CR>
+
+    " Jack In을 수행한다
+    function! s:jack_in()
+        let l:options = input('options: ', '-A:dev:test:itest')
+        let g:iced#nrepl#connect#jack_in_command = g:iced#nrepl#connect#iced_command . ' repl ' . l:options
+        IcedJackIn
+    endfunction
+    " iced#nrepl#is_connected() 함수를 호출해 REPL에 연결되어 있는지 확인할 수 있음.
+
     " Eval Code: - "se"
     "  (defn greet [] (println "hello world"))
     "                           <--inner-->
