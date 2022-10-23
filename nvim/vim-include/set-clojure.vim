@@ -21,7 +21,7 @@ let g:tagbar_type_clojure = {
 "* vim-iced 설정
 " jack in(vim 내에서 repl을 띄워 붙기)을 쓰려면 이걸 설정해 둬야 함.
 let g:iced#nrepl#connect#iced_command = $HOME . '/.config/nvim/plugged/vim-iced/bin/iced'
-let iced#nrepl#connect#jack_in_command = g:iced#nrepl#connect#iced_command . ' repl -A:dev:test:itest'
+let g:iced#nrepl#connect#jack_in_command = g:iced#nrepl#connect#iced_command . ' repl -A:dev:test:itest'
 " let g:iced#debug#debugger = 'fern'
 let g:iced#debug#debugger = 'default'
 
