@@ -17,7 +17,7 @@
         "kotlin": {
             "command": "/opt/homebrew/bin/kotlin-language-server",
             "filetypes": ["kotlin"]
-        },
+        }
         // "clojure-lsp": {
         //     // 참고: https://clojure-lsp.io/clients/#nvim
         //     "command": "clojure-lsp",
