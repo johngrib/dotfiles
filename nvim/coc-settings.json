@@ -18,19 +18,19 @@
             "command": "/opt/homebrew/bin/kotlin-language-server",
             "filetypes": ["kotlin"]
         },
-        "clojure-lsp": {
-            // 참고: https://clojure-lsp.io/clients/#nvim
-            "command": "clojure-lsp",
-            "filetypes": ["clojure"],
-            "rootPatterns": ["project.clj", "deps.edn"],
-            "additionalSchemes": ["jar", "zipfile"],
-            "trace.server": "verbose",
-            "diagnostic.showUnused": true,
-            "diagnostic.showDeprecated": true,
-            "diagnostic.highlightPriority": 1000000,
-            "initializationOptions": {
-                "ignore-classpath-directories": true
-            }
-        }
+        // "clojure-lsp": {
+        //     // 참고: https://clojure-lsp.io/clients/#nvim
+        //     "command": "clojure-lsp",
+        //     "filetypes": ["clojure"],
+        //     "rootPatterns": ["project.clj", "deps.edn"],
+        //     "additionalSchemes": ["jar", "zipfile"],
+        //     "trace.server": "verbose",
+        //     "diagnostic.showUnused": true,
+        //     "diagnostic.showDeprecated": true,
+        //     "diagnostic.highlightPriority": 1000000,
+        //     "initializationOptions": {
+        //         "ignore-classpath-directories": true
+        //     }
+        // }
     }
 }
