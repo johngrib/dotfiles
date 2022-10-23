@@ -479,6 +479,21 @@ else
   let &t_SR = "\<esc>]50;CursorShape=2\x7"
 endif
 
+"** notify 설정
+lua << EOF
+function _G.noti_custom_text(text)
+    vim.notify(text, vim.log.levels.INFO, {
+        stages = 'slide',
+        render = 'minimal',
+    })
+end
+EOF
+
+function! Noti_pipe(param, text)
+    call v:lua.noti_custom_text(a:text)
+    return a:param
+endfunction
+
 
 "* 설정 파일 include
 for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))

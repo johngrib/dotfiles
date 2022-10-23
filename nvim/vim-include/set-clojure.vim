@@ -41,6 +41,18 @@ let g:iced#buffer#stdout#mods = 'vertical'
 let g:iced#buffer#stdout#size = v:null
 " let g:iced#buffer#stdout#size = 100
 
+"** REPL 연결 hook 설정
+let g:iced#hook = {
+    \ 'connect_prepared': {
+        \ 'type': 'function',
+        \ 'exec': {params -> Noti_pipe(params, 'REPL 연결을 시도합니다.')}},
+    \ 'connecting': {
+        \ 'type': 'function',
+        \ 'exec': {params -> Noti_pipe(params, 'REPL에 연결중입니다.')}},
+    \ 'connected': {
+        \ 'type': 'function',
+        \ 'exec': {params -> Noti_pipe(params, 'REPL에 연결되었습니다.')}},
+    \}
 
 "* clj-kondo 설정
 let g:clj_fmt_config = '{:indentation? true, :remove-surrounding-whitespace? true, :remove-trailing-whitespace? true, :remove-consecutive-blank-lines? false, :insert-missing-whitespace? true, :align-associative? false, :indents {#"^\w" [[:inner 0]], #".*" [[:inner 0]]}}'
