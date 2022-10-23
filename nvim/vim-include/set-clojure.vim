@@ -168,8 +168,29 @@ augroup vim_iced
     autocmd FileType clojure setlocal makeprg=clj-kondo\ --lint\ %
     autocmd FileType clojure setlocal errorformat=%f:%l:%c:\ Parse\ %t%*[^:]:\ %m,%f:%l:%c:\ %t%*[^:]:\ %m
 
+    function! s:Clojure_SA(selected) abort
+        if a:selected =~# '^ sar'
+            IcedBrowseReferences
+        elseif a:selected =~# '^ saR'
+            <Plug>(coc-references)
+        elseif a:selected =~# '^ sad'
+            IcedBrowseDependencies
+        endif
+    endfunction
+
+    autocmd FileType clojure nnoremap <silent> sa<Space> :call popup_menu#open(
+                \ [
+                    \ ' sar: Iced - Show Usage.',
+                    \ ' saR: CoC - Show Usage.',
+                    \ ' sad: Show Dependencies.',
+                \ ],
+                \ { selected -> <SID>Clojure_SA(selected) },
+                \ {'relative': 'cursor', 'col': 5, 'row': 1 })<CR>
+
+                " \ { selected -> <SID>Clojure_SA(selected) },
+
     " Clj Kondo: - "sk"
-    " clj kondo를 파일에 대해 실행하고, 경고 목록을 보여줌.
+    " clj kondo를 파일에 대해 실행하고, 경고 목록을 보여줌. sal 과 같다.
     autocmd FileType clojure nmap skl :Dispatch<CR>
     " .clj-kondo/config.edn 에 매크로를 등록해서 인식하게 해준다.
     autocmd FileType clojure nmap skm :call CocAction('runCommand', 'lsp-clojure-resolve-macro-as')<CR>
@@ -182,7 +203,7 @@ augroup vim_iced
     autocmd FileType clojure nmap sna :IcedAddNs<CR>
     autocmd FileType clojure nmap sns :call <SID>sort_clojure_namspace_require()<CR>
     function! s:sort_clojure_namspace_require()
-        if input("namespace require list를 정렬하시겠습니까? (y/n)") =~ "y"
+        if input("namespace require list를 정렬하시겠습니까? (y/n) ") =~ "y"
             execute "normal! gg/:require ea/))iggvip}10</[vip:sortkkJJ}kJJvip="
         endif
     endfunction
@@ -192,10 +213,13 @@ augroup vim_iced
     " 왜 안되는지 모르겠음.. 그리고 어떻게 쓰는지 모르겠음
     " autocmd FileType clojure nmap <silent> snA :call CocAction('runCommand', 'lsp-clojure-add-require-suggestion')<CR>
 
+    autocmd FileType clojure nmap sff <Plug>(coc-codeaction-cursor)
+
     " Code Typing: - "sc"
     autocmd FileType clojure nmap sc <nop>
     autocmd FileType clojure nmap scR :IcedRenameSymbol<CR>
     autocmd FileType clojure nmap scr <Plug>(coc-rename)
+    autocmd FileType clojure nmap scn :call CocAction('refactor')<CR>
     " 잘되지만 lsp-clojure-change-coll 이 좀 더 편함
     autocmd FileType clojure nmap <silent> scc :call CocActionAsync('runCommand', 'lsp-clojure-cycle-coll')<CR>
     autocmd FileType clojure nmap <silent> scC :call CocActionAsync('runCommand', 'lsp-clojure-change-coll')<CR>
@@ -211,7 +235,9 @@ augroup vim_iced
 
     " 오버로딩 함수 작성
     autocmd FileType clojure nmap sca <Plug>(iced_add_arity)
-    autocmd FileType clojure nmap scm :call CocAction('codeAction', 'cursor')<CR>
+    " autocmd FileType clojure nmap scm :call CocAction('codeAction', 'cursor')<CR>
+    autocmd FileType clojure nmap <silent> scm <Plug>(coc-codeaction-cursor)<CR>
+    autocmd FileType clojure nmap <silent> scM <Plug>(coc-codeaction-line)<CR>
 
     " Testing: - "st"
     autocmd FileType clojure nmap <silent> stc :call CocAction('runCommand', 'lsp-clojure-create-test')<CR>
@@ -328,5 +354,4 @@ let g:sexp_mappings.sexp_raise_element = 'sdo'
 "     autocmd FileType clojure set sessionoptions=blank,curdir,folds,help,tabpages,winsize
 "     autocmd VimEnter * call system("~/.config/nvim/vim-include/fix-conjure-session.sh")
 " endif
-
 
