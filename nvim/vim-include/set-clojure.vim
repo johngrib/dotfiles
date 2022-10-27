@@ -109,16 +109,27 @@ augroup vim_iced
     autocmd FileType clojure nmap sri <Plug>(iced_interrupt)
     autocmd FileType clojure nmap srp <Plug>(iced_print_last)
     autocmd FileType clojure nmap srl :call CocAction('runCommand', 'lsp-clojure-server-info')<CR>
-    autocmd FileType clojure nmap srj :call popup_menu#open([' ', ' -A:dev:itest:test ', ' -A:migration ', ' 직접입력 '], {selected -> <SID>jack_in(selected)})<CR>
+    autocmd FileType clojure nmap srj :call popup_menu#open([' NO OPTION ', ' -A:dev:itest:test ', ' -A:migration ', ' 직접입력 '], {selected -> <SID>jack_in(selected)})<CR>
 
     " Jack In을 수행한다
     function! s:jack_in(selected)
-        call Noti_pipe(v:null, 'REPL을 시작합니다.')
-        if a:selected == ' 직접입력 '
-            let l:options = input('options: ', '-A:dev:itest:test')
+        " call Noti_pipe(v:null, 'REPL을 시작합니다.')
+        if a:selected == ''
+            let l:options = '[CANCEL]'
+        elseif a:selected =~ 'NO OPTION'
+            let l:options = ''
+        elseif a:selected =~ '직접입력'
+            let l:options = input({'prompt': '> ', 'default': '-A:dev:itest:test', 'cancelreturn': '[CANCEL]'})
         else
             let l:options = a:selected
         endif
+
+        if l:options == '[CANCEL]'
+            call Noti_pipe(v:null, 'REPL을 시작하지 않습니다.')
+            return
+        endif
+
+        call Noti_pipe(v:null, 'REPL JackIn을 시작합니다.')
         let g:iced#nrepl#connect#jack_in_command = g:iced#nrepl#connect#iced_command . ' repl ' . l:options
         IcedJackIn
     endfunction
