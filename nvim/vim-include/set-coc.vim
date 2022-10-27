@@ -78,3 +78,5 @@ let g:coc_explorer_global_presets = {
 \   },
 \ }
 
+" 유일한 버퍼가 coc-explorer 라면 종료한다.
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
