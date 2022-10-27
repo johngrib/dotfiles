@@ -109,12 +109,12 @@ augroup vim_iced
     autocmd FileType clojure nmap sri <Plug>(iced_interrupt)
     autocmd FileType clojure nmap srp <Plug>(iced_print_last)
     autocmd FileType clojure nmap srl :call CocAction('runCommand', 'lsp-clojure-server-info')<CR>
-    autocmd FileType clojure nmap srj :call popup_menu#open([' ', ' -A:dev:itest:test', ' 직접입력'], {selected -> <SID>jack_in(selected)})<CR>
+    autocmd FileType clojure nmap srj :call popup_menu#open([' ', ' -A:dev:itest:test ', ' -A:migration ', ' 직접입력 '], {selected -> <SID>jack_in(selected)})<CR>
 
     " Jack In을 수행한다
     function! s:jack_in(selected)
         call Noti_pipe(v:null, 'REPL을 시작합니다.')
-        if a:selected == ' 직접입력'
+        if a:selected == ' 직접입력 '
             let l:options = input('options: ', '-A:dev:itest:test')
         else
             let l:options = a:selected
