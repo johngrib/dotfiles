@@ -332,20 +332,20 @@ let g:sexp_mappings = {
 let g:sexp_mappings.sexp_splice_list = ''
 
 " convolute - https://stackoverflow.com/a/18192105
-"                             v
-" from: (let [foo bar] (if a b c)) 
-" to  : (if a b (let [foo bar] c))
-let g:sexp_mappings.sexp_convolute = 'swc'
+"                   v
+" from: (+ 1 2 (* 3 4))
+" to  : (* 3 (+ 1 2 4))
+let g:sexp_mappings.sexp_convolute = 'csp'
 " 부모 form 삭제
 "                            v
-" from: (let [foo bar] (if a b c)) 
+" from: (let [foo bar] (if a b c))
 " to  : (if a b c) 
-let g:sexp_mappings.sexp_raise_list = 'sdp'
+let g:sexp_mappings.sexp_raise_list = 'dsp'
 " 형제 element 모두 삭제하고 혼자 남게 됨
 "                            v
-" from: (let [foo bar] (if a b c)) 
+" from: (let [foo bar] (if a b c))
 " to  : (let [foo bar] b) 
-let g:sexp_mappings.sexp_raise_element = 'sdo'
+let g:sexp_mappings.sexp_raise_element = 'dso'
 
 "* Conjure 설정 (deprecated)
 " Conjure
