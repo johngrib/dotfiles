@@ -1,6 +1,6 @@
 "* Vim-Plug 목록
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
