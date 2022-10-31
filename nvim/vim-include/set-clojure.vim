@@ -20,7 +20,7 @@ let g:tagbar_type_clojure = {
 
 "* vim-iced 설정
 " jack in(vim 내에서 repl을 띄워 붙기)을 쓰려면 이걸 설정해 둬야 함.
-let g:iced#nrepl#connect#iced_command = $HOME . '/.config/nvim/plugged/vim-iced/bin/iced'
+let g:iced#nrepl#connect#iced_command = $HOME . '/.vim/plugged/vim-iced/bin/iced'
 let g:iced#nrepl#connect#jack_in_command = g:iced#nrepl#connect#iced_command . ' repl -A:dev:test:itest'
 " let g:iced#debug#debugger = 'fern'
 let g:iced#debug#debugger = 'default'
@@ -87,6 +87,20 @@ augroup vim_clojure_coc
     " autocmd VimLeavePre clojure TagbarClose
 augroup END
 
+function! FileExpand(exp) abort
+    let l:result = expand(a:exp)
+    return l:result ==# '' ? '' : "file://" . l:result
+endfunction
+
+" https://github.com/snoe/dotfiles/blob/f427da9ab83bbedf30a90c490309ee90a08f4abf/home/.vimrc#L275-L295
+function! ClojureLsp(command)
+    call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': a:command, 'arguments': [FileExpand('%:p'), line('.') - 1, col('.') - 1]})
+endfunction
+
+function! ClojureLspInput(command, text)
+    call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': a:command, 'arguments': [FileExpand('%:p'), line('.') - 1, col('.') - 1, input(a:text . ': ')]})
+endfunction
+
 "* iced 키 조합 설정
 augroup vim_iced
     if g:iced_enable_default_key_mappings == v:true
@@ -108,7 +122,7 @@ augroup vim_iced
     autocmd FileType clojure nmap src <Plug>(iced_connect)
     autocmd FileType clojure nmap sri <Plug>(iced_interrupt)
     autocmd FileType clojure nmap srp <Plug>(iced_print_last)
-    autocmd FileType clojure nmap srl :call CocAction('runCommand', 'lsp-clojure-server-info')<CR>
+    " autocmd FileType clojure nmap srl :call CocAction('runCommand', 'lsp-clojure-server-info')<CR>
     autocmd FileType clojure nmap srj :call popup_menu#open([' NO OPTION ', ' -A:dev:itest:test ', ' -A:migration ', ' 직접입력 '], {selected -> <SID>jack_in(selected)})<CR>
 
     " Jack In을 수행한다
@@ -208,16 +222,26 @@ augroup vim_iced
     " clj kondo를 파일에 대해 실행하고, 경고 목록을 보여줌. sal 과 같다.
     autocmd FileType clojure nmap skl :Dispatch<CR>
     " .clj-kondo/config.edn 에 매크로를 등록해서 인식하게 해준다.
-    autocmd FileType clojure nmap skm :call CocAction('runCommand', 'lsp-clojure-resolve-macro-as')<CR>
+    " autocmd FileType clojure nmap skm :call CocActionAsync('runCommand', 'lsp-clojure-resolve-macro-as')<CR>
     " .clj-kondo/ignore 를 추가해서 경고를 끈다.
     autocmd FileType clojure nmap sks i#_:clj-kondo/ignore<ESC>
     " ↓ 작동안함. 이유를 모르겠음.
     " autocmd FileType clojure nmap sks :call CocAction('runCommand', 'lsp-clojure-suppress-diagnostic')<CR>
 
+    " diagnostic을 리프레시한다.
+    autocmd FileType clojure nmap skr :call CocActionAsync('diagnosticRefresh')<CR>
+    autocmd FileType clojure nmap skn <Plug>(coc-diagnostic-next)
+    autocmd FileType clojure nmap skN <Plug>(coc-diagnostic-prev)
+
     " Name Space: - "sn"
     autocmd FileType clojure nmap sna :IcedAddNs<CR>
     autocmd FileType clojure nmap sns :call <SID>sort_clojure_namspace_require()<CR>
     function! s:sort_clojure_namspace_require()
+        if input("namespace require list를 정렬하시겠습니까? (y/n) ") =~ "y"
+            execute "normal! gg/:require \nea\n\n/))\ni\n\nggvip}10</[\nvip:sort\nkkJJ}kJJvip="
+        endif
+    endfunction
+    function! s:sort_clojure_namspace_require2()
         if input("namespace require list를 정렬하시겠습니까? (y/n) ") =~ "y"
             execute "normal! gg/:require ea/))iggvip}10</[vip:sortkkJJ}kJJvip="
         endif
@@ -234,19 +258,21 @@ augroup vim_iced
     autocmd FileType clojure nmap sc <nop>
     autocmd FileType clojure nmap scR :IcedRenameSymbol<CR>
     autocmd FileType clojure nmap scr <Plug>(coc-rename)
-    autocmd FileType clojure nmap scn :call CocAction('refactor')<CR>
+    autocmd FileType clojure nmap scn :call CocActionAsync('refactor')<CR>
     " 잘되지만 lsp-clojure-change-coll 이 좀 더 편함
-    autocmd FileType clojure nmap <silent> scc :call CocActionAsync('runCommand', 'lsp-clojure-cycle-coll')<CR>
-    autocmd FileType clojure nmap <silent> scC :call CocActionAsync('runCommand', 'lsp-clojure-change-coll')<CR>
-    autocmd FileType clojure nmap <silent> scf :call CocAction('runCommand', 'lsp-clojure-create-function')<CR>
+    autocmd FileType clojure nmap <silent> scc :call ClojureLsp('cycle-coll')<CR>
+    autocmd FileType clojure nmap <silent> scs :call ClojureLsp('sort-clauses')<CR>
+    " autocmd FileType clojure nmap <silent> scf :call CocAction('runCommand', 'lsp-clojure-create-function')<CR>
     " 커서가 위치한 단어를 복사해서 아랫줄에 _ (println 단어)를 만들어 준다. let 구문에서 사용할 것.
     autocmd FileType clojure nmap scp yiwo_<Space>(println "<C-r>":" <C-r>")<Esc>
     autocmd FileType clojure nmap sc# <Plug>(sexp_move_to_prev_bracket)i#_<Esc>``
     autocmd FileType clojure nmap sc3 <Plug>(sexp_move_to_prev_element_head)i#_<Esc>l
     autocmd FileType clojure nmap scl :IcedMoveToLet<CR>
-    autocmd FileType clojure nmap scL :call CocAction('runCommand', 'lsp-clojure-move-to-let')<CR>
+    " autocmd FileType clojure nmap scL :call CocActionAsync('runCommand', 'lsp-clojure-move-to-let')<CR>
     autocmd FileType clojure nmap sc> :IcedThread
     " autocmd FileType clojure nmap sctl :call CocActionAsync('runCommand', 'lsp-clojure-thread-last-all')<CR>
+    " autocmd FileType clojure nmap sctl :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-first-all', 'arguments': [FileExpand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+    autocmd FileType clojure nmap sctl :call ClojureLsp('thread-first-all')<CR>
 
     " 오버로딩 함수 작성
     autocmd FileType clojure nmap sca <Plug>(iced_add_arity)
@@ -255,7 +281,7 @@ augroup vim_iced
     autocmd FileType clojure nmap <silent> scM <Plug>(coc-codeaction-line)<CR>
 
     " Testing: - "st"
-    autocmd FileType clojure nmap <silent> stc :call CocAction('runCommand', 'lsp-clojure-create-test')<CR>
+    " autocmd FileType clojure nmap <silent> stc :call CocActionAsync('runCommand', 'lsp-clojure-create-test')<CR>
     autocmd FileType clojure nmap st' <Plug>(iced_cycle_src_and_test)
     autocmd FileType clojure nmap stt :IcedTestUnderCursor<CR>
     " Run tests in current namespace.
@@ -283,13 +309,25 @@ augroup vim_iced
     autocmd FileType clojure nnoremap =[ vi[<c-v>$:EasyAlign\ g/^\S/<cr>gv=
     autocmd FileType clojure nnoremap ={ vi{<c-v>$:EasyAlign\ g/^\S/<cr>gv=
 
+    autocmd FileType clojure let &iskeyword = "@,48-57,_,192-255,?,-,*,!,+,=,<,>,.,:,$,#,%,&,39,'"
     " autocmd FileType clojure let &iskeyword = '@,48-57,_,192-255,?,-,*,!,+,=,<,>,.,:,$,#,%,&,39'
     " autocmd FileType clojure nnoremap * :let &iskeyword = '@,48-57,_,192-255,?,-,*,!,+,=,<,>,.,:,$,#,%,&,39'<CR>*
     " autocmd FileType clojure nnoremap s* :let &iskeyword = '@,48-57,_,192-255,?,-,*,!,+,/,=,<,>,.,:,$,#,%,&,39'<CR>*
     " autocmd FileType clojure nnoremap # :let &iskeyword = '@,48-57,_,192-255,?,-,*,!,+,=,<,>,.,:,$,#,%,&,39'<CR>#
     " autocmd FileType clojure nnoremap s# :let &iskeyword = '@,48-57,_,192-255,?,-,*,!,+,/,=,<,>,.,:,$,#,%,&,39'<CR>#
 
-    " Insert Mode:
+    " Function: - "sf"
+    autocmd FileType clojure nmap sf <nop>
+    " fn 을 #() 형태의 람다 함수로 변환
+    autocmd FileType clojure nmap <silent> sf# :call ClojureLsp('demote-fn')<CR>
+    " #() 람다 함수를 fn 으로 변환
+    autocmd FileType clojure nmap <silent> sff :call ClojureLspInput('promote-fn', '#() -> (fn []); function name:')<CR>
+    " 함수 추출
+    autocmd FileType clojure nmap <silent> sfe :call ClojureLspInput('extract-function', 'extract function -> function name:')<CR>
+    " arity 추가(오버로딩 함수 추가)
+    autocmd FileType clojure nmap sfa <Plug>(iced_add_arity)
+
+    "* Insert Mode
     autocmd FileType clojure imap <C-f> <Esc><Plug>(sexp_move_to_next_bracket)a
     autocmd FileType clojure imap <C-b> <Esc><Plug>(sexp_move_to_prev_bracket)i
 augroup END
