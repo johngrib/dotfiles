@@ -138,7 +138,6 @@ let g:coc_global_extensions = [
             \ 'coc-go',
             \ 'coc-lists',
             \ 'coc-explorer',
-            \ 'coc-clojure',
             \ 'coc-rust-analyzer',
             \]
 
