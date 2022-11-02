@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
     "* Vim 기본 기능 확장
         Plug 'rcarriga/nvim-notify'
         Plug 'kamykn/popup-menu.nvim'
+        Plug 'simeji/winresizer'
 
         "* session
         Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
