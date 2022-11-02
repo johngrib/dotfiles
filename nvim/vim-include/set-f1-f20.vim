@@ -16,6 +16,8 @@ nnoremap <nowait> <f1>: :History:<CR>
 
 nnoremap <nowait> <f1><f1> :GitFiles<CR>
 nnoremap <nowait> <f1>1 :Files<CR>
+" 최근 파일들
+nnoremap <nowait> <f1>r :History<CR>
 
 nnoremap <nowait> <f1><f2> :Buffers<CR>
 nnoremap <nowait> <f1><f3> <cmd>lua require('telescope.builtin').oldfiles()<cr>
