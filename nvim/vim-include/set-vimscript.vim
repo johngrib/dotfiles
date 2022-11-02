@@ -14,7 +14,7 @@ let g:tagbar_type_vim = {
         \ 'f:functions:1:0',
         \ 'a:autocommand groups:1:0',
         \ 'c:commands:1:0',
-        \ 'm:maps:1:0',
         \ 't:titles',
         \ ],
     \}
+        " \ 'm:maps:1:0',
