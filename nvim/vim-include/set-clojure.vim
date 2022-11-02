@@ -259,7 +259,6 @@ augroup vim_iced
     autocmd FileType clojure nmap scR :IcedRenameSymbol<CR>
     autocmd FileType clojure nmap scr <Plug>(coc-rename)
     autocmd FileType clojure nmap scn :call CocActionAsync('refactor')<CR>
-    " 잘되지만 lsp-clojure-change-coll 이 좀 더 편함
     autocmd FileType clojure nmap <silent> scc :call ClojureLsp('cycle-coll')<CR>
     autocmd FileType clojure nmap <silent> scs :call ClojureLsp('sort-clauses')<CR>
     " autocmd FileType clojure nmap <silent> scf :call CocAction('runCommand', 'lsp-clojure-create-function')<CR>
@@ -267,7 +266,8 @@ augroup vim_iced
     autocmd FileType clojure nmap scp yiwo_<Space>(println "<C-r>":" <C-r>")<Esc>
     autocmd FileType clojure nmap sc# <Plug>(sexp_move_to_prev_bracket)i#_<Esc>``
     autocmd FileType clojure nmap sc3 <Plug>(sexp_move_to_prev_element_head)i#_<Esc>l
-    autocmd FileType clojure nmap scl :IcedMoveToLet<CR>
+    " autocmd FileType clojure nmap scl :IcedMoveToLet<CR>
+    autocmd FileType clojure nmap scl :call ClojureLspInput('introduce-let', 'let var name:')<CR>
     " autocmd FileType clojure nmap scL :call CocActionAsync('runCommand', 'lsp-clojure-move-to-let')<CR>
     autocmd FileType clojure nmap sc> :IcedThread
     " autocmd FileType clojure nmap sctl :call CocActionAsync('runCommand', 'lsp-clojure-thread-last-all')<CR>
