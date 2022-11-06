@@ -3,12 +3,12 @@
 
 --kinddef-vimwiki=t,subTitle,sub_title
 
---regex-vimwiki=/^## (.+)/\1/t/
---regex-vimwiki=/^### (.+)/·\1/t/
---regex-vimwiki=/^#### (.+)/··\1/t/
---regex-vimwiki=/^##### (.+)/···\1/t/
---regex-vimwiki=/^###### (.+)/····\1/t/
---regex-vimwiki=/^####### (.+)/·····\1/t/
---regex-vimwiki=/^######## (.+)/······\1/t/
---regex-vimwiki=/^######### (.+)/·······\1/t/
+--regex-vimwiki=/^## (.+)/··\1/t/
+--regex-vimwiki=/^### (.+)/···\1/t/
+--regex-vimwiki=/^#### (.+)/····\1/t/
+--regex-vimwiki=/^##### (.+)/·····\1/t/
+--regex-vimwiki=/^###### (.+)/······\1/t/
+--regex-vimwiki=/^####### (.+)/·······\1/t/
+--regex-vimwiki=/^######## (.+)/········\1/t/
+--regex-vimwiki=/^######### (.+)/·········\1/t/
 
