@@ -17,7 +17,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'luochen1990/rainbow'      " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
         Plug 'kshenoy/vim-signature'    " m mark 위치를 표시해준다.
         " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
-        Plug 'wfxr/minimap.vim'
+        " Plug 'wfxr/minimap.vim'
 
         "* text object
         Plug 'kana/vim-textobj-user'
@@ -134,11 +134,11 @@ call plug#end()
 " :CocUpdate
 let g:coc_global_extensions = [
             \ 'coc-ultisnips',
-            \ 'coc-vimlsp',
             \ 'coc-go',
             \ 'coc-lists',
             \ 'coc-explorer',
             \ 'coc-rust-analyzer',
+            \ 'coc-vimlsp',
             \]
 
 syntax enable
@@ -408,16 +408,15 @@ command! Ncd :cd %:p:h
 
 " command! Time :put =strftime('%Y-%m-%d %H:%M:%S +0900')
 
-let g:minimap_width = 10
-let g:minimap_auto_start = 0
-let g:minimap_auto_start_win_enter = 1
-let g:minimap_highlight_range = 1
-let g:minimap_highlight_search = 1
-let g:minimap_git_colors = 1
-
-augroup minimap_auto_close
-    autocmd VimLeavePre * MinimapClose
-augroup END
+" let g:minimap_width = 10
+" let g:minimap_auto_start = 0
+" let g:minimap_auto_start_win_enter = 1
+" let g:minimap_highlight_range = 1
+" let g:minimap_highlight_search = 1
+" let g:minimap_git_colors = 1
+" augroup minimap_auto_close
+"     autocmd VimLeavePre * MinimapClose
+" augroup END
 
 
 set fileencodings=utf-8,euc-kr
@@ -485,28 +484,22 @@ else
 endif
 
 "** notify 설정
-lua << EOF
-function _G.noti_custom_text(text)
-    vim.notify(text, vim.log.levels.INFO, {
-        stages = 'slide',
-        render = 'minimal',
-    })
-end
-EOF
+lua vim.notify = require("notify")
+lua function _G.noti_custom_text(text)
+            \ vim.notify(text, vim.log.levels.INFO, {
+            \ stages = 'slide',
+            \ render = 'minimal',
+            \ })
+            \ end
 
 function! Noti_pipe(param, text)
     call v:lua.noti_custom_text(a:text)
     return a:param
 endfunction
 
-
 "* 설정 파일 include
 for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
-"* lua 플러그인 초기화
-lua << EOF
-    vim.notify = require("notify")
-EOF
 
