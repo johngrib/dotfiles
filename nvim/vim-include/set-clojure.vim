@@ -15,7 +15,7 @@ let g:loaded_clojure_setting = 1
 let g:tagbar_type_clojure = {
     \ 'ctagstype' : 'Clojure',
     \ 'sort': 0,
-    \ 'kinds' : ['n:ns', 'e:form'],
+    \ 'kinds' : ['n:ns', 'e:form', 't:ToDo'],
     \}
 
 "* vim-iced 설정

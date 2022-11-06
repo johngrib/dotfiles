@@ -1,6 +1,7 @@
 --langmap=clojure:.clj
 
 --kinddef-clojure=e,expressionAndFunction,expressions_and_functions
+--kinddef-clojure=t,toDo,to_do
 
 --_fielddef-clojure=access,accessScope
 --fields-clojure=+{access}
@@ -17,10 +18,11 @@
 --regex-clojure=/^\(deftest[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/M·\1/e/{_field=access:public}
 
 # comment
---regex-clojure=/^\(comment[ \t]?/comment/e/{_field=access:private}
+--regex-clojure=/^\(comment[ \t]?/comment/e/
+--regex-clojure=/; *(TODO|FIXME|XXX):?[ \t]+(.+)$/\1 ✏️  \2/t/
 
 # ;;;; 섹션을 보여준다
---regex-clojure=/^;;;+[ \t]*(.+)$/;·\1/e/{_field=access:private}
+--regex-clojure=/^;;;+[ \t]*(.+)$/;·\1/e/
 
 # 인덴팅 있는 def 와 defn 등. 보통 이렇게 안쪽에 있으면 comment 에 포함된 것들.
 --regex-clojure=/^[ \t]+\([ \t]*def[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/·D·\1/e/
