@@ -1,6 +1,7 @@
 "* Tagbar 설정
 
 nnoremap \t :TagbarToggle<CR>:e<CR>
+nnoremap \\t :TagbarOpen f<CR>
 
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
