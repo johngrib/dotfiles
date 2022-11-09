@@ -21,8 +21,8 @@
 --regex-clojure=/^\(comment[ \t]?/comment/e/
 --regex-clojure=/; *(TODO|FIXME|XXX):?[ \t]+(.+)$/\1 ✏️  \2/t/
 
-# ;;;; 섹션을 보여준다
---regex-clojure=/^;;;+[ \t]*(.+)$/;·\1/e/
+# ;;;+ 섹션을 보여준다
+--regex-clojure=/^ *;;;+[ \t]*(.+)$/;·\1/e/
 
 # 인덴팅 있는 def 와 defn 등. 보통 이렇게 안쪽에 있으면 comment 에 포함된 것들.
 --regex-clojure=/^[ \t]+\([ \t]*def[ \t]+([-[:alnum:]*+!_<>:\/.?]+)/·D·\1/e/
