@@ -356,8 +356,8 @@ filetype plugin indent on
     " tabular
     vnoremap <C-t> :Tabularize /
 
-    nmap ga <Plug>(EasyAlign)
-    xmap ga <Plug>(EasyAlign)
+    nmap =a <Plug>(EasyAlign)
+    xmap =a <Plug>(EasyAlign)
 
     nnoremap <Space>w :w<CR>
     nnoremap <silent>s <nop>
