@@ -408,17 +408,6 @@ command! Ncd :cd %:p:h
 
 " command! Time :put =strftime('%Y-%m-%d %H:%M:%S +0900')
 
-" let g:minimap_width = 10
-" let g:minimap_auto_start = 0
-" let g:minimap_auto_start_win_enter = 1
-" let g:minimap_highlight_range = 1
-" let g:minimap_highlight_search = 1
-" let g:minimap_git_colors = 1
-" augroup minimap_auto_close
-"     autocmd VimLeavePre * MinimapClose
-" augroup END
-
-
 set fileencodings=utf-8,euc-kr
 
 "* iabbr 설정
