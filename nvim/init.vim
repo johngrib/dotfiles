@@ -17,7 +17,6 @@ call plug#begin('~/.vim/plugged')
         Plug 'luochen1990/rainbow'      " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
         Plug 'kshenoy/vim-signature'    " m mark 위치를 표시해준다.
         " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
-        " Plug 'wfxr/minimap.vim'
 
         "* text object
         Plug 'kana/vim-textobj-user'
@@ -90,7 +89,6 @@ call plug#begin('~/.vim/plugged')
     "* language 확장
     " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
     " https://github.com/dense-analysis/ale
-    " Plug 'valloric/youcompleteme', { 'do': 'python3 ./install.py --clang-completer --go-completer --rust-completer --js-completer --tern-completer'}
     " Plug 'jszakmeister/vim-togglecursor'
 
         "* JavaScript
