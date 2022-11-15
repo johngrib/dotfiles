@@ -68,7 +68,7 @@ command! BuffersDelete call fzf#run(fzf#wrap({
 
 "** F3: 하이라이트 색깔 관리
 nnoremap <f3> <nop>
-nnoremap <silent> <f3><f3> :noh<CR>:set cmdheight=2<CR>
+nnoremap <silent> <f3><f3> :noh<CR>:set wrap cmdheight=2<CR>
 nnoremap <f3>c :call <SID>toggle_curcor_column()<CR>
 function! s:toggle_curcor_column()
     if &cursorcolumn
