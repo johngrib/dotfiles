@@ -241,11 +241,6 @@ augroup vim_iced
             execute "normal! gg/:require \nea\n\n/))\ni\n\nggvip}10</[\nvip:sort\nkkJJ}kJJvip="
         endif
     endfunction
-    function! s:sort_clojure_namspace_require2()
-        if input("namespace require list를 정렬하시겠습니까? (y/n) ") =~ "y"
-            execute "normal! gg/:require ea/))iggvip}10</[vip:sortkkJJ}kJJvip="
-        endif
-    endfunction
     autocmd FileType clojure nmap snS :call system("clojure-lsp clean-ns --settings '{:clean {:ns-inner-blocks-indentation :same-line :sort {:ns true :require true :import true :refer {:max-line-length 80}}}}' --filenames " . expand("%"))<CR>:e<CR>
 
     autocmd FileType clojure nmap snc :IcedCleanNs<CR>
