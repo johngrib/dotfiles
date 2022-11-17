@@ -1,4 +1,6 @@
 
+lua vim.telescope = require("telescope.builtin")
+
 " nmap <F1> [telescope-p]
 
 " nnoremap <nowait> [telescope-p]<F1> <cmd>lua require('telescope.builtin').find_files()<cr>

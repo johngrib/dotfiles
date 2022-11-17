@@ -95,6 +95,6 @@ augroup END
 
 
 "** F9: register 목록
-nnoremap <nowait> <F9> <cmd>lua require('telescope.builtin').registers()<cr>
-inoremap <nowait> <F9> <cmd>lua require('telescope.builtin').registers()<cr>
+nnoremap <nowait> <F9> <cmd>lua vim.telescope.registers()<cr>
+inoremap <nowait> <F9> <cmd>lua vim.telescope.registers()<cr>
 
