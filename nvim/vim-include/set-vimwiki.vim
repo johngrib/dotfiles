@@ -34,7 +34,6 @@ nmap <LocalLeader>w<LocalLeader>t <Plug>VimwikiTabMakeDiaryNote
 nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
 nmap <LocalLeader>wh <Plug>Vimwiki2HTML
 nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
-nmap <LocalLeader>wt :VimwikiTable<CR>
 
 nmap <Tab>d 0f]lli__date<Space><esc>
 
@@ -109,12 +108,26 @@ augroup vimwikiauto
     autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
     autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
 
-    autocmd FileType vimwiki nnoremap scl vf)"zymz}oz0f(r:a $x`zf(df)hviW"zyPE:delm z
-
     " Insert Mode:
     autocmd FileType vimwiki inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}\.]<CR>:let @/=@z<CR>a
     autocmd FileType vimwiki inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{\.]<CR>:let @/=@z<CR>i
 
+    autocmd FileType vimwiki nmap s <nop>
+    autocmd FileType vimwiki vmap s <nop>
+    autocmd FileType vimwiki nmap s? :execute "vs " . globpath(&rtp, 'vim-include/set-vimwiki.vim')<CR>
+
+    " Create: - sc
+    autocmd FileType vimwiki nmap sc <nop>
+    " markdown 테이블 생성
+    autocmd FileType vimwiki nnoremap sct :VimwikiTable<CR>
+    " 현재 문단을 두 번째 위 문단에 붙입니다. 번역할 때 유용합니다.
+    autocmd FileType vimwiki nnoremap scj vipd{P
+    autocmd FileType vimwiki vmap scl S]f]a
+
+    " Extract: - se
+    autocmd FileType vimwiki nmap se <nop>
+    " 커서가 위치하고 있는 괄호 속 링크를 분리해서 문단 아래쪽에 정리해 줍니다.
+    autocmd FileType vimwiki nnoremap sel vf)"zymz}oz0f(r:a $x`zf(df)hviW"zyPE:delm z
 augroup END
 
 let g:tagbar_type_vimwiki = {
