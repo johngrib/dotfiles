@@ -489,4 +489,11 @@ for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
+function! Bye2022()
+    echom "Bye 2022"
+endfunction
+
+augroup vimcon_2022_12_16
+    au VimEnter * call Bye2022()
+augroup END
 
