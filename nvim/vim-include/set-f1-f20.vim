@@ -93,6 +93,8 @@ augroup cursor_move_selected_word
     highlight CursorSelected001 ctermfg=14 ctermbg=23 guifg=#00ffff guibg=#005f5f
 augroup END
 
+"** F4: win resizer
+" ./set-winresizer.vim
 
 "** F9: register 목록
 nnoremap <nowait> <F9> <cmd>lua vim.telescope.registers()<cr>
