@@ -356,6 +356,9 @@ filetype plugin indent on
 
     nnoremap <Space>f <Esc>:let @z=@/<CR>/\v[)"}]<CR>:let @/=@z<CR>
     nnoremap <Space>b <Esc>:let @z=@/<CR>?\v[("{]<CR>:let @/=@z<CR>
+    " git fugitive
+    nnoremap <Space>ga <cmd>Gwrite<CR>
+    nnoremap <Space>gr <cmd>Gread<CR>
 
     let g:vim_game_code_break_item_limit = 8
 
