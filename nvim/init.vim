@@ -359,6 +359,7 @@ filetype plugin indent on
     " git fugitive
     nnoremap <Space>ga <cmd>Gwrite<CR>
     nnoremap <Space>gr <cmd>Gread<CR>
+    nnoremap <Space>gc <cmd>Git commit<CR>
 
     let g:vim_game_code_break_item_limit = 8
 
