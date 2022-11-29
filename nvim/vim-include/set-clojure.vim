@@ -29,6 +29,7 @@ let g:iced_enable_default_key_mappings = v:false
 let g:iced#buffer#stdout#file = $HOME . '/iced-stdout.log'
 let g:iced#buffer#stdout#file_buffer_size = 20000
 
+let g:iced#buffer#stdout#init_text = ";; Iced Buffer"
 
 " let g:iced_default_key_mapping_leader = '<Leader>'
 " let g:iced_enable_default_key_mappings = v:true
