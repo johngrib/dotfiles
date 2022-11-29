@@ -305,7 +305,7 @@ augroup vim_iced
     autocmd FileType clojure nnoremap =[ vi[<c-v>$:EasyAlign\ g/^\S/<cr>gv=
     autocmd FileType clojure nnoremap ={ vi{<c-v>$:EasyAlign\ g/^\S/<cr>gv=
 
-    autocmd FileType clojure let &iskeyword = "@,48-57,_,192-255,?,-,*,!,+,=,<,>,.,:,/,$,#,%,&,39,'"
+    " autocmd FileType clojure let &iskeyword = "@,48-57,_,192-255,?,-,*,!,+,=,<,>,.,:,/,$,#,%,&,39,'"
     " autocmd FileType clojure let &iskeyword = '@,48-57,_,192-255,?,-,*,!,+,=,<,>,.,:,$,#,%,&,39'
     " autocmd FileType clojure nnoremap * :let &iskeyword = '@,48-57,_,192-255,?,-,*,!,+,=,<,>,.,:,$,#,%,&,39'<CR>*
     " autocmd FileType clojure nnoremap s* :let &iskeyword = '@,48-57,_,192-255,?,-,*,!,+,/,=,<,>,.,:,$,#,%,&,39'<CR>*
