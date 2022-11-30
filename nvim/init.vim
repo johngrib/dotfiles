@@ -360,6 +360,7 @@ filetype plugin indent on
     nnoremap <Space>ga <cmd>Gwrite<CR>
     nnoremap <Space>gr <cmd>Gread<CR>
     nnoremap <Space>gc <cmd>Git commit<CR>
+    nnoremap <Space>gb <cmd>Git blame<CR>
 
     let g:vim_game_code_break_item_limit = 8
 
