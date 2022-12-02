@@ -6,5 +6,6 @@ call fuzzymenu#AddAll({
             \ 'git add %': {'exec': 'Git add %'},
             \ 'git restore %': {'exec': 'Git restore %'},
             \ 'git stash': {'exec': 'Git stash'},
+            \ 'git commit': {'exec': 'Git commit'},
             \ }, {'tags': ['git']})
 
