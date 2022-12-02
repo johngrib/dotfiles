@@ -86,6 +86,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-telescope/telescope.nvim'
 
+    Plug 'laher/fuzzymenu.vim'
+
     "* language 확장
     " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
     " https://github.com/dense-analysis/ale
