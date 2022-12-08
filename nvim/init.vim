@@ -292,16 +292,6 @@ filetype plugin indent on
 
     " nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
-    " 윈도우 관리
-    " nnoremap <C-M-+> <C-w>+
-    " nnoremap <C-M-_> <C-w>-
-    " nnoremap <C-M-<> <C-w><
-    " nnoremap <C-M->> <C-w>>
-    nnoremap <nowait> <Esc>+ <C-w>+
-    nnoremap <nowait> <Esc>_ <C-w>-
-    nnoremap <nowait> <Esc>< <C-w><
-    nnoremap <nowait> <Esc>> <C-w>>
-
     " reselect visual block after indent/outdent
     " link: http://tilvim.com/2013/04/24/reindenting.html
     " vnoremap < <gv
