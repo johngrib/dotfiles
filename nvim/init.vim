@@ -2,8 +2,6 @@
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
 call plug#begin('~/.vim/plugged')
 
-    Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
     "* Vim 기본 기능 확장
         Plug 'rcarriga/nvim-notify'
         Plug 'kamykn/popup-menu.nvim'
@@ -47,9 +45,7 @@ call plug#begin('~/.vim/plugged')
 
         "* Color Theme
         Plug 'johngrib/FlatColor-johngrib'
-        Plug 'tomasr/molokai'
         Plug 'johngrib/hosu'
-        Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
         "* Quickfix
         Plug 'milkypostman/vim-togglelist'
