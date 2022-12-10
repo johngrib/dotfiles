@@ -2,8 +2,8 @@
 let g:config_dir = expand('~/dotfiles/nvim/config/')
 let s:file_plug_candidate = []
 
-command! -nargs=1 PlugFile call PlugFile(<args>)
-function! PlugFile( ... )
+command! -nargs=1 PlugFile call <SID>plug_file(<args>)
+function! s:plug_file( ... )
     call add(s:file_plug_candidate, g:config_dir . a:1)
 endfunction
 
