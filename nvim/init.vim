@@ -14,12 +14,15 @@ call plug#begin('~/.vim/plugged')
         Plug 'rcarriga/nvim-notify'
         Plug 'kamykn/popup-menu.nvim'
         Plug 'simeji/winresizer'
+            PlugFile 'set-winresizer.vim'
 
         "* session
         Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
+            PlugFile 'set-startify.vim'
 
         "* HUD(Head Up Display)
         Plug 'bling/vim-airline'        " BUFFER navigator, status line 을 제공한다.
+            PlugFile 'set-airline.vim'
         Plug 'luochen1990/rainbow'      " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
         Plug 'kshenoy/vim-signature'    " m mark 위치를 표시해준다.
         " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
@@ -28,6 +31,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'kana/vim-textobj-user'
             Plug 'kana/vim-textobj-indent'
             Plug 'thinca/vim-textobj-between'
+            PlugFile 'set-vim-textobj-user.vim'
         Plug 'wellle/targets.vim'
 
         "* 편집 기능 확장
@@ -42,6 +46,7 @@ call plug#begin('~/.vim/plugged')
 
         "* 커서 점프
         Plug 'easymotion/vim-easymotion'
+            PlugFile 'set-easymotion.vim'
         Plug 't9md/vim-choosewin'
         Plug 'vim-scripts/matchit.zip'
         Plug 'johngrib/vim-f-hangul'
@@ -60,16 +65,22 @@ call plug#begin('~/.vim/plugged')
 
     "* 자동완성
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        PlugFile 'set-coc.vim'
     Plug 'SirVer/ultisnips'
+        PlugFile 'set-ultisnips.vim'
     Plug 'github/copilot.vim'
+        PlugFile 'set-copilot.vim'
     Plug 'tenfyzhong/axring.vim'
+        PlugFile 'set-axring.vim'
     Plug 'tpope/vim-speeddating'
 
     "* 외부 기능 지원
         "* ctags
         Plug 'vim-scripts/taglist.vim'
         Plug 'ludovicchabant/vim-gutentags' " 자동으로 tags 파일을 갱신해 준다.
+            PlugFile 'set-gutentags.vim'
         Plug 'majutsushi/tagbar'
+            PlugFile 'set-tagbar.vim'
 
         "* git
         Plug 'tpope/vim-fugitive'       " git 명령어 wrapper
@@ -78,6 +89,7 @@ call plug#begin('~/.vim/plugged')
 
         "* ETC
         Plug 'diepm/vim-rest-console'
+            PlugFile 'set-vim-rest-console.vim'
         Plug 'johngrib/vim-mac-dictionary'
         Plug 'tridactyl/vim-tridactyl'
 
@@ -91,6 +103,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'nvim-telescope/telescope.nvim'
 
     Plug 'laher/fuzzymenu.vim'
+        PlugFile 'set-fuzzymenu.vim'
 
     "* language 확장
     " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
@@ -109,6 +122,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
         " Plug 'lambdalisue/fern.vim'
         " Plug 'liquidz/vim-iced-fern-debugger', {'for': 'clojure'}
+        PlugFile 'set-clojure.vim'
 
         "* Golang
         Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -128,6 +142,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'johngrib/vim-game-snake'
     " Plug 'tpope/vim-db'
     Plug 'johngrib/vimwiki', { 'branch': 'dev' }
+        PlugFile 'set-vimwiki.vim'
     Plug 'johngrib/grib-wiki'
 
     "* 미분류
