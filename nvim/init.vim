@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'kamykn/popup-menu.nvim'
         Plug 'simeji/winresizer'
             PlugFile 'set-winresizer.vim'
+        PlugFile 'vim-gx-on-regex.vim'
 
         "* session
         Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
