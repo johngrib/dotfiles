@@ -1,4 +1,12 @@
 "* Vim-Plug 목록
+let g:config_dir = expand('~/dotfiles/nvim/config/')
+let s:file_plug_candidate = []
+
+command! -nargs=1 PlugFile call PlugFile(<args>)
+function! PlugFile( ... )
+    call add(s:file_plug_candidate, g:config_dir . a:1)
+endfunction
+
 " 아래와 같이 설정한 다음 :PlugInstall<CR> 해주면 된다.
 call plug#begin('~/.vim/plugged')
 
@@ -124,6 +132,11 @@ call plug#begin('~/.vim/plugged')
 
     "* 미분류
 call plug#end()
+
+for include_file in s:file_plug_candidate
+    execute "source " . include_file
+endfor
+let s:file_plug_candidate = v:null
 
 "* COC plugin 목록
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions

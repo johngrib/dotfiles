@@ -46,7 +46,13 @@ function! s:plug_simple_match(text)
     call system('open ' .l:address)
 endfunction
 
+function! s:plug_file_match(text)
+    let l:address = g:config_dir . substitute(a:text, "\\v^PlugFile +'([^ ']+)'$", '\1', '')
+    execute 'edit ' . l:address
+endfunction
+
 let s:match_config = []
+call add(s:match_config, {'regex': "\\vPlugFile +'([^ ]+)'", 'exec': {p -> s:plug_file_match(p)} })
 call add(s:match_config, {'regex': "\\vPlug +'([^ /]+/[^ /]+)'", 'exec': {p -> s:plug_simple_match(p)} })
 
 function! s:openWhatever()
