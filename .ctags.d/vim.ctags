@@ -1,5 +1,6 @@
 --langmap=vim:.vim
 --kinddef-vim=t,textTitle,text_title
+--kinddef-vim=ns,namespace,name_space
 
 # "* 로 시작하는 라인을 textTitle로 지정한다
 --regex-vim=/^"\* (.+)$/\1/t,textTitle/
@@ -14,3 +15,5 @@
 --regex-vim=/^ {4}" ([^:]+: - .*?)\s*$/··\1/t,textTitle/
 --regex-vim=/^ {8}" ([^:]+: - .*?)\s*$/····\1/t,textTitle/
 
+# namespace
+--regex-vim=/^"\(ns ([-[:alnum:]*+!_<>:\/.?]+)/\1/ns/{_field=access:public}
