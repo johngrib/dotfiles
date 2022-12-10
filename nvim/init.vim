@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 
     "* Vim 기본 기능 확장
         Plug 'rcarriga/nvim-notify'
+            PlugFile 'set-notify.vim'
         Plug 'kamykn/popup-menu.nvim'
         Plug 'simeji/winresizer'
             PlugFile 'set-winresizer.vim'
@@ -56,12 +57,15 @@ call plug#begin('~/.vim/plugged')
         " Plug 'othree/eregex.vim'
         " Plug 'haya14busa/incsearch.vim'
 
-        "* Color Theme
+        "* Cursor, Color
         Plug 'johngrib/FlatColor-johngrib'
-        Plug 'johngrib/hosu'
+            PlugFile 'set-color.vim'
+        PlugFile 'set-cursor.vim'
+        " Plug 'johngrib/hosu'
 
         "* Quickfix
         Plug 'milkypostman/vim-togglelist'
+        PlugFile 'set-quickfix.vim'
 
     "* 자동완성
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -96,11 +100,14 @@ call plug#begin('~/.vim/plugged')
     "* File 탐색, 브라우징
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
-    Plug 'preservim/nerdtree'
-        Plug 'ryanoasis/vim-devicons'
+        PlugFile 'set-fzf.vim'
+    " Plug 'preservim/nerdtree'
+    "     Plug 'ryanoasis/vim-devicons'
+    "     PlugFile 'set-nerdtree.vim'
     " Plug 'wesleyche/srcexpl'
     Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-telescope/telescope.nvim'
+        PlugFile 'set-telescope.vim'
 
     Plug 'laher/fuzzymenu.vim'
         PlugFile 'set-fuzzymenu.vim'
@@ -126,6 +133,7 @@ call plug#begin('~/.vim/plugged')
 
         "* Golang
         Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+        PlugFile 'set-golang.vim'
 
         "* Kotlin
         " Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
@@ -133,6 +141,7 @@ call plug#begin('~/.vim/plugged')
 
         "* Rust
         Plug 'rust-lang/rust.vim', {'for': 'rust'}
+        PlugFile 'set-rust.vim'
 
         "* yaml
         Plug 'stephpy/vim-yaml'
@@ -146,6 +155,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'johngrib/grib-wiki'
 
     "* 미분류
+    PlugFile 'set-f1-f20.vim'
+    PlugFile 'set-backslash.vim'
+    PlugFile 'set-register.vim'
 call plug#end()
 
 for include_file in s:file_plug_candidate
@@ -182,8 +194,6 @@ filetype plugin indent on
         set grepprg=ack\ --nogroup\ --column\ $*
         set grepformat=%f:%l:%c:%m
     endif
-
-
 
     set nocompatible                  " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
     " set linebreak                     " break at word boundary
@@ -427,51 +437,6 @@ iabbr <expr> __uuid system("uuidgen")
 iabbr ㅇ. 있다.
 iabbr ㅇ.. 입니다.
 iabbr ㄱ.. 그리고
-
-"* 화면 구성/색깔
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-if has('termguicolors') && ($TERM_PROGRAM !~ "Apple_Terminal")
-    set termguicolors
-endif
-
-colorscheme flatcolor-johngrib
-
-if has("gui_macvim")
-    set macmeta
-    set guifont=Meslo\ LG\ S\ DZ\ Regular\ Nerd\ Font\ Complete:h14
-
-    " macVim 에서 esc 로 영문변환, imi 는 1 또는 2 로 설정해준다
-    set noimd
-    set imi=1
-else
-    " tmux에서 배경색이 이상하게 나오는 문제를 해결한다.
-    " link : http://stackoverflow.com/a/15095377
-    set t_ut=
-endif
-
-" https://www.ditig.com/256-colors-cheat-sheet
-" 커서가 지시하는 괄호의 짝 괄호 색 지정
-highlight MatchParen ctermbg=13 guibg=#ff00ff
-
-" 선택 메뉴 색깔
-highlight Pmenu ctermfg=254 ctermbg=237 cterm=NONE
-highlight PmenuSel ctermfg=10 ctermbg=239 cterm=NONE
-
-"** notify 설정
-lua vim.notify = require("notify")
-lua function _G.noti_custom_text(text)
-            \ vim.notify(text, vim.log.levels.INFO, {
-            \ stages = 'slide',
-            \ render = 'minimal',
-            \ })
-            \ end
-
-function! Noti_pipe(param, text)
-    call v:lua.noti_custom_text(a:text)
-    return a:param
-endfunction
 
 "* 설정 파일 include
 for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))

@@ -16,6 +16,10 @@ endif
 " 커서 위치 수직 하이라이트
 highlight CursorColumn ctermbg=237 guibg=#3a3a3a
 
+" https://www.ditig.com/256-colors-cheat-sheet
+" 커서가 지시하는 괄호의 짝 괄호 색 지정
+highlight MatchParen ctermbg=13 guibg=#ff00ff
+
 " multiple_cursors
 let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
@@ -29,4 +33,5 @@ augroup johngrib_cursor
                 \ if line("'\"") > 0 && line("'\"") <= line("$") |
                 \ exe "norm g`\"" |
                 \ endif
+
 augroup END
