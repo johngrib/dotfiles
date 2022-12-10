@@ -72,7 +72,10 @@ function! s:openWhatever()
             echom 'error'
         endtry
     endfor
-    execute 'normal gx'
+    echom "netrw"
+    " 참고: https://github.com/neovim/neovim/blob/1a9d2a4040f3ba3fe272488a7e85db6cdb453d39/runtime/plugin/netrwPlugin.vim#L84
+    call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
 endfunction
 
-nnoremap g<CR> <cmd>call <SID>openWhatever()<CR>
+let g:netrw_nogx = v:true
+nnoremap gx <cmd>call <SID>openWhatever()<CR>
