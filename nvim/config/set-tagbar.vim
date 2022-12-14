@@ -19,7 +19,7 @@ let g:tagbar_map_previewwin = "<Space>"
 
 augroup tagbar_custom_config
     autocmd FileType tagbar syntax match tagbar_ignore_char /·/
-    autocmd FileType tagbar hi def link tagbar_ignore_char Comment
+    autocmd FileType tagbar highlight tagbar_ignore_char ctermfg=DarkGrey guifg=DarkGrey
     autocmd FileType tagbar nmap <c-j> jP
     autocmd FileType tagbar nmap <c-k> kP
     autocmd FileType tagbar nmap \\t> :let g:tagbar_position = "rightbelow vertical"<CR>:TagbarClose<CR>:TagbarOpen<CR>
