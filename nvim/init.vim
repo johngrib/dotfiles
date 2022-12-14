@@ -161,6 +161,9 @@ call plug#begin('~/.vim/plugged')
     PlugFile 'set-register.vim'
 call plug#end()
 
+syntax enable
+filetype plugin indent on
+
 for include_file in s:file_plug_candidate
     execute "source " . include_file
 endfor
@@ -177,9 +180,6 @@ let g:coc_global_extensions = [
             \ 'coc-rust-analyzer',
             \ 'coc-vimlsp',
             \]
-
-syntax enable
-filetype plugin indent on
 
 "* vim set 설정
 
