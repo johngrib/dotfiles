@@ -13,12 +13,14 @@ else
   let &t_SR = "\<esc>]50;CursorShape=2\x7"
 endif
 
+" :so $VIMRUNTIME/syntax/hitest.vim
+
 " 커서 위치 수직 하이라이트
 highlight CursorColumn ctermbg=237 guibg=#3a3a3a
 
 " https://www.ditig.com/256-colors-cheat-sheet
 " 커서가 지시하는 괄호의 짝 괄호 색 지정
-highlight MatchParen ctermbg=13 guibg=#ff00ff
+highlight MatchParen ctermfg=13 guifg=#ff00ff guibg=#425154 gui=bold
 
 " multiple_cursors
 let g:multi_cursor_next_key='<C-n>'
