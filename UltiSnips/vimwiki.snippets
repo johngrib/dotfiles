@@ -524,3 +524,13 @@ endsnippet
 snippet video
 <video controls autoplay loop><source src="${0}" type="video/mp4"></video>
 endsnippet
+
+snippet "(\d\d-\d\d)" "년-월-일 요일" r
+`!p
+import datetime
+yyyy_mm_dd = str(datetime.datetime.now().year) + '-' + match.group(1)
+subject_date = datetime.datetime.strptime(yyyy_mm_dd, "%Y-%m-%d")
+weekday = str(subject_date.weekday())
+snip.rv = yyyy_mm_dd + ' ' + ['월', '화', '수', '목', '금', '토', '일'][int(weekday)]
+`$0
+endsnippet
