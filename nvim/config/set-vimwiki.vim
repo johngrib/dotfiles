@@ -79,6 +79,7 @@ function! NewTemplate()
         return
     endif
 
+    let l:uuid = substitute(system("uuidgen"), '\n', '', '')
     let l:template = []
     call add(l:template, '---')
     call add(l:template, 'layout  : wiki')
@@ -87,11 +88,11 @@ function! NewTemplate()
     call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
     call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
     call add(l:template, 'tag     : ')
+    call add(l:template, 'resource: ' . substitute(l:uuid, '^\(..\)', '\1/', ''))
     call add(l:template, 'toc     : true')
     call add(l:template, 'public  : true')
     call add(l:template, 'parent  : ')
     call add(l:template, 'latex   : false')
-    call add(l:template, 'resource: ' . substitute(system("uuidgen"), '\n', '', ''))
     call add(l:template, '---')
     call add(l:template, '* TOC')
     call add(l:template, '{:toc}')
