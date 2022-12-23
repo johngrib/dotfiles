@@ -266,7 +266,7 @@
     }; f"
 [core]
     excludesfile = /Users/johngrib/.gitignore_global
-    editor = /opt/homebrew/bin/nvim
+    editor = /opt/homebrew/bin/nvim -u ~/dotfiles/nvim/init-gitcommit.vim
     autocrlf = input
     precomposeunicode = true
     quotepath = false
