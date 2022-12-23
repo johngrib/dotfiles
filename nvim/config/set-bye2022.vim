@@ -1,5 +1,6 @@
 "** bye2022
 
+" 참고: https://github.com/nvim-lua/popup.nvim/blob/master/lua/tests/basic_popup_spec.lua
 function! Bye2022()
     Startify
     let l:msg = [
