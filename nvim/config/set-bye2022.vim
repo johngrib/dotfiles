@@ -5,7 +5,7 @@ function! Bye2022()
     Startify
     let l:msg = [
                 \ "            Bye2022",
-                \ "             🌟" ,
+                \ "              🌟" ,
                 \ "             ***",
                 \ "            *****",
                 \ "           *******",
@@ -31,7 +31,7 @@ function! Bye2022()
                 \     minwidth = 20,
                 \     highlight = 'PopupColor1',
                 \     border = {},
-                \     time = 2500,
+                \     time = 5000,
                 \ })
                 \ end
     call v:lua.popup_2022(l:msg)
