@@ -109,6 +109,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-telescope/telescope.nvim'
         PlugFile 'set-telescope.vim'
+        Plug 'nvim-lua/popup.nvim'
+        PlugFile 'set-bye2022.vim'
 
     Plug 'laher/fuzzymenu.vim'
         PlugFile 'set-fuzzymenu.vim'
@@ -443,10 +445,6 @@ iabbr ㄱ.. 그리고
 for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
-
-function! Bye2022()
-    echom "Bye 2022"
-endfunction
 
 augroup vimcon_2022_12_16
     au VimEnter * call Bye2022()
