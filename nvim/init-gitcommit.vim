@@ -11,16 +11,9 @@ endfunction
 call plug#begin('~/.vim/plugged')
 
     "* Vim 기본 기능 확장
-        Plug 'rcarriga/nvim-notify'
-            PlugFile 'set-notify.vim'
-        Plug 'kamykn/popup-menu.nvim'
         Plug 'simeji/winresizer'
             PlugFile 'set-winresizer.vim'
         PlugFile 'vim-gx-on-regex.vim'
-
-        "* session
-        Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
-            PlugFile 'set-startify.vim'
 
         "* HUD(Head Up Display)
         Plug 'bling/vim-airline'        " BUFFER navigator, status line 을 제공한다.
@@ -69,8 +62,6 @@ call plug#begin('~/.vim/plugged')
         PlugFile 'set-quickfix.vim'
 
     "* 자동완성
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-        PlugFile 'set-coc.vim'
     Plug 'SirVer/ultisnips'
         PlugFile 'set-ultisnips.vim'
     Plug 'github/copilot.vim'
@@ -96,15 +87,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
         PlugFile 'set-fzf.vim'
-    " Plug 'preservim/nerdtree'
-    "     Plug 'ryanoasis/vim-devicons'
-    "     PlugFile 'set-nerdtree.vim'
-    " Plug 'wesleyche/srcexpl'
-    Plug 'nvim-lua/plenary.nvim'
-        Plug 'nvim-telescope/telescope.nvim'
-        PlugFile 'set-telescope.vim'
-        Plug 'nvim-lua/popup.nvim'
-        PlugFile 'set-bye2022.vim'
 
     Plug 'laher/fuzzymenu.vim'
         PlugFile 'set-fuzzymenu.vim'
