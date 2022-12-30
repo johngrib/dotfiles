@@ -1,5 +1,9 @@
 ## My Neovim config
 
+- ./init.vim - 메인 설정
+- ./init-gitcommit.vim - git commit 메시지 편집 전용 설정
+- ./init-no-plugin.vim - 플러그인 없는 버전의 설정
+
 ### link nvim directory
 
 ```bash
