@@ -20,7 +20,6 @@ call plug#begin('~/.vim/plugged')
             PlugFile 'set-airline.vim'
         Plug 'luochen1990/rainbow'      " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
         Plug 'kshenoy/vim-signature'    " m mark 위치를 표시해준다.
-        " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
 
         "* text object
         Plug 'kana/vim-textobj-user'
@@ -55,7 +54,6 @@ call plug#begin('~/.vim/plugged')
         Plug 'johngrib/FlatColor-johngrib'
             PlugFile 'set-color.vim'
         PlugFile 'set-cursor.vim'
-        " Plug 'johngrib/hosu'
 
         "* Quickfix
         Plug 'milkypostman/vim-togglelist'
@@ -71,13 +69,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-speeddating'
 
     "* 외부 기능 지원
-        "* ctags
-        Plug 'vim-scripts/taglist.vim'
-        Plug 'ludovicchabant/vim-gutentags' " 자동으로 tags 파일을 갱신해 준다.
-            PlugFile 'set-gutentags.vim'
-        Plug 'majutsushi/tagbar'
-            PlugFile 'set-tagbar.vim'
-
         "* git
         Plug 'tpope/vim-fugitive'       " git 명령어 wrapper
         Plug 'airblade/vim-gitgutter'   " git diff 를 라인 넘버 옆에 표시.
@@ -87,9 +78,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
         PlugFile 'set-fzf.vim'
-
-    Plug 'laher/fuzzymenu.vim'
-        PlugFile 'set-fuzzymenu.vim'
 
     "* 미분류
     PlugFile 'set-f1-f20.vim'
