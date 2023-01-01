@@ -52,12 +52,14 @@
   inoremap <C-m> <CR>
   cnoremap <C-m> <CR>
 
-  nnoremap <Esc> <Esc>:w<CR>
-  inoremap <Esc> <Esc>:w<CR>
+  " nnoremap <Esc> <Esc>:w<CR>
+  " inoremap <Esc> <Esc>:w<CR>
 
   " Insert Mode:
-  inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}]<CR>:let @/=@z<CR>a
-  inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{]<CR>:let @/=@z<CR>i
+  inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}>]<CR>:let @/=@z<CR>a
+  inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{<]<CR>:let @/=@z<CR>i
+  inoremap <C-e> <C-o>A
+  inoremap <C-a> <C-o>I
 
   nnoremap Y y$
   nnoremap <SPACE>y "+y
