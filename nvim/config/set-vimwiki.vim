@@ -130,6 +130,10 @@ augroup vimwikiauto
     autocmd FileType vimwiki nmap se <nop>
     " 커서가 위치하고 있는 괄호 속 링크를 분리해서 문단 아래쪽에 정리해 줍니다.
     autocmd FileType vimwiki nnoremap sel vf)"zymz}oz0f(r:a $x`zf(df)hviW"zyPE:delm z
+
+    " SurroundSupport: - ss
+    autocmd FileType vimwiki nmap ss <nop>
+    autocmd FileType vimwiki vmap ss* S*gvS*
 augroup END
 
 let g:tagbar_type_vimwiki = {
