@@ -111,8 +111,8 @@ augroup vimwikiauto
     autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
 
     " Insert Mode:
-    autocmd FileType vimwiki inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}\.]<CR>:let @/=@z<CR>a
-    autocmd FileType vimwiki inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{\.]<CR>:let @/=@z<CR>i
+    autocmd FileType vimwiki inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}\]\.]<CR>:let @/=@z<CR>a
+    autocmd FileType vimwiki inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{\[\.]<CR>:let @/=@z<CR>i
 
     autocmd FileType vimwiki nmap s <nop>
     autocmd FileType vimwiki vmap s <nop>
