@@ -450,3 +450,13 @@ endfor
 "     au VimEnter * call Bye2022()
 " augroup END
 
+let g:i_mode_help_text = '
+            \ [Copilot]\n
+            \ <C-j> : 추천내용 적용.\n
+            \ <C-]> : 현재 표시되고 있는 추천을 취소한다.\n
+            \ <M-]> : 다음 추천을 표시한다.\n
+            \ <M-[> : 이전 추천을 표시한다.\n
+            \ <M-\\> : Copilot에 추천을 요청한다.\n
+            \ '
+inoremap <F1> <CMD>execute "lua vim.notify('" . g:i_mode_help_text . "')"<CR>
+
