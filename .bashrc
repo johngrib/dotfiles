@@ -114,7 +114,7 @@ ${COLOR_END}\
 
 [ -f ~/.local/bin/git-completion.bash ] && source ~/.local/bin/git-completion.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
+# [ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
 
 for f in ~/.local/bin/*.sh; do source $f; done
 
@@ -173,11 +173,11 @@ if [ $ITERM_SESSION_ID ]; then
     export PROMPT_COMMAND='echo -ne "\033]1;${PWD##*/}\007"; '
 fi
 
-# ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
+ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
 
 myfortune && echo ''
 ioreg -r -d 1 -k BatteryPercent | grep BatteryPercent | tr -d ' '
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

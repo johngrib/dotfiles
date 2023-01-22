@@ -3,11 +3,6 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export SDKROOT=$(xcrun --show-sdk-path)
 
-if which pyenv > /dev/null; then
-    eval "$(pyenv init --path)"
-    eval "$(pyenv init -)"
-fi
-
 if [[ $(uname -p) == 'arm' ]]; then
     # M1 이라면
     export PATH="/opt/homebrew/bin:$PATH"
@@ -32,28 +27,18 @@ if [[ ! "$PATH" == *~/.cargo/bin* ]]; then
     PATH="$PATH:~/.cargo/bin"
 fi
 
-if [ -z "`echo $PATH | grep -o /dotfiles-home/bin/`" -a "`hostname -s`" == "JohnGribAtHome" ]; then
-    PATH="$PATH:~/Dropbox/dotfiles-home/bin/"
-elif [ -z "`echo $PATH | grep -o /dotfiles-com/bin/`" -a "`hostname -s`" == "UseruiMBookPro2" ]; then
-    PATH="$PATH:~/Dropbox/dotfiles-com/bin/"
-fi
+PATH="$PATH:~/dotfiles/bin/"
 
 # export PATH="$PATH:/usr/local/opt/llvm/bin"
 export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 export PATH="$PATH:~/.vim/plugged/vim-iced/bin"
 
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+# gvm: go version manager
+test -s "$HOME/.gvm/scripts/gvm" && source "$HOME/.gvm/scripts/gvm"
 
-# git-flow-completion
-# https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion#homebrew
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
-if [ -f ~/.bashrc ]; then
-  . ~/.bashrc
-fi
+# my bashrc
+test -e ~/.bashrc && source ~/.bashrc
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
