@@ -6,12 +6,7 @@ let g:vimwiki_list = [
             \   'diary_rel_path': '.',
             \},
             \{
-            \   'path': '~/Dropbox/johngrib.github.io-home/_wiki',
-            \   'ext' : '.md',
-            \   'diary_rel_path': '.',
-            \},
-            \{
-            \   'path': '~/Dropbox/johngrib.github.io-com/_wiki',
+            \   'path': '~/au-vimenter.github.io/_posts',
             \   'ext' : '.md',
             \   'diary_rel_path': '.',
             \},
@@ -104,9 +99,15 @@ function! NewTemplate()
 
     echom 'new wiki page has created'
 endfunction
+
+function! BufOpenEvent()
+    call NewTemplate()
+
+endfunction
+
 augroup vimwikiauto
     autocmd BufWritePre *.md keepjumps call LastModified()
-    autocmd BufRead,BufNewFile *.md call NewTemplate()
+    autocmd BufRead,BufNewFile *.md call BufOpenEvent()
     autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
     autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
 
