@@ -139,8 +139,8 @@ call plug#begin('~/.vim/plugged')
         PlugFile 'set-golang.vim'
 
         "* Kotlin
-        " Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
-        " Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+        Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
+        Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
         "* Rust
         Plug 'rust-lang/rust.vim', {'for': 'rust'}
