@@ -125,7 +125,12 @@ augroup vimwikiauto
     autocmd FileType vimwiki nnoremap sct :VimwikiTable<CR>
     " 현재 문단을 두 번째 위 문단에 붙입니다. 번역할 때 유용합니다.
     autocmd FileType vimwiki nnoremap scj vipd{P
-    autocmd FileType vimwiki vmap scl S]f]a
+    " 선택한 텍스트에 [ ] 를 씌워줍니다.
+    autocmd FileType vimwiki vmap sc] S]f]a
+    " 선택한 텍스트에 <sup> 태그를 씌웁니다.
+    autocmd FileType vimwiki vmap scu Stsup<CR>2f>
+    " 선택한 텍스트에 <sub> 태그를 씌웁니다.
+    autocmd FileType vimwiki vmap scb Stsub<CR>2f>
 
     " Extract: - se
     autocmd FileType vimwiki nmap se <nop>
