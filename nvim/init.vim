@@ -41,7 +41,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-commentary'
         Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
-        Plug 'jiangmiao/auto-pairs', {'for': ['go', 'javascript', 'rust']}
+        Plug 'jiangmiao/auto-pairs', {'for': ['go', 'javascript', 'rust', 'kotlin']}
         Plug 'junegunn/vim-easy-align'
         Plug 'AndrewRadev/splitjoin.vim'
         Plug 'tommcdo/vim-exchange'
@@ -140,7 +140,9 @@ call plug#begin('~/.vim/plugged')
 
         "* Kotlin
         Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
-        Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+        " Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+        " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': 'kotlin' }
+        Plug 'beeender/Comrade', {'for': 'kotlin'}
 
         "* Rust
         Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -181,6 +183,7 @@ let g:coc_global_extensions = [
             \ 'coc-explorer',
             \ 'coc-rust-analyzer',
             \ 'coc-vimlsp',
+            \ 'coc-comrade',
             \]
 
 "* vim set 설정

@@ -15,9 +15,15 @@
     }
     ,"languageserver": {
         // "kotlin": {
-        //     "command": "/opt/homebrew/bin/kotlin-language-server",
-        //     "filetypes": ["kotlin"]
-        // }
+        //     "command": "kotlin-language-server"
+        //     ,"filetypes": ["kotlin"]
+        //     ,"rootPatterns": ["tags", ".git"]
+        // },
+        "blacklister": {
+            "command": "blacklist-server"
+            ,"args": ["--stdio"]
+            ,"filetypes": ["text"]
+        },
         "clojure-lsp": {
             // 참고: https://clojure-lsp.io/clients/#nvim
             "command": "clojure-lsp"

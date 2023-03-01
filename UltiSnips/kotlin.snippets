@@ -1,0 +1,8 @@
+snippet package "package"
+package `!p
+pwd = os.getenv("PWD")
+addr = path.replace(pwd + "/src/main/kotlin/", "")
+addr = addr.replace("/" + fn, "")
+snip.rv = addr.replace("/", ".")
+`
+endsnippet
