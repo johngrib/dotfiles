@@ -325,6 +325,25 @@ let g:coc_global_extensions = [
     " https://vim.fandom.com/wiki/Search_for_visually_selected_text
     vnoremap <Space>* y/\V<C-R>=escape(@",'/\')<CR><CR>
 
+    function! DecimalToBinary(input)
+        let l:num = a:input
+
+        if l:num == 0
+            return 0
+        endif
+
+        let l:bin = ''
+        while l:num > 0
+            let l:bin = l:num % 2 . l:bin
+            let l:num = l:num / 2
+        endwhile
+
+        return l:bin
+    endfunction
+
+    " converts decimal to binary
+    nnoremap cvb :let temp_num=DecimalToBinary(expand("<cword>"))<CR>ciw<C-r>=temp_num<CR>
+
     "Bubble lines
     " nnoremap <M-K> ddkP
     " nnoremap <M-J> ddp
