@@ -33,12 +33,12 @@
   Plug 'easymotion/vim-easymotion'
 
     " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
-    nmap sl <Plug>(easymotion-lineforward)
-    nmap sj <Plug>(easymotion-j)
-    nmap sk <Plug>(easymotion-k)
-    nmap sh <Plug>(easymotion-linebackward)
-    nmap sa <Plug>(easymotion-jumptoanywhere)
-    nmap sf <Plug>(easymotion-f)
+    nmap <C-s>l <Plug>(easymotion-lineforward)
+    nmap <C-s>j <Plug>(easymotion-j)
+    nmap <C-s>k <Plug>(easymotion-k)
+    nmap <C-s>h <Plug>(easymotion-linebackward)
+    nmap <C-s><C-s> <Plug>(easymotion-jumptoanywhere)
+    nmap <C-s>f <Plug>(easymotion-f)
 
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
