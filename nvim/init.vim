@@ -142,7 +142,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
         " Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
         " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': 'kotlin' }
-        Plug 'beeender/Comrade', {'for': 'kotlin'}
+        Plug 'johngrib/Comrade', {'branch': 'dev', 'for': ['kotlin', 'java', 'groovy']}
 
         "* Rust
         Plug 'rust-lang/rust.vim', {'for': 'rust'}
