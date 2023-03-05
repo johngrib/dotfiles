@@ -117,7 +117,7 @@ augroup vimwikiauto
 
     autocmd FileType vimwiki nmap s <nop>
     autocmd FileType vimwiki vmap s <nop>
-    autocmd FileType vimwiki nmap s? :execute "vs " . globpath(&rtp, 'vim-include/set-vimwiki.vim')<CR>
+    autocmd FileType vimwiki nmap s? :execute "vs " . globpath(&rtp, 'config/set-vimwiki.vim')<CR>
 
     " Create: - sc
     autocmd FileType vimwiki nmap sc <nop>
