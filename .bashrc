@@ -112,11 +112,11 @@ ${COLOR_END}\
 
 # PROMPT_COMMAND="share_history; $PROMPT_COMMAND"
 
-[ -f ~/.local/bin/git-completion.bash ] && source ~/.local/bin/git-completion.bash
+[ -f ~/dotfiles/bin/git-completion.bash ] && source ~/dotfiles/bin/git-completion.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # [ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
 
-for f in ~/.local/bin/*.sh; do source $f; done
+for f in ~/dotfiles/bin/*.sh; do source $f; done
 
 source $(which fav.sh)
 
