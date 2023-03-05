@@ -8,6 +8,7 @@
   "https://gist.github.com/zchee/9c78f91cc5ad771c1f5d " action list
 
   nnoremap <F10>r :source ~/.ideavimrc<CR>
+  nmap s <NOP>
 
 " set commands -----------------------------------------------------------------
 
@@ -201,3 +202,6 @@ nmap my <Action>(ToggleBookmarkY)
 nmap mz <Action>(ToggleBookmarkZ)
 
 nmap \p <Action>(ParameterNameHints)
+
+" 열려있는 파일을 explorer에서 포커스 맞추기
+nmap sff <Action>(SelectInProjectView)
