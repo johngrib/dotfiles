@@ -124,36 +124,6 @@ nnoremap <Space>v :action CopyPaths<CR>
 
 let mapleader=" "
 
-" Slurp, Barf
-nmap sch :action :cursive.actions.paredit/slurp-backwards<CR>
-nmap scH :action :cursive.actions.paredit/barf-backwards<CR>
-nmap scL :action :cursive.actions.paredit/barf-forwards<CR>
-nmap scl :action :cursive.actions.paredit/slurp-forwards<CR>
-
-" nmap <Tab>h :action :cursive.actions.paredit/slurp-backwards<CR>
-nmap <Tab>h <Action>(:cursive.actions.paredit/slurp-backwards)
-nmap <Tab>H <Action>(:cursive.actions.paredit/barf-backwards)
-nmap <Tab>L <Action>(:cursive.actions.paredit/barf-forwards)
-nmap <Tab>l <Action>(:cursive.actions.paredit/slurp-forwards)
-
-nmap sct <Action>(:cursive.actions.paredit/thread-form)
-nmap scT <Action>(:cursive.actions.paredit/unthread-form)
-
-" Parinfer 토글
-nmap scp <Action>(:cursive.actions.paredit/toggle)
-
-" REPL 출력을 clear 한다.
-nmap scrc <Action>(:cursive.repl.actions/clear-repl)
-
-" 폼 좌우 이동
-nmap scj <Action>(:cursive.actions.paredit/move-form-up)
-nmap sck <Action>(:cursive.actions.paredit/move-form-down)
-
-nmap <Tab>? <Action>(:cursive.actions.paredit/clojure-edit-group)
-
-" 컬렉션 타입을 순환시킨다. #{} -> () -> {} -> [] -> #{}
-" nmap scss :action :cursive.actions.paredit/cycle-collection-type<CR>
-
 
 " Bookmarks 알파벳 마크는 글로벌 마크만 왼쪽에 표시된다. 글로벌 마크만 쓰자.
 nmap `0 <Action>(GotoBookmark0)
