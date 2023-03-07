@@ -123,6 +123,7 @@ call plug#begin('~/.vim/plugged')
         "* JavaScript
         Plug 'neoclide/coc-tsserver', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
         Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
+        PlugFile 'set-javascript.vim'
 
         "* Clojure
         Plug 'guns/vim-sexp',    {'for': 'clojure'}
@@ -140,8 +141,7 @@ call plug#begin('~/.vim/plugged')
 
         "* Kotlin
         Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
-        " Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-        " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': 'kotlin' }
+        Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
         Plug 'johngrib/Comrade', {'branch': 'dev', 'for': ['kotlin', 'java', 'groovy']}
 
         "* Rust
