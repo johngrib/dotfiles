@@ -531,7 +531,8 @@ import datetime
 yyyy_mm_dd = str(datetime.datetime.now().year) + '-' + match.group(1)
 subject_date = datetime.datetime.strptime(yyyy_mm_dd, "%Y-%m-%d")
 weekday = str(subject_date.weekday())
-snip.rv = yyyy_mm_dd + ' ' + ['월', '화', '수', '목', '금', '토', '일'][int(weekday)]
+day = ['월', '화', '수', '목', '금', '토', '일'][int(weekday)]
+snip.rv = yyyy_mm_dd + ' ' + day + ' {#_' + yyyy_mm_dd + '}'
 `$0
 endsnippet
 
