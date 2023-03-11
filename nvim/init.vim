@@ -119,6 +119,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
     " https://github.com/dense-analysis/ale
     " Plug 'jszakmeister/vim-togglecursor'
+        Plug 'vim-test/vim-test', {'for': 'rust'}
 
         "* JavaScript
         Plug 'neoclide/coc-tsserver', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}

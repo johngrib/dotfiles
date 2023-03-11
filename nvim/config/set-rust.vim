@@ -7,6 +7,7 @@ endif
 augroup vimrust
     " Common
     autocmd FileType rust nmap <silent> <c-]> <Plug>(coc-definition)
+    autocmd FileType rust nmap s? :vs ~/dotfiles/nvim/config/set-rust.vim<CR>
 
     " Code Typing: - "sc"
     autocmd FileType rust nmap sc <nop>
@@ -26,6 +27,14 @@ augroup vimrust
     autocmd FileType rust nmap ser :!cargo run<CR>
     autocmd FileType rust nmap seR :!cargo run --release<CR>
     autocmd FileType rust nmap seq :!cargo run -q --release<CR>
+
+    " Test: - "st"
+    " https://github.com/vim-test/vim-test
+    autocmd FileType rust let test#strategy = "neovim"
+    " autocmd FileType rust let test#strategy = "terminal"
+    autocmd FileType rust nmap stt :TestNearest<CR>
+    autocmd FileType rust nmap stf :TestFile<CR>
+    " :TestSuite
 
     " Insert Mode:
     autocmd FileType rust inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}\]]<CR>:let @/=@z<CR>a
