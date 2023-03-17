@@ -47,3 +47,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 [[ -s "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
