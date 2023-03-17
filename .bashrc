@@ -173,7 +173,7 @@ if [ $ITERM_SESSION_ID ]; then
     export PROMPT_COMMAND='echo -ne "\033]1;${PWD##*/}\007"; '
 fi
 
-ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
+# ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
 
 myfortune && echo ''
 ioreg -r -d 1 -k BatteryPercent | grep BatteryPercent | tr -d ' '
