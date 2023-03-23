@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'simeji/winresizer'
             PlugFile 'set-winresizer.vim'
         PlugFile 'vim-gx-on-regex.vim'
+        Plug 'Olical/vim-enmasse'
 
         "* session
         Plug 'mhinz/vim-startify'           " 시작 화면을 꾸며준다. MRU가 있어 편리하다.
@@ -156,7 +157,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'johngrib/vim-game-code-break'
     Plug 'johngrib/vim-game-snake'
     " Plug 'tpope/vim-db'
-    Plug 'johngrib/vimwiki', { 'branch': 'dev' }
+    Plug 'johngrib/vimwiki', { 'branch': 'johngrib' }
         PlugFile 'set-vimwiki.vim'
     Plug 'johngrib/grib-wiki'
 
