@@ -26,6 +26,9 @@
             "command": "johngrib-wiki-lsp"
             ,"args": ["--stdio"]
             ,"filetypes": ["vimwiki"]
+            ,"diagnostic": {
+                "enableMessage": "jump"
+            }
         },
         "clojure-lsp": {
             // 참고: https://clojure-lsp.io/clients/#nvim

@@ -111,6 +111,13 @@ augroup vimwikiauto
     autocmd FileType vimwiki inoremap <S-Right> <C-r>=vimwiki#tbl#kbd_tab()<CR>
     autocmd FileType vimwiki inoremap <S-Left> <Left><C-r>=vimwiki#tbl#kbd_shift_tab()<CR>
 
+
+    autocmd FileType vimwiki let &iskeyword = "@,48-57,_,192-255,-,/"
+
+    " g:md_modify_disabled 을 토글한다
+    autocmd FileType vimwiki nnoremap <silent> s,d :let g:md_modify_disabled = !g:md_modify_disabled<CR>
+    autocmd FileType vimwiki nmap <C-]> <Plug>(coc-definition)
+
     " Insert Mode:
     autocmd FileType vimwiki inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}\]\.]<CR>:let @/=@z<CR>a
     autocmd FileType vimwiki inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{\[\.]<CR>:let @/=@z<CR>i
@@ -121,6 +128,7 @@ augroup vimwikiauto
 
     " Create: - sc
     autocmd FileType vimwiki nmap sc <nop>
+    autocmd FileType vimwiki nmap scr <Plug>(coc-rename)
     " markdown 테이블 생성
     autocmd FileType vimwiki nnoremap sct :VimwikiTable<CR>
     " 현재 문단을 두 번째 위 문단에 붙입니다. 번역할 때 유용합니다.
