@@ -129,6 +129,7 @@ augroup vimwikiauto
     " Create: - sc
     autocmd FileType vimwiki nmap sc <nop>
     autocmd FileType vimwiki nmap scr <Plug>(coc-rename)
+    autocmd FileType vimwiki nmap sar <Plug>(coc-references)
     " markdown 테이블 생성
     autocmd FileType vimwiki nnoremap sct :VimwikiTable<CR>
     " 현재 문단을 두 번째 위 문단에 붙입니다. 번역할 때 유용합니다.
