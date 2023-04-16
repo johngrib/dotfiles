@@ -149,6 +149,12 @@ augroup vimwikiauto
     " SurroundSupport: - ss
     autocmd FileType vimwiki nmap ss <nop>
     autocmd FileType vimwiki vmap ss* S*gvS*
+
+    " . 으로 커서를 옮기고 line 스플릿한 다음, 개행 문자 두 개 삽입. (번역할 때 사용)
+    autocmd FileType vimwiki nmap ss. f.a<CR><CR><Esc>
+    " 문장 긁어 모아가며 위로 올리기
+    autocmd FileType vimwiki nmap ssj dip{P
+
 augroup END
 
 let g:tagbar_type_vimwiki = {
