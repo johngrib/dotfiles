@@ -52,15 +52,7 @@
         --date=format:'%Y-%m-%d %H:%M:%S' \
         --abbrev-commit \
         --pretty=format:'%C(red)%H%C(auto)%d %s %C(green)(%ad)%C(bold blue) %an'"
-    lh = "!# Show log graph | head \n\
-        f() { \
-            if [ $# = 0 ]; then \
-                git l | head -25; \
-            else \
-                git l | head -$1; \
-            fi; \
-            echo ''; \
-        }; f"
+    lh = "!git l | head -25"
     ranking = "!# List commit counts of contributors;\n\
         git shortlog -sn"
 
