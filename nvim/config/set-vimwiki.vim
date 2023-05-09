@@ -11,7 +11,7 @@ let g:vimwiki_list = [
             \   'diary_rel_path': '.',
             \},
             \{
-            \   'path': '~/Dropbox/localwiki/_wiki',
+            \   'path': '~/localwiki/_wiki',
             \   'ext' : '.md',
             \   'diary_rel_path': '.',
             \}
