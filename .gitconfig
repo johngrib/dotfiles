@@ -152,7 +152,7 @@
     diff-info = "!# Print diff report.;\n\
         fileA=/tmp/git-s-$(uuidgen); \
         fileB=/tmp/git-diff-$(uuidgen); \
-        git s | awk '{print $2,$1}' > $fileA; \
+        git status -s | awk '{print $2,$1}' > $fileA; \
         git diff --numstat | awk '{print $3,$1,$2}' > $fileB; \
         join -t' ' -a 1 $fileA $fileB | awk '{print $2, \"(+\"$3 \",-\"$4\")\", $1}' | sed 's/(+,-)/./; s/^\\([^?]\\) *\\./\\1 STAGED/' | column -t -s' ' ; \
         rm -f $fileA $fileB; \
@@ -165,6 +165,30 @@
                 \"if [[ {1} == '??' ]]; then bat {3}; else git diff --color=always {3}; fi\" \
             | awk '{print $3}'; \
         }; f"
+
+
+    aa = "!# Select files and Add them(Include untracked files).;\n\
+        git diff-select-r | xargs git add"
+
+        diff-info-r = "!# Print diff report.;\n\
+            fileA=/tmp/git-s-$(uuidgen); \
+            fileB=/tmp/git-diff-$(uuidgen); \
+            ( git status -s; git ls-files -o --exclude-standard | sed 's/^/?? /' ; ) | awk '{print $2,$1}' > $fileA; \
+            git diff --numstat | awk '{print $3,$1,$2}' > $fileB; \
+            join -t' ' -a 1 $fileA $fileB | awk '{print $2, \"(+\"$3 \",-\"$4\")\", $1}' | sed 's/(+,-)/./; s/^\\([^?]\\) *\\./\\1 STAGED/' | column -t -s' ' ; \
+            rm -f $fileA $fileB; \
+        "
+        diff-select-r = "!# Select changed files to add them.;\n\
+            f() { \
+                git diff-info-r \
+                | sort -k4 -r \
+                | uniq \
+                | egrep -v '[^?] *STAGED ' \
+                | fzf -m --header \"$(git diff --shortstat)\" --preview \
+                    \"if [[ {1} == '??' ]]; then bat {3}; else git diff --color=always {3}; fi\" \
+                | awk '{print $3}'; \
+            }; f"
+
     diff-unselect = "!# Select staged files to unstage them.;\n\
         f() { \
             git diff-info \
