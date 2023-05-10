@@ -5,6 +5,14 @@ if exists("g:loaded_kotlin_setting") || &cp
 endif
 let g:loaded_kotlin_setting = 1
 
+"* tagbar 설정
+let g:tagbar_type_kotlin = {
+    \ 'ctagstype' : 'Kotlin',
+    \ 'sort': 0,
+    \ 'kinds' : ['e:form', 't:ToDo'],
+    \}
+
+
 " https://github.com/fwcd/kotlin-language-server/blob/main/EDITORS.md#vim
 " let g:LanguageClient_serverCommands = {
 "     \ 'kotlin': ["kotlin-language-server"],

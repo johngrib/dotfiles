@@ -1,0 +1,12 @@
+--langmap=kotlin:.kt
+
+--kinddef-kotlin=e,expressionAndFunction,expressions_and_functions
+--kinddef-kotlin=t,toDo,to_do
+
+--regex-kotlin=/^(class *[A-Za-z]+)/\1/e/
+
+--regex-kotlin=/^( ){0,4}(describe|context|it)\(\"([^\"]+)\")/\2 \3/e/
+--regex-kotlin=/^( ){5,8}(describe|context|it)\(\"([^\"]+)\")/·\2 \3/e/
+--regex-kotlin=/^( ){9,12}(describe|context|it)\(\"([^\"]+)\")/··\2 \3/e/
+--regex-kotlin=/^( ){13,16}(describe|context|it)\(\"([^\"]+)\")/···\2 \3/e/
+
