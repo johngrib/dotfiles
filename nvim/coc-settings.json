@@ -14,14 +14,14 @@
         }
     }
     ,"languageserver": {
-        // "kotlin": {
-        //     "command": "kotlin-language-server"
-        //     ,"filetypes": ["kotlin"]
-        //     ,"rootPatterns": ["tags", ".git"]
-        //     ,"diagnostic": {
-        //         "enable": false
-        //     }
-        // },
+        "kotlin": {
+            "command": "kotlin-language-server"
+            ,"filetypes": ["kotlin"]
+            ,"rootPatterns": ["tags", ".git"]
+            ,"diagnostic": {
+                "enable": false
+            }
+        },
         "johngrib-wiki": {
             "command": "johngrib-wiki-lsp"
             ,"args": ["--stdio"]

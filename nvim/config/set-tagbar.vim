@@ -20,6 +20,16 @@ let g:tagbar_map_previewwin = "<Space>"
 augroup tagbar_custom_config
     autocmd FileType tagbar syntax match tagbar_ignore_char /·/
     autocmd FileType tagbar highlight tagbar_ignore_char ctermfg=DarkGrey guifg=DarkGrey
+
+    autocmd FileType tagbar syntax match tagbar_bdd_describe /·*describe .*/
+    autocmd FileType tagbar highlight tagbar_bdd_describe ctermfg=LightGreen guifg=LightGreen
+
+    autocmd FileType tagbar syntax match tagbar_bdd_context /·*context .*/
+    autocmd FileType tagbar highlight tagbar_bdd_context ctermfg=LightBlue guifg=LightBlue
+
+    autocmd FileType tagbar syntax match tagbar_bdd_it /·*it .*/
+    autocmd FileType tagbar highlight tagbar_bdd_it ctermfg=LightRed guifg=LightRed
+
     autocmd FileType tagbar nmap <c-j> jP
     autocmd FileType tagbar nmap <c-k> kP
     autocmd FileType tagbar nmap \\t> :let g:tagbar_position = "rightbelow vertical"<CR>:TagbarClose<CR>:TagbarOpen<CR>

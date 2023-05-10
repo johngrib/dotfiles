@@ -40,9 +40,10 @@ augroup vim_kotlin_coc
     autocmd FileType kotlin nmap <silent> gy <Plug>(coc-type-definition)
     autocmd FileType kotlin nmap <silent> gr <Plug>(coc-references)
     " autocmd VimLeavePre clojure TagbarClose
-    autocmd BufRead,BufNewFile *.kt call NewKotlinFile()
+    " autocmd BufRead,BufNewFile *.kt call NewKotlinFile()
 
     "* Insert Mode
     autocmd FileType kotlin inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}]<CR>:let @/=@z<CR>a
     autocmd FileType kotlin inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{]<CR>:let @/=@z<CR>i
+    autocmd FileType kotlin let b:coc_diagnostic_disable = 1
 augroup END
