@@ -24,12 +24,12 @@
 
     alias-log = "!#----------------------------------------------------------;\n\
         git alias | egrep 'log|commit-'"
-    commit-select = "!# Select a commit hash from log graph.;\n\
+    commit-select = "!# git log 그래프에서 commit 한 개를 선택하게 해줍니다.;\n\
         git l \
         | fzf -m --ansi --layout=reverse --preview=\"echo {} | sed 's/^[*| ]*//g' | cut -d' ' -f1 | xargs git show --color=always \" \
         | sed 's/^[*| ]*//g' | cut -d' ' -f1"
     c-s = "!git commit-select"
-    commit-copy = "!# Select & copy a commit hash from log graph.;\n\
+    commit-copy = "!# git log 그래프에서 commit 한 개를 선택하면 시스템 클립보드로 복사합니다.;\n\
         git commit-select | tr -d '\n' | pbcopy && echo Copied: `pbpaste`;"
     c-c = "!git commit-copy"
     l = "log \
@@ -53,17 +53,17 @@
         --abbrev-commit \
         --pretty=format:'%C(red)%H%C(auto)%d %s %C(green)(%ad)%C(bold blue) %an'"
     lh = "!git l | head -25"
-    ranking = "!# List commit counts of contributors;\n\
+    ranking = "!# contributor들의 commit 수 랭킹을 집계한 결과를 출력합니다.;\n\
         git shortlog -sn"
 
     alias-branch = "!#----------------------------------------------------------;\n\
         git alias | egrep '[bB]ranch'"
-    b0 = "!# Print current branch.;\n\
+    b0 = "!# 작업 branch를 출력합니다.;\n\
         git branch | awk '/^\\*/{print $2}'"
-    back = "!# Back up current branch.;\n\
+    back = "!# 현재 작업중인 branch를 백업합니다.;\n\
         echo created new branch: backup-`git b0`;\
         git branch backup-`git b0`"
-    bb = "!# Branch tools. Type 'git bb help'.;\n\
+    bb = "!# branch 도구 모음. 도움말: 'git bb help';\n\
         f() { \n\
             if [ $# = 0 ]; then \
                 git branch-select | xargs git checkout; \
@@ -87,7 +87,7 @@
                 git bb help; \
             fi; \
         }; f"
-    branch-clean = "!# Search and delete merged branches.;\n\
+    branch-clean = "!# merged branch를 삭제합니다.;\n\
         curr_hash=`git show -s | head -1 | cut -d ' ' -f2`; \
         for branch in `find .git/refs -type f | fzf --ansi -m --preview=\"cat {} | xargs git l\"` ; do \
             hash=`cat $branch`; \
@@ -103,23 +103,23 @@
             fi; \
         done"
     b-c = "!git branch-clean"
-    branch-list = "!# List the branches.;\n\
+    branch-list = "!# branch 목록을 출력합니다.;\n\
         git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD) %(refname:strip=2) | %(committerdate:relative) | %(authorname)' \
         | column -ts'|' \
         | sed 's/^ /./'"
     b-l = "!git branch-list"
-    branch-list-all = "!# List all branches.;\n\
+    branch-list-all = "!# 모든 브랜치 목록을 출력합니다.;\n\
         for branch in `git branch -r --merged | grep -v HEAD`; do echo `git show --format=\"%ci ; %cr ; %an ;\" $branch | head -n 1` $branch; done | sort -r | column -ts';'"
     b-la = "!git branch-list-all"
-    branch-select = "!# Select a branch.;\n\
+    branch-select = "!# branch 하나를 선택합니다.;\n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
             git branch-list | fzf --preview \"git l {2} | head -n $_height\" | awk '{print $2}'; \
         }; f"
     b-s = "!git branch-select"
-    ch = "!# Branch tools. Same with bb.;\n\
+    ch = "!# branch 도구. bb와 똑같음.;\n\
         git bb $1"
-    sync = "!# Sync with a branch with the same name in the remote repo.;\n\
+    sync = "!# remote repo의 같은 branch와 동기화합니다.;\n\
         remote=$( \
             { \
                 git remote -v | egrep '^(origin|upstream)\\s'; \
@@ -132,7 +132,7 @@
         if ! [ -z $remote ]; then \
             git fetch $remote && git reset --hard $remote/`git b0`; \
         fi"
-    update = "!# Synchronize the contents of local files with the repository;\n\
+    update = "!# remote repo의 같은 branch에 pull --rebase 합니다. stash를 사용합니다.;\n\
         remote=$( \
             { \
                 git remote -v | egrep '^(origin|upstream)\\s'; \
@@ -145,11 +145,11 @@
         git stash; git pull --rebase $remote `git b0`; git stash pop;"
     alias-stage = "!#----------------------------------------------------------;\n\
         git alias | egrep '(add|diff|stage)' -i"
-    a = "!# Select files and Add them.;\n\
+    a = "!# 파일을 선택해 add 합니다.;\n\
         git diff-select | xargs git add"
-    a-c = "!# Add, Commit.;\n\
+    a-c = "!# add 후 commit.;\n\
         git a; git commit"
-    diff-info = "!# Print diff report.;\n\
+    diff-info = "!# diff 보고서를 출력합니다.;\n\
         fileA=/tmp/git-s-$(uuidgen); \
         fileB=/tmp/git-diff-$(uuidgen); \
         git status -s | awk '{print $2,$1}' > $fileA; \
@@ -157,7 +157,7 @@
         join -t' ' -a 1 $fileA $fileB | awk '{print $2, \"(+\"$3 \",-\"$4\")\", $1}' | sed 's/(+,-)/./; s/^\\([^?]\\) *\\./\\1 STAGED/' | column -t -s' ' ; \
         rm -f $fileA $fileB; \
     "
-    diff-select = "!# Select changed files to add them.;\n\
+    diff-select = "!# 변경된 파일을 선택하면 선택한 파일들을 출력합니다.;\n\
         f() { \
             git diff-info \
             | egrep -v '[^?] *STAGED ' \
@@ -167,10 +167,10 @@
         }; f"
 
 
-    aa = "!# Select files and Add them(Include untracked files).;\n\
+    aa = "!# 파일을 선택해 add 합니다.;\n\
         git diff-select-r | xargs git add"
 
-        diff-info-r = "!# Print diff report.;\n\
+        diff-info-r = "!# diff 보고서를 출력합니다.;\n\
             fileA=/tmp/git-s-$(uuidgen); \
             fileB=/tmp/git-diff-$(uuidgen); \
             ( git status -s; git ls-files -o --exclude-standard | sed 's/^/?? /' ; ) | awk '{print $2,$1}' > $fileA; \
@@ -178,7 +178,7 @@
             join -t' ' -a 1 $fileA $fileB | awk '{print $2, \"(+\"$3 \",-\"$4\")\", $1}' | sed 's/(+,-)/./; s/^\\([^?]\\) *\\./\\1 STAGED/' | column -t -s' ' ; \
             rm -f $fileA $fileB; \
         "
-        diff-select-r = "!# Select changed files to add them.;\n\
+        diff-select-r = "!# 변경된 파일을 선택하면 선택한 파일들을 출력합니다.;\n\
             f() { \
                 git diff-info-r \
                 | sort -k4 -r \
@@ -189,7 +189,7 @@
                 | awk '{print $3}'; \
             }; f"
 
-    diff-unselect = "!# Select staged files to unstage them.;\n\
+    diff-unselect = "!# staged 파일들을 선택하면 출력합니다.;\n\
         f() { \
             git diff-info \
             | egrep '[^?] *STAGED ' \
@@ -197,37 +197,38 @@
                 \"if [[ {1} == '??' ]]; then pygmentize {3}; else git diff --color=always --cached {3}; fi\" \
             | awk '{print $3}'; \
         }; f"
-    unstage = "!# Select staged files and Unstage them.;\n\
+    unstage = "!# staged 파일들을 선택하면 unstage 시켜줍니다.;\n\
         git diff-unselect | xargs git reset HEAD"
     alias-stash = "!#----------------------------------------------------------;\n\
         git alias | grep stash"
-    stash-apply = "!# Select a stash item and Apply it.;\n\
+    stash-apply = "!# stash 아이템을 선택하면 apply 해줍니다.;\n\
         git stash-op apply"
     s-a = "!git stash-apply"
-    stash-drop= "!# Select the stash items and Drop them.;\n\
+    stash-drop= "!# stash 아이템을 선택하면 drop 해줍니다.;\n\
         for sid in $(git stash-select -m) ; do \
             git stash drop $sid; \
         done;"
     s-d = "!git stash-drop"
-    stash-list = "!# List stash items.;\n\
+    stash-list = "!# stash 아이템들을 출력합니다.;\n\
         git stash list --pretty=format:\"%C(red)%gd%C(reset) %C(green)(%cr) %C(reset)%s\""
     s-l = "!git stash-list"
-    stash-pop= "!# Select a stash item and Pop it.;\n\
+    stash-pop= "!# stash 아이템을 선택하면 pop 해줍니다.;\n\
         git stash-op pop"
     s-p = "!git stash-pop"
-    stash-save = "!# Save changes into the stash stack.;\n \
+    stash-save = "!# 변경 사항을 메모와 함께 stash 스택에 추가합니다.;\n \
         git diff-info; \
         read -p \"save message: \" msg; \
         git stash save \"$msg\""
     s-s = "!git stash-save"
-    stash-select = "!# Select stash item(s).;\n\
+    stash-select = "!# stash 아이템을 선택합니다.;\n\
         f() { \
             git stash-list \
             | fzf --ansi $1 --preview \"git stash show -p {1} --color=always\" \
             | cut -d' ' -f1; \
         }; f"
-    stash-op = "!#A private stash tool.;\nf() { git stash-select | xargs git stash $1; }; f"
-    tag-refresh = "!# Re reference tag.;\n \
+    stash-op = "!# stash 도구.;\n\
+        f() { git stash-select | xargs git stash $1; }; f"
+    tag-refresh = "!# tag를 현재 HEAD 커밋으로 갱신합니다.;\n \
         f() { \
             _height=$(stty size | awk '{print $1}');\
             tag_name=`git tag | fzf --preview=\"git l {1} | head -n $_height\" `; \
@@ -237,9 +238,9 @@
         }; f"
     alias-alias = "!#----------------------------------------------------------;\n\
         git alias | grep alias"
-    alias = "!# Prints all aliases.;\n\
+    alias = "!# 모든 alias를 출력합니다.;\n\
         git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/' | column -t -s'=' | sed 's/!#* *//; s/;$//' | cut -c1-85"
-    alias-doctor = "!# Check the dependency tools.;\n\
+    alias-doctor = "!# alias에서 사용하는 dependency를 점검합니다.;\n\
     f() { \
         if [ $(which pygmentize | wc -l) -lt 1 ]; then \
             echo 'Not found : Pygments(pygmentize)'; \
@@ -256,7 +257,7 @@
             echo '';\
         fi; \
     }; f"
-    knot = "!# Merge two commits with 1 depth.;\n\
+    knot = "!# 2개의 commit을 선택하면 머지해 줍니다.;\n\
     f() { \
         if [ $(git status --short | egrep -v '^\\?' | wc -l) -gt 0 ]; then \
             echo '변경사항을 먼저 정리해 주세요.';\
