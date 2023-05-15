@@ -87,7 +87,7 @@
                 git bb help; \
             fi; \
         }; f"
-    branch-clean = "!# merged branch를 삭제합니다.;\n\
+    branch-clean = "!# 선택한 여러 branch들을 삭제합니다.;\n\
         curr_hash=`git show -s | head -1 | cut -d ' ' -f2`; \
         for branch in `find .git/refs -type f | fzf --ansi -m --preview=\"cat {} | xargs git l\"` ; do \
             hash=`cat $branch`; \
