@@ -199,6 +199,8 @@
         }; f"
     unstage = "!# staged 파일들을 선택하면 unstage 시켜줍니다.;\n\
         git diff-unselect | xargs git reset HEAD"
+    r = "!# 파일을 선택해 unstage 합니다.;\n\
+        git diff-select-r | xargs git restore "
     alias-stash = "!#----------------------------------------------------------;\n\
         git alias | grep stash"
     stash-apply = "!# stash 아이템을 선택하면 apply 해줍니다.;\n\
