@@ -2,7 +2,12 @@ LANG="en_US.UTF-8"
 # export JAVA_HOME=$(/usr/libexec/java_home)
 export GOBIN=$HOME/go/bin
 export TERM=xterm-256color
-export SDKROOT=$(xcrun --show-sdk-path)
+
+export _OS_NAME=$(uname -s)
+
+if [ "$_OS_NAME" = "Darwin" ]; then
+    export SDKROOT=$(xcrun --show-sdk-path)
+fi
 
 # history setting
 export HISTCONTROL=ignoreboth
@@ -49,7 +54,11 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias cd..='cd ..'
 alias eclimd='~/Applications/Eclipse_neon.app/Contents/Eclipse/eclimd'
-alias ctags='`brew --prefix`/bin/ctags'
+
+if [ "$_OS_NAME" = "Darwin" ]; then
+    alias ctags='`brew --prefix`/bin/ctags'
+fi
+
 alias tmux="TERM=screen-256color tmux"
 alias tm="tmux attach || tmux new"
 #alias vimr='open -a VimR.app "$@"'
