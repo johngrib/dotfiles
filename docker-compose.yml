@@ -1,0 +1,17 @@
+# docker build -t jgnvim .
+# docker-compose exec nvim bash
+
+version: '3.8'
+
+services:
+  nvim:
+    image: jgnvim
+    deploy:
+      replicas: 1
+    volumes:
+      - ~/.ssh:/root/.ssh
+      - ~/dotfiles:/root/dotfiles
+      - ~/dotfiles/nvim:/root/.config/nvim
+      - ~/johngrib.github.io:/root/johngrib.github.io
+      - ~:/root/home
+
