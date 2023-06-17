@@ -53,6 +53,10 @@
         --abbrev-commit \
         --pretty=format:'%C(red)%H%C(auto)%d %s %C(green)(%ad)%C(bold blue) %an'"
     lh = "!git l | head -25"
+    lf = "!# 주어진 file의 history를 출력합니다.;\n\
+        fzf --preview=\"bat {}\" | xargs git l --follow"
+    lfp = "!# 주어진 file의 history를 자세히 출력합니다.;\n\
+        fzf --preview=\"bat {}\" | xargs git l --follow -p"
     ranking = "!# contributor들의 commit 수 랭킹을 집계한 결과를 출력합니다.;\n\
         git shortlog -sn"
 
