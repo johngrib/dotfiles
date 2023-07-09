@@ -70,7 +70,6 @@ alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 alias bc='bc -l ~/.bcrc -q'
 alias weather='curl v2.wttr.in/Seoul'
-alias myfortune='fortune ~/Dropbox/my-fortune'
 alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
 # alias brew="arch -x86_64 /usr/local/bin/brew"
 
@@ -191,7 +190,7 @@ fi
 
 # ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
 
-myfortune && echo ''
+[ -d ~/my-fortune ] && fortune ~/my-fortune ; echo ''
 ioreg -r -d 1 -k BatteryPercent | grep BatteryPercent | tr -d ' '
 
 # export NVM_DIR="$HOME/.nvm"
