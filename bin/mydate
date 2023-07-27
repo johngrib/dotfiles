@@ -54,7 +54,7 @@ printAll() {
         years=$(bc <<< "$days_diff / 365.0")
         remain=$(bc <<< "scale=0; $days_diff % 365")
         printf "%s: %s 일째: (%s 년 %s 일): %s \n" "$from_date" "$days_diff" "$years" "$remain" "$title"
-    done < ~/Dropbox/my-files/date.md
+    done < ~/my-files/date.md
 }
 
 main "$@"
