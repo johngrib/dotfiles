@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ "$1" = "--introduce" ]; then
+    echo "$0 는 man 페이지를 출력할 때 less에서 line number도 함께 보여줍니다."
+    exit 0
+fi
+
+# man 명령은 기본 뷰어로 less를 사용하는데, man 명령은 line number를 보여주는  less의 -N 옵션을 넘겨받지 않는다.
+# 그러나 그렇다고 global export로 LESS='-N'을 하게 되면 그냥 man 을 해도 line number가 출력된다.
+# man 에서 line number를 출력하면 포맷이 조금 깨지기 때문에 필요할 때에만 볼 수 있는 편이 좋다.
+
+export LESS='-N'; man $1 $2;
+
