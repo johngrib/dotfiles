@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ "$1" = "--introduce" ]; then
+    echo "$0 는 bropages.org 에서 명령어 사용법을 검색하는 프로그램입니다."
+    exit 0
+fi
+
 # 이 프로그램은 다음 목록에 의존합니다.
 # jq, perl, bat
 
