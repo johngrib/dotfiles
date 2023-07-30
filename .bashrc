@@ -93,7 +93,6 @@ function gbr {
     if [ "$?" -ne "0" ]; then
         return 1
     else
-        # branch="`git branch | grep '^\*' | cut -c 3-`"
         branch="`git branch --show-current`"
         branch_str="\033[1;031m$branch\033[0m"
 
