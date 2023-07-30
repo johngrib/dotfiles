@@ -96,7 +96,7 @@ function gbr {
         branch="`git branch --show-current`"
         branch_str="\033[1;031m$branch\033[0m"
 
-        stat=`git s \
+        stat=`git status --short \
             | awk '{print $1}' \
             | sort | uniq -c \
             | tr '\n' ' ' \
