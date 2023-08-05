@@ -1,15 +1,14 @@
-# bash_profile
+#!/usr/bin/env bash
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export SDKROOT=$(xcrun --show-sdk-path)
 
 if [[ $(uname -p) == 'arm' ]]; then
-    # M1 이라면
+    # 프로세서가 arm 즉 Apple Silicon 이라면
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/sbin:$PATH"
     eval "$(/opt/homebrew/bin/brew shellenv)"
 else
-    # M1 이 아니라면
     export PATH="/usr/local/bin:$PATH"
     export PATH="/usr/local/sbin:$PATH"
     eval "$(/usr/local/bin/brew shellenv)"
