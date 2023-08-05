@@ -69,11 +69,12 @@ alias agl='ag --pager="less -XFRMI"'
     # R: ANSI 컬러 호환
     # M: 현재 지점이 전체 페이지의 몇 %인지 보여준다. (내용이 길면 G로 마지막으로 이동하면 %가 표시됨)
     # I: less 내에서 검색어를 입력할 때 대소문자를 구분하지 않는다.
+alias lessa='less -XFRMI'
 alias ncd='ncdu --color dark -rr -x'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
-alias bc='bc -l ~/.bcrc -q'
+alias bc='bc -q -l ~/.bcrc'
 alias weather='curl v2.wttr.in/Seoul'
 alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
 # alias brew="arch -x86_64 /usr/local/bin/brew"
