@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ "$1" = "--introduce" ]; then
+    echo "$0 는 로컬에 설치된 johngrib.github.io 디렉토리에서 CLI 명령과 관련된 문서를 검색해 미리보기를 제공해 줍니다."
+    exit 0
+fi
+
 wiki=`stat -f "%N" ~/johngrib.github.io/_wiki`
 
 if [ "$wiki" = "" ]; then
