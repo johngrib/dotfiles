@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-wiki=`stat -f "%N" ~/Dropbox/johngrib.github.io/_wiki`
+wiki=`stat -f "%N" ~/johngrib.github.io/_wiki`
 
 if [ "$wiki" = "" ]; then
     echo "invalid wiki location."
     return 0
 fi
 
-name=`egrep 'tag\s*:.*command( |$)' $wiki/* -l 2> /dev/null \
+name=`find $wiki/cmd -name '*.md' 2> /dev/null \
     | xargs egrep 'summary|title' \
     | awk -F':' 'NR%2==1 { name=$1; title=$3 } NR%2==0 { print name, ":", title, ":", $3 }' \
     | sed "s,"$wiki"/,," \
