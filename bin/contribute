@@ -13,23 +13,26 @@ echo $TITLE
 
 ag -o '\<td.+data-ix.+?data-level="\d+"\>' $RAW \
     | sed -E 's/.*data-ix="([^"]+)".*data-date="([^"]+)".*data-level="([^"]+)".*/\1,\3,\2/' \
+    | tr -d '-' \
     > $TABLE
+
+# TABLE의 각 라인은 다음과 같은 포맷이다.
+# week넘버,레벨,날짜
 
 # cat $TABLE
 
 COLORS=(255 148 71 34 22)
 
 for row in $(cat $TABLE); do
+    COLUMN=`echo $row | cut -d, -f1`
+    if [ $COLUMN -eq 0 ]; then
+        printf "\n"
+    fi
     LEVEL=`echo $row | cut -d, -f2`
     COLOR=${COLORS[$LEVEL]}
     printf "\e[48;5;%dm  " $COLOR ;
     printf '\e[0m';
-
-    COLUMN=`echo $row | cut -d, -f1`
-    if [ $COLUMN -eq 52 ]; then
-        printf "\n"
-    fi
 done
-
+echo ''
 exit
 
