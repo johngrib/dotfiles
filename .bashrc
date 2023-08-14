@@ -40,9 +40,11 @@ if ls --version > /dev/null 2>&1; then
     alias l.='ls -d .* --color=auto'
 else
     # alias ls='ls -G'; #osx
-    alias ls='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S" -F';
+    alias ls='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S"';
+    alias lsf='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S -F"';
     alias lsa='exa --time-style="long-iso"';
     alias l.='ls -dG .*'
+    alias wc='gwc'
 fi
 alias ll='ls -alh --color'
 alias lla='exa --time-style="long-iso" -alh'
