@@ -1,4 +1,3 @@
-LANG="en_US.UTF-8"
 # export JAVA_HOME=$(/usr/libexec/java_home)
 export GOBIN=$HOME/go/bin
 export TERM=xterm-256color
@@ -76,7 +75,7 @@ alias ncd='ncdu --color dark -rr -x'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
-alias bc='bc -q -l ~/.bcrc'
+alias bc='bc -q -l ~/dotfiles/.bcrc'
 alias weather='curl v2.wttr.in/Seoul'
 alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
 # alias brew="arch -x86_64 /usr/local/bin/brew"
