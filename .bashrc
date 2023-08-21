@@ -91,7 +91,7 @@ for f in ~/dotfiles/bin/*.sh; do source $f; done
 source $(which fav.sh)
 
 bind '"\ev": "\C-ufav\C-m"'
-bind '"\ed": "droller \"`pbpaste`\"\C-m"'
+# bind '"\ed": "droller \"`pbpaste`\"\C-m"'
 
 # eval $(thefuck --alias)
 
