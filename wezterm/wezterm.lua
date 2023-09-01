@@ -4,7 +4,7 @@ local wezterm = require 'wezterm'
 return {
     -- font = wezterm.font 'JetBrains Mono',
     font = wezterm.font 'MesloLGMDZ Nerd Font Mono',
-    font_size = 16,
+    font_size = 18,
     visual_bell = {
         fade_in_function = 'EaseIn',
         fade_in_duration_ms = 100,
