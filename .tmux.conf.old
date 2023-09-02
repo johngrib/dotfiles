@@ -16,7 +16,9 @@ set-option -ga terminal-overrides ",tmux-256color-italic:Tc,xterm-256color-itali
 # use mac system clipboard
 # brew install reattach-to-user-namespace
 set -g default-shell $SHELL
-set -g default-command "reattach-to-user-namespace -l bash"
+
+# 이거 없어도 잘 동작하는 것 같음
+# set -g default-command "reattach-to-user-namespace -l bash"
 
 # for mouse scroll in iTerm
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
@@ -38,12 +40,13 @@ set -g history-limit 10000
 setw -g mode-keys vi
 setw -g mouse on
 
-# to enable mouse scroll, see https://github.com/tmux/tmux/issues/145#issuecomment-150736967
+# 마우스 스크롤 활성화
+    # https://github.com/tmux/tmux/issues/145#issuecomment-150736967
 bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
 
 # Setup 'v' to begin selection as in Vim
-bind-key -Tcopy-mode-vi 'v' send -X begin-selection
-bind-key -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel "pbcopy"
+# bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+# bind-key -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel "pbcopy"
 
 setw -g monitor-activity on
 
