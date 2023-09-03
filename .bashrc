@@ -55,6 +55,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias cd..='cd ..'
 alias eclimd='~/Applications/Eclipse_neon.app/Contents/Eclipse/eclimd'
+alias convmv-nfc='convmv -f utf-8 -t utf-8 --nfc --notest'
 
 if [ "$_OS_NAME" = "Darwin" ]; then
     alias ctags='`brew --prefix`/bin/ctags'
