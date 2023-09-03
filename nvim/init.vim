@@ -153,6 +153,9 @@ call plug#begin('~/.vim/plugged')
         "* yaml
         Plug 'stephpy/vim-yaml'
 
+        "* tmux
+        PlugFile 'set-tmux.vim'
+
     "* Vim 기반 애플리케이션
     Plug 'johngrib/vim-game-code-break'
     Plug 'johngrib/vim-game-snake'

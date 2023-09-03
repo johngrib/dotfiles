@@ -1,0 +1,14 @@
+--langdef=tmux
+--langmap=tmux:.tmux.conf
+
+--kinddef-tmux=t,subTitle,sub_title
+
+--regex-tmux=/^## (.+)/··\1/t/
+--regex-tmux=/^### (.+)/···\1/t/
+--regex-tmux=/^#### (.+)/····\1/t/
+--regex-tmux=/^##### (.+)/·····\1/t/
+--regex-tmux=/^###### (.+)/······\1/t/
+--regex-tmux=/^####### (.+)/·······\1/t/
+--regex-tmux=/^######## (.+)/········\1/t/
+--regex-tmux=/^######### (.+)/·········\1/t/
+
