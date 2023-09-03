@@ -84,8 +84,8 @@ create_alias() {
     if command -v $1 2>/dev/null; then alias "$2"="$3"; fi
 }
 
-# create_alias "ggrep" "grep" "ggrep --color=auto"
 create_alias "gwc" "wc" "gwc"
+create_alias "ggrep" "ggrep" "ggrep --color=auto"
 
 alias bc='bc -q -l ~/dotfiles/.bcrc'
 alias weather='curl v2.wttr.in/Seoul'
