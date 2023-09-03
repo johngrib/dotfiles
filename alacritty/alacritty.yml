@@ -110,6 +110,9 @@ key_bindings:
   # control + pgdn, control + pgup        C-q p , C-q n
   - { key: PageUp, mods: Control, chars: "\x11p" }
   - { key: PageDown, mods: Control, chars: "\x11n" }
+  # tmux 윈도우 목록 보기(선택)
+  # command + e                      C-q w
+  - { key: E, mods: Command, chars: "\x11w" }
 
   # tmux 윈도우 사이즈 조정
   # cmd + 화살표,                        C-q H, C-q J, C-q K, C-q L
