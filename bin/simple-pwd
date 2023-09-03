@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ "$HOME" == "$1" ]]; then
+    echo "~"
+elif [[ "/" == "$1" ]]; then
+    echo "/"
+else
+    echo "${1##*/}"
+fi
