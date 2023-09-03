@@ -83,8 +83,10 @@ create_symlink ./.bcrc ~/.bcrc
 create_symlink ./.ctags ~/.ctags
 create_symlink ./.ctags.d ~/.ctags.d
 create_symlink ./.ideavimrc ~/.ideavimrc
+create_symlink ./.tmux.conf ~/.tmux.conf
 
 mkdir -p ~/.config
 create_symlink ./nvim ~/.config/nvim
 create_symlink ./karabiner ~/.config/karabiner
+create_symlink ./alacritty ~/.config/alacritty
 
