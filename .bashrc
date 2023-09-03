@@ -43,7 +43,6 @@ else
     alias lsf='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S -F"';
     alias lsa='exa --time-style="long-iso"';
     alias l.='ls -dG .*'
-    alias wc='gwc'
 fi
 alias ll='ls -alh --color'
 alias lla='exa --time-style="long-iso" -alh'
@@ -76,6 +75,18 @@ alias ncd='ncdu --color dark -rr -x'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
+
+create_alias() {
+    # 명령을 체크하고 대체 alias를 생성해 준다
+    check_command=$1
+    alias_name=$2
+    alias_command=$3
+    if command -v $1 2>/dev/null; then alias "$2"="$3"; fi
+}
+
+create_alias "ggrep" "grep" "ggrep --color=auto"
+create_alias "gwc" "wc" "gwc"
+
 alias bc='bc -q -l ~/dotfiles/.bcrc'
 alias weather='curl v2.wttr.in/Seoul'
 alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
