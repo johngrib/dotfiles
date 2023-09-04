@@ -124,5 +124,9 @@ key_bindings:
   - { key: Up,    mods: Command, chars: "\x11K" }
   - { key: Right, mods: Command, chars: "\x11L" }
 
+  # tmux 윈도우(탭) 좌우 이동                   C-q C-h, C-q C-l
+  - { key: Comma,  mods: Command|Shift, chars: "\x11\x08" }
+  - { key: Period, mods: Command|Shift, chars: "\x11\x0c" }
+
   # command + [                             C-q [
   - { key: LBracket, mods: Command, chars: "\x11[" } # tmux 스크롤/복사 모드 전환
