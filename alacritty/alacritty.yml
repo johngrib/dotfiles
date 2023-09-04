@@ -17,7 +17,7 @@ colors:
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     # text: "0xffffff"
-    cursor: "0xd95430"
+    cursor: "0x4ced4c"
     style: Beam
 
   normal:
