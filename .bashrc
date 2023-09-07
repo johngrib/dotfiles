@@ -82,7 +82,7 @@ create_alias() {
     check_command=$1
     alias_name=$2
     alias_command=$3
-    if command -v $1 2>/dev/null; then alias "$2"="$3"; fi
+    if command -v $1 >/dev/null 2>&1 ; then alias "$2"="$3"; fi
 }
 
 create_alias "gwc" "wc" "gwc"
