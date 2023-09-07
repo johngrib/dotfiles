@@ -5,6 +5,12 @@ env:
 font:
   normal:
     family: "MesloLGMDZ Nerd Font Mono"
+  bold:
+    family: "MesloLGMDZ Nerd Font Mono"
+    style: Bold
+  italic:
+    family: "MesloLGMDZ Nerd Font Mono"
+    style: Italic
   size: 18.0
 
 draw_bold_text_with_bright_colors: true
@@ -18,7 +24,7 @@ colors:
   cursor:
     # text: "0xffffff"
     cursor: "0x4ced4c"
-    style: Beam
+    style: Block
 
   normal:
     black: "0x000000"
@@ -52,6 +58,7 @@ window:
   # Allow terminal applications to change Alacritty's window title.
   dynamic_title: true
   option_as_alt: Both
+  decorations: none
 
 # mouse_bindings:
 #   - { mouse: Middle, action: PasteSelection }
@@ -73,7 +80,7 @@ hints:
         key: L
         mods: Control|Shift
     # Ctrl-Shift-U hints matches for copy.
-    - regex: '([0-9a-f]{12,128})|([[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3})|(i-[0-9a-f]{17})'
+    - regex: '([0-9a-f]{7,128})|([[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3})|(i-[0-9a-f]{17})'
       action: Copy
       post_processing: false
       binding:
