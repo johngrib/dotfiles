@@ -59,6 +59,9 @@ window:
   dynamic_title: true
   option_as_alt: Both
   decorations: none
+  padding:
+    x: 2
+    y: 0
 
 # mouse_bindings:
 #   - { mouse: Middle, action: PasteSelection }
