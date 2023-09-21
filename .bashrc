@@ -49,7 +49,6 @@ alias lla='exa --time-style="long-iso" -alh'
 # alias vi='mvim -v'
 alias vi='nvim'
 alias vim='nvim'
-alias rm='rm -iv'
 alias mv='mv -i'
 alias cp='cp -i'
 alias cd..='cd ..'
@@ -87,6 +86,7 @@ create_alias() {
 
 create_alias "gwc" "wc" "gwc"
 create_alias "ggrep" "ggrep" "ggrep --color=auto"
+create_alias "grm" "rm" "grm -i -v"
 
 alias bc='bc -q -l ~/dotfiles/.bcrc'
 alias weather='curl v2.wttr.in/Seoul'
