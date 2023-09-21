@@ -13,5 +13,5 @@ fi
 # -M: 현재 보고 있는 페이지가 전체 페이지의 몇 %인지를 보여준다.
 # -I: less 내에서 / 로 검색을 할 때 대소문자를 구분하지 않는다.
 # -R: less 내에서 ANSI 색상을 표시한다.
-export LESS='-NMIR'; man $1 $2;
+export LESS='-MIR'; man $1 $2;
 
