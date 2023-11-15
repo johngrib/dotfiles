@@ -48,3 +48,5 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 [[ -s "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
