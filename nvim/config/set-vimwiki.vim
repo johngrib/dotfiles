@@ -71,10 +71,12 @@ function! NewTemplate()
     endif
 
     if line("$") > 1
+        let b:resource_id = GetResourceId()
         return
     endif
 
     let l:uuid = substitute(system("uuidgen"), '\n', '', '')
+    let b:resource_id = substitute(l:uuid, '^\(..\)', '\1/', '')
     let l:template = []
     call add(l:template, '---')
     call add(l:template, 'layout  : wiki')
@@ -83,7 +85,7 @@ function! NewTemplate()
     call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
     call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
     call add(l:template, 'tag     : ')
-    call add(l:template, 'resource: ' . substitute(l:uuid, '^\(..\)', '\1/', ''))
+    call add(l:template, 'resource: ' . b:resource_id)
     call add(l:template, 'toc     : true')
     call add(l:template, 'public  : true')
     call add(l:template, 'parent  : ')
@@ -102,7 +104,17 @@ endfunction
 
 function! BufOpenEvent()
     call NewTemplate()
+endfunction
 
+function! GetResourceId()
+    for i in range(1, 10)
+        let l:line = getline(i)
+        if line =~ '^resource: '
+            " \zs 오른쪽부터 매칭된다
+            return matchstr(l:line, '\v^resource:\s*\zs.*')
+        endif
+    endfor
+    return ''
 endfunction
 
 augroup vimwikiauto
