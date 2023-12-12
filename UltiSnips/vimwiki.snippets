@@ -486,9 +486,13 @@ snippet box
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 endsnippet
 
+# snippet ! "image"
+# ![${2}]( ${3:.}/resource/wiki/`!p snip.rv = snip.basename`${1} )
+# ${0}
+# endsnippet
+
 snippet ! "image"
-![${2}]( ${3:.}/resource/wiki/`!p snip.rv = snip.basename`${1} )
-${0}
+![${2}]( ${3:.}/resource/`!v GetResourceId()`/${1} )
 endsnippet
 
 snippet detail "접기/펼치기"
