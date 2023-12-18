@@ -168,6 +168,19 @@ augroup vimwikiauto
     " 문장 긁어 모아가며 위로 올리기
     autocmd FileType vimwiki nmap ssj dip{P
 
+    " 문서 목록을 보여주고, 선택한 문서로 링크를 생성해 준다.
+    autocmd FileType vimwiki inoremap <expr> <c-x><c-s> fzf#vim#complete({
+      \ 'source':  'find $PWD/_wiki -name "*.md" \| sed "s,^$PWD/_wiki/,,g"',
+      \ 'reducer': function('<sid>make_link'),
+      \ 'options': ['--multi', '--reverse', '--preview', 'bat $PWD/_wiki/{}' ]})
+    function! s:make_link(lines)
+      let l:lines = copy(a:lines)
+      for i in range(len(l:lines))
+        let l:lines[i] = '[[' . substitute(l:lines[i], '\.md$', '', '') . ']]'
+      endfor
+      return join(l:lines, ' ')
+    endfunction
+
 augroup END
 
 let g:tagbar_type_vimwiki = {
@@ -202,4 +215,6 @@ augroup todoauto
 augroup END
 
 let g:md_modify_disabled = 0
+
+
 
