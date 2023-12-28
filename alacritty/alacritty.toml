@@ -1,0 +1,216 @@
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "0x080808"
+blue = "0x48b3e5"
+cyan = "0xbdfaf0"
+green = "0x8fff5b"
+magenta = "0xc07c74"
+red = "0xf97a70"
+white = "0xf4f2fa"
+yellow = "0xfcce2e"
+
+[colors.cursor]
+cursor = "0x4ced4c"
+# style = "Block"
+
+[colors.normal]
+black = "0x000000"
+blue = "0x5670f5"
+cyan = "0x609686"
+green = "0x67c837"
+magenta = "0x8375b0"
+red = "0xec4434"
+white = "0xf3d6b0"
+yellow = "0xdf5f19"
+
+[colors.primary]
+background = "0x13122a"
+foreground = "0xf4f2fa"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 18.0
+
+[font.bold]
+family = "MesloLGMDZ Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "MesloLGMDZ Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "MesloLGMDZ Nerd Font Mono"
+
+[[hints.enabled]]
+command = "open"
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "L"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+[[hints.enabled]]
+action = "Copy"
+post_processing = false
+regex = '([0-9a-f]{7,128})|([[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3})|(i-[0-9a-f]{17})'
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0011:"
+key = "Semicolon"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011:"
+key = "Semicolon"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0011\""
+key = "D"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0011%"
+key = "D"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011c"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011X"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011o"
+key = "O"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011\u000F"
+key = "O"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u00111"
+key = "Key1"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00112"
+key = "Key2"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00113"
+key = "Key3"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00114"
+key = "Key4"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00115"
+key = "Key5"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00116"
+key = "Key6"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00116"
+key = "Key7"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00117"
+key = "Key8"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00119"
+key = "Key9"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011p"
+key = "PageUp"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0011n"
+key = "PageDown"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0011w"
+key = "E"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011H"
+key = "Left"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011J"
+key = "Down"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011K"
+key = "Up"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011L"
+key = "Right"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0011\b"
+key = "Comma"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0011\f"
+key = "Period"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0011["
+key = "LBracket"
+mods = "Command"
+
+[window]
+decorations = "none"
+dynamic_title = true
+opacity = 1.0
+option_as_alt = "Both"
+
+[window.padding]
+x = 2
+y = 0
