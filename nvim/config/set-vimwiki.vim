@@ -168,13 +168,6 @@ augroup vimwikiauto
     " 문장 긁어 모아가며 위로 올리기
     autocmd FileType vimwiki nmap ssj dip{P
 
-    autocmd FileType vimwiki vmap s<Enter> :call <SID>surround_with_text()<CR>
-    function! s:surround_with_text()
-        let l:text = input("> ")
-        execute "normal! `>a" . l:text
-        execute "normal! `<i" . l:text
-    endfunction
-
     " 문서 목록을 보여주고, 선택한 문서로 링크를 생성해 준다.
     autocmd FileType vimwiki inoremap <expr> <c-x><c-s> fzf#vim#complete({
       \ 'source':  'find $PWD/_wiki -name "*.md" \| sed "s,^$PWD/_wiki/,,g"',

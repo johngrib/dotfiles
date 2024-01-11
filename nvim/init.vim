@@ -419,6 +419,14 @@ let g:coc_global_extensions = [
     nnoremap <Space>gc <cmd>Git commit<CR>
     nnoremap <Space>gb <cmd>Git blame<CR>
 
+    " Surround 확장.
+    vmap S<Enter> :call <SID>surround_with_text()<CR>
+    function! s:surround_with_text()
+        let l:text = input("> ")
+        execute "normal! `>a" . l:text
+        execute "normal! `<i" . l:text
+    endfunction
+
     let g:vim_game_code_break_item_limit = 8
 
     " let g:ale_fixers = {'php': ['php_cs_fixer']}
