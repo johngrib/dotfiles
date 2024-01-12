@@ -420,10 +420,18 @@ let g:coc_global_extensions = [
     nnoremap <Space>gb <cmd>Git blame<CR>
 
     " Surround 확장.
-    vmap S<Enter> :call <SID>surround_with_text()<CR>
+    vmap Si :call <SID>surround_with_text()<CR>
     function! s:surround_with_text()
-        let l:text = input("> ")
+        let l:text = input(">> ")
         execute "normal! `>a" . l:text
+        execute "normal! `<i" . l:text
+    endfunction
+
+    vmap Sa :call <SID>surround_with_symmetry_text()<CR>
+    function! s:surround_with_symmetry_text()
+        let l:text = input("<> ")
+        let l:reverse_text = join(reverse(split(l:text, '.\zs')), '')
+        execute "normal! `>a" . l:reverse_text
         execute "normal! `<i" . l:text
     endfunction
 
