@@ -5,15 +5,29 @@ if [ "$1" = "--introduce" ]; then
     exit 0
 fi
 
-for((i=16; i<256; i++)); do
-    printf "\e[48;5;${i}m%03d" $i;
-    printf '\e[0m';
-    [ ! $((($i - 15) % 6)) -eq 0 ] && printf ' ' || printf '\n'
-done
+if [ "$1" = "--vim" ]; then
+    for((i=16; i<256; i++)); do
+        printf "\e[48;5;${i}m%03d" $i;
+        printf '\e[0m';
+        [ ! $((($i - 15) % 6)) -eq 0 ] && printf ' ' || printf '\n'
+    done
+    exit 0
+fi
 
-for((i=30; i<112; i++)); do
-    printf "\e[0;${i}m\]%03d" $i;
-    printf '${i}' $i;
-    [ ! $((($i - 15) % 6)) -eq 0 ] && printf ' ' || printf '\n'
-done
+if [ "$1" = "--bash" -o "$1" = "" ]; then
+    COLOR_END='\e[0m'
+
+    for((i=1; i<111; i++)); do
+        printf "\e[0;${i}m";    # 색칠용
+        printf "%-9s" "\\e[0;${i}m";  # 화면표현용
+        printf "$COLOR_END ";
+
+        printf "\e[1;${i}m";    # 색칠용
+        printf "%-9s" "\\e[1;${i}m";  # 화면표현용
+        printf "$COLOR_END"
+        [ ! $(($i % 5)) -eq 0 ] && printf ' ' || printf '\n'
+    done
+fi
+
+echo
 
