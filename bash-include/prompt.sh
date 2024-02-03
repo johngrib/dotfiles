@@ -15,10 +15,7 @@ COLOR_END='\e[0m'
 
 # PS1="\h:\W \u\$ "  # default promopt
 function gbr {
-    git status --short 2> /dev/null 1> /dev/null
-    if [ "$?" -ne "0" ]; then
-        return 1
-    else
+    if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
         branch="$(git branch --show-current)"
         branch_str="\033[1;031m$branch\033[0m"
 
