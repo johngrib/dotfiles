@@ -18,14 +18,28 @@ if [ "$1" = "--bash" -o "$1" = "" ]; then
     COLOR_END='\e[0m'
 
     for((i=1; i<111; i++)); do
+        # \e[0: NORMAL, \e[1: BOLD, \e[2: DIM, \e[3: ITALIC, \e[4: UNDERLINE
+
         printf "\e[0;${i}m";    # 색칠용
         printf "%-9s" "\\e[0;${i}m";  # 화면표현용
         printf "$COLOR_END ";
 
-        printf "\e[1;${i}m";    # 색칠용
-        printf "%-9s" "\\e[1;${i}m";  # 화면표현용
+        printf "\e[1;${i}m";
+        printf "%-9s" "\\e[1;${i}m";
         printf "$COLOR_END"
-        [ ! $(($i % 5)) -eq 0 ] && printf ' ' || printf '\n'
+
+        printf "\e[2;${i}m";
+        printf "%-9s" "\\e[2;${i}m";
+        printf "$COLOR_END"
+
+        printf "\e[3;${i}m";
+        printf "%-9s" "\\e[3;${i}m";
+        printf "$COLOR_END"
+
+        printf "\e[4;${i}m";
+        printf "%-9s" "\\e[4;${i}m";
+        printf "$COLOR_END , "
+        [ ! $(($i % 3)) -eq 0 ] && printf ' ' || printf '\n'
     done
 fi
 
