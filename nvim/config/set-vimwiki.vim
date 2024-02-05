@@ -162,6 +162,10 @@ augroup vimwikiauto
     autocmd FileType vimwiki nmap ss <nop>
     autocmd FileType vimwiki vmap ss* S*gvS*
     autocmd FileType vimwiki vmap ss$ S$gvS$
+    autocmd FileType vimwiki nnoremap ss/ :call <SID>book_pipe_clean()<CR>
+    function! s:book_pipe_clean()
+        execute ".s,|,/,g"
+    endfunction
 
     " . 으로 커서를 옮기고 line 스플릿한 다음, 개행 문자 두 개 삽입. (번역할 때 사용)
     autocmd FileType vimwiki nmap ss. f.a<CR><CR><Esc>
