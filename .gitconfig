@@ -118,7 +118,7 @@
     branch-select = "!# branch 하나를 선택합니다.;\n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
-            git branch-list | fzf --preview \"git l {2} | head -n $_height\" | awk '{print $2}'; \
+            git branch-list | fzf -m --preview \"git l {2} | head -n $_height\" | awk '{print $2}'; \
         }; f"
     b-s = "!git branch-select"
     ch = "!# branch 도구. bb와 똑같음.;\n\
