@@ -57,6 +57,7 @@ function! s:list_buffers()
     return split(list, "\n")
 endfunction
 
+
 function! s:delete_buffers(lines)
     execute 'bd! ' join(map(a:lines, {_, line -> split(line)[0]}))
 endfunction
@@ -64,6 +65,19 @@ endfunction
 command! BuffersDelete call fzf#run(fzf#wrap({
             \ 'source': s:list_buffers(),
             \ 'sink*': { lines -> s:delete_buffers(lines) },
+            \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept' }))
+
+function! List_buffer_files()
+    return (map(filter(range(1, bufnr('$')), 'bufexists(v:val)'), 'bufname(v:val)'))
+endfunction
+
+function! s:git_add_buffers(lines)
+    call system('git add ' . join(a:lines))
+endfunction
+
+command! GitAddBuffers call fzf#run(fzf#wrap({
+            \ 'source': List_buffer_files(),
+            \ 'sink*': { lines -> s:git_add_buffers(lines) },
             \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept' }))
 
 "** F3: 하이라이트 색깔 관리
