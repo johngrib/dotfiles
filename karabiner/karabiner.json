@@ -1,5 +1,6 @@
 {
     "global": {
+        "ask_for_confirmation_before_quitting": true,
         "check_for_updates_on_startup": true,
         "show_in_menu_bar": true,
         "show_profile_name_in_menu_bar": false,
@@ -320,7 +321,8 @@
                                     "key_code": "up_arrow",
                                     "modifiers": {
                                         "mandatory": [
-                                            "fn", "shift"
+                                            "fn",
+                                            "shift"
                                         ]
                                     }
                                 },
@@ -339,7 +341,8 @@
                                     "key_code": "left_arrow",
                                     "modifiers": {
                                         "mandatory": [
-                                            "fn", "shift"
+                                            "fn",
+                                            "shift"
                                         ]
                                     }
                                 },
@@ -358,7 +361,8 @@
                                     "key_code": "down_arrow",
                                     "modifiers": {
                                         "mandatory": [
-                                            "fn", "shift"
+                                            "fn",
+                                            "shift"
                                         ]
                                     }
                                 },
@@ -377,7 +381,8 @@
                                     "key_code": "right_arrow",
                                     "modifiers": {
                                         "mandatory": [
-                                            "fn", "shift"
+                                            "fn",
+                                            "shift"
                                         ]
                                     }
                                 },
@@ -476,7 +481,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f13"
+                                    "key_code": "f15"
                                 }
                             ]
                         },
