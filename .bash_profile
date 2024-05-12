@@ -27,7 +27,7 @@ if [[ ! "$PATH" == *~/.cargo/bin* ]]; then
     PATH="$PATH:~/.cargo/bin"
 fi
 
-PATH="$PATH:~/dotfiles/bin/:~/dotfiles/bin/company/"
+PATH="$PATH:~/dotfiles/bin/:~/dotfiles/bin/local/"
 
 # export PATH="$PATH:/usr/local/opt/llvm/bin"
 export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
