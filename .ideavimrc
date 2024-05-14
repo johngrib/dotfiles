@@ -103,8 +103,8 @@
   "  Main Menu > Code > Code > Completion > Cyclic Expand Word 가 비슷한 기능을 한다.
   "  Cyclic Expand Word 에 ^p, Cyclic Expand Word (Backward) 에 ^n 을 지정해주면 된다.
 
-nnoremap '. :action JumpToLastChange<CR>0
-nnoremap `. :action JumpToLastChange<CR>0
+nnoremap g; :action JumpToLastChange<CR>
+nnoremap g, :action JumpToNextChange<CR>
 
 nnoremap [m :action MethodUp<CR>
 nnoremap ]m :action MethodDown<CR>
