@@ -1,3 +1,5 @@
 tags
 .DS_Store
 karabiner/automatic_backups
+bin/local/
+bash-include/local
