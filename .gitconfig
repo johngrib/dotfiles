@@ -63,7 +63,9 @@
     alias-branch = "!#----------------------------------------------------------;\n\
         git alias | egrep '[bB]ranch'"
     b0 = "!# 작업 branch를 출력합니다.;\n\
-        git branch | awk '/^\\*/{print $2}'"
+        git branch --show-current"
+    b1 = "!# 이전 branch를 출력합니다.;\n\
+        git rev-parse --abbrev-ref @{-1}"
     back = "!# 현재 작업중인 branch를 백업합니다.;\n\
         echo created new branch: backup-`git b0`;\
         git branch backup-`git b0`"
