@@ -19,13 +19,13 @@ function gbr {
         branch="$(git branch --show-current)"
         branch_str="\033[1;031m$branch\033[0m"
 
-        stat=$(git status --short \
+        stat=$(git status --short 2> /dev/null \
             | cut -c 1-3 \
             | sort | uniq -c \
             | tr -d ' ' \
             | xargs)
 
-        stash_size=$(git stash list | wc -l | sed 's/ //g')
+        stash_size=$(git stash list 2> /dev/null | wc -l | sed 's/ //g')
         stash_icon=" \e[0;92m≡\033[0m"
         printf "[$branch_str] $stat$stash_icon$stash_size"
         return 0
