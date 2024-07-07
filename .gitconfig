@@ -123,8 +123,8 @@
             git branch-list | fzf -m --preview \"git l {2} | head -n $_height\" | awk '{print $2}'; \
         }; f"
     b-s = "!git branch-select"
-    ch = "!# branch 도구. bb와 똑같음.;\n\
-        git bb $1"
+    ch = "!# branch 선택기.;\n\
+        git branch-select | xargs git checkout"
     sync = "!# remote repo의 같은 branch와 동기화합니다.;\n\
         remote=$( \
             { \
