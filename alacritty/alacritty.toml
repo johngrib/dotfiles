@@ -49,9 +49,11 @@ style = "Italic"
 family = "MesloLGMDZ Nerd Font Mono"
 
 [[hints.enabled]]
-command = "open"
+# command = "open"
+command = "/Users/johngrib/dotfiles/bin/local/,open"
 post_processing = true
-regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+#                                                                                          |                                |
+regex = "(((https:|http:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+)|(insurance[- ][[:digit:]]{1,10}))"
 
 [hints.enabled.binding]
 key = "L"
