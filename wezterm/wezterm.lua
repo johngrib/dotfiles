@@ -1,7 +1,8 @@
 local wezterm = require 'wezterm'
 
+
 -- https://wezfurlong.org/wezterm/config/files.html
-return {
+local config = {
     -- font = wezterm.font 'JetBrains Mono',
     font = wezterm.font 'MesloLGMDZ Nerd Font Mono',
     font_size = 18,
@@ -15,7 +16,7 @@ return {
         visual_bell = '#202020',
         foreground = '#f4f2fa',
         background = '#13122a',
-        cursor_bg = '#52ad70',
+        cursor_bg = '#cc5151',
         cursor_fg = '#ffffff',
         cursor_border = '#52ad70',
         selection_fg = '#4d50ec',
@@ -44,7 +45,10 @@ return {
             '#f4f2fa', -- bright white
         },
         tab_bar = {
-            inactive_tab_edge = '#13122a', -- 탭 타이틀과 탭 타이틀 경계
+            active_tab = {
+                fg_color = '#ffd700',  -- gold color
+                bg_color = '#000000',
+            },
         },
     },
     audible_bell = "Disabled",
@@ -55,7 +59,7 @@ return {
         -- Whatever font is selected here, it will have the
         -- main font setting appended to it to pick up any
         -- fallback fonts you may have used there.
-        font = wezterm.font { family = 'Monaco', weight = 'Bold' },
+        font = wezterm.font { family = 'MesloLGSDZ Nerd Font Mono', weight = 'Bold' },
 
         -- The size of the font in the tab bar.
         -- Default to 10. on Windows but 12.0 on other systems
@@ -68,9 +72,26 @@ return {
         -- The overall background color of the tab bar when
         -- the window is not focused
         -- inactive_titlebar_bg = '#333333',
-        inactive_titlebar_bg = '#ff0000',
     },
     send_composed_key_when_left_alt_is_pressed = false,
     use_dead_keys = false,
-    use_ime = true
+    use_ime = true,
+    enable_scroll_bar = true,
 }
+
+config.keys = {
+    -- command + m 을 끈다.
+    { key = 'm', mods = 'CMD', action = wezterm.action.DisableDefaultAssignment, },
+}
+
+-- https://wezfurlong.org/wezterm/config/lua/config/window_padding.html
+config.window_padding = {
+    left = '3px',
+    right = '3px',
+    top = '0px',
+    bottom = '5px',
+}
+
+config.use_fancy_tab_bar = false
+
+return config
