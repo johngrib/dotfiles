@@ -60,6 +60,11 @@
     ranking = "!# contributor들의 commit 수 랭킹을 집계한 결과를 출력합니다.;\n\
         git shortlog -sn"
 
+    ; https://github.com/simnalamburt/.dotfiles/blob/79351eb974043ba510e3f21ecf16c781b67c6858/.gitconfig#L76-L80
+    # It shows *all* git commit references in a graph format, including dangling
+	# or unreachable commits (e.g., popped stashes, etc.).
+    all = "!_() { git log --oneline --graph --reflog $(git fsck --unreachable | perl -ne 'print \"$1\\n\" if /^\\w+ commit ([0-9a-f]+)$/'); }; _"
+
     alias-branch = "!#----------------------------------------------------------;\n\
         git alias | egrep '[bB]ranch'"
     b0 = "!# 작업 branch를 출력합니다.;\n\
