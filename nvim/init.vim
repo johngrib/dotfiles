@@ -69,6 +69,14 @@ call plug#begin('~/.vim/plugged')
         Plug 'milkypostman/vim-togglelist'
         PlugFile 'set-quickfix.vim'
 
+        "* wild menu
+        function! UpdateRemotePlugins(...)
+            let &rtp=&rtp
+            UpdateRemotePlugins
+        endfunction
+        Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+            PlugFile 'set-wilder.vim'
+
     "* 자동완성
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
         PlugFile 'set-coc.vim'
