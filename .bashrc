@@ -75,6 +75,8 @@ alias ncd='ncdu --color dark -rr -x'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
+alias tr-lower='tr "[:upper:]" "[:lower:]"'
+alias tr-upper='tr "[:lower:]" "[:upper:]"'
 
 create_alias() {
     # 명령을 체크하고 대체 alias를 생성해 준다
