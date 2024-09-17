@@ -10,9 +10,18 @@ else
     precision=2
 fi
 
+if [ -t 0 ]; then
+    # ,bc '2+3' 처럼 사용하는 경우
+    stdin_input=""
+else
+    # echo '2+3' + ,bc 처럼 사용하는 경우
+    stdin_input="$(cat -)"
+fi
+
 bc -q -l ~/dotfiles/.bcrc << EOF
     scale=$precision
     $*
+    $stdin_input
     quit
 EOF
 # -q : bc의 welcome 문구를 출력하지 않는다.
