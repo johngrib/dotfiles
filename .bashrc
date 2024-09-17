@@ -90,7 +90,6 @@ create_alias "gwc" "wc" "gwc"
 create_alias "ggrep" "ggrep" "ggrep --color=auto"
 create_alias "grm" "rm" "grm -i -v"
 
-alias bc='bc -q -l ~/dotfiles/.bcrc'
 alias weather='curl v2.wttr.in/Seoul'
 alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
 # alias brew="arch -x86_64 /usr/local/bin/brew"
