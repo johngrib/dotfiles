@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# bc 명령의 wrapper
+
+if [ "$1" = "-p" ]; then
+    precision=$2
+    # args에서 $1, $2를 지운다. (즉 -p 와 $2 를 지운다)
+    shift 2
+else
+    precision=2
+fi
+
+bc -q -l ~/dotfiles/.bcrc << EOF
+    scale=$precision
+    $*
+    quit
+EOF
+# -q : bc의 welcome 문구를 출력하지 않는다.
+# -l : bc를 실행할 때, math 라이브러리로 ~/.bcrc 파일을 읽어들인다.
+
+exit 0
+
