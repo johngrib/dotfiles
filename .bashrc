@@ -100,8 +100,6 @@ alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # [ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
 
-for f in ~/dotfiles/bin/*.sh; do source $f; done
-
 source $(which fav.sh)
 
 bind '"\ev": "\C-ufav\C-m"'
