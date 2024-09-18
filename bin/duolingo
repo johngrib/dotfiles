@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-sort -R ~/Dropbox/my-files/duolingo.txt | grep "^[1-5]" | head -n 1
-
