@@ -18,7 +18,7 @@ else
     stdin_input="$(cat -)"
 fi
 
-bc -q -l ~/dotfiles/.bcrc << EOF
+\bc -q -l ~/dotfiles/.bcrc << EOF
     scale=$precision
     $*
     $stdin_input
