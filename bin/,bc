@@ -2,12 +2,24 @@
 
 # bc 명령의 wrapper
 
-if [ "$1" = "-p" ]; then
-    precision=$2
-    # args에서 $1, $2를 지운다. (즉 -p 와 $2 를 지운다)
-    shift 2
-else
-    precision=2
+precision=2
+interactive_mode="FALSE"
+
+while getopts ":p:i" opt; do
+    # :   silent mode
+    # p:  -p 옵션과 arg 사용
+    # i   -i 옵션. arg 없이 interactive 모드
+    case $opt in
+        p) precision="$OPTARG" ;;
+        i) interactive_mode="TRUE" ;;
+        \?) echo "Invalid option: -$OPTARG" >&2 ; exit 1 ;;
+        :) echo "Option -$OPTARG requires an argument." >&2 ; exit 1 ;;
+    esac
+done
+
+if [ "$interactive_mode" = "TRUE" ]; then
+    bc -q -l ~/dotfiles/.bcrc
+    exit 0
 fi
 
 if [ -t 0 ]; then
