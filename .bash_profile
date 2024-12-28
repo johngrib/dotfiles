@@ -13,7 +13,7 @@ else
     export PATH="/usr/local/bin:$PATH"
     export PATH="/usr/local/sbin:$PATH"
     eval "$(/usr/local/bin/brew shellenv)"
-    export PATH="/usr/local/opt/node@16/bin:$PATH"
+    # export PATH="/usr/local/opt/node@16/bin:$PATH"
 fi
 
 
