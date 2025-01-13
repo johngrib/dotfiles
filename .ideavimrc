@@ -43,18 +43,18 @@
 
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
-
-    nmap \f :NERDTreeFind<CR>
+  Plug 'chrisbra/matchit'
+  Plug 'michaeljsmith/vim-indent-object'
 
   " ideavim only
   set ideajoin
   set ideamarks
 
 " copy , paste , select 기능 보완 ------------------------------------------------
-  nnoremap <C-m> :
-  vnoremap <C-m> :
-  inoremap <C-m> <CR>
-  cnoremap <C-m> <CR>
+  "nnoremap <C-m> :
+  "vnoremap <C-m> :
+  "inoremap <C-m> <CR>
+  "cnoremap <C-m> <CR>
 
   " nnoremap <Esc> <Esc>:w<CR>
   " inoremap <Esc> <Esc>:w<CR>
@@ -106,10 +106,10 @@
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
 
-nnoremap [m :action MethodUp<CR>
-nnoremap ]m :action MethodDown<CR>
-onoremap [m :action MethodUp<CR>
-onoremap ]m :action MethodDown<CR>
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+onoremap [[ :action MethodUp<CR>
+onoremap ]] :action MethodDown<CR>
 
 nnoremap <C-S-5> :action EditorMatchBrace<CR>
 nnoremap <Tab>d :action QuickJavaDoc<CR>
@@ -137,33 +137,34 @@ nmap `6 <Action>(GotoBookmark6)
 nmap `7 <Action>(GotoBookmark7)
 nmap `8 <Action>(GotoBookmark8)
 nmap `9 <Action>(GotoBookmark9)
-nmap `a <Action>(GotoBookmarkA)
-nmap `b <Action>(GotoBookmarkB)
-nmap `c <Action>(GotoBookmarkC)
-nmap `d <Action>(GotoBookmarkD)
-nmap `e <Action>(GotoBookmarkE)
-nmap `f <Action>(GotoBookmarkF)
-nmap `g <Action>(GotoBookmarkG)
-nmap `h <Action>(GotoBookmarkH)
-nmap `i <Action>(GotoBookmarkI)
-nmap `j <Action>(GotoBookmarkJ)
-nmap `k <Action>(GotoBookmarkK)
-nmap `l <Action>(GotoBookmarkL)
-nmap `m <Action>(GotoBookmarkM)
-nmap `n <Action>(GotoBookmarkN)
-nmap `o <Action>(GotoBookmarkO)
-nmap `p <Action>(GotoBookmarkP)
-nmap `q <Action>(GotoBookmarkQ)
-nmap `r <Action>(GotoBookmarkR)
-nmap `s <Action>(GotoBookmarkS)
-nmap `t <Action>(GotoBookmarkT)
-nmap `u <Action>(GotoBookmarkU)
-nmap `v <Action>(GotoBookmarkV)
-nmap `w <Action>(GotoBookmarkW)
-nmap `x <Action>(GotoBookmarkX)
-nmap `y <Action>(GotoBookmarkY)
-nmap `z <Action>(GotoBookmarkZ)
+nmap `A <Action>(GotoBookmarkA)
+nmap `B <Action>(GotoBookmarkB)
+nmap `C <Action>(GotoBookmarkC)
+nmap `D <Action>(GotoBookmarkD)
+nmap `E <Action>(GotoBookmarkE)
+nmap `F <Action>(GotoBookmarkF)
+nmap `G <Action>(GotoBookmarkG)
+nmap `H <Action>(GotoBookmarkH)
+nmap `I <Action>(GotoBookmarkI)
+nmap `J <Action>(GotoBookmarkJ)
+nmap `K <Action>(GotoBookmarkK)
+nmap `L <Action>(GotoBookmarkL)
+nmap `M <Action>(GotoBookmarkM)
+nmap `N <Action>(GotoBookmarkN)
+nmap `O <Action>(GotoBookmarkO)
+nmap `P <Action>(GotoBookmarkP)
+nmap `Q <Action>(GotoBookmarkQ)
+nmap `R <Action>(GotoBookmarkR)
+nmap `S <Action>(GotoBookmarkS)
+nmap `T <Action>(GotoBookmarkT)
+nmap `U <Action>(GotoBookmarkU)
+nmap `V <Action>(GotoBookmarkV)
+nmap `W <Action>(GotoBookmarkW)
+nmap `X <Action>(GotoBookmarkX)
+nmap `Y <Action>(GotoBookmarkY)
+nmap `Z <Action>(GotoBookmarkZ)
 
+nmap m, <Action>(ToggleBookmark)
 nmap m0 <Action>(ToggleBookmark0)
 nmap m1 <Action>(ToggleBookmark1)
 nmap m2 <Action>(ToggleBookmark2)
@@ -174,34 +175,47 @@ nmap m6 <Action>(ToggleBookmark6)
 nmap m7 <Action>(ToggleBookmark7)
 nmap m8 <Action>(ToggleBookmark8)
 nmap m9 <Action>(ToggleBookmark9)
-nmap ma <Action>(ToggleBookmarkA)
-nmap mb <Action>(ToggleBookmarkB)
-nmap mc <Action>(ToggleBookmarkC)
-nmap md <Action>(ToggleBookmarkD)
-nmap me <Action>(ToggleBookmarkE)
-nmap mf <Action>(ToggleBookmarkF)
-nmap mg <Action>(ToggleBookmarkG)
-nmap mh <Action>(ToggleBookmarkH)
-nmap mi <Action>(ToggleBookmarkI)
-nmap mj <Action>(ToggleBookmarkJ)
-nmap mk <Action>(ToggleBookmarkK)
-nmap ml <Action>(ToggleBookmarkL)
-nmap mm <Action>(ToggleBookmarkM)
-nmap mn <Action>(ToggleBookmarkN)
-nmap mo <Action>(ToggleBookmarkO)
-nmap mp <Action>(ToggleBookmarkP)
-nmap mq <Action>(ToggleBookmarkQ)
-nmap mr <Action>(ToggleBookmarkR)
-nmap ms <Action>(ToggleBookmarkS)
-nmap mt <Action>(ToggleBookmarkT)
-nmap mu <Action>(ToggleBookmarkU)
-nmap mv <Action>(ToggleBookmarkV)
-nmap mw <Action>(ToggleBookmarkW)
-nmap mx <Action>(ToggleBookmarkX)
-nmap my <Action>(ToggleBookmarkY)
-nmap mz <Action>(ToggleBookmarkZ)
+nmap mA <Action>(ToggleBookmarkA)
+nmap mB <Action>(ToggleBookmarkB)
+nmap mC <Action>(ToggleBookmarkC)
+nmap mD <Action>(ToggleBookmarkD)
+nmap mE <Action>(ToggleBookmarkE)
+nmap mF <Action>(ToggleBookmarkF)
+nmap mG <Action>(ToggleBookmarkG)
+nmap mH <Action>(ToggleBookmarkH)
+nmap mI <Action>(ToggleBookmarkI)
+nmap mJ <Action>(ToggleBookmarkJ)
+nmap mK <Action>(ToggleBookmarkK)
+nmap mL <Action>(ToggleBookmarkL)
+nmap mM <Action>(ToggleBookmarkM)
+nmap mN <Action>(ToggleBookmarkN)
+nmap mO <Action>(ToggleBookmarkO)
+nmap mP <Action>(ToggleBookmarkP)
+nmap mQ <Action>(ToggleBookmarkQ)
+nmap mR <Action>(ToggleBookmarkR)
+nmap mS <Action>(ToggleBookmarkS)
+nmap mT <Action>(ToggleBookmarkT)
+nmap mU <Action>(ToggleBookmarkU)
+nmap mV <Action>(ToggleBookmarkV)
+nmap mW <Action>(ToggleBookmarkW)
+nmap mX <Action>(ToggleBookmarkX)
+nmap mY <Action>(ToggleBookmarkY)
+nmap mZ <Action>(ToggleBookmarkZ)
 
 nmap \p <Action>(ParameterNameHints)
 
 " 열려있는 파일을 explorer에서 포커스 맞추기
 nmap sff <Action>(SelectInProjectView)
+" nmap sfn :NERDTreeFind<CR> " <Action>(SelectInProjectView) 와 똑같음
+nmap srr <Action>(Run)
+
+nmap smm <Action>(ShowPopupMenu)
+nmap spp :action TogglePresentationAssistantAction<CR>
+
+" Code Analyse: - "sa"
+nmap sar :action FindUsages<CR>
+
+" Visuam Mode Commands - "sc"
+vmap sj :! convert-jpa # create table 항목을 JPA Entity properties로 변환
+vmap sc :! kotlin-constructor-properties # kotlin 생성자 항목을 named parameter 템플릿으로 변환
+
