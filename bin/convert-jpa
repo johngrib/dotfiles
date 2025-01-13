@@ -1,0 +1,40 @@
+#!/bin/bash
+# create table sql 문을 kotlin jpa 엔티티 properties 로 변환한다.
+# vim 이나 ideavim 에서 :'<,'>! 로  사용할 목적으로 만든 스크립트.
+
+while read line || [[ -n "$line" ]]; do
+    if ! echo "$line" | grep -qiE '^[a-z_]+ +(varchar|int|decimal|date(time)?|tinyint|text).*(comment)?'; then
+        # 작업 대상으로 적합하지 않으므로 주석처리한다
+        echo "// $line"
+        continue
+    fi
+
+    column_name=$(echo "$line" | sed -E 's/^([a-zA-Z0-9_]+) .*/\1/')
+    # snake_case를 camelCase 로 변환해서 필드 이름으로 쓴다
+    field_name=$(echo "$column_name" | perl -pe 's/_([a-z])/\U$1/g')
+    # data_type은 추출한 다음 소문자로 변환한다
+    data_type=$(echo "$line" | perl -pe 's/^([a-zA-Z0-9_]+) +([^ ]+).*/\L$2/')
+    not_null=$(echo "$line" | perl -pe 's/^.+(not null).*/\L$1/i')
+    comment=$(echo "$line" | sed -E "s/.* comment +'([^']+)'.*/\1/i")
+
+    case $data_type in
+        varchar*|text)  kotlin_type="String" ;;
+        int*)           kotlin_type="Int" ;;
+        decimal*)       kotlin_type="BigDecimal" ;;
+        datetime*|timestamp*) kotlin_type="LocalDateTime" ;;
+        date)           kotlin_type="LocalDate" ;;
+        tinyint*)       kotlin_type="Boolean" ;;
+        *)              kotlin_type="String" ;;
+    esac
+    if [[ "$not_null" != "not null" ]]; then
+        kotlin_type="$kotlin_type?"
+    fi
+
+    echo "@Column(name = \"$column_name\")"
+    printf "val $field_name: $kotlin_type, "
+    if [[ -n "$comment" ]]; then
+        printf " // $comment $is_not_null"
+    fi
+    echo
+done
+
