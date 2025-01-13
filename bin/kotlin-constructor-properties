@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# kotlin 생성자 properties를 named parameter로 사용하기 쉽도록 변환해 줍니다.
+# vim 이나 ideavim 에서 :'<,'>! 로  사용할 목적으로 만든 스크립트.
+
+while read line || [[ -n "$line" ]]; do
+    if [ "$line" = "" ]; then
+        continue
+    fi
+    if ! echo "$line" | grep -qiE '^va[lr] +[a-z0-9_]+ *: *[a-z0-9_]+'; then
+        # 작업 대상으로 적합하지 않으므로 주석처리한다
+        # echo "// $line"
+        continue
+    fi
+
+    var_name=$(echo "$line" | awk '{ print $2 }' | tr -d :)
+    type_name=$(echo "$line" | perl -pe 's/^[^:]*:(.*)$/$1/')
+
+    echo "$var_name = , // $type_name"
+done
+
