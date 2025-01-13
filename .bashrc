@@ -41,7 +41,6 @@ else
     # alias ls='ls -G'; #osx
     alias ls='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S"';
     alias lsf='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S -F"';
-    alias lsa='exa --time-style="long-iso"';
     alias l.='ls -dG .*'
 fi
 alias ll='ls -alh --color'
