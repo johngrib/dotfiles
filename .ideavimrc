@@ -7,7 +7,7 @@
   "https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
   "https://gist.github.com/zchee/9c78f91cc5ad771c1f5d " action list
 
-  nnoremap <F10>r :source ~/.ideavimrc<CR>
+  nnoremap <F10>r :action IdeaVim.ReloadVimRc.reload<CR>
   nmap s <NOP>
 
 " set commands -----------------------------------------------------------------
@@ -22,6 +22,7 @@
   set undolevels=2000 "undolevels
   set nrformats
   set visualbell
+  set scrolloff=5
 
   " https://github.com/JetBrains/ideavim/wiki/marketplace-plugin-example
   set trackactionids
@@ -103,13 +104,18 @@
   "  Main Menu > Code > Code > Completion > Cyclic Expand Word 가 비슷한 기능을 한다.
   "  Cyclic Expand Word 에 ^p, Cyclic Expand Word (Backward) 에 ^n 을 지정해주면 된다.
 
-nnoremap g; :action JumpToLastChange<CR>
-nnoremap g, :action JumpToNextChange<CR>
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
+
+nnoremap g; <Action>(JumpToLastChange)<CR>
+nnoremap g, <Action>(JumpToNextChange)<CR>
 
 nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
 onoremap [[ :action MethodUp<CR>
 onoremap ]] :action MethodDown<CR>
+nnoremap ]e <Action>(GotoNextError)
+nnoremap [e <Action>(GotoPreviousError)
 
 nnoremap <C-S-5> :action EditorMatchBrace<CR>
 nnoremap <Tab>d :action QuickJavaDoc<CR>
@@ -214,8 +220,12 @@ nmap spp :action TogglePresentationAssistantAction<CR>
 
 " Code Analyse: - "sa"
 nmap sar :action FindUsages<CR>
+nmap sah <Action>(ShowHoverInfo)
 
-" Visuam Mode Commands - "sc"
-vmap sj :! convert-jpa # create table 항목을 JPA Entity properties로 변환
-vmap sc :! kotlin-constructor-properties # kotlin 생성자 항목을 named parameter 템플릿으로 변환
+" Code: - "sc"
+nmap scr <Action>(RenameElement)
+
+" Visuam Mode Commands: - "sc"
+vmap scj :! convert-jpa # create table 항목을 JPA Entity properties로 변환
+vmap scc :! kotlin-constructor-properties # kotlin 생성자 항목을 named parameter 템플릿으로 변환
 
