@@ -129,7 +129,7 @@ call plug#begin('~/.vim/plugged')
     " https://github.com/dense-analysis/ale
     " Plug 'jszakmeister/vim-togglecursor'
         Plug 'vim-test/vim-test', {'for': 'rust'}
-        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+        "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
         "* JavaScript
         Plug 'neoclide/coc-tsserver', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
