@@ -32,8 +32,9 @@
   Plug 'tpope/vim-commentary'
   Plug 'tommcdo/vim-exchange'
   Plug 'tpope/vim-commentary'
-  Plug 'easymotion/vim-easymotion'
 
+" Plugin: - "easymotion"
+    Plug 'easymotion/vim-easymotion'
     " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
     map <C-s>l <Plug>(easymotion-lineforward)
     map <C-s>j <Plug>(easymotion-j)
