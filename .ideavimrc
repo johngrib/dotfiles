@@ -7,8 +7,8 @@
   "https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
   "https://gist.github.com/zchee/9c78f91cc5ad771c1f5d " action list
 
-  nnoremap <F10>r :action IdeaVim.ReloadVimRc.reload<CR>
-  nmap s <NOP>
+  map <F10>r :action IdeaVim.ReloadVimRc.reload<CR>
+  map s <NOP>
 
 " set commands -----------------------------------------------------------------
 
@@ -35,12 +35,12 @@
   Plug 'easymotion/vim-easymotion'
 
     " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
-    nmap <C-s>l <Plug>(easymotion-lineforward)
-    nmap <C-s>j <Plug>(easymotion-j)
-    nmap <C-s>k <Plug>(easymotion-k)
-    nmap <C-s>h <Plug>(easymotion-linebackward)
-    nmap <C-s><C-s> <Plug>(easymotion-jumptoanywhere)
-    nmap <C-s>f <Plug>(easymotion-f)
+    map <C-s>l <Plug>(easymotion-lineforward)
+    map <C-s>j <Plug>(easymotion-j)
+    map <C-s>k <Plug>(easymotion-k)
+    map <C-s>h <Plug>(easymotion-linebackward)
+    map <C-s><C-s> <Plug>(easymotion-jumptoanywhere)
+    map <C-s>f <Plug>(easymotion-f)
 
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
@@ -66,37 +66,37 @@
   inoremap <C-e> <C-o>A
   inoremap <C-a> <C-o>I
 
-  nnoremap Y y$
-  nnoremap <SPACE>y "+y
-  vnoremap <SPACE>y "+y
-  nnoremap <SPACE>p "+p
-  nnoremap <SPACE>a ggVG
-  vnoremap <SPACE>a ggVG
+  map Y y$
+  map <SPACE>y "+y
+  vmap <SPACE>y "+y
+  map <SPACE>p "+p
+  map <SPACE>a ggVG
+  vmap <SPACE>a ggVG
 
 " 키 navigation 기능 보완 ---------------------------------------------------------
-  nnoremap <PageDown> gT
-  nnoremap <PageUp> gt
-  nnoremap gl 1gtgT
-  nnoremap gf 1gt
+  map <PageDown> gT
+  map <PageUp> gt
+  map gl 1gtgT
+  map gf 1gt
 
 " IntelliJ action 명령 테스트 ----------------------------------------------------
 
   "ideavim 에서는 :command 명령을 사용할 수 없다...
 
   "라인 스플릿. :action 을 부르는 방식의 성능이 나쁘고, number operation 반복이 안 됨
-  nnoremap K i<CR><ESC>
+  map K i<CR><ESC>
 
   "다음 기능들은 검색 창이 열린 다음에 포커스가 곧바로 에디터로 이동하므로 불편하고 쓸모가 없음.
   "실행한 다음 포커스가 남아 있기만 해도 굉장히 쓸만할 것 같은데 아쉽다.
   " nnoremap <F1><F1> :action SearchEverywhere<CR>
-  nmap <F1><F1> <Action>(SearchEverywhere)
-  nmap <F1><F2> <Action>(RecentFiles)
+  map <F1><F1> <Action>(SearchEverywhere)
+  map <F1><F2> <Action>(RecentFiles)
 
-  nmap \t <Action>(ActivateStructureToolWindow)
-  nmap \u <Action>(ShowUsages)
-  nmap \s <Action>(ManageRecentProjects)
-  nmap \r <Action>(ActivateREPLToolWindow)
-  nmap \d <Action>(ActivateDatabaseToolWindow)
+  map \t <Action>(ActivateStructureToolWindow)
+  map \u <Action>(ShowUsages)
+  map \s <Action>(ManageRecentProjects)
+  map \r <Action>(ActivateREPLToolWindow)
+  map \d <Action>(ActivateDatabaseToolWindow)
 
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 
@@ -104,126 +104,126 @@
   "  Main Menu > Code > Code > Completion > Cyclic Expand Word 가 비슷한 기능을 한다.
   "  Cyclic Expand Word 에 ^p, Cyclic Expand Word (Backward) 에 ^n 을 지정해주면 된다.
 
-nmap <C-o> <Action>(Back)
-nmap <C-i> <Action>(Forward)
+map <C-o> <Action>(Back)
+map <C-i> <Action>(Forward)
 
-nnoremap g; <Action>(JumpToLastChange)<CR>
-nnoremap g, <Action>(JumpToNextChange)<CR>
+map g; <Action>(JumpToLastChange)<CR>
+map g, <Action>(JumpToNextChange)<CR>
 
-nnoremap [[ :action MethodUp<CR>
-nnoremap ]] :action MethodDown<CR>
-onoremap [[ :action MethodUp<CR>
-onoremap ]] :action MethodDown<CR>
-nnoremap ]e <Action>(GotoNextError)
-nnoremap [e <Action>(GotoPreviousError)
+map [[ :action MethodUp<CR>
+map ]] :action MethodDown<CR>
+omap [[ :action MethodUp<CR>
+omap ]] :action MethodDown<CR>
+map ]e <Action>(GotoNextError)
+map [e <Action>(GotoPreviousError)
 
-nnoremap <C-S-5> :action EditorMatchBrace<CR>
-nnoremap <Tab>d :action QuickJavaDoc<CR>
-nnoremap <Tab>f :action QuickFixes<CR>
-nnoremap <Tab>oo :action CloseAllEditorsButActive<CR>
-nnoremap <Tab>or :action CloseAllToTheRight<CR>
-nnoremap <Tab>ol :action CloseAllToTheLeft<CR>
-nnoremap <Tab>i :action InspectCode<CR>
-nnoremap <Tab>u :action FindUsages<CR>
-nnoremap <Tab>, :e ~/.ideavimrc<CR>
+map <C-S-5> :action EditorMatchBrace<CR>
+map <Tab>d :action QuickJavaDoc<CR>
+map <Tab>f :action QuickFixes<CR>
+map <Tab>oo :action CloseAllEditorsButActive<CR>
+map <Tab>or :action CloseAllToTheRight<CR>
+map <Tab>ol :action CloseAllToTheLeft<CR>
+map <Tab>i :action InspectCode<CR>
+map <Tab>u :action FindUsages<CR>
+map <Tab>, :e ~/.ideavimrc<CR>
 
-nnoremap <Space>v :action CopyPaths<CR>
+map <Space>v :action CopyPaths<CR>
 
 let mapleader=" "
 
 
 " Bookmarks 알파벳 마크는 글로벌 마크만 왼쪽에 표시된다. 글로벌 마크만 쓰자.
-nmap `0 <Action>(GotoBookmark0)
-nmap `1 <Action>(GotoBookmark1)
-nmap `2 <Action>(GotoBookmark2)
-nmap `3 <Action>(GotoBookmark3)
-nmap `4 <Action>(GotoBookmark4)
-nmap `5 <Action>(GotoBookmark5)
-nmap `6 <Action>(GotoBookmark6)
-nmap `7 <Action>(GotoBookmark7)
-nmap `8 <Action>(GotoBookmark8)
-nmap `9 <Action>(GotoBookmark9)
-nmap `A <Action>(GotoBookmarkA)
-nmap `B <Action>(GotoBookmarkB)
-nmap `C <Action>(GotoBookmarkC)
-nmap `D <Action>(GotoBookmarkD)
-nmap `E <Action>(GotoBookmarkE)
-nmap `F <Action>(GotoBookmarkF)
-nmap `G <Action>(GotoBookmarkG)
-nmap `H <Action>(GotoBookmarkH)
-nmap `I <Action>(GotoBookmarkI)
-nmap `J <Action>(GotoBookmarkJ)
-nmap `K <Action>(GotoBookmarkK)
-nmap `L <Action>(GotoBookmarkL)
-nmap `M <Action>(GotoBookmarkM)
-nmap `N <Action>(GotoBookmarkN)
-nmap `O <Action>(GotoBookmarkO)
-nmap `P <Action>(GotoBookmarkP)
-nmap `Q <Action>(GotoBookmarkQ)
-nmap `R <Action>(GotoBookmarkR)
-nmap `S <Action>(GotoBookmarkS)
-nmap `T <Action>(GotoBookmarkT)
-nmap `U <Action>(GotoBookmarkU)
-nmap `V <Action>(GotoBookmarkV)
-nmap `W <Action>(GotoBookmarkW)
-nmap `X <Action>(GotoBookmarkX)
-nmap `Y <Action>(GotoBookmarkY)
-nmap `Z <Action>(GotoBookmarkZ)
+map `0 <Action>(GotoBookmark0)
+map `1 <Action>(GotoBookmark1)
+map `2 <Action>(GotoBookmark2)
+map `3 <Action>(GotoBookmark3)
+map `4 <Action>(GotoBookmark4)
+map `5 <Action>(GotoBookmark5)
+map `6 <Action>(GotoBookmark6)
+map `7 <Action>(GotoBookmark7)
+map `8 <Action>(GotoBookmark8)
+map `9 <Action>(GotoBookmark9)
+map `A <Action>(GotoBookmarkA)
+map `B <Action>(GotoBookmarkB)
+map `C <Action>(GotoBookmarkC)
+map `D <Action>(GotoBookmarkD)
+map `E <Action>(GotoBookmarkE)
+map `F <Action>(GotoBookmarkF)
+map `G <Action>(GotoBookmarkG)
+map `H <Action>(GotoBookmarkH)
+map `I <Action>(GotoBookmarkI)
+map `J <Action>(GotoBookmarkJ)
+map `K <Action>(GotoBookmarkK)
+map `L <Action>(GotoBookmarkL)
+map `M <Action>(GotoBookmarkM)
+map `N <Action>(GotoBookmarkN)
+map `O <Action>(GotoBookmarkO)
+map `P <Action>(GotoBookmarkP)
+map `Q <Action>(GotoBookmarkQ)
+map `R <Action>(GotoBookmarkR)
+map `S <Action>(GotoBookmarkS)
+map `T <Action>(GotoBookmarkT)
+map `U <Action>(GotoBookmarkU)
+map `V <Action>(GotoBookmarkV)
+map `W <Action>(GotoBookmarkW)
+map `X <Action>(GotoBookmarkX)
+map `Y <Action>(GotoBookmarkY)
+map `Z <Action>(GotoBookmarkZ)
 
-nmap m, <Action>(ToggleBookmark)
-nmap m0 <Action>(ToggleBookmark0)
-nmap m1 <Action>(ToggleBookmark1)
-nmap m2 <Action>(ToggleBookmark2)
-nmap m3 <Action>(ToggleBookmark3)
-nmap m4 <Action>(ToggleBookmark4)
-nmap m5 <Action>(ToggleBookmark5)
-nmap m6 <Action>(ToggleBookmark6)
-nmap m7 <Action>(ToggleBookmark7)
-nmap m8 <Action>(ToggleBookmark8)
-nmap m9 <Action>(ToggleBookmark9)
-nmap mA <Action>(ToggleBookmarkA)
-nmap mB <Action>(ToggleBookmarkB)
-nmap mC <Action>(ToggleBookmarkC)
-nmap mD <Action>(ToggleBookmarkD)
-nmap mE <Action>(ToggleBookmarkE)
-nmap mF <Action>(ToggleBookmarkF)
-nmap mG <Action>(ToggleBookmarkG)
-nmap mH <Action>(ToggleBookmarkH)
-nmap mI <Action>(ToggleBookmarkI)
-nmap mJ <Action>(ToggleBookmarkJ)
-nmap mK <Action>(ToggleBookmarkK)
-nmap mL <Action>(ToggleBookmarkL)
-nmap mM <Action>(ToggleBookmarkM)
-nmap mN <Action>(ToggleBookmarkN)
-nmap mO <Action>(ToggleBookmarkO)
-nmap mP <Action>(ToggleBookmarkP)
-nmap mQ <Action>(ToggleBookmarkQ)
-nmap mR <Action>(ToggleBookmarkR)
-nmap mS <Action>(ToggleBookmarkS)
-nmap mT <Action>(ToggleBookmarkT)
-nmap mU <Action>(ToggleBookmarkU)
-nmap mV <Action>(ToggleBookmarkV)
-nmap mW <Action>(ToggleBookmarkW)
-nmap mX <Action>(ToggleBookmarkX)
-nmap mY <Action>(ToggleBookmarkY)
-nmap mZ <Action>(ToggleBookmarkZ)
+map m, <Action>(ToggleBookmark)
+map m0 <Action>(ToggleBookmark0)
+map m1 <Action>(ToggleBookmark1)
+map m2 <Action>(ToggleBookmark2)
+map m3 <Action>(ToggleBookmark3)
+map m4 <Action>(ToggleBookmark4)
+map m5 <Action>(ToggleBookmark5)
+map m6 <Action>(ToggleBookmark6)
+map m7 <Action>(ToggleBookmark7)
+map m8 <Action>(ToggleBookmark8)
+map m9 <Action>(ToggleBookmark9)
+map mA <Action>(ToggleBookmarkA)
+map mB <Action>(ToggleBookmarkB)
+map mC <Action>(ToggleBookmarkC)
+map mD <Action>(ToggleBookmarkD)
+map mE <Action>(ToggleBookmarkE)
+map mF <Action>(ToggleBookmarkF)
+map mG <Action>(ToggleBookmarkG)
+map mH <Action>(ToggleBookmarkH)
+map mI <Action>(ToggleBookmarkI)
+map mJ <Action>(ToggleBookmarkJ)
+map mK <Action>(ToggleBookmarkK)
+map mL <Action>(ToggleBookmarkL)
+map mM <Action>(ToggleBookmarkM)
+map mN <Action>(ToggleBookmarkN)
+map mO <Action>(ToggleBookmarkO)
+map mP <Action>(ToggleBookmarkP)
+map mQ <Action>(ToggleBookmarkQ)
+map mR <Action>(ToggleBookmarkR)
+map mS <Action>(ToggleBookmarkS)
+map mT <Action>(ToggleBookmarkT)
+map mU <Action>(ToggleBookmarkU)
+map mV <Action>(ToggleBookmarkV)
+map mW <Action>(ToggleBookmarkW)
+map mX <Action>(ToggleBookmarkX)
+map mY <Action>(ToggleBookmarkY)
+map mZ <Action>(ToggleBookmarkZ)
 
-nmap \p <Action>(ParameterNameHints)
+map \p <Action>(ParameterNameHints)
 
 " 열려있는 파일을 explorer에서 포커스 맞추기
-nmap sff <Action>(SelectInProjectView)
+map sff <Action>(SelectInProjectView)
 " nmap sfn :NERDTreeFind<CR> " <Action>(SelectInProjectView) 와 똑같음
-nmap srr <Action>(Run)
+map srr <Action>(Run)
 
-nmap smm <Action>(ShowPopupMenu)
-nmap spp :action TogglePresentationAssistantAction<CR>
+map smm <Action>(ShowPopupMenu)
+map spp :action TogglePresentationAssistantAction<CR>
 
 " Code Analyse: - "sa"
-nmap sar :action FindUsages<CR>
-nmap sah <Action>(ShowHoverInfo)
+map sar :action FindUsages<CR>
+map sah <Action>(ShowHoverInfo)
 
 " Code: - "sc"
-nmap scr <Action>(RenameElement)
+map scr <Action>(RenameElement)
 
 " Visuam Mode Commands: - "sc"
 vmap scj :! convert-jpa # create table 항목을 JPA Entity properties로 변환
