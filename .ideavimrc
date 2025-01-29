@@ -43,13 +43,14 @@
     map <C-s><C-s> <Plug>(easymotion-jumptoanywhere)
     map <C-s>f <Plug>(easymotion-f)
 
+" Plugin: - "NERDTree"
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
   Plug 'chrisbra/matchit'
   Plug 'michaeljsmith/vim-indent-object'
 
   " ideavim only
-  set ideajoin
+  "set ideajoin
   set ideamarks
 
 " copy , paste , select 기능 보완 ------------------------------------------------
