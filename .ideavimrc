@@ -22,7 +22,7 @@
   set undolevels=2000 "undolevels
   set nrformats
   set visualbell
-  set scrolloff=5
+  "set scrolloff=5
 
   " https://github.com/JetBrains/ideavim/wiki/marketplace-plugin-example
   set trackactionids
