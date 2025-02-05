@@ -62,6 +62,7 @@ fi
 alias tmux="TERM=screen-256color tmux"
 alias tm="tmux attach || tmux new"
 #alias vimr='open -a VimR.app "$@"'
+alias rg='rg --color=always'
 alias ag='ag --path-to-ignore ~/.agignore'
 alias agl='ag --pager="less -XFRMI"'
     # X: less가 종료되어도 화면이 clear되지 않게 한다
@@ -70,6 +71,7 @@ alias agl='ag --pager="less -XFRMI"'
     # M: 현재 지점이 전체 페이지의 몇 %인지 보여준다. (내용이 길면 G로 마지막으로 이동하면 %가 표시됨)
     # I: less 내에서 검색어를 입력할 때 대소문자를 구분하지 않는다.
 alias lessa='less -XFRMI'
+alias less='less -R'
 alias ncd='ncdu --color dark -rr -x'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
