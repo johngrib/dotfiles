@@ -2331,7 +2331,7 @@ _git_mergetool ()
 		return
 		;;
 	--*)
-		__gitcomp "--tool= --prompt --no-prompt --gui --no-gui"
+		__gitcomp "--tool= --tool-help --prompt --no-prompt --gui --no-gui"
 		return
 		;;
 	esac
@@ -2737,12 +2737,17 @@ __git_compute_config_vars_all ()
 	__git_config_vars_all="$(git --no-pager help --config)"
 }
 
+__git_indirect()
+{
+	eval printf '%s' "\"\$$1\""
+}
+
 __git_compute_first_level_config_vars_for_section ()
 {
 	local section="$1"
 	__git_compute_config_vars
 	local this_section="__git_first_level_config_vars_for_section_${section}"
-	test -n "${!this_section}" ||
+	test -n "$(__git_indirect "${this_section}")" ||
 	printf -v "__git_first_level_config_vars_for_section_${section}" %s \
 		"$(echo "$__git_config_vars" | awk -F. "/^${section}\.[a-z]/ { print \$2 }")"
 }
@@ -2752,7 +2757,7 @@ __git_compute_second_level_config_vars_for_section ()
 	local section="$1"
 	__git_compute_config_vars_all
 	local this_section="__git_second_level_config_vars_for_section_${section}"
-	test -n "${!this_section}" ||
+	test -n "$(__git_indirect "${this_section}")" ||
 	printf -v "__git_second_level_config_vars_for_section_${section}" %s \
 		"$(echo "$__git_config_vars_all" | awk -F. "/^${section}\.</ { print \$3 }")"
 }
@@ -2907,7 +2912,7 @@ __git_complete_config_variable_name ()
 		local section="${pfx%.*.}"
 		__git_compute_second_level_config_vars_for_section "${section}"
 		local this_section="__git_second_level_config_vars_for_section_${section}"
-		__gitcomp "${!this_section}" "$pfx" "$cur_" "$sfx"
+		__gitcomp "$(__git_indirect "${this_section}")" "$pfx" "$cur_" "$sfx"
 		return
 		;;
 	branch.*)
@@ -2917,7 +2922,7 @@ __git_complete_config_variable_name ()
 		__gitcomp_direct "$(__git_heads "$pfx" "$cur_" ".")"
 		__git_compute_first_level_config_vars_for_section "${section}"
 		local this_section="__git_first_level_config_vars_for_section_${section}"
-		__gitcomp_nl_append "${!this_section}" "$pfx" "$cur_" "${sfx:- }"
+		__gitcomp_nl_append "$(__git_indirect "${this_section}")" "$pfx" "$cur_" "${sfx:- }"
 		return
 		;;
 	pager.*)
@@ -2934,7 +2939,7 @@ __git_complete_config_variable_name ()
 		__gitcomp_nl "$(__git_remotes)" "$pfx" "$cur_" "."
 		__git_compute_first_level_config_vars_for_section "${section}"
 		local this_section="__git_first_level_config_vars_for_section_${section}"
-		__gitcomp_nl_append "${!this_section}" "$pfx" "$cur_" "${sfx:- }"
+		__gitcomp_nl_append "$(__git_indirect "${this_section}")" "$pfx" "$cur_" "${sfx:- }"
 		return
 		;;
 	submodule.*)
@@ -2944,7 +2949,7 @@ __git_complete_config_variable_name ()
 		__gitcomp_nl "$(__git config -f "$(__git rev-parse --show-toplevel)/.gitmodules" --get-regexp 'submodule.*.path' | awk -F. '{print $2}')" "$pfx" "$cur_" "."
 		__git_compute_first_level_config_vars_for_section "${section}"
 		local this_section="__git_first_level_config_vars_for_section_${section}"
-		__gitcomp_nl_append "${!this_section}" "$pfx" "$cur_" "${sfx:- }"
+		__gitcomp_nl_append "$(__git_indirect "${this_section}")" "$pfx" "$cur_" "${sfx:- }"
 		return
 		;;
 	*.*)
@@ -2989,22 +2994,42 @@ __git_complete_config_variable_name_and_value ()
 
 _git_config ()
 {
-	case "$prev" in
-	--get|--get-all|--unset|--unset-all)
-		__gitcomp_nl "$(__git_config_get_set_variables)"
+	local subcommands subcommand
+
+	__git_resolve_builtins "config"
+
+	subcommands="$___git_resolved_builtins"
+	subcommand="$(__git_find_subcommand "$subcommands")"
+
+	if [ -z "$subcommand" ]
+	then
+		__gitcomp "$subcommands"
 		return
-		;;
-	*.*)
-		__git_complete_config_variable_value
+	fi
+
+	case "$cur" in
+	--*)
+		__gitcomp_builtin "config_$subcommand"
 		return
 		;;
 	esac
-	case "$cur" in
-	--*)
-		__gitcomp_builtin config
+
+	case "$subcommand" in
+	get)
+		__gitcomp_nl "$(__git_config_get_set_variables)"
 		;;
-	*)
-		__git_complete_config_variable_name
+	set)
+		case "$prev" in
+		*.*)
+			__git_complete_config_variable_value
+			;;
+		*)
+			__git_complete_config_variable_name
+			;;
+		esac
+		;;
+	unset)
+		__gitcomp_nl "$(__git_config_get_set_variables)"
 		;;
 	esac
 }
@@ -3276,7 +3301,7 @@ __gitcomp_directories ()
 		#       i.e. which are *already* part of their
 		#       sparse-checkout.  Thus, normal file and directory
 		#       completion is always useless for "git
-		#       sparse-checkout add" and is also probelmatic for
+		#       sparse-checkout add" and is also problematic for
 		#       "git sparse-checkout set" unless using it to
 		#       strictly narrow the checkout.
 		COMPREPLY=( "" )
@@ -3678,7 +3703,7 @@ _git_worktree ()
 		# Here we are not completing an --option, it's either the
 		# path or a ref.
 		case "$prev" in
-		-b|-B)	# Complete refs for branch to be created/reseted.
+		-b|-B)	# Complete refs for branch to be created/reset.
 			__git_complete_refs
 			;;
 		-*)	# The previous word is an -o|--option without an
