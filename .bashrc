@@ -97,7 +97,7 @@ alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java
 
 # PROMPT_COMMAND="share_history; $PROMPT_COMMAND"
 
-[ -f ~/dotfiles/bin/git-completion.bash ] && source ~/dotfiles/bin/git-completion.bash
+[ -f ~/dotfiles/scripts/git-completion.bash ] && source ~/dotfiles/scripts/git-completion.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # [ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
 
