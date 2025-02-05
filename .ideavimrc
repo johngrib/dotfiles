@@ -8,7 +8,6 @@
   "https://gist.github.com/zchee/9c78f91cc5ad771c1f5d " action list
 
   map <F10>r :action IdeaVim.ReloadVimRc.reload<CR>
-  map s <NOP>
 
 " set commands -----------------------------------------------------------------
 
@@ -32,6 +31,10 @@
   Plug 'tpope/vim-commentary'
   Plug 'tommcdo/vim-exchange'
   Plug 'tpope/vim-commentary'
+
+" Plugin: - "vim-sneak"
+    Plug 'justinmk/vim-sneak'
+    "map s <NOP>
 
 " Plugin: - "easymotion"
     Plug 'easymotion/vim-easymotion'
@@ -212,22 +215,23 @@ map mZ <Action>(ToggleBookmarkZ)
 
 map \p <Action>(ParameterNameHints)
 
+
 " 열려있는 파일을 explorer에서 포커스 맞추기
-map sff <Action>(SelectInProjectView)
+map <Leader>ff <Action>(SelectInProjectView)
 " nmap sfn :NERDTreeFind<CR> " <Action>(SelectInProjectView) 와 똑같음
-map srr <Action>(Run)
+map <Leader>rr <Action>(Run)
 
-map smm <Action>(ShowPopupMenu)
-map spp :action TogglePresentationAssistantAction<CR>
+map <Leader>mm <Action>(ShowPopupMenu)
+map <Leader>pp :action TogglePresentationAssistantAction<CR>
 
-" Code Analyse: - "sa"
-map sar :action FindUsages<CR>
-map sah <Action>(ShowHoverInfo)
+" Code Analyse: - "Leader a"
+map <Leader>ar :action FindUsages<CR>
+map <Leader>ah <Action>(ShowHoverInfo)
 
-" Code: - "sc"
-map scr <Action>(RenameElement)
+" Code: - "Leader c"
+map <Leader>cr <Action>(RenameElement)
 
-" Visuam Mode Commands: - "sc"
-vmap scj :! convert-jpa # create table 항목을 JPA Entity properties로 변환
-vmap scc :! kotlin-constructor-properties # kotlin 생성자 항목을 named parameter 템플릿으로 변환
+" Visuam Mode Commands: - "Leader c"
+vmap <Leader>cj :! convert-jpa # create table 항목을 JPA Entity properties로 변환
+vmap <Leader>cc :! kotlin-constructor-properties # kotlin 생성자 항목을 named parameter 템플릿으로 변환
 
