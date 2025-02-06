@@ -1,0 +1,77 @@
+#!/bin/bash
+
+# ImageMagick 설치 여부 확인
+command -v convert >/dev/null 2>&1 || { echo "ImageMagick이 설치되어 있지 않습니다. 설치 명령어: brew install imagemagick"; exit 1; }
+
+# 사용법 확인
+if [ "$#" -ne 1 ]; then
+    echo "사용법: $0 <책_디렉토리>"
+    exit 1
+fi
+
+DIRECTORY="$1"
+if [ ! -d "$DIRECTORY" ]; then
+    echo "오류: $DIRECTORY 디렉토리가 존재하지 않습니다"
+    exit 1
+fi
+
+# 책 제목 (디렉토리 이름에서 추출)
+BOOK_TITLE=$(basename "$DIRECTORY")
+
+# 처리된 이미지를 저장할 디렉토리 생성
+PROCESSED_DIR="${DIRECTORY}/processed"
+mkdir -p "$PROCESSED_DIR"
+
+# 이미지 파일 처리 함수
+process_image() {
+    local img="$1"
+    local filename=$(basename "$img")
+    local extension="${filename##*.}"
+    echo "$filename 처리 중..."
+
+    # 출력 파일 경로
+    local output_path="${PROCESSED_DIR}/${filename%.*}.png"
+
+    if [ "${extension}" = "heic" ]; then
+        # HEIC 파일 처리
+        local temp_png="${PROCESSED_DIR}/temp_${filename%.*}.png"
+        sips -s format png "$img" --out "$temp_png" >/dev/null 2>&1
+
+        if [ -f "$temp_png" ]; then
+            convert "$temp_png" \
+                -gravity south \
+                -splice 0x30 \
+                -fill black \
+                -font AppleGothic \
+                -pointsize 20 \
+                -annotate +0+8 "$BOOK_TITLE" \
+                "$output_path"
+
+            rm "$temp_png"
+            echo "완료: $filename"
+        else
+            echo "변환 실패: $filename"
+            return 1
+        fi
+    else
+        # JPG/JPEG 파일 직접 처리
+        convert "$img" \
+            -gravity south \
+            -splice 0x30 \
+            -fill black \
+            -font AppleGothic \
+            -pointsize 20 \
+            -annotate +0+8 "$BOOK_TITLE" \
+            "$output_path"
+
+        echo "완료: $filename"
+    fi
+}
+
+# 이미지 파일 찾아서 처리
+find "$DIRECTORY" -maxdepth 1 -type f \( -iname "*.heic" -o -iname "*.jpg" -o -iname "*.jpeg" \) | while read -r img; do
+    process_image "$img"
+done
+
+echo "모든 처리가 완료되었습니다!"
+echo "처리된 이미지는 ${PROCESSED_DIR} 에 저장되었습니다"
