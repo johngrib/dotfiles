@@ -30,15 +30,15 @@ process_image() {
     echo "$filename 처리 중..."
 
     # 출력 파일 경로
-    local output_path="${PROCESSED_DIR}/${filename%.*}.png"
+    local output_path="${PROCESSED_DIR}/${filename%.*}.jpg"
 
     if [ "${extension}" = "heic" ]; then
         # HEIC 파일 처리
-        local temp_png="${PROCESSED_DIR}/temp_${filename%.*}.png"
-        sips -s format png "$img" --out "$temp_png" >/dev/null 2>&1
+        local temp_jpg="${PROCESSED_DIR}/temp_${filename%.*}.jpg"
+        sips -s format jpeg "$img" --out "$temp_jpg" >/dev/null 2>&1
 
-        if [ -f "$temp_png" ]; then
-            convert "$temp_png" \
+        if [ -f "$temp_jpg" ]; then
+            convert "$temp_jpg" \
                 -gravity south \
                 -splice 0x30 \
                 -fill black \
@@ -47,7 +47,7 @@ process_image() {
                 -annotate +0+8 "$BOOK_TITLE" \
                 "$output_path"
 
-            rm "$temp_png"
+            rm "$temp_jpg"
             echo "완료: $filename"
         else
             echo "변환 실패: $filename"
