@@ -1,47 +1,111 @@
 #!/bin/bash
 
+# 엄격한 에러 체크 모드 설정
+set -euo pipefail
+
 # ImageMagick 설치 여부 확인
 command -v convert >/dev/null 2>&1 || { echo "ImageMagick이 설치되어 있지 않습니다. 설치 명령어: brew install imagemagick"; exit 1; }
 
 # 사용법 확인
-if [ "$#" -ne 1 ]; then
-    echo "사용법: $0 <책_이미지_파일>"
+if [ "$#" -lt 1 ]; then
+    echo "사용법: $0 <책_이미지_파일...>"
     exit 1
 fi
 
-if [ ! -f "$1" ]; then
-    echo "오류: $1 파일이 존재하지 않습니다"
-    exit 1
-fi
-
+# 작업 디렉토리 생성
 PROCESSED_DIR="$PWD/processed"
+TEMP_DIR="$PWD/temp_$$"
 mkdir -p "$PROCESSED_DIR"
+mkdir -p "$TEMP_DIR"
 
-FILE_NAME_ORIGINAL="$1"
-BOOK_NAME=$(sed -E 's/\.[^\.]*$//' <<< "$FILE_NAME_ORIGINAL")
-FILE_NAME="$1"
+# 종료 시 cleanup 함수를 실행하도록 trap 설정
+cleanup() {
+    local exit_code=$?
+    echo "정리 작업 수행 중..."
+    rm -rf "$TEMP_DIR"
+    exit $exit_code
+}
 
-# 이미지 사이즈를 조정한다
-FILE_NAME_RESIZED="$1.resized"
-sips -Z 800 "$FILE_NAME" --out "$FILE_NAME_RESIZED" >/dev/null 2>&1
-FILE_NAME="$FILE_NAME_RESIZED"
+trap cleanup EXIT
+trap 'trap - EXIT; cleanup' INT TERM
 
-# 이미지에 텍스트를 추가한다
-FILE_NAME_TEXTED="$FILE_NAME.texted"
-magick "$FILE_NAME" \
-    -gravity south \
-    -splice 0x30 \
-    -fill black \
-    -font AppleGothic \
-    -pointsize 20 \
-    -annotate +0+8 "$BOOK_NAME" \
-    "$FILE_NAME_TEXTED"
-FILE_NAME="$FILE_NAME_TEXTED"
+# 에러 처리 함수
+handle_error() {
+    echo "오류 발생: $1" >&2
+    return 1
+}
 
-# 이미지 포맷을 jpeg 로 변경한다
-FILE_NAME_JPG="$FILE_NAME.jpg"
-sips -s format jpeg "$FILE_NAME" --out "$FILE_NAME_JPG" >/dev/null 2>&1
-FILE_NAME="$FILE_NAME_JPG"
+# 단일 파일 처리 함수
+process_file() {
+    local input_file="$1"
 
-mv "$FILE_NAME" "$PROCESSED_DIR/$BOOK_NAME.jpg"
-\rm "$FILE_NAME_RESIZED" "$FILE_NAME_TEXTED"
+    if [ ! -f "$input_file" ]; then
+        echo "건너뜀: $input_file (파일이 존재하지 않음)"
+        return 1
+    fi
+
+    echo "처리 중: $input_file"
+
+    local file_base_name=$(basename "$input_file")
+    local book_name=$(sed -E 's/\.[^\.]*$//' <<< "$file_base_name")
+
+    # 임시 파일들의 경로 설정
+    local resized_file="$TEMP_DIR/${book_name}_resized"
+    local texted_file="$TEMP_DIR/${book_name}_texted"
+    local final_file="$PROCESSED_DIR/$book_name.jpg"
+
+    # 이미지 사이즈 조정
+    echo "  크기 조정 중..."
+    if ! sips -Z 800 "$input_file" --out "$resized_file" >/dev/null 2>&1; then
+        echo "  실패: 이미지 크기 조정 실패"
+        return 1
+    fi
+
+    # 텍스트 추가
+    echo "  텍스트 추가 중..."
+    if ! magick "$resized_file" \
+        -gravity south \
+        -splice 0x30 \
+        -fill black \
+        -font AppleGothic \
+        -pointsize 20 \
+        -annotate +0+8 "$book_name" \
+        "$texted_file"; then
+        echo "  실패: 텍스트 추가 실패"
+        return 1
+    fi
+
+    # JPEG 포맷으로 변환 및 최종 위치로 이동
+    echo "  최종 변환 중..."
+    if ! sips -s format jpeg "$texted_file" --out "$final_file" >/dev/null 2>&1; then
+        echo "  실패: JPEG 변환 실패"
+        return 1
+    fi
+
+    echo "  완료: $final_file"
+    return 0
+}
+
+# 전체 결과 추적을 위한 변수들
+total_files=0
+successful_files=0
+failed_files=0
+
+# 모든 입력 파일 처리
+for file in "$@"; do
+    ((total_files++))
+    if process_file "$file"; then
+        ((successful_files++))
+    else
+        ((failed_files++))
+    fi
+done
+
+# 결과 요약 출력
+echo
+echo "처리 완료"
+echo "총 파일: $total_files"
+echo "성공: $successful_files"
+echo "실패: $failed_files"
+echo "처리된 파일 위치: $PROCESSED_DIR"
+
