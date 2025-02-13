@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# ImageMagick 설치 여부 확인
+command -v convert >/dev/null 2>&1 || { echo "ImageMagick이 설치되어 있지 않습니다. 설치 명령어: brew install imagemagick"; exit 1; }
+
+# 사용법 확인
+if [ "$#" -ne 1 ]; then
+    echo "사용법: $0 <책_이미지_파일>"
+    exit 1
+fi
+
+if [ ! -f "$1" ]; then
+    echo "오류: $1 파일이 존재하지 않습니다"
+    exit 1
+fi
+
+PROCESSED_DIR="$PWD/processed"
+mkdir -p "$PROCESSED_DIR"
+
+FILE_NAME_ORIGINAL="$1"
+BOOK_NAME=$(sed -E 's/\.[^\.]*$//' <<< "$FILE_NAME_ORIGINAL")
+FILE_NAME="$1"
+
+# 이미지 사이즈를 조정한다
+FILE_NAME_RESIZED="$1.resized"
+sips -Z 800 "$FILE_NAME" --out "$FILE_NAME_RESIZED" >/dev/null 2>&1
+FILE_NAME="$FILE_NAME_RESIZED"
+
+# 이미지에 텍스트를 추가한다
+FILE_NAME_TEXTED="$FILE_NAME.texted"
+magick "$FILE_NAME" \
+    -gravity south \
+    -splice 0x30 \
+    -fill black \
+    -font AppleGothic \
+    -pointsize 20 \
+    -annotate +0+8 "$BOOK_NAME" \
+    "$FILE_NAME_TEXTED"
+FILE_NAME="$FILE_NAME_TEXTED"
+
+# 이미지 포맷을 jpeg 로 변경한다
+FILE_NAME_JPG="$FILE_NAME.jpg"
+sips -s format jpeg "$FILE_NAME" --out "$FILE_NAME_JPG" >/dev/null 2>&1
+FILE_NAME="$FILE_NAME_JPG"
+
+mv "$FILE_NAME" "$PROCESSED_DIR/$BOOK_NAME.jpg"
+\rm "$FILE_NAME_RESIZED" "$FILE_NAME_TEXTED"
