@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# remote repository에는 있고, local repository에는 없는 branch 목록을 보여주고 선택할 수 있게 해줍니다.
+# r릐고 선택한 branch를 local repository에 생성하고, remote repository의 branch로 reset --hard 합니다.
+
+get_remotes() {
+    git remote -v | awk 'NF > 1 { print $1 }' | sort | uniq
+}
+
+REMOTE_COUNT=$(get_remotes | wc -l | sed 's/ //g')
+
+if [[ "$REMOTE_COUNT" == "1" ]]; then
+    TARGET_REMOTE=$(get_remotes)
+else
+    TARGET_REMOTE=$(get_remotes | fzf)
+fi
+
+
+git fetch "$TARGET_REMOTE"
+
+BRANCH_LIST="/tmp/git-branch-$(uuidgen)"
+git branch | cut -c 3- > $BRANCH_LIST
+
+REMOTE_BRANCH_LIST="/tmp/git-remote-branch-$(uuidgen)"
+git branch -r | sed "s,^ *$TARGET_REMOTE/,," | grep -v '^HEAD ->' > $REMOTE_BRANCH_LIST
+
+cleanup() {
+    local exit_code=$?
+    \rm -f "$BRANCH_LIST" "$REMOTE_BRANCH_LIST"
+    exit $exit_code
+}
+trap cleanup EXIT
+trap 'trap - EXIT; cleanup' INT TERM
+
+
+SELECTED_BRANCH=$(diff "$BRANCH_LIST" "$REMOTE_BRANCH_LIST" | grep '^>' | sort | uniq | cut -c 3- | fzf)
+
+git switch -c "$SELECTED_BRANCH" && git reset --hard "$TARGET_REMOTE/$SELECTED_BRANCH"
+
