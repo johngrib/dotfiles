@@ -3,15 +3,15 @@
 # ~/OneDrive/photo/book 에 저장해둔 책 스크랩 사진을 랜덤으로 30장 선택하여 ~/Desktop/wallpaper/ 에 복사한다.
 # 이 스크립트는 crontab 으로 실행하도록 설정한다.
 
-if [ -d "$HOME/Desktop/wall-paper" ]; then
-    \rm $HOME/Desktop/wall-paper/*
-else
-    mkdir -p $HOME/Desktop/wall-paper
-fi
+mkdir -p $HOME/Desktop/wall-paper
 
 find $HOME/OneDrive/photo/book -type f ! -name '.DS_Store' \
     | sort -R \
     | head -30 \
     | xargs -I{} cp {} $HOME/Desktop/wall-paper/
 
+# 만약 파일이 200 개 이상 존재한다면, 오래된 파일 100개를 삭제한다.
+if [ $(ls $HOME/Desktop/wall-paper | wc -l) -gt 200 ]; then
+    ls -t $HOME/Desktop/wall-paper | tail -n 100 | xargs -I{} rm $HOME/Desktop/wall-paper/{}
+fi
 
