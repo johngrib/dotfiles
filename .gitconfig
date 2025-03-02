@@ -301,9 +301,17 @@
     autocrlf = input
     precomposeunicode = true
     quotepath = false
-    ; pager = bat
+    ; https://github.com/dandavison/delta#configuration
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    dark = true
 [merge]
     ; conflictstyle = diff3
+    ; https://github.com/dandavison/delta#configuration
+    conflictstyle = zdiff3
     trustExitCode = true
 [diff]
     ; colorMoved = default
