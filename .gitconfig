@@ -302,7 +302,7 @@
     precomposeunicode = true
     quotepath = false
     ; https://github.com/dandavison/delta#configuration
-    pager = delta | less -M --status-column
+    pager = delta | less -MIR --status-column
 [interactive]
     diffFilter = delta --color-only
 [delta]
