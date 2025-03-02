@@ -302,12 +302,13 @@
     precomposeunicode = true
     quotepath = false
     ; https://github.com/dandavison/delta#configuration
-    pager = delta
+    pager = delta | less -M --status-column
 [interactive]
     diffFilter = delta --color-only
 [delta]
     navigate = true
     dark = true
+    line-numbers = true
 [merge]
     ; conflictstyle = diff3
     ; https://github.com/dandavison/delta#configuration
