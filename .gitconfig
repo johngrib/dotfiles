@@ -295,9 +295,14 @@
             git tag -d $_current; \
         fi; \
     }; f"
+[branch]
+    sort = -committerdate
+[column]
+    ui = auto
 [core]
-    excludesfile = /Users/johngrib/.gitignore_global
+    excludesfile = ~/.gitignore_global
     editor = /opt/homebrew/bin/nvim -u ~/dotfiles/nvim/init-gitcommit.vim
+    ; 윈도우에서는 CRLF, 맥/리눅스에서는 LF를 사용.
     autocrlf = input
     precomposeunicode = true
     quotepath = false
@@ -306,6 +311,7 @@
 [interactive]
     diffFilter = delta --color-only
 [delta]
+    ; n 과 N 으로 diff section 간에 이동을 할 수 있다
     navigate = true
     dark = true
     line-numbers = true
@@ -323,4 +329,10 @@
 [mergetool "vimdiff"]
     path = /opt/homebrew/bin/nvim
     trustExitCode = true
+[rerere]
+    enabled = true
+    autoUpdate = true
+[tag]
+    sort = version:refname
+
 
