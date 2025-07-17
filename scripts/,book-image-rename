@@ -18,9 +18,6 @@ TEMP_DIR="$PWD/temp_$$"
 mkdir -p "$PROCESSED_DIR"
 mkdir -p "$TEMP_DIR"
 
-# 현재 디렉토리 이름 가져오기
-DIR_NAME=$(basename "$PWD")
-
 # 종료 시 cleanup 함수를 실행하도록 trap 설정
 cleanup() {
     local exit_code=$?
@@ -50,8 +47,7 @@ process_file() {
     echo "처리 중: $input_file"
 
     local file_base_name=$(basename "$input_file")
-    # IMG prefix를 디렉토리 이름으로 교체
-    local book_name=$(sed -E 's/^IMG/'"$DIR_NAME"'/' <<< "$file_base_name" | sed -E 's/\.[^\.]*$//')
+    local book_name=$(sed -E 's/\.[^\.]*$//' <<< "$file_base_name")
 
     # 임시 파일들의 경로 설정
     local resized_file="$TEMP_DIR/${book_name}_resized"
