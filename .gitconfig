@@ -297,8 +297,8 @@
     }; f"
 [branch]
     sort = -committerdate
-[column]
-    ui = auto
+; [column]
+;     ui = auto
 [core]
     excludesfile = ~/.gitignore_global
     editor = /opt/homebrew/bin/nvim -u ~/dotfiles/nvim/init-gitcommit.vim
@@ -318,7 +318,7 @@
 [merge]
     ; conflictstyle = diff3
     ; https://github.com/dandavison/delta#configuration
-    conflictstyle = zdiff3
+    ; conflictstyle = zdiff3
     trustExitCode = true
 [diff]
     ; colorMoved = default
@@ -331,7 +331,7 @@
     trustExitCode = true
 [rerere]
     enabled = true
-    autoUpdate = true
+    autoUpdate = false
 [tag]
     sort = version:refname
 
