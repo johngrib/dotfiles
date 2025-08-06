@@ -1,0 +1,19 @@
+{
+  "keyMappings": "# Insert your preferred key mappings here.\n# map t LinkHints.activateMode action=hover\n# map X createTab window http://www.bbc.com/news https://twitter.com/\nmap t Vomnibar.activateTabSelection",
+  "linkHintCharacters": "fvredcwsxqazjkumilho1234",
+  "settingsVersion": "2.3",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://gather.town/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://app.gather.town/*"
+    },
+    {
+      "passKeys": "vjkx`glgi?/X#",
+      "pattern": "https?://mail.google.com/*"
+    }
+  ]
+}
