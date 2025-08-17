@@ -41,11 +41,6 @@ call plug#begin('~/.vim/plugged')
         Plug 'tpope/vim-repeat'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-commentary'
-        Plug 'godlygeek/tabular'           " 텍스트 세로 정렬 도구
-        Plug 'jiangmiao/auto-pairs', {'for': ['go', 'javascript', 'rust', 'kotlin']}
-        Plug 'junegunn/vim-easy-align'
-        Plug 'AndrewRadev/splitjoin.vim'
-        Plug 'tommcdo/vim-exchange'
 
         "* 커서 점프
         Plug 'easymotion/vim-easymotion'
@@ -82,8 +77,6 @@ call plug#begin('~/.vim/plugged')
         PlugFile 'set-coc.vim'
     Plug 'SirVer/ultisnips'
         PlugFile 'set-ultisnips.vim'
-    "Plug 'github/copilot.vim'
-    "    PlugFile 'set-copilot.vim'
     Plug 'tenfyzhong/axring.vim'
         PlugFile 'set-axring.vim'
     Plug 'tpope/vim-speeddating'
@@ -100,12 +93,6 @@ call plug#begin('~/.vim/plugged')
         Plug 'tpope/vim-fugitive'       " git 명령어 wrapper
         Plug 'airblade/vim-gitgutter'   " git diff 를 라인 넘버 옆에 표시.
         Plug 'johngrib/vim-git-msg-wheel'
-
-        "* ETC
-        Plug 'diepm/vim-rest-console'
-            PlugFile 'set-vim-rest-console.vim'
-        Plug 'johngrib/vim-mac-dictionary'
-        Plug 'tridactyl/vim-tridactyl'
 
     "* File 탐색, 브라우징
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -167,7 +154,6 @@ call plug#begin('~/.vim/plugged')
 
     "* Vim 기반 애플리케이션
     Plug 'johngrib/vim-game-code-break'
-    Plug 'johngrib/vim-game-snake'
     " Plug 'tpope/vim-db'
     Plug 'johngrib/vimwiki', { 'branch': 'johngrib' }
         PlugFile 'set-vimwiki.vim'
