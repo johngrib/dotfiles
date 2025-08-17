@@ -1,0 +1,1 @@
+luafile /Users/johngrib/dotfiles/nvim/init.lua
