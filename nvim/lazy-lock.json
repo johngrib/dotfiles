@@ -1,7 +1,9 @@
 {
+  "grib-wiki": { "branch": "main", "commit": "0ac52f8a3f01b6fb8446e599c8bb282788c9fbce" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "nvim-notify": { "branch": "master", "commit": "397c7c1184745fca649e5104de659e6392ef5a4d" },
   "vim-airline": { "branch": "master", "commit": "5ca7f0b7fef4f174d57fd741b477bbbac0b7886a" },
   "vim-startify": { "branch": "master", "commit": "4e089dffdad46f3f5593f34362d530e8fe823dcf" },
+  "vimwiki": { "branch": "johngrib", "commit": "db9781ac01cd88e2ef823dc55f8653c0922827f3" },
   "winresizer": { "branch": "master", "commit": "9bd559a03ccec98a458e60c705547119eb5350f3" }
 }
