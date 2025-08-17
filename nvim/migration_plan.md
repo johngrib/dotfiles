@@ -13,6 +13,8 @@
   - `rcarriga/nvim-notify`
   - `simeji/winresizer`
   - `mhinz/vim-startify`
+  - `johngrib/vimwiki`
+  - `johngrib/grib-wiki`
 
 ---
 
@@ -22,7 +24,7 @@
 
 ### 1. 핵심 설정 이전
 
-- [ ] **키 매핑**: `old-init.vim`에 있는 모든 `map`, `nmap`, `vmap`, `imap` 명령어들을 `lua/keymaps.lua` 파일로 이전합니다.
+- [x] **키 매핑**: `old-init.vim`에 있는 모든 `map`, `nmap`, `vmap`, `imap` 명령어들을 `lua/keymaps.lua` 파일로 이전합니다.
 - [ ] **자동 명령 (Autocommands)**: `autocmd`와 `augroup` 블록을 `lua/autocmds.lua` 파일로 이전합니다.
 - [ ] **사용자 정의 함수**: `DecimalToBinary`와 같은 사용자 정의 Vimscript 함수들을 `lua/functions.lua` 파일로 이전합니다.
 - [ ] **사용자 정의 명령어**: `command!`로 정의된 사용자 정의 명령어들을 `lua/commands.lua` 파일로 이전합니다.
