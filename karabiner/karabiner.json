@@ -1,5 +1,4 @@
 {
-    "machine_specific": { "krbn-c17afc1f-410b-4c53-b0ae-5f579f486f38": { "enable_multitouch_extension": true } },
     "profiles": [
         {
             "complex_modifications": {
@@ -486,10 +485,6 @@
             "name": "Default profile",
             "selected": true,
             "simple_modifications": [
-                {
-                    "from": { "key_code": "f14" },
-                    "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
-                },
                 {
                     "from": { "key_code": "f16" },
                     "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
