@@ -17,7 +17,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Load options before plugins
 require("options")
 require("keymaps")
+require("functions") -- Add this line
+
 
 -- setup plugins
 require("lazy").setup("plugins")
-
