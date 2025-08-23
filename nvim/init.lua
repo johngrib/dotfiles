@@ -18,7 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 require("options")
 require("keymaps")
 require("functions")
-require("commands") -- Add this line
+require("commands")
+require("abbreviations") -- Add this line
 
 
 -- setup plugins
