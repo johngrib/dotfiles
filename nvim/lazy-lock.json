@@ -6,6 +6,7 @@
   "nvim-notify": { "branch": "master", "commit": "397c7c1184745fca649e5104de659e6392ef5a4d" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
+  "taglist.vim": { "branch": "master", "commit": "53041fbc45398a9af631a20657e109707a455339" },
   "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
   "vim-airline": { "branch": "master", "commit": "5ca7f0b7fef4f174d57fd741b477bbbac0b7886a" },
   "vim-choosewin": { "branch": "master", "commit": "839da609d9b811370216bdd9d4512ec2d0ac8644" },

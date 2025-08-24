@@ -27,6 +27,8 @@
   - `tpope/vim-repeat`
   - `tpope/vim-commentary`
   - `t9md/vim-choosewin`
+  - `vim-scripts/matchit.zip`
+  - `tpope/vim-speeddating`
 
 ---
 
