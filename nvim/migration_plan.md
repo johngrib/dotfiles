@@ -15,6 +15,17 @@
   - `mhinz/vim-startify`
   - `johngrib/vimwiki`
   - `johngrib/grib-wiki`
+  - `tpope/vim-surround`
+  - `junegrib/fzf`
+  - `junegrib/fzf.vim`
+  - `nvim-lua/plenary.nvim`
+  - `nvim-lua/popup.nvim`
+  - `nvim-telescope/telescope.nvim`
+  - `johngrib/vim-f-hangul`
+  - `Olical/vim-enmasse`
+  - `kshenoy/vim-signature`
+  - `tpope/vim-repeat`
+  - `tpope/vim-commentary`
 
 ---
 
@@ -25,10 +36,10 @@
 ### 1. 핵심 설정 이전
 
 - [x] **키 매핑**: `old-init.vim`에 있는 모든 `map`, `nmap`, `vmap`, `imap` 명령어들을 `lua/keymaps.lua` 파일로 이전합니다.
-- [ ] **자동 명령 (Autocommands)**: `autocmd`와 `augroup` 블록을 `lua/autocmds.lua` 파일로 이전합니다.
-- [ ] **사용자 정의 함수**: `DecimalToBinary`와 같은 사용자 정의 Vimscript 함수들을 `lua/functions.lua` 파일로 이전합니다.
-- [ ] **사용자 정의 명령어**: `command!`로 정의된 사용자 정의 명령어들을 `lua/commands.lua` 파일로 이전합니다.
-- [ ] **축약어 (Abbreviations)**: `iabbr`로 정의된 축약어들을 이전합니다.
+- [x] **자동 명령 (Autocommands)**: `autocmd`와 `augroup` 블록을 `lua/autocmds.lua` 파일로 이전합니다.
+- [x] **사용자 정의 함수**: `DecimalToBinary`와 같은 사용자 정의 Vimscript 함수들을 `lua/functions.lua` 파일로 이전합니다.
+- [x] **사용자 정의 명령어**: `command!`로 정의된 사용자 정의 명령어들을 `lua/commands.lua` 파일로 이전합니다.
+- [x] **축약어 (Abbreviations)**: `iabbr`로 정의된 축약어들을 이전합니다.
 
 ### 2. 나머지 플러그인 이전
 
@@ -38,6 +49,7 @@
     - `neoclide/coc.nvim` 및 관련 확장
     - `junegunn/fzf.vim`
     - `nvim-telescope/telescope.nvim`
+    - `luochen1990/rainbow` (현재 보류 중 - 초기화 문제)
     - 기타 등등
 
 ### 3. 최종 정리
