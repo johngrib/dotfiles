@@ -1,13 +1,13 @@
 
 nnoremap \? :vs ~/dotfiles/vim-include/set-backslash.vim<CR>
-nnoremap \<BS> :vs ~/Dropbox/localwiki/_wiki/todo.md<CR>
+" nnoremap \<BS> :vs ~/Dropbox/localwiki/_wiki/todo.md<CR>
 nnoremap \u :UltiSnipsEdit<CR>
 " nnoremap \u :call UltiSnipsToggle()<CR>
 nnoremap \h :UltiSnipsEdit help<CR>
 " nnoremap \z :MundoToggle<CR>
 nnoremap \r :RainbowToggle<CR>
-nnoremap \d :MacDictWord<CR>
-nnoremap \\d :MacDictQuery<CR>
+" nnoremap \d :MacDictWord<CR>
+" nnoremap \\d :MacDictQuery<CR>
 
 nnoremap \n :Files ~/dotfiles/vim-memo<CR>
 nnoremap \\n :e ~/dotfiles/vim-memo/

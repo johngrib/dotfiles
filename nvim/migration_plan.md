@@ -40,6 +40,7 @@
   - `tenfyzhong/axring.vim`
   - `guns/vim-sexp`
   - `easymotion/vim-easymotion`
+  - `set-f1-f20.vim`
 
 ---
 

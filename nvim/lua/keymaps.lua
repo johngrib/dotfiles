@@ -44,8 +44,8 @@ map('n', '<leader>P', '"+P', { noremap = true })
 map('n', '<leader>w', ':w<CR>', { noremap = true })
 
 -- 빠른 이동
-map('n', '<leader>f', '<Esc>:let @z=@/<CR>/\v[)"}]<CR>:let @/=@z<CR>', { noremap = true })
-map('n', '<leader>b', '<Esc>:let @z=@/<CR>?\v[("{]<CR>:let @/=@z<CR>', { noremap = true })
+map('n', '<leader>f', '<Esc>:let @z=@/<CR>/\\v[)"}]<CR>:let @/=@z<CR>', { noremap = true })
+map('n', '<leader>b', '<Esc>:let @z=@/<CR>?\\v[("{]<CR>:let @/=@z<CR>', { noremap = true })
 
 -- 비주얼 모드에서 선택 영역으로 검색
 map('v', '<leader>*', 'y/\\V<C-R>=@"<CR><CR>', { noremap = true })
@@ -66,3 +66,16 @@ map('n', '<leader>gb', '<cmd>Git blame<CR>', { noremap = true })
 map('n', 's', '<nop>', { noremap = true, silent = true })
 map('n', 'S', '<nop>', { noremap = true, silent = true })
 map('v', 's', '<nop>', { noremap = true, silent = true })
+
+-- Backslash keymaps from set-backslash.vim
+map('n', '\\?', ':vs ' .. vim.fn.expand('~/dotfiles/nvim/config/set-backslash.vim') .. '<CR>', { noremap = true })
+map('n', '\\u', ':UltiSnipsEdit<CR>', { noremap = true })
+map('n', '\\h', ':UltiSnipsEdit help<CR>', { noremap = true })
+map('n', '\\r', ':RainbowToggle<CR>', { noremap = true }) -- Note: Rainbow is postponed
+map('n', '\\n', ':Files ~/dotfiles/vim-memo<CR>', { noremap = true })
+map('n', '\\\\n', ':e ~/dotfiles/vim-memo/<CR>', { noremap = true })
+map('n', '\\m', ':MinimapRefresh<CR>:MinimapToggle<CR>', { noremap = true }) -- Note: Minimap not migrated yet
+map('n', '\\c', ':Copilot disable<CR>', { noremap = true }) -- Note: Copilot not migrated yet
+map('n', '\\\\c', ':Copilot enable<CR>', { noremap = true }) -- Note: Copilot not migrated yet
+map('n', '\\/', ':vimgrep //j **<left><left><left><left><CR>', { noremap = true })
+map('n', '\\\\/', ':vimgrep //j **<left><left><left><left><CR>', { noremap = true })
