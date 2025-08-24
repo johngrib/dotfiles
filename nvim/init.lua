@@ -19,7 +19,8 @@ require("options")
 require("keymaps")
 require("functions")
 require("commands")
-require("abbreviations") -- Add this line
+require("abbreviations")
+
 
 
 -- setup plugins
