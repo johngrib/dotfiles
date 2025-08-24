@@ -20,7 +20,7 @@ require("keymaps")
 require("functions")
 require("commands")
 require("abbreviations")
-
+require("f1_f20_keymaps").setup()
 
 
 -- setup plugins

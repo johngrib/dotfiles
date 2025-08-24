@@ -29,6 +29,17 @@
   - `t9md/vim-choosewin`
   - `vim-scripts/matchit.zip`
   - `tpope/vim-speeddating`
+  - `vim-scripts/taglist.vim`
+  - `tpope/vim-fugitive`
+  - `airblade/vim-gitgutter`
+  - `johngrib/FlatColor-johngrib`
+  - `milkypostman/vim-togglelist`
+  - `ludovicchabant/vim-gutentags`
+  - `majutsushi/tagbar`
+  - `SirVer/ultisnips`
+  - `tenfyzhong/axring.vim`
+  - `guns/vim-sexp`
+  - `easymotion/vim-easymotion`
 
 ---
 
@@ -53,6 +64,24 @@
     - `junegunn/fzf.vim`
     - `nvim-telescope/telescope.nvim`
     - `luochen1990/rainbow` (현재 보류 중 - 초기화 문제)
+    - `gelguy/wilder.nvim` (현재 보류 중 - 초기화/하이라이트 문제)
+    - `tpope/vim-dispatch` (마이그레이션 제외 - 사용자 요청)
+    - `stephpy/vim-yaml` (마이그레이션 제외 - 사용자 요청)
+        - `johngrib/Comrade` (마이그레이션 제외 - 사용자 요청)
+    - `rust-lang/rust.vim` (마이그레이션 제외 - 사용자 요청)
+    - 기타 등등
+    - `vim-gx-on-regex.vim` (마이그레이션 제외 - 사용자 요청)
+    - `neoclide/coc-tsserver` (마이그레이션 제외 - 사용자 요청)
+    - `vim-test/vim-test` (마이그레이션 제외 - 사용자 요청)
+    - `ternjs/tern_for_vim` (마이그레이션 제외 - 사용자 요청)
+    - `guns/vim-sexp` (마이그레이션 제외 - 사용자 요청)
+    - `liquidz/vim-iced` (마이그레이션 제외 - 사용자 요청)
+    - `liquidz/vim-iced-coc-source` (마이그레이션 제외 - 사용자 요청)
+    - `fatih/vim-go` (마이그레이션 제외 - 사용자 요청)
+    - `udalov/kotlin-vim` (마이그레이션 제외 - 사용자 요청)
+    - `weirongxu/coc-kotlin` (마이그레이션 제외 - 사용자 요청)
+    - `johngrib/Comrade` (마이그레이션 제외 - 사용자 요청)
+    - `rust-lang/rust.vim` (마이그레이션 제외 - 사용자 요청)
     - 기타 등등
 
 ### 3. 최종 정리
