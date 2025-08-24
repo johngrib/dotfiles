@@ -10,3 +10,5 @@
 --     vim.cmd('source ' .. plugin_path .. '/plugin/rainbow.vim')
 --   end,
 -- }
+return {
+}
