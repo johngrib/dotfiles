@@ -1,4 +1,5 @@
 {
+  "FlatColor-johngrib": { "branch": "master", "commit": "535c9e4dd2c9a8cee859b57dee97494c896823d5" },
   "fzf.vim": { "branch": "master", "commit": "3725f364ccd25b85a91970720ba9bc2931861910" },
   "grib-wiki": { "branch": "main", "commit": "0ac52f8a3f01b6fb8446e599c8bb282788c9fbce" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
