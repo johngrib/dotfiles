@@ -26,6 +26,7 @@
   - `kshenoy/vim-signature`
   - `tpope/vim-repeat`
   - `tpope/vim-commentary`
+  - `t9md/vim-choosewin`
 
 ---
 
