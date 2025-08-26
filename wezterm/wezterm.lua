@@ -36,4 +36,14 @@ config.colors = {
     },
 }
 
+local act = wezterm.action
+config.keys = {
+    { key = 'm', mods = 'CMD', action = act.ActivateCommandPalette, },
+    { key = 'd', mods = 'CMD', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    { key = 'd', mods = 'CMD|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+    { key = 'w', mods = 'CMD', action = act.CloseCurrentPane { confirm = true } },
+    { key = 'e', mods = 'CMD', action = act.ScrollByLine(-1) },
+    { key = 'y', mods = 'CMD', action = act.ScrollByLine(1) },
+}
+
 return config
