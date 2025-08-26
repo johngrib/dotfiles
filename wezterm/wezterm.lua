@@ -46,4 +46,9 @@ config.keys = {
     { key = 'y', mods = 'CMD', action = act.ScrollByLine(1) },
 }
 
+-- config.hyperlink_rules = {
+--     { regex = "JIRA-(\\d+)", format = "https://jira.example.com/browse/JIRA-$1" },
+--     { regex = "ISSUE-(\\d+)", format = "https://github.com/yourorg/yourrepo/issues/$1" },
+-- }
+
 return config
