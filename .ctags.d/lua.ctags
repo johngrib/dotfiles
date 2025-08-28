@@ -1,0 +1,6 @@
+--kinddef-lua=t,todo,To-Do items
+--kinddef-lua=n,note,Notes
+--kinddef-lua=s,section,Sections
+--regex-lua=/-- TODO: (.*)/\1/t,todo/
+--regex-lua=/-- NOTE: (.*)/\1/n,note/
+--regex-lua=/-- SECTION: (.*)/\1/s,section/
