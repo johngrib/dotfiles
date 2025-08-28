@@ -8,6 +8,7 @@ config.initial_cols = 120
 config.initial_rows = 28
 config.font_size = 23
 
+-- SECTION: COLOR
 -- color: https://wezterm.org/config/appearance.html
 config.colors = {
     foreground = 'f3f2f9',
@@ -34,6 +35,7 @@ config.colors = {
     },
 }
 
+-- SECTION: KEYS
 local act = wezterm.action
 config.keys = {
     { key = 'm', mods = 'CMD', action = wezterm.action.ShowTabNavigator },
@@ -45,12 +47,13 @@ config.keys = {
     { key = 'y', mods = 'CMD', action = act.ScrollByLine(1) },
 }
 
+-- SECTION: HYPERLINK
 -- config.hyperlink_rules = {
 --     { regex = "JIRA-(\\d+)", format = "https://jira.example.com/browse/JIRA-$1" },
 --     { regex = "ISSUE-(\\d+)", format = "https://github.com/yourorg/yourrepo/issues/$1" },
 -- }
 
--- tab bar 설정
+-- SECTION: TAB BAR
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = true
 config.window_frame = {
@@ -76,7 +79,7 @@ end)
 
 config.window_padding = { left = 2, right = 2, top = 0, bottom = 0 }
 
--- mouse
+-- SECTION: MOUSE
 config.mouse_bindings = {
     -- 마우스 드래그로 선택하면 클립보드로 복사
     {
