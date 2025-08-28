@@ -46,6 +46,12 @@ let g:tagbar_type_asciidoc = {
     \ ]
 \ }
 
+"** lua
+let g:tagbar_type_lua = {
+    \ 'ctagstype' : 'lua',
+    \ 'sort': 0,
+    \ 'kinds' : ['f:Function', 't:ToDo', 'n:Note', 's:Section'],
+    \}
 
 augroup tagbar_global_config
     autocmd VimLeavePre * TagbarClose
