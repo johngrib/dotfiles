@@ -94,7 +94,6 @@ create_alias "grm" "rm" "grm -i -v"
 
 alias weather='curl v2.wttr.in/Seoul'
 alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
-alias vim-old="/opt/homebrew/bin/nvim -u ~/dotfiles/nvim/old-init.vim"
 # alias brew="arch -x86_64 /usr/local/bin/brew"
 
 # PROMPT_COMMAND="share_history; $PROMPT_COMMAND"

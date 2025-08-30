@@ -1,3 +1,0 @@
-return {
-  'johngrib/grib-wiki',
-}
