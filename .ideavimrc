@@ -94,8 +94,8 @@
   "다음 기능들은 검색 창이 열린 다음에 포커스가 곧바로 에디터로 이동하므로 불편하고 쓸모가 없음.
   "실행한 다음 포커스가 남아 있기만 해도 굉장히 쓸만할 것 같은데 아쉽다.
   " nnoremap <F1><F1> :action SearchEverywhere<CR>
-  map <F1><F1> <Action>(SearchEverywhere)
-  map <F1><F2> <Action>(RecentFiles)
+  "map <F1><F1> <Action>(SearchEverywhere)
+  "map <F1><F2> <Action>(RecentFiles)
 
   map \t <Action>(ActivateStructureToolWindow)
   map \u <Action>(ShowUsages)
@@ -235,3 +235,4 @@ map <Leader>cr <Action>(RenameElement)
 vmap <Leader>cj :! convert-jpa # create table 항목을 JPA Entity properties로 변환
 vmap <Leader>cc :! kotlin-constructor-properties # kotlin 생성자 항목을 named parameter 템플릿으로 변환
 
+set keep-english-in-normal
