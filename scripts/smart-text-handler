@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Automator에서 아래와 같이 등록해 사용할 것.
+# {경로}/smart-text-handler "$1"
+
+# 선택된 텍스트
+selected_text="$1"
+
+# 대소문자 변환
+upper_text=$(echo "$selected_text" | tr '[:lower:]' '[:upper:]')
+
+# HTTP URL 체크
+if [[ "$selected_text" =~ ^https?:// ]]; then
+    open "$selected_text"
+    exit 0
+fi
+
+# JIRA 티켓 패턴 체크
+if [[ "$upper_text" =~ ^(INSURANCE|PARTNER)[\ -]?[0-9]+$ ]]; then
+    # 공백을 하이픈으로 변경
+    jira_ticket=$(echo "$upper_text" | sed 's/ /-/g')
+    open "https://jira.daumkakao.com/browse/$jira_ticket"
+    exit 0
+fi
+
+# 매칭되지 않으면 알림
+osascript -e "display notification \"No pattern matched: $selected_text\" with title \"Smart Text Handler\""
+
+
