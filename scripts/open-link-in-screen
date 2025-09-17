@@ -42,7 +42,7 @@ EOF
 REGEX="((insurance|partner)[- ]?[0-9]+)|(https?://[^ ]+)"
 URL_LIST=$(tail -"$TERMINAL_HEIGHT" "$TEMP_FILE" \
     | sed '/^[[:space:]]*$/d' \
-    | ggrep --color=always -P -i "$REGEX|$" \
+    | ggrep --color=always -P -i "$REGEX" \
     | tac \
     | fzf --ansi --no-reverse \
     | ggrep -o -P -i "$REGEX")
