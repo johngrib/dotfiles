@@ -106,6 +106,7 @@ source $(which fav.sh)
 
 bind '"\ev": "\C-ufav\C-m"'
 # bind '"\ed": "droller \"`pbpaste`\"\C-m"'
+bind '"\ee": "\C-u  open-link-in-screen -o  \C-m"'
 
 # eval $(thefuck --alias)
 

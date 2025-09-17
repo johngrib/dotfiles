@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# 변수 준비
+TERMINAL_HEIGHT=$(stty size | awk '{print $1}')
+
+OPEN_FLAG=false
+if [[ "$1" == "-o" ]]; then
+    OPEN_FLAG=true
+    shift
+fi
+
+TEMP_FILE="/tmp/terminal_content.txt"
+cleanup() {
+    local EXIT_CODE=$?
+    \rm -f "$TEMP_FILE"
+    exit $EXIT_CODE
+}
+trap cleanup EXIT
+trap 'trap - EXIT; cleanup' INT TERM
+
+handle_url() {
+    local url="$1"
+    if [[ "$OPEN_FLAG" == true ]]; then
+        open "$url"
+    else
+        if [[ "$url" =~ ^[[:space:]]*$ ]]; then
+            return
+        fi
+        echo "$url"
+    fi
+}
+
+# 스크린 텍스트 확보
+osascript << EOF > /dev/null
+    tell application "Terminal"
+        set terminal_text to contents of selected tab of front window
+    end tell
+    do shell script "echo " & quoted form of terminal_text & " > $TEMP_FILE"
+EOF
+
+# 스크린 내 URL 후보
+REGEX="((insurance|partner)[- ]?[0-9]+)|(https?://[^ ]+)"
+URL_LIST=$(tail -"$TERMINAL_HEIGHT" "$TEMP_FILE" \
+    | sed '/^[[:space:]]*$/d' \
+    | ggrep --color=always -P -i "$REGEX|$" \
+    | tac \
+    | fzf --ansi --no-reverse \
+    | ggrep -o -P -i "$REGEX")
+
+while IFS= read -r url; do
+    if [[ "$url" =~ ^https?:// ]]; then
+        handle_url "$url"
+        exit;
+    elif [[ "$url" =~ ^insurance || "$url" =~ ^INSURANCE || "$url" =~ ^PARTNER ]]; then
+        INPUT=$(echo "$url" | tr ' ' '-' | tr '[:lower:]' '[:upper:]')
+        URI="https://jira.daumkakao.com/browse/$INPUT"
+        handle_url "$URI"
+        exit;
+    fi
+done <<< "$URL_LIST"
+
