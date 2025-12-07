@@ -1,0 +1,47 @@
+# vim: set ft=toml :
+# https://ghostty.zerebos.com/
+# 설정 리로드 단축키: command + shift + ,
+
+# Application
+
+# Clipboard
+
+# Window
+window-subtitle = working-directory
+window-titlebar-background = #804057
+window-titlebar-foreground = #404180
+background-opacity = 1
+
+# Colors
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+    # 0 검은색, 1 빨간색, 2 초록색, 3 노란색, 4 파란색, 5 마젠타색, 6 사이안색, 7 흰색
+palette = 0=#1B193D
+palette = 1=#FB5F58
+palette = 2=#6ACC3B
+palette = 3=#FFD132
+palette = 4=#4DB7E8
+palette = 5=#9282C1
+palette = 6=#71A598
+palette = 7=#F6DDBE
+    # (밝은색들) 8 검은색, 9 빨간색, 10 초록색, 11 노란색, 12 파란색, 13 마젠타색, 14 사이안색, 15 흰색
+palette = 8=#060606
+palette = 9=#FB5F58
+palette = 10=#9DFF6E
+palette = 11=#F0C11B
+palette = 12=#1A97C7
+palette = 13=#9A5953
+palette = 14=#C7FAF3
+palette = 15=#F6F5FB
+
+background = #1B193D
+foreground = #F6F5FB
+cursor-color = #efbf38
+cursor-text = #08080a
+selection-background = #446280
+selection-foreground = #f3d9c4
+
+# macOS
+macos-option-as-alt = true
