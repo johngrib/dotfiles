@@ -1,6 +1,9 @@
 # export JAVA_HOME=$(/usr/libexec/java_home)
 export GOBIN=$HOME/go/bin
-export TERM=xterm-256color
+
+if [ "$TERM_PROGRAM" != "ghostty" ]; then
+    export TERM=xterm-256color
+fi
 
 export _OS_NAME=$(uname -s)
 
