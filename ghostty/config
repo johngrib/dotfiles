@@ -43,5 +43,9 @@ cursor-text = #08080a
 selection-background = #446280
 selection-foreground = #f3d9c4
 
+# Fonts
+font-family = MesloLGMDZ Nerd Font Mono
+font-family = Sarasa Gothic SC
+
 # macOS
 macos-option-as-alt = true
