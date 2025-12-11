@@ -2,7 +2,11 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-config.font = wezterm.font 'MesloLGMDZ Nerd Font Mono'
+config.font = wezterm.font_with_fallback {
+    'MesloLGMDZ Nerd Font Mono',
+    'Sarasa Fixed K',
+}
+
 
 config.initial_cols = 120
 config.initial_rows = 28
