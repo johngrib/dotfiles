@@ -4,7 +4,7 @@ local config = {}
 
 config.font = wezterm.font_with_fallback {
     'MesloLGMDZ Nerd Font Mono',
-    'Sarasa Fixed K',
+    -- 'Sarasa Fixed K',
 }
 
 
