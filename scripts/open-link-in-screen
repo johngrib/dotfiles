@@ -31,12 +31,26 @@ handle_url() {
 }
 
 # 스크린 텍스트 확보
+if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
 osascript << EOF > /dev/null
     tell application "Terminal"
         set terminal_text to contents of selected tab of front window
     end tell
     do shell script "echo " & quoted form of terminal_text & " > $TEMP_FILE"
 EOF
+elif [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+osascript << EOF > /dev/null
+        tell application "System Events"
+            tell process "Ghostty"
+                set frontmost to true
+                -- Command + Shift + Control + J 입력
+                keystroke "j" using {command down, shift down, control down}
+            end tell
+        end tell
+EOF
+cat $(pbpaste) > "$TEMP_FILE"
+\rm $(pbpaste)
+fi
 
 # 스크린 내 URL 후보
 REGEX="((insurance|partner)[- ]?[0-9]+)|(https?://[^ ]+)"
