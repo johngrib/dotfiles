@@ -46,6 +46,7 @@ selection-foreground = #f3d9c4
 # Fonts
 font-family = MesloLGMDZ Nerd Font Mono
 font-family = Sarasa Gothic SC
+font-size = 20.5
 
 # macOS
 macos-option-as-alt = true
