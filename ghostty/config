@@ -11,6 +11,8 @@ window-subtitle = working-directory
 window-titlebar-background = #804057
 window-titlebar-foreground = #404180
 background-opacity = 1
+# 새 창이나 탭을 열 때 현재 디렉토리를 상속받음
+window-inherit-working-directory = true
 
 # Colors
 cursor-style = block
