@@ -8,7 +8,13 @@ fi
 export _OS_NAME=$(uname -s)
 
 if [ "$_OS_NAME" = "Darwin" ]; then
-    export SDKROOT=$(xcrun --show-sdk-path)
+    export SDKROOT_CACHE="$HOME/.sdkroot_cache"
+    if [ -f "$SDKROOT_CACHE" ]; then
+        export SDKROOT=$(cat "$SDKROOT_CACHE")
+    else
+        export SDKROOT=$(xcrun --show-sdk-path)
+        echo "$SDKROOT" > "$SDKROOT_CACHE"
+    fi
 fi
 
 # history setting
@@ -33,7 +39,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 
 # vim, tmux
-export EDITOR=$(which nvim)
+export EDITOR=$(command -v nvim)
 # export MANPAGER=vimpager
 
 # aliases
@@ -105,7 +111,7 @@ alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # [ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
 
-source $(which fav.sh)
+source $(command -v fav.sh)
 
 bind '"\ev": "\C-ufav\C-m"'
 # bind '"\ed": "droller \"`pbpaste`\"\C-m"'
@@ -156,6 +162,6 @@ ioreg -r -d 1 -k BatteryPercent | grep BatteryPercent | tr -d ' '
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-for FILE in $(find ~/dotfiles/bash-include -type f -name '*.sh' | sort); do
-    source "$FILE";
+for FILE in ~/dotfiles/bash-include/*.sh; do
+    [ -r "$FILE" ] && source "$FILE";
 done
