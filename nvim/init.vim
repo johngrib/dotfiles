@@ -140,7 +140,6 @@ call plug#begin('~/.vim/plugged')
         "* Kotlin
         Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
         Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-        Plug 'johngrib/Comrade', {'branch': 'dev', 'for': ['kotlin', 'java', 'groovy']}
 
         "* Rust
         Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -183,7 +182,6 @@ let g:coc_global_extensions = [
             \ 'coc-explorer',
             \ 'coc-rust-analyzer',
             \ 'coc-vimlsp',
-            \ 'coc-comrade',
             \]
 
 "* vim set 설정

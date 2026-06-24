@@ -13,12 +13,6 @@ let g:tagbar_type_kotlin = {
     \}
 
 
-" https://github.com/fwcd/kotlin-language-server/blob/main/EDITORS.md#vim
-" let g:LanguageClient_serverCommands = {
-"     \ 'kotlin': ["kotlin-language-server"],
-"     \ }
-
-let g:comrade_key_fix = 'scm'
 
 function! NewKotlinFile()
     echom "New Kotlin file"
