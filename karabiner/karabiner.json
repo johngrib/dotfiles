@@ -248,6 +248,75 @@
                         ]
                     },
                     {
+                      "description": "StarCraft - Command + WASD to Arrow Keys",
+                      "manipulators": [
+                        {
+                          "type": "basic",
+                          "from": {
+                            "key_code": "w",
+                            "modifiers": { "mandatory": ["left_command"] }
+                          },
+                          "to": [{ "key_code": "up_arrow" }],
+                          "conditions": [
+                            {
+                              "type": "frontmost_application_if",
+                              "bundle_identifiers": [
+                                "com.blizzard.Starcraft"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": {
+                            "key_code": "a",
+                            "modifiers": { "mandatory": ["left_command"] }
+                          },
+                          "to": [{ "key_code": "left_arrow" }],
+                          "conditions": [
+                            {
+                              "type": "frontmost_application_if",
+                              "bundle_identifiers": [
+                                "com.blizzard.Starcraft"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": {
+                            "key_code": "s",
+                            "modifiers": { "mandatory": ["left_command"] }
+                          },
+                          "to": [{ "key_code": "down_arrow" }],
+                          "conditions": [
+                            {
+                              "type": "frontmost_application_if",
+                              "bundle_identifiers": [
+                                "com.blizzard.Starcraft"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": {
+                            "key_code": "d",
+                            "modifiers": { "mandatory": ["left_command"] }
+                          },
+                          "to": [{ "key_code": "right_arrow" }],
+                          "conditions": [
+                            {
+                              "type": "frontmost_application_if",
+                              "bundle_identifiers": [
+                                "com.blizzard.Starcraft"
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
                         "manipulators": [
                             {
                                 "description": "john-grib-super",
