@@ -115,7 +115,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
     " https://github.com/dense-analysis/ale
     " Plug 'jszakmeister/vim-togglecursor'
-        Plug 'vim-test/vim-test', {'for': 'rust'}
+        "Plug 'vim-test/vim-test', {'for': 'rust'}
         "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
         "* JavaScript
@@ -124,35 +124,35 @@ call plug#begin('~/.vim/plugged')
         PlugFile 'set-javascript.vim'
 
         "* Clojure
-        Plug 'guns/vim-sexp',    {'for': 'clojure'}
-        Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
-        Plug 'tpope/vim-dispatch'
-        Plug 'liquidz/vim-iced', {'for': 'clojure'}
-        Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+        "Plug 'guns/vim-sexp',    {'for': 'clojure'}
+        "Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+        "Plug 'tpope/vim-dispatch'
+        "Plug 'liquidz/vim-iced', {'for': 'clojure'}
+        "Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
         " Plug 'lambdalisue/fern.vim'
         " Plug 'liquidz/vim-iced-fern-debugger', {'for': 'clojure'}
-        PlugFile 'set-clojure.vim'
+        "PlugFile 'set-clojure.vim'
 
         "* Golang
-        Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-        PlugFile 'set-golang.vim'
+        "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+        "PlugFile 'set-golang.vim'
 
         "* Kotlin
-        Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
-        Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+        "Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
+        "Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
         "* Rust
-        Plug 'rust-lang/rust.vim', {'for': 'rust'}
-        PlugFile 'set-rust.vim'
+        "Plug 'rust-lang/rust.vim', {'for': 'rust'}
+        "PlugFile 'set-rust.vim'
 
         "* yaml
-        Plug 'stephpy/vim-yaml'
+        "Plug 'stephpy/vim-yaml'
 
         "* tmux
-        PlugFile 'set-tmux.vim'
+        "PlugFile 'set-tmux.vim'
 
     "* Vim 기반 애플리케이션
-    Plug 'johngrib/vim-game-code-break'
+    "Plug 'johngrib/vim-game-code-break'
     " Plug 'tpope/vim-db'
     Plug 'johngrib/vimwiki', { 'branch': 'johngrib' }
         PlugFile 'set-vimwiki.vim'
