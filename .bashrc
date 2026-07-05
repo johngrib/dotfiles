@@ -1,4 +1,3 @@
-# export JAVA_HOME=$(/usr/libexec/java_home)
 export GOBIN=$HOME/go/bin
 
 if [ "$TERM_PROGRAM" != "ghostty" ]; then
@@ -39,22 +38,19 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 
 # vim, tmux
-export EDITOR=$(command -v nvim)
-# export MANPAGER=vimpager
+export EDITOR='nvim'
 
 # aliases
 if ls --version > /dev/null 2>&1; then
     alias ls='ls --color=auto'; #gnu
     alias l.='ls -d .* --color=auto'
 else
-    # alias ls='ls -G'; #osx
     alias ls='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S"';
     alias lsf='gls --color=tty --time-style="+%Y-%m-%d %a %H:%M:%S -F"';
     alias l.='ls -dG .*'
 fi
 alias ll='ls -alh --color'
 alias lla='exa --time-style="long-iso" -alh'
-# alias vi='mvim -v'
 alias vi='nvim'
 alias vim='nvim'
 alias mv='mv -i'
@@ -66,12 +62,15 @@ alias convmv-all='find . -type f | xargs -P 0 -I {} convmv -f utf-8 -t utf-8 --n
 alias convmv-all-directory='find . -type d | xargs -P 0 -I {} convmv -f utf-8 -t utf-8 --nfc --notest {}'
 
 if [ "$_OS_NAME" = "Darwin" ]; then
-    alias ctags='`brew --prefix`/bin/ctags'
+    if [ -x /opt/homebrew/bin/ctags ]; then
+        alias ctags='/opt/homebrew/bin/ctags'
+    elif [ -x /usr/local/bin/ctags ]; then
+        alias ctags='/usr/local/bin/ctags'
+    fi
 fi
 
 alias tmux="TERM=screen-256color tmux"
 alias tm="tmux attach || tmux new"
-#alias vimr='open -a VimR.app "$@"'
 alias rg='rg --color=always'
 alias ag='ag --path-to-ignore ~/.agignore'
 alias agl='ag --pager="less -XFRMI"'
@@ -94,7 +93,7 @@ create_alias() {
     check_command=$1
     alias_name=$2
     alias_command=$3
-    if command -v $1 >/dev/null 2>&1 ; then alias "$2"="$3"; fi
+    if command -v "$1" >/dev/null 2>&1 ; then alias "$2"="$3"; fi
 }
 
 create_alias "gwc" "wc" "gwc"
@@ -103,28 +102,23 @@ create_alias "grm" "rm" "grm -i -v"
 
 alias weather='curl v2.wttr.in/Seoul'
 alias randomjava="find . -name '*.java' | sort -R | head -1 | egrep '[^/]+\.java'"
-# alias brew="arch -x86_64 /usr/local/bin/brew"
-
-# PROMPT_COMMAND="share_history; $PROMPT_COMMAND"
 
 [ -f ~/dotfiles/scripts/git-completion.bash ] && source ~/dotfiles/scripts/git-completion.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# [ -e ~/.phpbrew/bashrc ] && source ~/.phpbrew/bashrc
 
-source $(command -v fav.sh)
+if [ -f /opt/homebrew/bin/fav.sh ]; then
+    source /opt/homebrew/bin/fav.sh
+elif command -v fav.sh >/dev/null 2>&1; then
+    source "$(command -v fav.sh)"
+fi
 
 bind '"\ev": "\C-ufav\C-m"'
-# bind '"\ed": "droller \"`pbpaste`\"\C-m"'
 bind '"\ee": "\C-u  open-link-in-screen -o  \C-m"'
-
-# eval $(thefuck --alias)
 
 function todo {
     file1=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/todo.md`
-    # file2=`stat -f "%N" ~/Dropbox/git/localwiki/_wiki/times.md`
 
     if [ "$1" = "edit" ]; then
-        # vim $file1 $file2
         vim $file1
         return 0
     fi
@@ -146,21 +140,14 @@ function google() {
     open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1";
 }
 
-
 # iTerm2 tab and window title
-if [ $ITERM_SESSION_ID ]; then
+if [ "$ITERM_SESSION_ID" ]; then
     # iTerm의 탭 타이틀에 현재 디렉토리 이름을 넣어준다
     export PROMPT_COMMAND='echo -ne "\033]1;${PWD##*/}\007"; '
 fi
 
-# ls /usr/local/bin | sort -R | head -1 | xargs echo "Do you know about this? -> " && echo ''
-
 [ -d ~/my-fortune ] && fortune ~/my-fortune ; echo ''
-ioreg -r -d 1 -k BatteryPercent | grep BatteryPercent | tr -d ' '
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# ioreg -r -d 1 -k BatteryPercent | grep BatteryPercent | tr -d ' '
 
 for FILE in ~/dotfiles/bash-include/*.sh; do
     [ -r "$FILE" ] && source "$FILE";
