@@ -252,67 +252,81 @@
                       "manipulators": [
                         {
                           "type": "basic",
-                          "from": {
-                            "key_code": "w",
-                            "modifiers": { "mandatory": ["left_command"] }
-                          },
+                          "from": { "key_code": "w", "modifiers": { "mandatory": [] } },
                           "to": [{ "key_code": "up_arrow" }],
-                          "conditions": [
-                            {
-                              "type": "frontmost_application_if",
-                              "bundle_identifiers": [
-                                "com.blizzard.Starcraft"
-                              ]
-                            }
-                          ]
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
                         },
                         {
                           "type": "basic",
-                          "from": {
-                            "key_code": "a",
-                            "modifiers": { "mandatory": ["left_command"] }
-                          },
+                          "from": { "key_code": "a", "modifiers": { "mandatory": [] } },
                           "to": [{ "key_code": "left_arrow" }],
-                          "conditions": [
-                            {
-                              "type": "frontmost_application_if",
-                              "bundle_identifiers": [
-                                "com.blizzard.Starcraft"
-                              ]
-                            }
-                          ]
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
                         },
                         {
                           "type": "basic",
-                          "from": {
-                            "key_code": "s",
-                            "modifiers": { "mandatory": ["left_command"] }
-                          },
+                          "from": { "key_code": "s", "modifiers": { "mandatory": [] } },
                           "to": [{ "key_code": "down_arrow" }],
-                          "conditions": [
-                            {
-                              "type": "frontmost_application_if",
-                              "bundle_identifiers": [
-                                "com.blizzard.Starcraft"
-                              ]
-                            }
-                          ]
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
                         },
                         {
                           "type": "basic",
-                          "from": {
-                            "key_code": "d",
-                            "modifiers": { "mandatory": ["left_command"] }
-                          },
+                          "from": { "key_code": "d", "modifiers": { "mandatory": [] } },
                           "to": [{ "key_code": "right_arrow" }],
-                          "conditions": [
-                            {
-                              "type": "frontmost_application_if",
-                              "bundle_identifiers": [
-                                "com.blizzard.Starcraft"
-                              ]
-                            }
-                          ]
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": { "key_code": "q", "modifiers": { "mandatory": ["left_command"] } },
+                          "to": [{ "key_code": "q" }],
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": { "key_code": "w", "modifiers": { "mandatory": ["left_command"] } },
+                          "to": [{ "key_code": "w" }],
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": { "key_code": "e", "modifiers": { "mandatory": ["left_command"] } },
+                          "to": [{ "key_code": "e" }],
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": { "key_code": "a", "modifiers": { "mandatory": ["left_command"] } },
+                          "to": [{ "key_code": "a" }],
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": { "key_code": "s", "modifiers": { "mandatory": ["left_command"] } },
+                          "to": [{ "key_code": "s" }],
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": { "key_code": "d", "modifiers": { "mandatory": ["left_command"] } },
+                          "to": [{ "key_code": "d" }],
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": { "key_code": "z", "modifiers": { "mandatory": ["left_command"] } },
+                          "to": [{ "key_code": "z" }],
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": { "key_code": "x", "modifiers": { "mandatory": ["left_command"] } },
+                          "to": [{ "key_code": "x" }],
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
+                        },
+                        {
+                          "type": "basic",
+                          "from": { "key_code": "c", "modifiers": { "mandatory": ["left_command"] } },
+                          "to": [{ "key_code": "c" }],
+                          "conditions": [ { "type": "frontmost_application_if", "bundle_identifiers": [ "com.blizzard.Starcraft" ] } ]
                         }
                       ]
                     },
