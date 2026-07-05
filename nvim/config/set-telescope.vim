@@ -1,5 +1,6 @@
 
-lua vim.telescope = require("telescope.builtin")
+" lua vim.telescope = require("telescope.builtin")
+
 
 " nmap <F1> [telescope-p]
 

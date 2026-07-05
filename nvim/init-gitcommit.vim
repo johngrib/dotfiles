@@ -47,8 +47,6 @@ call plug#begin('~/.vim/plugged')
 
         "* 검색
         Plug 'google/vim-searchindex'
-        " Plug 'othree/eregex.vim'
-        " Plug 'haya14busa/incsearch.vim'
 
         "* Cursor, Color
         Plug 'johngrib/FlatColor-johngrib'
@@ -93,19 +91,11 @@ for include_file in s:file_plug_candidate
 endfor
 let s:file_plug_candidate = v:null
 
-"* COC plugin 목록
-" https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
-" :CocUpdate
-let g:coc_global_extensions = [
-            \ 'coc-ultisnips',
-            \]
-
 "* vim set 설정
 
     set path+=**
     set nofixeol
     set conceallevel=0
-    " set regexpengine=1
 
     if executable('ag')
         set grepprg=ag\ --nogroup\ --nocolor\ --column
@@ -116,8 +106,6 @@ let g:coc_global_extensions = [
     endif
 
     set nocompatible                  " vi 기능을 사용하지 않고, vim 만의 기능을 사용.
-    " set linebreak                     " break at word boundary
-    " set showbreak=++
     set list listchars=tab:·\ ,trail:·,extends:>,precedes:<
     set omnifunc=syntaxcomplete#Complete
     set mouse=a
@@ -129,25 +117,20 @@ let g:coc_global_extensions = [
 
     " command line에서 소문자 입력 후 탭을 누르면 대소문자 구분 없이 자동완성
     set ignorecase
-    "set tildeop    "~ 를 다른 오퍼레이터와 함께 사용한다.
 
     " 화면 표시
     set number           " 라인 넘버 출력
-    " set relativenumber
     set ruler            " 현재 커서 위치 (row, col) 좌표 출력
     set noerrorbells     " 에러 알림음 끄기
-    " set background=dark  " 검정배경을 사용 (이 색상에 맞춰 문법 하이라이트 색상이 달라짐.)
     set laststatus=2     " 상태바를 언제나 표시할 것
     set showmatch        " 일치하는 괄호 하이라이팅
     set cursorline       " highlight current line
     set lazyredraw       " redraw only when we need to.
     set showcmd          " airline 플러그인과 충돌 가능성 있음.
-    "set nowrap
-    " set sidescroll=2 sidescrolloff=10
     set wildmenu wildignorecase
     set wildmode=full
 
-    " 짜증나는 swp, backup 파일 안 만들기
+    " swp, backup 파일 안 만들기
     set noswapfile
     set nobackup
 
@@ -161,7 +144,6 @@ let g:coc_global_extensions = [
     "사용
     set bs=indent,eol,start  " backspace 키 사용 가능
     set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab
-    "set noimd               " no imdisable 한글 입력기 관련인데 mac 에서는 안 통하는듯
     set cindent autoindent smartindent
     set history=200 undolevels=2000
     " set cursorcolumn
@@ -171,7 +153,7 @@ let g:coc_global_extensions = [
     set virtualedit=block   " visual block mode를 쓸 때 문자가 없는 곳도 선택 가능하다
     set autoread
 
-    set cursorcolumn
+    " set cursorcolumn
     set cmdheight=2
     set updatetime=300
     setglobal timeoutlen=1200
@@ -181,12 +163,15 @@ let g:coc_global_extensions = [
 
     " This enables us to undo files even if you exit Vim.
     if has('persistent_undo')
-        let s:vimDir = '$HOME/.vim'
-        let &runtimepath.=','.s:vimDir
-        let s:undoDir = expand(s:vimDir . '/undodir')
+        let s:vimDir = expand('~/.vim')
+        let s:undoDir = s:vimDir . '/undodir'
 
-        call system('mkdir ' . s:vimDir)
-        call system('mkdir ' . s:undoDir)
+        if !isdirectory(s:vimDir)
+            call mkdir(s:vimDir, 'p')
+        endif
+        if !isdirectory(s:undoDir)
+            call mkdir(s:undoDir, 'p')
+        endif
 
         let &undodir = s:undoDir
         set undofile
@@ -195,9 +180,7 @@ let g:coc_global_extensions = [
 " map ----------------------------------------------------------------------
     let mapleader = "\<Space>"
     let maplocalleader = "\\"
-    " nnoremap <Leader>e :browse oldfiles<CR>
 
-    " nnoremap / /\v
     nnoremap k gk
     nnoremap gk k
     nnoremap j gj
@@ -206,9 +189,6 @@ let g:coc_global_extensions = [
     nnoremap & :&&<CR>
     xnoremap & :&&<CR>
 
-    " nnoremap <F10>r :source ~/.vimrc<CR>
-    "nnoremap gv `[v`]    " highlight last inserted text
-    " nnoremap <Space>k i<CR><Esc>
     nnoremap K i<CR><Esc>
 
     " copy , paste , select 기능 보완
@@ -221,7 +201,6 @@ let g:coc_global_extensions = [
     vnoremap <Space>d "+d
     nnoremap <Space>p "+p
     nnoremap <Space>P "+P
-    " nnoremap <F3>     :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
     " 참고 - ./vim-include/set-f1-f20.vim
     nnoremap <silent> <PageUp>   :bnext!<CR>
@@ -231,7 +210,6 @@ let g:coc_global_extensions = [
     inoremap <C-l> <right>
 
     " visual 모드에서 선택한 문자열로 검색한다.
-    " https://vim.fandom.com/wiki/Search_for_visually_selected_text
     vnoremap <Space>* y/\V<C-R>=escape(@",'/\')<CR><CR>
 
     set statusline+=%*
@@ -258,8 +236,6 @@ let g:coc_global_extensions = [
     nnoremap <Space>gc <cmd>Git commit<CR>
     nnoremap <Space>gb <cmd>Git blame<CR>
 
-
-
 set fileencodings=utf-8,euc-kr
 
 "* iabbr 설정
@@ -277,7 +253,7 @@ iabbr ㅇ.. 입니다.
 iabbr ㄱ.. 그리고
 
 "* 설정 파일 include
-for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
+for include_file in uniq(sort(glob(expand('~/dotfiles/nvim/vim-include/*.vim'), 0, 1)))
     execute "source " . include_file
 endfor
 
