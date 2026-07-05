@@ -13,7 +13,6 @@ call plug#begin('~/.vim/plugged')
     "* Vim 기본 기능 확장
         Plug 'rcarriga/nvim-notify'
             PlugFile 'set-notify.vim'
-        Plug 'kamykn/popup-menu.nvim'
         Plug 'simeji/winresizer'
             PlugFile 'set-winresizer.vim'
         PlugFile 'vim-gx-on-regex.vim'
@@ -28,7 +27,6 @@ call plug#begin('~/.vim/plugged')
             PlugFile 'set-airline.vim'
         Plug 'luochen1990/rainbow'      " 괄호를 level 별로 다르게 색칠한다. html 태그에도 적용.
         Plug 'kshenoy/vim-signature'    " m mark 위치를 표시해준다.
-        " Plug 'ap/vim-css-color'             " #rrggbb 형식의 문자열에 색깔을 입혀준다.
 
         "* text object
         Plug 'kana/vim-textobj-user'
@@ -51,14 +49,11 @@ call plug#begin('~/.vim/plugged')
 
         "* 검색
         Plug 'google/vim-searchindex'
-        " Plug 'othree/eregex.vim'
-        " Plug 'haya14busa/incsearch.vim'
 
         "* Cursor, Color
         Plug 'johngrib/FlatColor-johngrib'
             PlugFile 'set-color.vim'
         PlugFile 'set-cursor.vim'
-        " Plug 'johngrib/hosu'
 
         "* Quickfix
         Plug 'milkypostman/vim-togglelist'
@@ -83,7 +78,6 @@ call plug#begin('~/.vim/plugged')
 
     "* 외부 기능 지원
         "* ctags
-        Plug 'vim-scripts/taglist.vim'
         Plug 'ludovicchabant/vim-gutentags' " 자동으로 tags 파일을 갱신해 준다.
             PlugFile 'set-gutentags.vim'
         Plug 'majutsushi/tagbar'
@@ -98,62 +92,18 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'junegunn/fzf.vim'
         PlugFile 'set-fzf.vim'
-    " Plug 'preservim/nerdtree'
-    "     Plug 'ryanoasis/vim-devicons'
-    "     PlugFile 'set-nerdtree.vim'
-    " Plug 'wesleyche/srcexpl'
     Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-telescope/telescope.nvim'
         PlugFile 'set-telescope.vim'
-        Plug 'nvim-lua/popup.nvim'
-        PlugFile 'set-bye2022.vim'
 
     Plug 'laher/fuzzymenu.vim'
         PlugFile 'set-fuzzymenu.vim'
 
     "* language 확장
-    " Plug 'dense-analysis/ale', { 'do': 'brew install php-cs-fixer' }
-    " https://github.com/dense-analysis/ale
-    " Plug 'jszakmeister/vim-togglecursor'
-        "Plug 'vim-test/vim-test', {'for': 'rust'}
-        "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
         "* JavaScript
-        Plug 'neoclide/coc-tsserver', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-        Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
         PlugFile 'set-javascript.vim'
 
-        "* Clojure
-        "Plug 'guns/vim-sexp',    {'for': 'clojure'}
-        "Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
-        "Plug 'tpope/vim-dispatch'
-        "Plug 'liquidz/vim-iced', {'for': 'clojure'}
-        "Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
-        " Plug 'lambdalisue/fern.vim'
-        " Plug 'liquidz/vim-iced-fern-debugger', {'for': 'clojure'}
-        "PlugFile 'set-clojure.vim'
-
-        "* Golang
-        "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-        "PlugFile 'set-golang.vim'
-
-        "* Kotlin
-        "Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
-        "Plug 'weirongxu/coc-kotlin', {'for': 'kotlin', 'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-
-        "* Rust
-        "Plug 'rust-lang/rust.vim', {'for': 'rust'}
-        "PlugFile 'set-rust.vim'
-
-        "* yaml
-        "Plug 'stephpy/vim-yaml'
-
-        "* tmux
-        "PlugFile 'set-tmux.vim'
-
     "* Vim 기반 애플리케이션
-    "Plug 'johngrib/vim-game-code-break'
-    " Plug 'tpope/vim-db'
     Plug 'johngrib/vimwiki', { 'branch': 'johngrib' }
         PlugFile 'set-vimwiki.vim'
     Plug 'johngrib/grib-wiki'
@@ -255,7 +205,7 @@ let g:coc_global_extensions = [
     set virtualedit=block   " visual block mode를 쓸 때 문자가 없는 곳도 선택 가능하다
     set autoread
 
-    set cursorcolumn
+    " set cursorcolumn
     set cmdheight=2
     set updatetime=300
     setglobal timeoutlen=1200
@@ -265,12 +215,15 @@ let g:coc_global_extensions = [
 
     " This enables us to undo files even if you exit Vim.
     if has('persistent_undo')
-        let s:vimDir = '$HOME/.vim'
-        let &runtimepath.=','.s:vimDir
-        let s:undoDir = expand(s:vimDir . '/undodir')
+        let s:vimDir = expand('~/.vim')
+        let s:undoDir = s:vimDir . '/undodir'
 
-        call system('mkdir ' . s:vimDir)
-        call system('mkdir ' . s:undoDir)
+        if !isdirectory(s:vimDir)
+            call mkdir(s:vimDir, 'p')
+        endif
+        if !isdirectory(s:undoDir)
+            call mkdir(s:undoDir, 'p')
+        endif
 
         let &undodir = s:undoDir
         set undofile
@@ -478,7 +431,7 @@ iabbr ㅇ.. 입니다.
 iabbr ㄱ.. 그리고
 
 "* 설정 파일 include
-for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
+for include_file in uniq(sort(glob(expand('~/dotfiles/nvim/vim-include/*.vim'), 0, 1)))
     execute "source " . include_file
 endfor
 
