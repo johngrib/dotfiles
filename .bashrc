@@ -152,3 +152,7 @@ fi
 for FILE in ~/dotfiles/bash-include/*.sh; do
     [ -r "$FILE" ] && source "$FILE";
 done
+
+if [[ -n "$GHOSTTY_RESOURCES_DIR" ]]; then
+    builtin source "$GHOSTTY_RESOURCES_DIR/shell-integration/bash/ghostty.bash"
+fi
